@@ -1,0 +1,1539 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>TMP · Teman Main Padelmu</title>
+<meta name="description" content="Atur turnamen padel Americano, Mexicano, Mix dan King of the Court. Jadwal otomatis, skor langsung masuk klasemen. Semua fitur gratis.">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="TMP">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta property="og:title" content="TMP · Teman Main Padelmu">
+<meta property="og:description" content="Atur turnamen padel bareng teman. Jadwal otomatis, skor langsung masuk klasemen.">
+<meta property="og:image" content="icons/icon-512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap">
+<style>
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html,body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+<style>
+/* Layout: single-column phone app in the TMP banner look — espresso ground, tan brush labels, black scoreboard boxes, fixed bottom nav */
+:root{
+  --bg:#F3F6FC; --bg2:#E8EFFB; --surface:#FFFFFF; --raised:#EEF3FC; --sunk:#F7F9FE; --line:#D6E0F0;
+  --cream:#0E1B3A; --muted:#5B6B87; --tan:#1F5FE0; --tan-deep:#8FB0EE; --tan-ink:#FFFFFF; --box:#0F2A5C;
+  --win:#178A4A; --loss:#D23F33; --tie:#8C99B0;
+  --gold:#E3A72F; --silver:#A9B3C2; --bronze:#C77B3F;
+  --f-brush:"Poppins",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-hand:"Poppins",system-ui,-apple-system,sans-serif;
+  --f-score:"Poppins",system-ui,-apple-system,sans-serif;
+  --f-body:"Poppins",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --r:16px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{background:var(--bg)}
+body{background:var(--bg) radial-gradient(120% 60% at 50% 0%,#DCE7FB 0%,var(--bg) 60%) fixed;color:var(--cream);font-family:var(--f-body);font-size:16px;line-height:1.45;-webkit-tap-highlight-color:transparent}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--surface)}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--tan);outline-offset:2px}
+a{color:inherit}
+
+/* App bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgb(255 255 255 / .92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line);
+  padding-block:10px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.bar-in{max-width:640px;margin:0 auto;display:flex;align-items:center;gap:10px;min-height:40px}
+.logo{width:38px;height:38px;border-radius:50%;flex:none;box-shadow:0 0 0 1px var(--tan-deep)}
+.brand{display:flex;flex-direction:column;line-height:1}
+.brand b{font-family:var(--f-brush);font-weight:400;font-size:22px;letter-spacing:.02em;color:var(--cream)}
+.brand small{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--tan);margin-top:3px}
+.iconbtn{background:transparent;border:0;color:var(--cream);width:40px;height:40px;border-radius:12px;display:grid;place-items:center;flex:none}
+.iconbtn:active{background:var(--surface)}
+.bar-title{font-weight:700;font-size:17px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+main{max-width:640px;margin:0 auto;padding-block:18px 130px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:18px}
+h1,h2,h3{margin:0;text-wrap:balance}
+h1{font-family:var(--f-brush);font-weight:400;font-size:34px;line-height:1.05;letter-spacing:.01em}
+h2{font-size:20px;font-weight:800}
+h3{font-size:16px;font-weight:800}
+.muted{color:var(--muted)}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.spread{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brush{display:inline-block;background:var(--tan);color:var(--tan-ink);font-family:var(--f-brush);font-size:14px;letter-spacing:.04em;padding:5px 16px 4px;
+  clip-path:polygon(3% 12%,30% 2%,70% 6%,98% 0,100% 80%,72% 96%,35% 92%,1% 100%)}
+.hand{font-family:var(--f-hand);color:var(--tan);font-size:22px;line-height:1.1}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px}
+.btn{border:0;border-radius:12px;padding:13px 18px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;text-decoration:none;font-size:15px}
+.btn.primary{background:var(--tan);color:var(--tan-ink)}
+.btn.ghost{background:var(--raised);color:var(--cream)}
+.btn.outline{background:transparent;border:1.5px solid var(--tan-deep);color:var(--tan)}
+.btn.danger{background:#FDE7E5;color:#B3261E}
+.btn.block{width:100%}
+.btn.sm{min-height:40px;padding:8px 14px;font-size:14px}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;background:var(--raised);font-size:12px;font-weight:700;color:var(--muted)}
+.chip.tan{background:var(--tan);color:var(--tan-ink)}
+
+/* Home */
+.hero{display:flex;flex-direction:column;gap:10px;padding-top:4px}
+.hint{display:flex;gap:12px;align-items:flex-start;background:var(--bg2);border:1px dashed var(--tan-deep);border-radius:var(--r);padding:14px}
+.hint p{margin:0;font-size:14px}
+.hint .x{margin-left:auto;background:transparent;border:0;color:var(--muted);font-size:22px;line-height:1;padding:0 4px}
+.tlist{display:flex;flex-direction:column;gap:10px}
+.titem{display:flex;gap:14px;align-items:center;text-align:left;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px}
+.titem .meta{min-width:0;flex:1;display:flex;flex-direction:column;gap:4px}
+.titem .name{font-weight:800;font-size:16px;overflow-wrap:anywhere}
+.titem .sub{font-size:13px;color:var(--muted)}
+.badge{width:48px;height:48px;flex:none;border-radius:12px;background:var(--box);color:var(--tan);display:grid;place-items:center;font-family:var(--f-score);font-size:22px;letter-spacing:.04em}
+
+/* Form */
+form{display:flex;flex-direction:column;gap:20px}
+.field{display:flex;flex-direction:column;gap:8px}
+.field>label,.lbl{font-weight:700;font-size:15px}
+.help{font-size:13px;color:var(--muted);margin:0}
+.input{width:100%;background:var(--sunk);border:1px solid var(--line);border-radius:12px;padding:12px 14px;min-height:50px;font-size:16px;color:var(--cream)}
+select.input{appearance:none;-webkit-appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--tan) 50%),linear-gradient(135deg,var(--tan) 50%,transparent 50%);
+  background-position:calc(100% - 20px) 22px,calc(100% - 14px) 22px;background-size:6px 6px;background-repeat:no-repeat;padding-right:40px}
+textarea.input{resize:vertical;min-height:50px}
+.input::placeholder{color:#93A2BD}
+.seg{display:grid;grid-template-columns:repeat(auto-fit,minmax(92px,1fr));gap:6px;background:var(--sunk);padding:5px;border-radius:13px}
+.seg button{border:0;background:transparent;border-radius:9px;padding:10px 6px;font-weight:700;font-size:14px;color:var(--muted);line-height:1.2}
+.seg button[aria-pressed="true"]{background:var(--tan);color:var(--tan-ink)}
+.stepper{display:flex;align-items:center;gap:6px}
+.stepper button{width:50px;height:50px;border-radius:12px;border:0;background:var(--raised);font-size:24px;font-weight:700}
+.stepper output{min-width:48px;text-align:center;font-family:var(--f-score);font-size:30px}
+.fmt-desc{font-size:14px;color:var(--muted);margin:0}
+.add{display:flex;gap:8px;align-items:stretch}
+.add textarea{flex:1;min-width:0}
+.add .btn{flex:none}
+.elist{display:flex;flex-direction:column;gap:6px}
+.echip{display:flex;align-items:center;gap:8px;background:var(--raised);border-radius:12px;padding:6px 6px 6px 14px;min-height:52px}
+.echip .n{font-family:var(--f-score);font-size:18px;color:var(--tan);width:24px;flex:none}
+.echip .nm{flex:1;min-width:0;font-weight:700;overflow-wrap:anywhere}
+.echip .input{min-height:40px;padding:8px 10px}
+.gtog{border:0;border-radius:8px;padding:6px 10px;font-size:12px;font-weight:800;min-width:58px}
+.gtog.M{background:var(--sunk);color:var(--tan)}
+.gtog.F{background:var(--tan);color:var(--tan-ink)}
+.ebtn{border:0;background:transparent;color:var(--muted);width:38px;height:38px;border-radius:10px;display:grid;place-items:center;flex:none}
+.ebtn.del{color:var(--loss)}
+.panel{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:18px 16px;display:flex;flex-direction:column;gap:18px}
+.panel-h{display:flex;flex-direction:column;gap:4px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.est{background:var(--sunk);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.est .big{font-family:var(--f-score);font-size:34px;line-height:1;color:var(--tan);letter-spacing:.02em}
+.est .facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.est .fact{background:var(--surface);border-radius:10px;padding:8px 10px}
+.est .fact b{display:block;font-family:var(--f-score);font-size:22px;font-weight:400;line-height:1.1;color:var(--cream)}
+.est .fact span{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-weight:700}
+details.adv{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:0 16px}
+details.adv summary{list-style:none;padding:15px 0;font-weight:800;color:var(--tan);display:flex;justify-content:space-between;align-items:center;cursor:pointer}
+details.adv summary::-webkit-details-marker{display:none}
+details.adv[open] summary{border-bottom:1px solid var(--line);margin-bottom:16px}
+details.adv .inner{display:flex;flex-direction:column;gap:20px;padding-bottom:18px}
+.radios{display:flex;flex-direction:column;gap:8px}
+.radio{display:flex;align-items:center;gap:12px;background:var(--raised);border-radius:12px;padding:12px 14px;font-weight:700}
+.radio input,.check input{width:22px;height:22px;margin:0;accent-color:var(--tan);flex:none}
+.check{display:flex;gap:12px;align-items:flex-start}
+.check input{margin-top:1px}
+.check b{display:block;font-weight:700}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.err{background:#FDE7E5;color:#B3261E;border-radius:12px;padding:12px 14px;font-size:14px;font-weight:700}
+.free{font-size:10px;font-weight:800;letter-spacing:.06em;background:var(--tan);color:var(--tan-ink);border-radius:5px;padding:2px 5px;margin-left:4px;vertical-align:2px}
+.formfoot{position:sticky;bottom:0;z-index:6;margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));
+  background:linear-gradient(to top,var(--bg) 72%,transparent);padding-top:18px;padding-bottom:calc(12px + env(safe-area-inset-bottom,0px));
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* Tournament header */
+.thead{display:flex;flex-direction:column;gap:14px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.ttitle{display:flex;align-items:flex-start;gap:8px}
+.ttitle h1{font-size:28px;flex:1;min-width:0;overflow-wrap:anywhere}
+.info{display:grid;grid-template-columns:1fr auto;gap:8px 12px;font-size:14px;color:var(--muted)}
+.info span{display:flex;align-items:center;gap:8px;min-width:0}
+.info span:nth-child(even){justify-content:flex-end;text-align:right}
+.menu{position:relative}
+.menu-pop{position:absolute;right:0;top:44px;z-index:15;background:var(--raised);border:1px solid var(--line);border-radius:14px;padding:6px;min-width:220px;box-shadow:0 12px 30px rgb(15 30 60 / .16);display:flex;flex-direction:column}
+.menu-pop>*{display:flex;align-items:center;gap:10px;background:transparent;border:0;text-align:left;padding:12px;border-radius:10px;font-weight:700;font-size:15px;text-decoration:none}
+.menu-pop>*:active{background:var(--surface)}
+.menu-pop .del{color:var(--loss)}
+.champ{display:flex;flex-direction:column;align-items:center;gap:8px;padding:18px 12px;text-align:center;
+  background:radial-gradient(80% 100% at 50% 50%,rgb(31 95 224 / .10),transparent 70%)}
+.champ .q{display:flex;align-items:center;gap:10px;font-family:var(--f-brush);font-size:40px;color:var(--tan-deep);line-height:.6}
+.champ .pill{font-weight:800;font-size:20px;background:var(--tan);color:var(--tan-ink);border-radius:14px;padding:8px 16px;display:inline-flex;align-items:center;gap:8px;overflow-wrap:anywhere}
+.medal{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;font-size:12px;font-weight:800;color:var(--tan-ink);flex:none}
+.medal.g1{background:var(--gold)}.medal.g2{background:var(--silver)}.medal.g3{background:var(--bronze)}
+
+/* Rounds */
+.sech{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.sech h2{font-family:var(--f-brush);font-weight:400;font-size:26px}
+.rchips{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 6px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.rchips::-webkit-scrollbar{display:none}
+.rchip{flex:none;min-width:62px;height:52px;border-radius:12px;border:1px solid var(--line);background:var(--surface);font-family:var(--f-score);font-size:26px;position:relative;padding:0 18px}
+.rchip svg{position:absolute;top:5px;right:6px;color:var(--win)}
+.rchip[aria-current="true"]{background:var(--tan);color:var(--tan-ink);border-color:var(--tan)}
+.rchip[aria-current="true"] svg{color:var(--tan-ink)}
+.rchip.future{border-style:dashed;color:var(--muted);background:transparent}
+.rnav{display:grid;grid-template-columns:52px 1fr 52px;align-items:center;gap:10px}
+.rnav button{height:52px;border-radius:12px;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center}
+.rnav button:disabled{opacity:.35}
+.rnav h2{text-align:center;font-family:var(--f-score);font-weight:400;font-size:34px;letter-spacing:.03em}
+.matches{display:flex;flex-direction:column;gap:22px;padding-top:6px}
+.mcard{position:relative;padding-top:26px}
+.boxes{position:absolute;top:0;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:2}
+.sbox{width:58px;height:54px;border:0;border-radius:7px;background:var(--box);color:#FFFFFF;text-align:center;font-family:var(--f-score);font-size:38px;line-height:1;padding:0;box-shadow:0 4px 0 rgb(15 42 92 / .22)}
+.sbox::placeholder{color:#6F86B8}
+.sbox:focus{outline:2px solid var(--tan);outline-offset:1px}
+.sbox[readonly]{cursor:default}
+.mbody{display:grid;grid-template-columns:1fr 1fr;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);min-height:92px}
+.half{padding:38px 14px 14px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.half.b{border-left:1px solid var(--line);text-align:right;align-items:flex-end}
+.half .nm{font-weight:700;font-size:16px;overflow-wrap:anywhere;line-height:1.25}
+.half.win .nm{color:var(--tan)}
+.half .tag{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--win);min-height:12px}
+.ctag{position:absolute;top:32px;right:10px;z-index:1;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.ctag.l{right:auto;left:12px}
+.sets{display:flex;gap:5px}
+.sset{width:38px;height:38px;border:1px solid var(--line);border-radius:8px;background:var(--sunk);text-align:center;font-family:var(--f-score);font-size:22px;color:var(--cream);padding:0}
+.rest{font-size:14px;color:var(--muted);background:var(--bg2);border-radius:12px;padding:12px 14px}
+.rest b{color:var(--cream)}
+.ractions{display:flex;flex-direction:column;gap:8px}
+.ractions .row>*{flex:1}
+.status{font-size:13px;color:var(--muted);text-align:center}
+.confirm{display:flex;flex-direction:column;gap:10px;background:var(--raised);border:1px solid var(--tan-deep);border-radius:var(--r);padding:14px}
+.confirm p{margin:0;font-weight:700}
+
+/* Leaderboard */
+.lbwrap{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.lbscroll{overflow-x:auto}
+.lb{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;min-width:340px}
+.lb th{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:12px 4px;text-align:center;background:var(--bg2);border-bottom:1px solid var(--line);white-space:nowrap}
+.lb th:nth-child(1){text-align:left;padding-left:12px}
+.lb td{padding:12px 4px;border-bottom:1px solid var(--line);text-align:center;font-size:14px}
+.lb tr:last-child td{border-bottom:0}
+.lb td.nmc{text-align:left;padding-left:12px;font-weight:700}
+.lb .nmw{display:flex;align-items:center;gap:8px;min-width:0}
+.lb .nmw span{overflow-wrap:anywhere;line-height:1.2}
+.lb .rk{font-family:var(--f-score);font-size:18px;color:var(--muted);width:24px;text-align:center;flex:none}
+.lb tr.r1 td{background:rgb(228 186 94 / .10)} .lb tr.r1 td:first-child{box-shadow:inset 4px 0 var(--gold)}
+.lb tr.r2 td{background:rgb(196 187 173 / .07)} .lb tr.r2 td:first-child{box-shadow:inset 4px 0 var(--silver)}
+.lb tr.r3 td{background:rgb(197 132 79 / .08)} .lb tr.r3 td:first-child{box-shadow:inset 4px 0 var(--bronze)}
+.wlt{font-weight:700;white-space:nowrap}
+.wlt .w{color:var(--win)}.wlt .l{color:var(--loss)}.wlt .t{color:var(--tie)}
+.dots{display:flex;gap:3px;justify-content:center;margin-top:4px}
+.dots i{width:7px;height:7px;border-radius:50%;background:var(--tie)}
+.dots i.w{background:var(--win)}.dots i.l{background:var(--loss)}
+.pos{color:var(--win)}.neg{color:var(--loss)}
+.pts{font-family:var(--f-score);font-size:22px;color:var(--tan)}
+.sortsel{max-width:170px;min-height:40px;padding:8px 36px 8px 12px;font-size:14px;font-weight:700;background-position:calc(100% - 18px) 17px,calc(100% - 12px) 17px}
+.legend{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:13px;color:var(--muted);background:var(--bg2);border-radius:12px;padding:14px}
+.legend b{color:var(--cream)}
+
+/* Bottom nav */
+.bnav{position:fixed;left:0;right:0;bottom:0;z-index:18;background:rgb(255 255 255 / .96);border-top:1px solid var(--line);
+  padding-bottom:env(safe-area-inset-bottom,0px);padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px)}
+.bnav-in{max-width:640px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr}
+.bnav button{background:transparent;border:0;display:flex;flex-direction:column;align-items:center;gap:3px;padding:10px 0 12px;font-weight:700;font-size:13px;color:var(--muted)}
+.bnav button[aria-selected="true"]{color:var(--tan)}
+
+/* Simulation sheet */
+.sheet-bg{position:fixed;inset:0;background:rgb(15 27 58 / .45);z-index:40}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:41;max-height:calc(100% - 40px - env(safe-area-inset-top,0px));overflow-y:auto;background:var(--bg2);border-radius:22px 22px 0 0;border-top:1px solid var(--line);
+  padding-block:10px calc(20px + env(safe-area-inset-bottom,0px));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.sheet-in{max-width:640px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+.grab{width:44px;height:5px;border-radius:3px;background:var(--line);margin:0 auto}
+.simrange{width:100%;accent-color:var(--tan);height:28px}
+.dist{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.dist th{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:10px 12px;text-align:left;background:var(--surface);border-bottom:1px solid var(--line)}
+.dist th:last-child,.dist td:last-child{text-align:right}
+.dist td{padding:10px 12px;border-bottom:1px solid var(--line);font-weight:600}
+.dist td:first-child{color:var(--muted);width:32px}
+.gchip{display:inline-grid;place-items:center;min-width:34px;height:30px;border-radius:8px;font-family:var(--f-score);font-size:20px;padding:0 6px}
+.gchip.hi{background:var(--tan);color:var(--tan-ink)}
+.gchip.lo{background:var(--raised);color:var(--cream)}
+.gchip.zero{background:transparent;color:var(--muted);border:1px dashed var(--line)}
+.distwrap{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--bg)}
+.fair{padding:12px;font-size:14px;color:var(--muted);background:var(--surface)}
+.fair b.good{color:var(--win)}.fair b.ok{color:var(--gold)}.fair b.bad{color:var(--loss)}
+.car{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px;scrollbar-width:none}
+.car::-webkit-scrollbar{display:none}
+.rcard{flex:0 0 min(78%,300px);scroll-snap-align:center;background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:10px}
+.rcard.on{border-color:var(--tan)}
+.rcard.later{opacity:.45}
+.rcard h4{margin:0;font-family:var(--f-score);font-weight:400;font-size:26px;display:flex;justify-content:space-between;align-items:center}
+.rcard .mm{background:var(--bg);border-radius:10px;padding:10px;font-size:13px;display:flex;flex-direction:column;gap:4px}
+.rcard .mm .c{font-size:11px;color:var(--muted);font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+.rcard .mm .v{display:grid;grid-template-columns:1fr auto 1fr;gap:6px;font-weight:700}
+.rcard .mm .v span:nth-child(2){color:var(--muted);font-weight:500}
+.rcard .mm .v span:last-child{text-align:right}
+.rcard .rs{font-size:12px;color:var(--muted)}
+
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(84px + env(safe-area-inset-bottom,0px));background:var(--tan);color:var(--tan-ink);padding:10px 18px;border-radius:999px;font-weight:800;font-size:14px;z-index:50;max-width:calc(100% - 32px);text-align:center}
+.copyarea{width:100%;min-height:170px;font-size:13px}
+@media (prefers-reduced-motion:no-preference){.rchip,.mbody,.rcard{transition:background-color .15s,border-color .15s}}
+
+/* v3 additions: participants sheet, groups, extra rounds, spin wheel, PDF */
+.feat{display:flex;gap:14px;align-items:center;text-align:left;width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:14px}
+.feat .ic{width:48px;height:48px;flex:none;border-radius:50%;background:var(--box);display:grid;place-items:center;color:var(--tan)}
+.feat .meta{display:flex;flex-direction:column;gap:2px;min-width:0}
+.feat b{font-size:16px}
+.feat span{font-size:13px;color:var(--muted)}
+.gpill{display:inline-flex;align-items:center;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;background:var(--tan);color:var(--tan-ink);border-radius:6px;padding:2px 7px}
+.gpill.dim{background:var(--raised);color:var(--tan)}
+.away-tag{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--loss)}
+.prow{display:flex;align-items:center;gap:8px;background:var(--raised);border-radius:12px;padding:8px 8px 8px 12px;flex-wrap:wrap}
+.prow.away{opacity:.62}
+.prow .n{font-family:var(--f-score);font-size:18px;color:var(--tan);width:24px;flex:none}
+.prow .pname{flex:1 1 140px;min-width:0;min-height:42px;padding:8px 10px;background:var(--sunk);border:1px solid var(--line);border-radius:10px;font-weight:700;font-size:16px;color:var(--cream)}
+.prow .ctrls{display:flex;gap:6px;align-items:center;margin-left:auto}
+.att{border:0;border-radius:8px;padding:8px 10px;font-size:12px;font-weight:800;min-width:76px}
+.att.on{background:rgb(156 197 122 / .18);color:var(--win)}
+.att.off{background:rgb(226 119 92 / .18);color:var(--loss)}
+.gsel{min-height:36px;padding:4px 26px 4px 8px;font-size:13px;font-weight:800;border-radius:8px;background-position:calc(100% - 13px) 15px,calc(100% - 8px) 15px}
+.note{font-size:13px;color:var(--muted);background:var(--sunk);border-radius:12px;padding:12px 14px;margin:0}
+.note b{color:var(--cream)}
+.privchip{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:800;color:var(--tan);background:var(--raised);border-radius:999px;padding:4px 10px}
+.gtitle{display:flex;align-items:center;gap:10px;margin-top:4px}
+.gtitle h3{font-family:var(--f-brush);font-weight:400;font-size:20px}
+.champs{display:flex;flex-direction:column;align-items:center;gap:8px}
+.champs .pill{font-size:16px;padding:6px 12px}
+.extra{display:flex;flex-direction:column;gap:12px;background:var(--raised);border:1px solid var(--tan-deep);border-radius:var(--r);padding:14px}
+.menu-pop{max-height:70vh;overflow-y:auto}
+.menu-pop hr{border:0;border-top:1px solid var(--line);margin:4px 6px;padding:0}
+
+/* Spin wheel */
+.wheelbox{position:relative;width:min(100%,340px);aspect-ratio:1;margin:0 auto}
+.wheelbox canvas{width:100%;height:100%;display:block}
+.pointer{position:absolute;top:-6px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:14px solid transparent;border-right:14px solid transparent;border-top:26px solid var(--cream);filter:drop-shadow(0 3px 3px rgb(0 0 0 / .5));z-index:2}
+.hub{position:absolute;inset:0;margin:auto;width:22%;height:22%;border-radius:50%;overflow:hidden;box-shadow:0 0 0 4px var(--bg),0 0 0 6px var(--tan-deep)}
+.hub img{width:100%;height:100%;display:block}
+.result{text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px;min-height:76px;justify-content:center}
+.result .pill{font-weight:800;font-size:22px;background:var(--tan);color:var(--tan-ink);border-radius:14px;padding:8px 18px;overflow-wrap:anywhere}
+.hist{display:flex;flex-wrap:wrap;gap:6px}
+.wlist{display:flex;flex-direction:column;gap:10px}
+
+/* cloud save status */
+.cloud{margin-left:auto;display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.02em;color:var(--muted);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:5px 10px;white-space:nowrap;flex:none}
+.cloud i{width:7px;height:7px;border-radius:50%;background:var(--tie)}
+.cloud.cloud i{background:var(--win)}
+.cloud.syncing i,.cloud.connecting i{background:var(--gold)}
+.cloud.local i,.cloud.error i,.cloud.readonly i,.cloud.full i{background:var(--loss)}
+@media (max-width:380px){.bar .cloud{font-size:10px;padding:4px 8px}}
+
+/* replace player */
+.pn{background:none;border:0;padding:0;font:inherit;color:inherit;text-align:inherit;cursor:pointer;text-decoration:underline dotted var(--tan-deep);text-decoration-thickness:2px;text-underline-offset:4px}
+.pn:disabled{text-decoration:none;cursor:default}
+.half .nm .amp{color:var(--muted);font-weight:500}
+.prow.pick{width:100%;border:1px solid var(--line);text-align:left;justify-content:space-between;min-height:52px;font-weight:700}
+.prow.pick .nm{flex:1;min-width:0;overflow-wrap:anywhere}
+.prow.pick:active{border-color:var(--tan)}
+
+.swapbtn{position:absolute;top:32px;right:10px;z-index:3;display:inline-flex;align-items:center;gap:5px;border:1px solid var(--tan-deep);background:var(--raised);color:var(--tan);border-radius:999px;padding:5px 10px 5px 8px;font-size:12px;font-weight:800;min-height:30px}
+.swapbtn svg{width:14px;height:14px}
+.swapbtn:active{background:var(--tan);color:var(--tan-ink)}
+.prow.pick .chip svg{width:13px;height:13px}
+.swapbtn[hidden]{display:none}
+
+/* result labels */
+.half .tag.w{color:var(--win)}
+.half .tag.l{color:var(--loss)}
+.half .tag.t{color:var(--muted)}
+
+/* white & blue theme tweaks */
+.medal{color:#0E1B3A}
+.mbody,.titem,.card,.lbwrap{box-shadow:0 1px 2px rgb(15 42 92 / .06)}
+
+/* PDLUP-style typography: Poppins throughout */
+body{font-size:15px;letter-spacing:0}
+h1{font-weight:700;font-size:28px;line-height:1.2;letter-spacing:-.01em}
+h2{font-weight:700}
+.brand b{font-weight:800;font-size:20px;letter-spacing:0}
+.brand small{font-size:10px;letter-spacing:.08em}
+.brush{font-weight:600;font-size:12px;letter-spacing:.06em;clip-path:none;border-radius:999px;padding:5px 12px}
+.hand{font-weight:600;font-size:15px}
+.sech h2{font-weight:700;font-size:22px}
+.gtitle h3{font-weight:700;font-size:16px}
+.champ .q{font-weight:700;font-size:34px}
+.champ .pill{font-size:18px}
+.rnav h2{font-weight:700;font-size:24px;letter-spacing:0}
+.rchip{font-size:18px;font-weight:600}
+.sbox{font-size:28px;font-weight:600}
+.sset{font-size:16px;font-weight:600}
+.badge{font-size:15px;font-weight:700}
+.stepper output{font-size:22px;font-weight:600}
+.echip .n,.prow .n{font-size:14px;font-weight:600}
+.est .big{font-size:22px;font-weight:700;letter-spacing:0}
+.est .fact b{font-size:18px;font-weight:700}
+.lb .rk{font-size:14px;font-weight:600}
+.pts{font-size:16px;font-weight:700}
+.gchip{font-size:14px;font-weight:700}
+.rcard h4{font-size:17px;font-weight:700}
+.btn{font-weight:600}
+.half .nm{font-weight:600;font-size:15px}
+.titem .name{font-weight:600}
+.lb td.nmc{font-weight:600}
+.lb{min-width:0}
+.lb th{font-size:10px;padding:10px 3px;letter-spacing:.03em}
+.lb td{font-size:13px;padding:10px 3px}
+.lb td.nmc{padding-left:10px;font-size:13px}
+.lb .nmw{gap:6px}
+.medal{width:22px;height:22px;font-size:11px}
+.wlt{font-size:13px}
+.dots i{width:6px;height:6px}
+.pts{font-size:15px}
+.cloud.device i{background:var(--win)}
+</style>
+</head>
+<body>
+<header class="bar"><div class="bar-in" id="bar"></div></header>
+<main id="app"></main>
+<nav class="bnav" id="bnav" hidden></nav>
+<div id="sheet"></div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+const LOGO_SRC='data:image/webp;base64,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';
+const KEY='tmp.v2';
+const FORMATS={
+  'americano':{label:'Americano',group:'Americano',family:'americano',kind:'ind',desc:'Main bareng dan melawan semua orang secara bergiliran. Skor dihitung per pemain.'},
+  'team-americano':{label:'Team Americano',group:'Americano',family:'americano',kind:'team',desc:'Tim tetap. Setiap tim bergiliran melawan semua tim lain.'},
+  'mix-americano':{label:'Mix Americano',group:'Americano',family:'americano',kind:'mix',desc:'Pasangan campuran putra dan putri, partner berganti tiap ronde.'},
+  'mexicano':{label:'Mexicano',group:'Mexicano',family:'mexicano',kind:'ind',mex:true,desc:'Ronde 1 acak, lalu lawan diseimbangkan berdasarkan klasemen: peringkat 1 & 4 melawan 2 & 3.'},
+  'team-mexicano':{label:'Team Mexicano',group:'Mexicano',family:'mexicano',kind:'team',mex:true,desc:'Tim tetap. Tim dengan peringkat berdekatan saling bertemu tiap ronde.'},
+  'mixicano':{label:'Mixicano',group:'Mexicano',family:'mexicano',kind:'mix',mex:true,desc:'Pasangan campuran, lawan diseimbangkan berdasarkan klasemen putra dan putri.'},
+  'koth':{label:'King of the Court',group:'King of the Court',family:'koth',kind:'ind',koth:true,desc:'Pemenang naik lapangan, yang kalah turun. Menang di lapangan atas memberi bonus poin.'}
+};
+const TOTALS={point:[16,21,24,32,0],normal:[4,5,6,7,8,0]};
+const MIN_PER_ROUND=15,MAX_COURTS=99;
+
+let S={tournaments:[],wheels:[],hideHint:false,seeded:false};
+let view='home',prevView='home',curId=null,curWheel=null,tab='rounds',selRound=0,draft=null,formErr='',editingId=null,menuOpen=false,confirmKey=null,extraN=1,sim=null,sheetKind=null,rosterDirty=false,spin=null;
+
+const uid=()=>Math.random().toString(36).slice(2,10);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const num=v=>(v===''||v===null||v===undefined||isNaN(+v))?null:+v;
+const courtName=i=>i<26?String.fromCharCode(65+i):String(i+1);
+const grpName=g=>'Grup '+String.fromCharCode(65+g);
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function localSave(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+function save(){localSave();Cloud.schedule();}
+
+/* ---------- Cloud save: keeps tournaments in the viewer's own private space on their Claude account ---------- */
+const Cloud={db:null,uid:null,status:'local',synced:{},metaSynced:null,timer:null,chain:Promise.resolve(),
+  set(st){this.status=st;paintCloud();},
+  base(){return this.db.doc('data/users/'+this.uid+'/app');},
+  async init(){
+    try{
+      if(!window.claude||!window.claude.use){this.set('device');return;}
+      this.set('connecting');
+      const [db,user]=await Promise.all([window.claude.use('db'),window.claude.use('user')]);
+      const uid=user?await user.id():null;
+      if(!db||!uid){this.set('local');return;}
+      this.db=db;this.uid=uid;
+      await this.pull(true);
+    }catch(e){this.set('local');}
+  },
+  async pull(first){
+    if(!this.db)return;
+    this.set('syncing');
+    try{
+      const [m,q]=await Promise.all([this.base().get(),this.base().collection('t').get()]);
+      let meta=null;try{meta=m.exists?JSON.parse(m.data().json):null;}catch(e){}
+      const remote={},raw={};
+      q.docs.forEach(d=>{try{const v=d.data();remote[d.id]=JSON.parse(v.json);raw[d.id]=v.json;}catch(e){}});
+      const before=JSON.stringify(S.tournaments);
+      const tomb=new Set([...(meta&&meta.deleted||[]),...(S.deleted||[])]);
+      const local={};S.tournaments.forEach(t=>local[t.id]=t);
+      const out=[];
+      for(const id of new Set([...Object.keys(remote),...Object.keys(local)])){
+        if(tomb.has(id))continue;
+        const r=remote[id],l=local[id];
+        if(r&&l)out.push((l.updated||0)>(r.updated||0)?l:r);
+        else if(r)out.push(r);
+        else if(!(l.sample&&meta))out.push(l);
+      }
+      S.tournaments=out;S.deleted=[...tomb].slice(-300);
+      if(meta){
+        const wl={};(S.wheels||[]).forEach(w=>wl[w.id]=w);(meta.wheels||[]).forEach(w=>wl[w.id]=w);
+        S.wheels=Object.values(wl).filter(w=>!tomb.has(w.id));
+        S.hideHint=S.hideHint||!!meta.hideHint;S.seeded=true;
+        if(first&&meta.last&&!S.last)S.last=meta.last;
+      }
+      migrate();
+      this.synced={};for(const id in raw)this.synced[id]=tomb.has(id)?'':raw[id];
+      this.metaSynced=meta?m.data().json:null;
+      localSave();
+      if(JSON.stringify(S.tournaments)!==before)onRemoteData(first);
+      else if(first)onRemoteData(first,true);
+      await this.flush();
+    }catch(e){this.set('error');}
+  },
+  async flush(){
+    if(!this.db)return;
+    this.set('syncing');
+    try{
+      const col=this.base().collection('t'),seen={};
+      for(const t of S.tournaments){
+        seen[t.id]=1;
+        if(this.synced[t.id]===JSON.stringify(t))continue;
+        t.updated=Date.now();const j=JSON.stringify(t);
+        await col.doc(t.id).set({json:j,updated:t.updated,name:String(t.name).slice(0,120)});
+        this.synced[t.id]=j;
+      }
+      for(const id of Object.keys(this.synced))if(!seen[id]){await col.doc(id).delete();delete this.synced[id];}
+      const mj=JSON.stringify({wheels:S.wheels||[],hideHint:!!S.hideHint,seeded:true,deleted:S.deleted||[],last:S.last||null});
+      if(mj!==this.metaSynced){await this.base().set({json:mj});this.metaSynced=mj;}
+      localSave();this.set('cloud');
+    }catch(e){
+      const c=e&&e.code;
+      this.set(c==='invalid_argument'||c==='not_granted'||c==='revoked'?'readonly':c==='quota_exceeded'?'full':'error');
+    }
+  },
+  schedule(ms){if(!this.db)return;clearTimeout(this.timer);this.timer=setTimeout(()=>{this.chain=this.chain.then(()=>this.flush());},ms===undefined?800:ms);},
+  refresh(){if(!this.db)return;clearTimeout(this.timer);this.chain=this.chain.then(()=>this.flush()).then(()=>this.pull(false));}
+};
+const CLOUD_TXT={device:'Tersimpan di HP ini',local:'Hanya di perangkat ini',connecting:'Menghubungkan…',syncing:'Menyimpan…',cloud:'Tersimpan di akun',error:'Gagal menyimpan, dicoba lagi',readonly:'Tidak bisa menyimpan ke akun',full:'Penyimpanan akun penuh'};
+function paintCloud(){
+  const el=document.getElementById('cloudchip');if(el){el.className='cloud '+Cloud.status;el.innerHTML=`<i></i>${CLOUD_TXT[Cloud.status]||''}`;}
+  const n=document.getElementById('cloudnote');if(n)n.hidden=!(Cloud.status==='local'||Cloud.status==='readonly');
+}
+let userNavigated=false;
+function onRemoteData(first,unchanged){
+  if(first&&!userNavigated&&view==='home')restoreLast();
+  if(unchanged&&!(first&&view==='tour'))return;
+  if(view==='create'||view==='wheel'||sheetKind)return;
+  if(view==='tour'&&!cur())view='home';
+  render();
+}
+function restoreLast(){const l=S.last;if(l&&S.tournaments.find(t=>t.id===l.id)){curId=l.id;tab=l.tab==='board'?'board':'rounds';selRound=+l.selRound||0;view='tour';}}
+function rememberView(){
+  const l=view==='tour'&&curId?{id:curId,tab,selRound}:null;
+  if(JSON.stringify(l)!==JSON.stringify(S.last||null)){S.last=l;save();}
+}
+function cur(){return S.tournaments.find(t=>t.id===curId);}
+function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.hidden=false;clearTimeout(toast._t);toast._t=setTimeout(()=>el.hidden=true,2400);}
+function fmtDate(d){try{return new Date(d).toLocaleString('id-ID',{weekday:'short',day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});}catch(e){return d;}}
+function nowLocal(){const d=new Date();d.setMinutes(0,0,0);d.setHours(d.getHours()+1);const p=n=>String(n).padStart(2,'0');return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())}T${p(d.getHours())}:00`;}
+/* How standings points are counted: 'games' = every game/point scored counts (classic Americano), 'match' = win/draw/loss points */
+const matchPts=t=>t.scoring==='gs';
+function ptsLabel(t){return matchPts(t)?`Menang ${t.gsWin} · seri ${t.gsDraw} · kalah 0`:(t.scoring==='point'?'Total poin yang dicetak':'Total game yang dimenangkan');}
+function totalLabel(t){if(t.scoring==='gs')return 'Games & Sets';if(!t.total)return t.scoring==='point'?'Poin bebas':'Game bebas';return t.scoring==='point'?t.total+' poin per match':'Total '+t.total+' game';}
+function unitWord(t){return FORMATS[t.type].kind==='team'?'tim':'pemain';}
+function parseNames(text,team){return text.split(/[\n;]+/).flatMap(s=>team?[s]:s.split(',')).map(s=>s.replace(/^\s*\d+\s*[.)\-]\s*/,'').replace(/^[-•*]\s*/,'').trim()).filter(Boolean).map(s=>s.slice(0,48));}
+
+/* ---------- Groups, attendance, sizes ---------- */
+const G=t=>Math.max(1,+t.groups||1);
+function groupCourts(t,g){const n=G(t),base=Math.floor(t.courts/n),rem=t.courts%n;return base+(g<rem?1:0);}
+function courtOffset(t,g){let o=0;for(let i=0;i<g;i++)o+=groupCourts(t,i);return o;}
+function present(t){return t.entries.filter(e=>!e.away);}
+function genView(t,g){
+  const ents=t.entries.filter(e=>!e.away&&(G(t)===1||(e.grp||0)===g)),off=courtOffset(t,g);
+  const rounds=t.rounds.map(r=>{const ms=r.matches.filter(m=>(m.grp||0)===g).map(m=>({...m,court:m.court-off}));const inM=new Set(ms.flatMap(m=>[...m.a,...m.b]));return {matches:ms,bye:ents.map(e=>e.id).filter(id=>!inM.has(id))};});
+  return {...t,entries:ents,courts:groupCourts(t,g),rounds,groups:1};
+}
+function counts(v){const m=v.entries.filter(e=>e.g==='M').length;return {n:v.entries.length,m,f:v.entries.length-m};}
+function perRound(v){
+  const K=FORMATS[v.type].kind,{n,m,f}=counts(v);
+  if(K==='team')return Math.min(v.courts,Math.floor(n/2));
+  if(K==='mix')return Math.min(v.courts,Math.floor(m/2),Math.floor(f/2));
+  return Math.min(v.courts,Math.floor(n/4));
+}
+function slots(t){return FORMATS[t.type].kind==='team'?2:4;}
+function isUpfront(t){return FORMATS[t.type].family==='americano'&&t.roundsMode!=='unlimited';}
+function partnerPairsLeft(v){
+  const {P}=pairCounts(v),K=FORMATS[v.type].kind;let rem=0;
+  if(K==='mix'){const men=v.entries.filter(e=>e.g==='M'),wom=v.entries.filter(e=>e.g==='F');for(const x of men)for(const y of wom)if(!P(x.id,y.id))rem++;}
+  else{const ids=v.entries.map(e=>e.id);for(let i=0;i<ids.length;i++)for(let j=i+1;j<ids.length;j++)if(!P(ids[i],ids[j]))rem++;}
+  return rem;
+}
+function estGroupRounds(v){
+  const k=perRound(v);if(k<1)return 0;
+  if(v.roundsMode==='unlimited')return null;
+  if(v.roundsMode==='full'&&FORMATS[v.type].family==='americano'){
+    if(FORMATS[v.type].kind==='team'){const n=v.entries.length;return Math.max(Math.ceil(n*(n-1)/2/k),n%2?n:n-1);}
+    return Math.ceil(Math.ceil(partnerPairsLeft(v)/2)/k);
+  }
+  return (+v.roundsN||6)+(+v.extra||0);
+}
+function plannedRounds(t){
+  if(isUpfront(t))return t.rounds.length;
+  if(t.roundsMode==='unlimited')return null;
+  return (+t.roundsN||6)+(+t.extra||0);
+}
+
+/* ---------- Scoring & standings ---------- */
+function matchResult(t,m){
+  if(t.scoring==='gs'){
+    let sa=0,sb=0,ga=0,gb=0,any=false;
+    for(const s of (m.sets||[])){const a=num(s[0]),b=num(s[1]);if(a===null||b===null)continue;any=true;ga+=a;gb+=b;if(a>b)sa++;else if(b>a)sb++;}
+    return any?{sa,sb,ga,gb}:null;
+  }
+  const a=num(m.sa),b=num(m.sb);if(a===null||b===null)return null;return {sa:a,sb:b,ga:a,gb:b};
+}
+function started(t,m){return t.scoring==='gs'?(m.sets||[]).some(s=>s[0]!==''||s[1]!==''):(m.sa!==''&&m.sa!=null)||(m.sb!==''&&m.sb!=null);}
+function roundComplete(t,r){return !!r&&r.matches.every(m=>matchResult(t,m));}
+function computeStats(t,sortBy,g){
+  const F=FORMATS[t.type],map={};
+  const ents=g===undefined?t.entries:t.entries.filter(e=>(e.grp||0)===g);
+  for(const e of ents)map[e.id]={id:e.id,name:e.name,g:e.g,grp:e.grp||0,away:!!e.away,played:0,w:0,d:0,l:0,pf:0,pa:0,base:0,bonus:0,comp:0,total:0,diff:0,form:[]};
+  for(const r of t.rounds){
+    for(const m of r.matches){
+      const res=matchResult(t,m);if(!res)continue;
+      const k=groupCourts(t,m.grp||0),local=m.court-courtOffset(t,m.grp||0);
+      const draw=res.sa===res.sb,winA=res.sa>res.sb;
+      [[m.a,res.ga,res.gb,winA],[m.b,res.gb,res.ga,!winA&&!draw]].forEach(([ids,forG,agG,won])=>{
+        for(const id of ids){
+          const s=map[id];if(!s)continue;
+          s.played++;s.pf+=forG;s.pa+=agG;
+          if(draw){s.d++;s.form.push('t');}else if(won){s.w++;s.form.push('w');}else{s.l++;s.form.push('l');}
+          s.base+=matchPts(t)?(draw?t.gsDraw:won?t.gsWin:0):forG;
+          if(F.koth&&won)s.bonus+=Math.max(0,k-1-local)*2;
+        }
+      });
+    }
+  }
+  const list=Object.values(map);
+  if(t.comp&&t.scoring!=='gs'){
+    const val=s=>matchPts(t)?s.base:s.pf;
+    const maxP=Math.max(0,...list.map(s=>s.played));
+    const tp=list.reduce((a,s)=>a+s.played,0),avgAll=tp?list.reduce((a,s)=>a+val(s),0)/tp:0;
+    for(const s of list)if(s.played<maxP){const avg=s.played?val(s)/s.played:avgAll;s.comp=Math.round(avg*(maxP-s.played));}
+  }
+  for(const s of list){s.total=s.base+s.bonus+s.comp;s.diff=s.pf-s.pa;s.wr=s.played?s.w/s.played:0;}
+  const by=sortBy||t.sortBy,tie=(a,b)=>b.diff-a.diff||a.name.localeCompare(b.name);
+  list.sort(by==='wins'?(a,b)=>b.w-a.w||b.diff-a.diff||b.total-a.total||a.name.localeCompare(b.name)
+    :(a,b)=>b.total-a.total||b.w-a.w||tie(a,b));
+  return list;
+}
+
+/* ---------- Schedule generation (works on one group's view) ---------- */
+function appear(v){const c={};for(const r of v.rounds)for(const m of r.matches)for(const id of [...m.a,...m.b])c[id]=(c[id]||0)+1;return c;}
+function pairCounts(v){
+  const partner={},opp={},key=(x,y)=>x<y?x+'|'+y:y+'|'+x,inc=(o,k)=>o[k]=(o[k]||0)+1;
+  for(const r of v.rounds)for(const m of r.matches){
+    if(m.a.length===2){inc(partner,key(m.a[0],m.a[1]));inc(partner,key(m.b[0],m.b[1]));}
+    for(const x of m.a)for(const y of m.b)inc(opp,key(x,y));
+  }
+  return {P:(x,y)=>partner[key(x,y)]||0,O:(x,y)=>opp[key(x,y)]||0};
+}
+/* Priority for a court slot: fewest matches first, then whoever has rested longest since their last match */
+function lastPlayed(v){const l={};v.rounds.forEach((r,i)=>r.matches.forEach(m=>[...m.a,...m.b].forEach(id=>l[id]=i)));return l;}
+function pick(ids,ap,n,keep,last){
+  last=last||{};
+  const arr=(keep?ids.slice():shuffle(ids)).map((id,i)=>({id,i}));
+  arr.sort((x,y)=>(ap[x.id]||0)-(ap[y.id]||0)||(last[x.id]??-1)-(last[y.id]??-1)||x.i-y.i);
+  return arr.slice(0,n).map(x=>x.id);
+}
+function blank(t,matches){matches.forEach(m=>{if(t.scoring==='gs')m.sets=[['',''],['',''],['','']];else{m.sa='';m.sb='';}});return matches;}
+function withBye(t,matches){const inM=new Set(matches.flatMap(m=>[...m.a,...m.b]));return {matches:blank(t,matches),bye:present(t).map(e=>e.id).filter(id=>!inM.has(id))};}
+function genCore(v,isLast){
+  const F=FORMATS[v.type],first=!v.rounds.some(r=>r.matches.length),keep=first&&v.order==='keep';
+  if(F.koth&&!first){const r=kothNext(v);if(r)return r;}
+  let k=perRound(v);if(k<1)return {matches:[],bye:v.entries.map(e=>e.id)};
+  const ap=appear(v),lp=lastPlayed(v),rank={};
+  if(F.mex&&!first)computeStats(v,'points').forEach((s,i)=>rank[s.id]=i);
+  const byRank=(x,y)=>(rank[x]??999)-(rank[y]??999);
+  const {P,O}=pairCounts(v);
+  const cost=(a,b)=>10*P(a[0],a[1])+10*P(b[0],b[1])+a.reduce((s,x)=>s+b.reduce((u,y)=>u+O(x,y),0),0);
+  if(isLast&&v.courtUsage==='fewer'&&v.roundsMode==='full'&&F.family==='americano'&&F.kind!=='team')k=Math.max(1,Math.min(k,Math.ceil(partnerPairsLeft(v)/2)));
+  let matches=[];
+  if(F.kind==='team'){
+    const sel=pick(v.entries.map(x=>x.id),ap,k*2,keep,lp);let pairs=[];
+    if(F.mex&&!first){sel.sort(byRank);for(let i=0;i<k;i++)pairs.push([sel[2*i],sel[2*i+1]]);}
+    else if(keep){for(let i=0;i<k;i++)pairs.push([sel[2*i],sel[2*i+1]]);}
+    else{let bc=Infinity;for(let z=0;z<80;z++){const s=shuffle(sel),ps=[];let c=0;for(let i=0;i<k;i++){ps.push([s[2*i],s[2*i+1]]);c+=O(s[2*i],s[2*i+1]);}if(c<bc){bc=c;pairs=ps;}}}
+    matches=pairs.map(([x,y],i)=>({court:i,a:[x],b:[y]}));
+  }else if(F.kind==='mix'){
+    const men=v.entries.filter(p=>p.g==='M').map(p=>p.id),wom=v.entries.filter(p=>p.g==='F').map(p=>p.id);
+    const sm=pick(men,ap,2*k,keep,lp),sw=pick(wom,ap,2*k,keep,lp);
+    if(F.mex&&!first){sm.sort(byRank);sw.sort(byRank);for(let i=0;i<k;i++)matches.push({court:i,a:[sm[2*i],sw[2*i+1]],b:[sm[2*i+1],sw[2*i]]});}
+    else if(keep){for(let i=0;i<k;i++)matches.push({court:i,a:[sm[2*i],sw[2*i]],b:[sm[2*i+1],sw[2*i+1]]});}
+    else{let bc=Infinity;for(let z=0;z<100;z++){const m1=shuffle(sm),w1=shuffle(sw),ms=[];let c=0;
+      for(let i=0;i<k;i++){const o1={a:[m1[2*i],w1[2*i]],b:[m1[2*i+1],w1[2*i+1]]},o2={a:[m1[2*i],w1[2*i+1]],b:[m1[2*i+1],w1[2*i]]};
+        const c1=cost(o1.a,o1.b),c2=cost(o2.a,o2.b);c+=Math.min(c1,c2);ms.push({court:i,...(c1<=c2?o1:o2)});}
+      if(c<bc){bc=c;matches=ms;}}}
+  }else{
+    const sel=pick(v.entries.map(p=>p.id),ap,4*k,keep,lp);
+    if(F.mex&&!first){sel.sort(byRank);for(let i=0;i<k;i++){const g=sel.slice(4*i,4*i+4);matches.push({court:i,a:[g[0],g[3]],b:[g[1],g[2]]});}}
+    else if(keep){for(let i=0;i<k;i++){const g=sel.slice(4*i,4*i+4);matches.push({court:i,a:[g[0],g[1]],b:[g[2],g[3]]});}}
+    else{let bc=Infinity;for(let z=0;z<150;z++){const s=shuffle(sel),ms=[];let c=0;
+      for(let i=0;i<k;i++){const g=s.slice(4*i,4*i+4);
+        const opts=[[[g[0],g[1]],[g[2],g[3]]],[[g[0],g[2]],[g[1],g[3]]],[[g[0],g[3]],[g[1],g[2]]]];
+        let bo=null,bcc=Infinity;for(const [a,b] of opts){const cc=cost(a,b);if(cc<bcc){bcc=cc;bo={a,b};}}
+        c+=bcc;ms.push({court:i,...bo});}
+      if(c<bc){bc=c;matches=ms;}}}
+  }
+  return withBye(v,matches);
+}
+/* King of the Court: winners move up, losers move down. Returns null when the roster changed, so a fresh draw is used. */
+function kothNext(v){
+  let prev=null;for(let i=v.rounds.length-1;i>=0;i--)if(v.rounds[i].matches.length){prev=v.rounds[i];break;}
+  if(!prev)return null;
+  const ids=new Set(v.entries.map(e=>e.id)),k=perRound(v);
+  const ms=prev.matches.slice().sort((a,b)=>a.court-b.court);
+  if(ms.length!==k||ms.some(m=>[...m.a,...m.b].some(id=>!ids.has(id))))return null;
+  const W=[],L=[];
+  ms.forEach(m=>{const r=matchResult(v,m)||{sa:1,sb:0},aWin=r.sa>=r.sb;W.push(aWin?m.a:m.b);L.push(aWin?m.b:m.a);});
+  const courts=[];
+  for(let i=0;i<k;i++){if(k===1)courts.push([W[0],L[0]]);else if(i===0)courts.push([W[0],W[1]]);else if(i===k-1)courts.push([L[k-2],L[k-1]]);else courts.push([L[i-1],W[i+1]]);}
+  const inPrev=new Set(ms.flatMap(m=>[...m.a,...m.b]));
+  const ap=appear(v),lp=lastPlayed(v);
+  const bye=pick(v.entries.map(e=>e.id).filter(id=>!inPrev.has(id)),ap,999,true,lp);
+  /* Resting players come in first: each takes the slot of a losing player who has played the most (winners keep their court) */
+  const lineup=courts.map(([X,Y])=>[X.slice(),Y.slice()]),winners=new Set(W.flat()),locked=new Set();
+  for(const e of bye){
+    let best=null;
+    lineup.forEach((side,ci)=>side.forEach((pair,si)=>pair.forEach((id,pi)=>{if(winners.has(id)||locked.has(id))return;const c=ap[id]||0;
+      if(!best||c>best.c||(c===best.c&&(lp[id]??-1)>(lp[best.id]??-1)))best={id,c,ci,si,pi};})));
+    if(!best||best.c<(ap[e]||0))break;
+    lineup[best.ci][best.si][best.pi]=e;locked.add(e);
+  }
+  return withBye(v,lineup.map(([X,Y],i)=>({court:i,a:[X[0],Y[0]],b:[X[1],Y[1]]})));
+}
+/* Team round robin over the pairs that have not met yet, spreading games evenly */
+function teamRoundRobin(v){
+  const ids=v.entries.map(e=>e.id),k=perRound(v);if(k<1)return [];
+  const {O}=pairCounts(v),ap=appear(v);let best=null,bestScore=Infinity;
+  for(let att=0;att<80;att++){
+    let pairs=[];for(let i=0;i<ids.length;i++)for(let j=i+1;j<ids.length;j++)if(!O(ids[i],ids[j]))pairs.push([ids[i],ids[j]]);
+    if(!(v.order==='keep'&&att===0))pairs=shuffle(pairs);
+    const games={};ids.forEach(i=>games[i]=ap[i]||0);const rounds=[];
+    while(pairs.length){
+      const used=new Set(),ms=[],taken=new Set();
+      const order=pairs.map((p,i)=>({p,i,s:games[p[0]]+games[p[1]]})).sort((x,y)=>x.s-y.s||x.i-y.i);
+      for(const o of order){if(ms.length>=k)break;const [x,y]=o.p;if(used.has(x)||used.has(y))continue;used.add(x);used.add(y);ms.push(o.p);taken.add(o.i);}
+      pairs=pairs.filter((_,i)=>!taken.has(i));
+      if(v.courtUsage==='all'&&ms.length<k){const free=ids.filter(i=>!used.has(i)).sort((x,y)=>games[x]-games[y]);while(free.length>=2&&ms.length<k)ms.push([free.shift(),free.shift()]);}
+      ms.forEach(([x,y])=>{games[x]++;games[y]++;});
+      rounds.push(ms);
+    }
+    const g=Object.values(games),score=rounds.length*100+(g.length?Math.max(...g)-Math.min(...g):0);
+    if(score<bestScore){bestScore=score;best=rounds;}
+  }
+  return best.map(ms=>withBye(v,ms.map(([x,y],i)=>({court:i,a:[x],b:[y]}))));
+}
+function mergeGroup(t,g,r,into){r.matches.forEach(m=>into.push({...m,grp:g,court:m.court+courtOffset(t,g)}));}
+/* One new round for every group (used by Mexicano, KOTH, extra rounds) */
+function nextRound(t,isLast){
+  const ms=[];
+  for(let g=0;g<G(t);g++){const v=genView(t,g);if(perRound(v)<1)continue;mergeGroup(t,g,genCore(v,isLast),ms);}
+  if(!ms.length)throw new Error('Peserta yang hadir belum cukup untuk membuat match.');
+  return withBye(t,ms);
+}
+/* Fill the remaining Americano rounds after the rounds kept so far */
+function fillUpfront(t){
+  const kept=t.rounds.length,per=[];
+  for(let g=0;g<G(t);g++){
+    const v=genView(t,g),k=perRound(v);if(k<1){per.push([]);continue;}
+    let out=[];
+    if(t.roundsMode==='full'&&FORMATS[t.type].kind==='team')out=teamRoundRobin(v);
+    else{
+      const R=t.roundsMode==='full'?Math.ceil(Math.ceil(partnerPairsLeft(v)/2)/k):Math.max(0,(+t.target||0)-kept);
+      for(let i=0;i<R;i++){const r=genCore(v,i===R-1);v.rounds.push(r);out.push(r);}
+    }
+    per.push(out);
+  }
+  const L=Math.max(0,...per.map(a=>a.length));
+  for(let i=0;i<L;i++){const ms=[];per.forEach((arr,g)=>{if(arr[i])mergeGroup(t,g,arr[i],ms);});t.rounds.push(withBye(t,ms));}
+  if(t.roundsMode==='full')t.target=t.rounds.length;
+  return L;
+}
+function buildSchedule(t){
+  t.rounds=[];
+  if(isUpfront(t)){if(t.roundsMode!=='full')t.target=(+t.roundsN||6);fillUpfront(t);if(!t.rounds.length)throw new Error('Peserta belum cukup untuk membuat jadwal.');}
+  else t.rounds.push(nextRound(t,false));
+}
+/* After attendance or roster changes: keep rounds that have started, rebuild the rest */
+function reschedule(t){
+  let last=-1;t.rounds.forEach((r,i)=>{if(r.matches.some(m=>started(t,m)))last=i;});
+  const before=t.rounds.length;t.rounds=t.rounds.slice(0,last+1);
+  if(isUpfront(t)){fillUpfront(t);}
+  else if(before>t.rounds.length||!t.rounds.length){if(!t.finished)t.rounds.push(nextRound(t,false));}
+  if(!t.rounds.length)t.rounds.push({matches:[],bye:present(t).map(e=>e.id)});
+  return {from:last+2,to:t.rounds.length};
+}
+
+/* ---------- Draft / tournament creation ---------- */
+function newDraft(){return {name:'',type:'americano',date:nowLocal(),courts:2,groups:1,scoring:'point',total:21,entries:[],roundsMode:'full',roundsN:6,courtUsage:'fewer',sortBy:'points',order:'random',comp:true,hidePublic:false,gsWin:3,gsDraw:1,sim:null};}
+function assignGroups(entries,n,random){
+  const list=(random?shuffle(entries):entries.slice());let i=0;
+  [...list.filter(e=>e.g==='M'),...list.filter(e=>e.g!=='M')].forEach(e=>{e.grp=n>1?(i++%n):0;});
+}
+function fromDraft(d,randomGroups){
+  const t={id:uid(),name:d.name.trim()||('Main Padel '+fmtDate(d.date)),type:d.type,date:d.date,courts:d.courts,groups:Math.max(1,+d.groups||1),scoring:d.scoring,
+    total:d.scoring==='gs'?null:+d.total,roundsMode:d.roundsMode,roundsN:+d.roundsN,courtUsage:d.courtUsage,sortBy:d.sortBy,order:d.order,
+    comp:d.comp,hidePublic:d.hidePublic,gsWin:+d.gsWin||3,gsDraw:+d.gsDraw||0,extra:0,target:0,
+    entries:d.entries.map(e=>({id:e.id,name:e.name,g:e.g,grp:0,away:false})),rounds:[],finished:false,created:Date.now()};
+  assignGroups(t.entries,t.groups,randomGroups);
+  return t;
+}
+function draftSig(d){return JSON.stringify([d.type,d.courts,d.groups,d.entries.map(e=>e.id+e.g),d.roundsMode,d.roundsN,d.courtUsage,d.order,d.scoring]);}
+function validateT(t){
+  const F=FORMATS[t.type];
+  if(t.courts<G(t))return `Jumlah lapangan (${t.courts}) harus minimal sama dengan jumlah grup (${G(t)}).`;
+  for(let g=0;g<G(t);g++){
+    const v=genView(t,g),{n,m,f}=counts(v),pre=G(t)>1?grpName(g)+' ':'';
+    if(F.kind==='team'&&n<2)return pre+'butuh minimal 2 tim.';
+    if(F.kind==='mix'&&(m<2||f<2))return (pre||'Mix ')+'butuh minimal 2 putra dan 2 putri. Ketuk label Putra/Putri untuk mengubah.';
+    if(F.kind==='ind'&&n<4)return (pre||'Turnamen ')+'butuh minimal 4 pemain.';
+  }
+  return '';
+}
+function validate(d){if(!d.entries.length)return `Tambahkan ${FORMATS[d.type].kind==='team'?'tim':'pemain'} dulu.`;return validateT(fromDraft(d,false));}
+function createFromDraft(d){
+  let t;
+  if(isUpfront(d)&&d.sim&&d.sim.sig===draftSig(d)){
+    t=fromDraft(d,false);const grp={};d.sim.entries.forEach(e=>grp[e.id]=e.grp);t.entries.forEach(e=>e.grp=grp[e.id]??0);
+    t.rounds=d.sim.rounds.map(r=>({matches:blank(t,r.matches.map(m=>({court:m.court,grp:m.grp||0,a:m.a.slice(),b:m.b.slice()}))),bye:r.bye.slice()}));
+    t.target=t.rounds.length;
+  }else{t=fromDraft(d,d.order==='random');buildSchedule(t);}
+  return t;
+}
+function makeSample(){
+  const d=newDraft();
+  d.name='[Chapter 3] Teman Main Padelmu';d.type='team-americano';d.scoring='normal';d.total=4;d.date='2026-10-18T16:00';
+  d.entries=['Debiy & Frans','Mira & GusSus','Ula & Satrio','RDA & RM','Icha & Wisnu','Nopita & Hodam'].map(n=>({id:uid(),name:n,g:'M'}));
+  const t=createFromDraft(d);t.sample=true;
+  const res=[[3,1],[2,2],[4,0],[1,3],[3,1],[2,2],[3,1],[0,4],[4,0],[2,2]];let i=0;
+  t.rounds.slice(0,5).forEach(r=>r.matches.forEach(m=>{const s=res[i++%res.length];m.sa=String(s[0]);m.sb=String(s[1]);}));
+  return t;
+}
+function migrate(){
+  S.wheels=S.wheels||[];
+  for(const t of S.tournaments){t.groups=t.groups||1;t.extra=t.extra||0;if(!t.target)t.target=t.rounds.length;t.entries.forEach(e=>{e.grp=e.grp||0;e.away=!!e.away;});t.rounds.forEach(r=>r.matches.forEach(m=>m.grp=m.grp||0));}
+}
+
+/* ---------- Icons ---------- */
+const I={
+  back:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>',
+  dots:'<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>',
+  share:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 8l5-5 5 5"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/></svg>',
+  check:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>',
+  left:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M13.5 8.5L10 12l3.5 3.5"/></svg>',
+  right:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M10.5 8.5L14 12l-3.5 3.5"/></svg>',
+  list:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1" fill="currentColor"/><circle cx="4.5" cy="12" r="1" fill="currentColor"/><circle cx="4.5" cy="18" r="1" fill="currentColor"/></svg>',
+  chart:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 20h18"/><rect x="5" y="11" width="4" height="9"/><rect x="10" y="5" width="4" height="15"/><rect x="15" y="13" width="4" height="7"/></svg>',
+  flask:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v6l-5 9a2 2 0 002 3h10a2 2 0 002-3l-5-9V3"/><path d="M7.5 15h9"/></svg>',
+  shuffle:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>',
+  play:'<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4l13 8-13 8z"/></svg>',
+  pause:'<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>',
+  pencil:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16v4z"/></svg>',
+  x:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg>',
+  cal:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>',
+  target:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg>',
+  people:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0113 0"/><path d="M16 4.5a3.5 3.5 0 010 7M18 20a6.5 6.5 0 00-2.5-5.2"/></svg>',
+  wheel:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6L5.6 18.4"/><circle cx="12" cy="12" r="2.2" fill="currentColor"/></svg>',
+  pdf:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 00-2 2v14a2 2 0 002 2h12a2 2 0 002-2V9z"/><path d="M14 3v6h6M12 12v6M9 15l3 3 3-3"/></svg>',
+  eye:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3l18 18M10.6 6.1A10 10 0 0122 12a17 17 0 01-3 3.6M6.6 6.6A17 17 0 002 12s3.6 7 10 7a9.6 9.6 0 004.4-1"/><path d="M9.9 9.9a3 3 0 004.2 4.2"/></svg>',
+  plus:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>',
+  trash:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg>'
+};
+const logoImg=(s=38)=>`<img class="logo" src="${LOGO_SRC}" alt="" width="${s}" height="${s}" style="width:${s}px;height:${s}px">`;
+
+/* ---------- Rendering ---------- */
+function renderBar(){
+  const bar=document.getElementById('bar');
+  if(view==='home'){bar.innerHTML=`${logoImg()}<div class="brand"><b>TMP</b><small>Teman Main Padelmu</small></div><span id="cloudchip"></span>`;paintCloud();return;}
+  const title={create:'Buat Turnamen',tour:'Turnamen',wheels:'Spin Wheel',wheel:'Spin Wheel'}[view]||'';
+  bar.innerHTML=`<button class="iconbtn" data-act="back" aria-label="Kembali">${I.back}</button>${logoImg(32)}<span class="bar-title">${title}</span><span id="cloudchip"></span>`;paintCloud();
+}
+function render(){
+  renderBar();const app=document.getElementById('app'),nav=document.getElementById('bnav');
+  if(view==='create')app.innerHTML=renderCreate();
+  else if(view==='tour'&&cur())app.innerHTML=renderTour();
+  else if(view==='wheels')app.innerHTML=renderWheels();
+  else if(view==='wheel'&&wheelObj())app.innerHTML=renderWheel();
+  else{view='home';renderBar();app.innerHTML=renderHome();}
+  nav.hidden=view!=='tour';
+  if(view==='tour'){
+    nav.innerHTML=`<div class="bnav-in" role="tablist"><button role="tab" data-tab="rounds" aria-selected="${tab==='rounds'}">${I.list}Ronde</button><button role="tab" data-tab="board" aria-selected="${tab==='board'}">${I.chart}Klasemen</button></div>`;
+    const c=document.querySelector('.rchip[aria-current="true"]');if(c){const box=c.parentElement;box.scrollLeft=c.offsetLeft-box.clientWidth/2+c.clientWidth/2;}
+  }
+  if(view==='wheel')drawWheel();
+  rememberView();
+}
+function renderHome(){
+  const list=S.tournaments.slice().sort((a,b)=>b.created-a.created);
+  return `<section class="hero"><span class="brush">SEMUA FITUR GRATIS</span><h1>Main bareng yuk, skor beres otomatis.</h1>
+    <p class="muted" style="margin:0">Americano, Mexicano, Mix, dan King of the Court. Jadwal adil, skor langsung masuk klasemen.</p>
+    <span class="hand">Play · Connect · Grow</span></section>
+  <button class="btn primary block" data-act="new">+ Buat turnamen</button>
+  <button class="feat" data-act="wheels"><span class="ic">${I.wheel}</span><span class="meta"><b>Spin Wheel</b><span>Undian acak: siapa servis duluan, bagi tim, atau doorprize.</span></span></button>
+  <p class="note" id="cloudnote" ${Cloud.status==='local'||Cloud.status==='readonly'?'':'hidden'}><b>Turnamen belum tersimpan di akun.</b> Data saat ini hanya ada di perangkat ini dan bisa hilang saat app ditutup. Supaya aman, buka TMP lewat app Claude, atau login ke claude.ai di browser yang sama lalu buka lagi link TMP.</p>
+  ${S.hideHint?'':`<div class="hint">${logoImg(34)}<p><b>Pasang di iPhone:</b> buka halaman ini di Safari, ketuk Bagikan, lalu pilih <b>Add to Home Screen</b>.</p><button class="x" data-act="hidehint" aria-label="Tutup">×</button></div>`}
+  <div class="spread"><h2>Turnamen kamu</h2><span class="muted" style="font-size:14px">${list.length}</span></div>
+  <div class="tlist">${list.length?list.map(t=>{const F=FORMATS[t.type];const done=t.rounds.filter(r=>r.matches.length&&roundComplete(t,r)).length;const pr=plannedRounds(t);
+    return `<button class="titem" data-act="open" data-id="${t.id}"><span class="badge">${F.label.split(' ').map(w=>w[0]).join('').slice(0,3)}</span><span class="meta">
+      <span class="name">${esc(t.name)}</span>
+      <span class="sub">${F.label} · ${t.entries.length} ${unitWord(t)}${G(t)>1?' · '+G(t)+' grup':''} · Ronde ${done}/${pr||t.rounds.length}${t.finished?' · Selesai':''}</span>
+      <span class="row" style="gap:6px">${t.sample?'<span class="chip tan">Contoh</span>':''}<span class="sub">${esc(fmtDate(t.date))}</span></span></span></button>`;}).join('')
+    :'<div class="card muted" style="text-align:center">Belum ada turnamen. Buat yang pertama untuk sesi main berikutnya.</div>'}</div>`;
+}
+function segBtns(name,opts,val){return `<div class="seg" role="group">${opts.map(([v,l])=>`<button type="button" data-seg="${name}" data-val="${v}" aria-pressed="${String(val)===String(v)}">${l}</button>`).join('')}</div>`;}
+function estimateHtml(d){
+  const t=fromDraft(d,false),F=FORMATS[t.type];
+  if(validate(d))return `<div class="est"><span class="lbl">Estimasi</span><p class="help">Lengkapi ${F.kind==='team'?'tim':'pemain'}${G(t)>1?' di setiap grup':''} dulu untuk melihat estimasi ronde dan pembagian main.</p></div>`;
+  let R=0,unl=false,k=0,slotsSum=0;
+  for(let g=0;g<G(t);g++){const v=genView(t,g),r=estGroupRounds(v),kk=perRound(v);if(r===null)unl=true;else{R=Math.max(R,r);slotsSum+=r*kk*slots(t);}k+=kk;}
+  let info;
+  if(t.roundsMode==='full'&&F.family==='americano')info=F.kind==='team'?'Semua tim saling bertemu':F.kind==='mix'?'Setiap putra berpasangan dengan setiap putri':'Setiap pemain berpasangan dengan semua pemain';
+  else if(unl)info='Ronde dibuat terus sampai kamu menekan Selesai';
+  else info=F.mex?'Lawan tiap ronde disusun dari klasemen':F.koth?'Posisi lapangan berubah sesuai hasil':'Partner dan lawan dirotasi';
+  if(G(t)>1)info+=` di dalam masing-masing dari ${G(t)} grup`;
+  const per=unl?0:slotsSum/t.entries.length,perTxt=unl?'–':(Number.isInteger(per)?per:'±'+per.toFixed(1).replace('.',','));
+  const dur=unl?null:R*MIN_PER_ROUND;
+  return `<div class="est"><div class="spread"><span class="lbl">Estimasi</span><span class="big">${unl?'Tanpa batas':'~ '+R+' ronde'}</span></div>
+    <p class="help" style="color:var(--cream)">${info}</p>
+    <div class="facts"><div class="fact"><b>${k}</b><span>Lapangan/ronde</span></div><div class="fact"><b>${perTxt}</b><span>Main per ${unitWord(t)}</span></div><div class="fact"><b>${dur?(dur>=60?Math.floor(dur/60)+'j '+(dur%60?dur%60+'m':''):dur+'m'):'–'}</b><span>Durasi*</span></div></div>
+    <p class="help">*Asumsi ${MIN_PER_ROUND} menit per ronde.</p>
+    <button type="button" class="btn primary sm" style="align-self:flex-end" data-act="sim">${I.flask}Simulasi</button></div>`;
+}
+function renderCreate(){
+  const d=draft,F=FORMATS[d.type],isTeam=F.kind==='team';
+  const groups={};Object.entries(FORMATS).forEach(([k,f])=>(groups[f.group]=groups[f.group]||[]).push([k,f]));
+  const {m,f}=counts(d);
+  const roundOpts=(F.family==='americano'?[['full','Penuh (round robin)']]:[]).concat(Array.from({length:28},(_,i)=>[String(i+3),(i+3)+' ronde'])).concat([['unlimited','Tanpa batas']]);
+  const rVal=d.roundsMode==='n'?String(d.roundsN):d.roundsMode;
+  const totals=d.scoring==='gs'?null:TOTALS[d.scoring];
+  return `<form id="cform" novalidate>
+  <div class="field"><label for="f-name">Nama turnamen</label><input class="input" id="f-name" data-k="name" value="${esc(d.name)}" placeholder="[Chapter 5] Main Bareng Yuk" autocomplete="off"></div>
+  <div class="field"><label for="f-type">Format main</label>
+    <select class="input" id="f-type">${Object.entries(groups).map(([g,arr])=>`<optgroup label="${g}">${arr.map(([k,x])=>`<option value="${k}" ${k===d.type?'selected':''}>${x.label}</option>`).join('')}</optgroup>`).join('')}</select>
+    <p class="fmt-desc">${F.desc}</p></div>
+  <div class="field"><label for="f-date">Tanggal & jam</label><input class="input" type="datetime-local" id="f-date" data-k="date" value="${esc(d.date)}"></div>
+  <div class="two">
+    <div class="field"><span class="lbl">Lapangan <span class="free">BEBAS</span></span><div class="stepper"><button type="button" data-act="court-" aria-label="Kurangi lapangan">−</button><output>${d.courts}</output><button type="button" data-act="court+" aria-label="Tambah lapangan">+</button></div></div>
+    <div class="field"><span class="lbl">Grup <span class="free">BEBAS</span></span><div class="stepper"><button type="button" data-act="grp-" aria-label="Kurangi grup">−</button><output>${d.groups}</output><button type="button" data-act="grp+" aria-label="Tambah grup">+</button></div></div>
+  </div>
+  ${d.groups>1?`<p class="help" style="margin-top:-10px">${d.entries.length} ${unitWord(d)} dibagi rata ke ${d.groups} grup (${d.order==='random'?'diacak':'sesuai urutan'}${F.kind==='mix'?', putra dan putri seimbang':''}). Setiap grup main di lapangannya sendiri dan punya klasemen sendiri. Pembagian grup bisa diubah setelah turnamen dibuat.</p>`:''}
+  <div class="field"><span class="lbl">Sistem skor</span>${segBtns('scoring',[['point','Poin'],['normal','Normal<br><small>15-30-40</small>'],['gs','Games & Sets <span class="free">GRATIS</span>']],d.scoring)}</div>
+  ${totals?`<div class="field"><label for="f-total">${d.scoring==='point'?'Poin per match':'Game per match'}</label>
+    <select class="input" id="f-total">${totals.map(v=>`<option value="${v}" ${+d.total===v?'selected':''}>${v?(d.scoring==='point'?v+' poin':'Total '+v+' game'):'Bebas (isi manual)'}</option>`).join('')}</select>
+    <p class="help">${+d.total?`Skor dua sisi selalu berjumlah ${d.total}. Isi satu sisi, sisi lawan terisi otomatis${d.scoring==='normal'?` (mis. 3 → ${d.total-3})`:''}.`:'Kedua skor diisi manual.'}</p></div>`
+   :`<div class="two"><div class="field"><label for="f-gw">Poin menang</label><input class="input" id="f-gw" data-k="gsWin" inputmode="numeric" value="${d.gsWin}"></div><div class="field"><label for="f-gd">Poin seri</label><input class="input" id="f-gd" data-k="gsDraw" inputmode="numeric" value="${d.gsDraw}"></div></div>`}
+  <div class="field"><span class="lbl">${isTeam?'Tim':'Pemain'} (${d.entries.length})${F.kind==='mix'?` <span class="muted" style="font-weight:500">· ${m} putra, ${f} putri</span>`:''}</span>
+    <div class="elist">${d.entries.map((e,i)=>echip(e,i,F)).join('')}</div>
+    <div class="add"><textarea class="input" id="f-entry" rows="1" placeholder="${isTeam?'Nama tim, mis. Debiy & Frans':'Nama pemain'}" aria-label="${isTeam?'Nama tim':'Nama pemain'}"></textarea><button type="button" class="btn primary" data-act="adde">Tambah</button></div>
+    <p class="help">Bisa tempel daftar dari grup WA, satu ${isTeam?'tim':'nama'} per baris. Belum tahu namanya? Pakai nama sementara, nanti bisa diganti setelah turnamen dibuat.</p></div>
+  <section class="panel"><div class="panel-h"><h3>Pengaturan ${F.label}</h3><p class="help">Atur jumlah ronde dan pemakaian lapangan.</p></div>
+    <div class="field"><label for="f-rounds">Jumlah ronde</label><select class="input" id="f-rounds">${roundOpts.map(([v,l])=>`<option value="${v}" ${v===rVal?'selected':''}>${l}</option>`).join('')}</select></div>
+    <div class="field"><label for="f-court">Pemakaian lapangan</label><p class="help">Ronde terakhir mungkin tidak memakai semua lapangan.</p>
+      <select class="input" id="f-court"><option value="fewer" ${d.courtUsage==='fewer'?'selected':''}>Boleh pakai lebih sedikit lapangan</option><option value="all" ${d.courtUsage==='all'?'selected':''}>Selalu pakai semua lapangan</option></select></div>
+    ${estimateHtml(d)}
+  </section>
+  <details class="adv"${d.advOpen?' open':''}><summary>Pengaturan lanjutan <span aria-hidden="true">⌄</span></summary><div class="inner">
+    <div class="field"><label for="f-sort">Urutkan klasemen</label><select class="input" id="f-sort"><option value="points" ${d.sortBy!=='wins'?'selected':''}>Poin</option><option value="wins" ${d.sortBy==='wins'?'selected':''}>Menang</option></select><p class="help">${d.sortBy==='wins'?'Jumlah menang, lalu selisih game/poin.':'Total poin yang didapat selama pertandingan, termasuk +M.'}</p></div>
+    <div class="field"><span class="lbl">Urutan awal ${unitWord(d)}</span><div class="radios">
+      <label class="radio"><input type="radio" name="order" value="random" ${d.order==='random'?'checked':''}>Acak</label>
+      <label class="radio"><input type="radio" name="order" value="keep" ${d.order==='keep'?'checked':''}>Sesuai urutan input</label></div></div>
+    <label class="check"><input type="checkbox" id="f-hide" data-k="hidePublic" ${d.hidePublic?'checked':''}><span><b>Klasemen privat</b><span class="help">Teks WhatsApp dan PDF yang dibagikan tidak menampilkan peringkat sampai turnamen selesai. Bisa diubah kapan saja.</span></span></label>
+    ${d.scoring!=='gs'?`<label class="check"><input type="checkbox" id="f-nocomp" ${d.comp?'':'checked'}><span><b>Matikan poin kompensasi (+M)</b><span class="help">${unitWord(d)==='tim'?'Tim':'Pemain'} yang main lebih sedikit (telat datang, pulang duluan) tidak mendapat poin tambahan untuk menutup selisih.</span></span></label>`:''}
+  </div></details>
+  ${formErr?`<div class="err" role="alert">${esc(formErr)}</div>`:''}
+  <div class="formfoot"><button type="submit" class="btn primary block">+ Buat turnamen</button></div>
+  </form>`;
+}
+function echip(e,i,F){
+  if(editingId===e.id)return `<div class="echip"><span class="n">${i+1}.</span><input class="input" id="edit-input" data-id="${e.id}" value="${esc(e.name)}" aria-label="Ubah nama"></div>`;
+  return `<div class="echip"><span class="n">${i+1}.</span><span class="nm">${esc(e.name)}</span>
+  ${F.kind==='mix'?`<button type="button" class="gtog ${e.g}" data-act="gtog" data-id="${e.id}">${e.g==='M'?'Putra':'Putri'}</button>`:''}
+  <button type="button" class="ebtn" data-act="edit" data-id="${e.id}" aria-label="Ubah ${esc(e.name)}">${I.pencil}</button>
+  <button type="button" class="ebtn del" data-act="rme" data-id="${e.id}" aria-label="Hapus ${esc(e.name)}">${I.x}</button></div>`;
+}
+
+/* Tournament view */
+function renderTour(){
+  const t=cur(),F=FORMATS[t.type],away=t.entries.filter(e=>e.away).length;
+  let champ='';
+  if(t.finished){
+    if(G(t)===1){const st=computeStats(t);if(st[0])champ=`<section class="champ"><div class="q">“<span class="pill"><span class="medal g1">1</span>${esc(st[0].name)}</span>”</div><span class="hand">Juara Turnamen</span></section>`;}
+    else champ=`<section class="champ"><span class="hand">Juara Grup</span><div class="champs">${Array.from({length:G(t)},(_,g)=>{const st=computeStats(t,null,g);return st[0]?`<span class="pill"><span class="gpill">${grpName(g)}</span>${esc(st[0].name)}</span>`:'';}).join('')}</div></section>`;
+  }
+  const head=`<section class="thead">
+    <div class="ttitle"><h1>${esc(t.name)}</h1>
+      <button class="iconbtn" data-act="roster" aria-label="Peserta & kehadiran">${I.people}</button>
+      <div class="menu"><button class="iconbtn" data-act="menu" aria-label="Menu" aria-expanded="${menuOpen}">${I.dots}</button>
+      ${menuOpen?`<div class="menu-pop">
+        <button data-act="roster">${I.people} Peserta & kehadiran</button>
+        <button data-act="pdf">${I.pdf} Bagikan / unduh PDF</button>
+        <a href="${waLink(t)}" target="_blank" rel="noopener">${I.share} Kirim klasemen ke WA</a>
+        <button data-act="copy">${I.list} Salin klasemen</button>
+        <button data-act="wheel-from">${I.wheel} Spin wheel peserta</button>
+        <button data-act="togglepriv">${I.eye} Klasemen privat: ${t.hidePublic?'Aktif':'Nonaktif'}</button>
+        <hr>
+        ${t.finished?`<button data-act="reopen">${I.left} Buka lagi turnamen</button>`:''}
+        <button class="del" data-act="askdel">${I.trash} Hapus turnamen</button></div>`:''}</div></div>
+    <div class="info"><span>${I.list}${F.label}</span><span>${esc(fmtDate(t.date))} ${I.cal}</span><span>${I.target}${totalLabel(t)}</span><span>${t.entries.length} ${F.kind==='team'?'Tim':'Pemain'}${G(t)>1?' · '+G(t)+' Grup':''} · ${t.courts} Lap. ${I.people}</span></div>
+    <div class="row" style="gap:6px">${t.sample?'<span class="chip tan">Contoh</span>':''}${t.hidePublic?`<span class="privchip">${I.eye} Klasemen privat</span>`:''}${away?`<button class="chip" data-act="roster" style="border:0">${away} tidak hadir</button>`:''}</div>
+    ${confirmKey==='del'?`<div class="confirm"><p>Hapus turnamen ini? Semua skor ikut terhapus.</p><div class="row"><button class="btn danger" style="flex:1" data-act="del-yes">Ya, hapus</button><button class="btn ghost" style="flex:1" data-act="cancel">Batal</button></div></div>`:''}
+    <div id="copyfallback"></div>
+  </section>${champ}`;
+  return head+(tab==='rounds'?renderRounds(t):renderBoard(t));
+}
+function renderRounds(t){
+  if(selRound>=t.rounds.length)selRound=t.rounds.length-1;
+  if(selRound<0)selRound=0;
+  const r=t.rounds[selRound],away=t.entries.filter(e=>e.away);
+  return `<section class="sech"><h2>Match Ronde</h2></section>
+  <div class="rchips" id="rchips">${chipsHtml(t)}</div>
+  <div class="rnav"><button data-act="rprev" aria-label="Ronde sebelumnya" ${selRound===0?'disabled':''}>${I.left}</button><h2>Ronde #${selRound+1}</h2><button data-act="rnext" aria-label="Ronde berikutnya" ${selRound>=t.rounds.length-1?'disabled':''}>${I.right}</button></div>
+  ${canSwap(t,selRound)&&r.matches.some(m=>!started(t,m))&&!t.finished?`<p class="help" style="margin:-4px 0 0">Ada yang belum datang? Ketuk <b>Ganti</b> di pojok kartu match untuk menukarnya dengan yang sudah datang.</p>`:''}
+  <div class="matches">${r.matches.length?r.matches.map((m,mi)=>matchCard(t,selRound,m,mi)).join(''):'<div class="note">Belum ada match di ronde ini. Tandai peserta yang sudah datang di <b>Peserta & kehadiran</b>.</div>'}</div>
+  ${r.bye.length?`<div class="rest"><b>Istirahat:</b> ${esc(r.bye.map(id=>eName(t,id)).join(', '))}</div>`:''}
+  ${away.length?`<div class="rest"><b>Tidak hadir:</b> ${esc(away.map(e=>e.name).join(', '))}</div>`:''}
+  <div class="ractions" id="ractions">${actionsHtml(t)}</div>`;
+}
+function eName(t,id){const e=t.entries.find(x=>x.id===id);return e?e.name:'?';}
+function sideName(t,ids){return ids.map(id=>eName(t,id)).join(' & ');}
+function chipsHtml(t){
+  const pr=plannedRounds(t);let h=t.rounds.map((r,i)=>`<button class="rchip" data-act="rgo" data-i="${i}" aria-current="${i===selRound}" aria-label="Ronde ${i+1}">${i+1}${r.matches.length&&roundComplete(t,r)?I.check:''}</button>`).join('');
+  if(pr&&pr>t.rounds.length&&!t.finished)for(let i=t.rounds.length;i<pr;i++)h+=`<span class="rchip future" aria-hidden="true" style="display:grid;place-items:center">${i+1}</span>`;
+  return h;
+}
+/* Result label on each side once a score is in: Menang / Kalah / Seri */
+function resKind(res,side){if(!res)return '';if(res.sa===res.sb)return 't';return (side==='a')===(res.sa>res.sb)?'w':'l';}
+const RES_TXT={w:'Menang',l:'Kalah',t:'Seri'};
+function resTag(res,side){const k=resKind(res,side);return `<span class="tag ${k}">${k?RES_TXT[k]:''}</span>`;}
+function matchCard(t,ri,m,mi){
+  const res=matchResult(t,m),wa=res&&res.sa>res.sb,wb=res&&res.sb>res.sa,gs=t.scoring==='gs';
+  const box=side=>gs?`<input class="sbox" readonly tabindex="-1" aria-label="Set dimenangkan" value="${res?String(side==='a'?res.sa:res.sb):''}" placeholder="0">`
+    :`<input class="sbox" inputmode="numeric" pattern="[0-9]*" autocomplete="off" placeholder="00" aria-label="Skor ${side==='a'?'kiri':'kanan'}" data-r="${ri}" data-m="${mi}" data-side="${side}" value="${esc(m['s'+side]??'')}">`;
+  const sets=side=>gs?`<div class="sets">${[0,1,2].map(s=>`<input class="sset" inputmode="numeric" pattern="[0-9]*" aria-label="Set ${s+1}" data-r="${ri}" data-m="${mi}" data-side="${side}" data-set="${s}" value="${esc(m.sets[s][side==='a'?0:1]??'')}">`).join('')}</div>`:'';
+  const st=started(t,m);
+  const pnames=side=>m[side].map(id=>esc(eName(t,id))).join('<span class="amp"> & </span>');
+  const king=FORMATS[t.type].koth&&(m.court-courtOffset(t,m.grp||0))===0;
+  const awayIds=new Set(t.entries.filter(e=>e.away).map(e=>e.id)),hasAway=[...m.a,...m.b].some(id=>awayIds.has(id));
+  return `<div class="mcard" data-r="${ri}" data-m="${mi}">
+    <div class="boxes">${box('a')}${box('b')}</div>
+    <div class="mbody">
+      <div class="half a${wa?' win':''}">${resTag(res,'a')}<span class="nm">${pnames('a')}</span>${sets('a')}</div>
+      <div class="half b${wb?' win':''}">${resTag(res,'b')}<span class="nm">${pnames('b')}</span>${sets('b')}</div>
+    </div>
+    <button type="button" class="swapbtn" data-act="swappick" data-r="${ri}" data-m="${mi}" ${st||t.finished||!canSwap(t,ri)?'hidden':''} aria-label="Ganti ${unitWord(t)} di match ini">${I.pencil}<span>Ganti</span></button>
+    <span class="ctag l">${G(t)>1?grpName(m.grp||0)+' · ':''}Lap. ${courtName(m.court)}${king?' · Raja':''}${hasAway?' · <span class="away-tag">ada yang tidak hadir</span>':''}</span>
+  </div>`;
+}
+function actionsHtml(t){
+  if(t.finished)return `<button class="btn primary block" data-tab="board">Lihat klasemen akhir</button><button class="btn ghost block" data-act="pdf">${I.pdf} Bagikan / unduh PDF</button>`;
+  if(confirmKey==='finish')return `<div class="confirm"><p>Selesaikan turnamen dan umumkan juara?</p><div class="row"><button class="btn primary" data-act="finish-yes">Ya, selesai</button><button class="btn ghost" data-act="cancel">Belum</button></div></div>`;
+  if(confirmKey==='undo')return `<div class="confirm"><p>Batalkan ronde ${t.rounds.length}? Jadwal dan skornya dihapus.</p><div class="row"><button class="btn danger" data-act="undo-yes">Ya, batalkan</button><button class="btn ghost" data-act="cancel">Tidak</button></div></div>`;
+  if(confirmKey==='extra')return `<div class="extra"><b>Tambah ronde ekstra</b><p class="help">Slot lapangan diisi dulu oleh yang paling sedikit main. Kalau jumlah mainnya sama, yang paling lama istirahat didahulukan.</p>${priorityHtml(t)}
+    <div class="stepper"><button type="button" data-act="ex-" aria-label="Kurangi">−</button><output>${extraN}</output><button type="button" data-act="ex+" aria-label="Tambah">+</button><span class="muted" style="margin-left:6px">ronde</span></div>
+    <div class="row"><button class="btn primary" style="flex:1" data-act="extra-yes">Tambah ${extraN} ronde</button><button class="btn ghost" style="flex:1" data-act="cancel">Batal</button></div></div>`;
+  const upfront=isUpfront(t),pr=plannedRounds(t),last=t.rounds[t.rounds.length-1],lastDone=roundComplete(t,last)&&last.matches.length>0;
+  const left=t.rounds.reduce((a,r)=>a+r.matches.filter(m=>!matchResult(t,m)).length,0),allDone=left===0;
+  let h=`<div class="status">${allDone?'Semua skor sudah masuk.':`${left} match belum ada skornya.`}</div>`;
+  if(!upfront){
+    const canMore=pr===null||t.rounds.length<pr;
+    if(canMore)h+=`<button class="btn primary block" data-act="next" ${lastDone?'':'disabled'}>Buat ronde ${t.rounds.length+1}${pr?' dari '+pr:''}</button>`;
+    h+=`<div class="row"><button class="btn ghost" data-act="undo" ${t.rounds.length>1?'':'disabled'}>Batalkan</button>${pr!==null?`<button class="btn ghost" data-act="extra">+ Ronde ekstra</button>`:''}<button class="btn ${canMore?'ghost':'primary'}" data-act="finish" ${allDone?'':'disabled'}>Selesai</button></div>`;
+  }else h+=`<div class="row"><button class="btn ghost" data-act="extra">+ Ronde ekstra</button><button class="btn primary" data-act="finish" ${allDone?'':'disabled'}>Selesai</button></div>`;
+  return h;
+}
+function priorityHtml(t){
+  const ap=appear(t),list=present(t).map(e=>({e,c:ap[e.id]||0})).sort((x,y)=>x.c-y.c||x.e.name.localeCompare(y.e.name));
+  if(!list.length)return '';
+  const mn=list[0].c,mx=list[list.length-1].c;
+  if(mn===mx)return `<p class="note">Semua ${unitWord(t)} yang hadir sudah main <b>${mn}x</b>. Ronde ekstra dibagi rata.</p>`;
+  const low=list.filter(x=>x.c===mn);
+  return `<div class="note"><b>Prioritas main (${mn}x, paling sedikit):</b><div class="hist" style="margin-top:8px">${low.map(x=>`<span class="chip tan">${esc(x.e.name)} · ${x.c}x</span>`).join('')}</div><div style="margin-top:8px">Paling banyak: ${mx}x main.</div></div>`;
+}
+function boardTable(t,st){
+  const F=FORMATS[t.type];
+  return `<div class="lbwrap"><div class="lbscroll"><table class="lb"><thead><tr><th>${F.kind==='team'?'Tim':'Pemain'}</th><th>G</th><th>M-K-S</th><th>Diff</th>${t.scoring!=='gs'?'<th>+M</th>':''}<th>P</th></tr></thead><tbody>
+  ${st.map((s,i)=>{const rk=i<3&&s.played?`<span class="medal g${i+1}">${i+1}</span>`:`<span class="rk">${i+1}</span>`;
+    return `<tr class="${i<3&&s.played?'r'+(i+1):''}"><td class="nmc"><div class="nmw">${rk}<span>${esc(s.name)}${F.kind==='mix'?` <small class="muted">${s.g==='M'?'PA':'PI'}</small>`:''}${s.away?' <span class="away-tag">absen</span>':''}</span></div></td>
+    <td>${s.played}</td>
+    <td><div class="wlt"><span class="w">${s.w}</span>-<span class="l">${s.l}</span>-<span class="t">${s.d}</span></div><div class="dots">${s.form.slice(-5).map(x=>`<i class="${x}"></i>`).join('')}</div></td>
+    <td class="${s.diff>0?'pos':s.diff<0?'neg':''}">${s.diff}</td>
+    ${t.scoring!=='gs'?`<td>${s.comp}</td>`:''}
+    <td class="pts">${s.total}</td></tr>`;}).join('')}
+  </tbody></table></div></div>`;
+}
+function renderBoard(t){
+  const F=FORMATS[t.type];
+  const tables=G(t)===1?boardTable(t,computeStats(t)):Array.from({length:G(t)},(_,g)=>`<div class="gtitle"><span class="gpill">${grpName(g)}</span><h3>${groupCourts(t,g)} lapangan</h3></div>${boardTable(t,computeStats(t,null,g))}`).join('');
+  return `<section class="sech"><h2>Klasemen</h2>
+    <select class="input sortsel" id="lb-sort" aria-label="Urutkan klasemen"><option value="points" ${t.sortBy!=='wins'?'selected':''}>Berdasar poin</option><option value="wins" ${t.sortBy==='wins'?'selected':''}>Berdasar menang</option></select></section>
+  ${t.hidePublic&&!t.finished?`<p class="note"><b>Klasemen privat aktif.</b> Kamu tetap bisa melihatnya di sini, tapi teks WA dan PDF yang dibagikan tidak menampilkan peringkat sampai turnamen selesai.</p>`:''}
+  ${tables}
+  <div class="legend"><b>G</b><span>Jumlah main</span><b>M-K-S</b><span>Menang - Kalah - Seri (titik = 5 hasil terakhir)</span><b>Diff</b><span>Selisih ${t.scoring==='point'?'poin':'game'}</span>${t.scoring!=='gs'?'<b>+M</b><span>Poin kompensasi untuk yang main lebih sedikit (telat datang atau pulang duluan)</span>':''}<b>P</b><span>${ptsLabel(t)}${F.koth?', termasuk bonus lapangan atas':''}</span></div>
+  <div class="row"><button class="btn ghost" style="flex:1" data-act="pdf">${I.pdf} PDF</button><a class="btn primary" style="flex:1" target="_blank" rel="noopener" href="${waLink(t)}">Kirim ke WhatsApp</a></div>
+  <button class="btn ghost block" data-act="copy">Salin teks klasemen</button>`;
+}
+const privateNow=t=>t.hidePublic&&!t.finished;
+function shareText(t){
+  const F=FORMATS[t.type],head=`*${t.name}*\n${F.label} · ${fmtDate(t.date)}\n`;
+  if(privateNow(t)){const done=t.rounds.filter(r=>r.matches.length&&roundComplete(t,r)).length;return head+`\nSudah ${done} ronde dimainkan. Klasemen dirahasiakan sampai turnamen selesai.\n\nTMP · Teman Main Padelmu`;}
+  const block=(st)=>st.map((s,i)=>`${i+1}. ${s.name} — ${s.total} poin (${s.w}M ${s.l}K ${s.d}S)`).join('\n');
+  let body='';
+  if(G(t)===1){const st=computeStats(t);body=(t.finished&&st[0]?`Juara: ${st[0].name}\n`:'')+`\n*Klasemen*\n`+block(st);}
+  else for(let g=0;g<G(t);g++){const st=computeStats(t,null,g);body+=`\n*Klasemen ${grpName(g)}*${t.finished&&st[0]?' — Juara: '+st[0].name:''}\n`+block(st)+'\n';}
+  return head+body+`\n\nTMP · Teman Main Padelmu`;
+}
+const waLink=t=>'https://wa.me/?text='+encodeURIComponent(shareText(t));
+function refreshLive(card){
+  const t=cur(),ri=+card.dataset.r,m=t.rounds[ri].matches[+card.dataset.m],res=matchResult(t,m);
+  const wa=res&&res.sa>res.sb,wb=res&&res.sb>res.sa;
+  const ha=card.querySelector('.half.a'),hb=card.querySelector('.half.b');
+  ha.classList.toggle('win',!!wa);hb.classList.toggle('win',!!wb);
+  ha.querySelector('.tag').outerHTML=resTag(res,'a');hb.querySelector('.tag').outerHTML=resTag(res,'b');
+  const st=started(t,m);const sb=card.querySelector('.swapbtn');if(sb)sb.hidden=st||!canSwap(t,ri);
+  if(t.scoring==='gs'){const b=card.querySelectorAll('.sbox');b[0].value=res?res.sa:'';b[1].value=res?res.sb:'';}
+  const ch=document.getElementById('rchips');if(ch){const sl=ch.scrollLeft;ch.innerHTML=chipsHtml(t);ch.scrollLeft=sl;}
+  if(!confirmKey){const a=document.getElementById('ractions');if(a)a.innerHTML=actionsHtml(t);}
+}
+
+/* ---------- Bottom sheets: simulation & participants ---------- */
+function openSheet(kind,html){sheetKind=kind;document.body.style.overflow='hidden';document.getElementById('sheet').innerHTML=`<div class="sheet-bg" data-act="sheetclose"></div><div class="sheet" role="dialog" aria-label="${kind==='sim'?'Simulasi jadwal':kind==='swap'?'Ganti pemain':'Peserta'}"><div class="sheet-in"><div class="grab"></div>${html}</div></div>`;}
+function closeSheet(){
+  if(sheetKind==='sim')stopSim();
+  const wasRoster=sheetKind==='roster';
+  sim=null;sheetKind=null;document.getElementById('sheet').innerHTML='';document.body.style.overflow='';
+  if(wasRoster)applyRoster();
+}
+function openSim(){
+  const d=draft,err=validate(d);if(err){formErr=err;render();document.querySelector('.err')?.scrollIntoView({block:'center'});return;}
+  const t=fromDraft(d,d.order==='random'),F=FORMATS[t.type];let note='';
+  try{
+    if(isUpfront(t)){buildSchedule(t);d.sim={sig:draftSig(d),entries:t.entries.map(e=>({id:e.id,grp:e.grp})),rounds:JSON.parse(JSON.stringify(t.rounds))};}
+    else{
+      const R=plannedRounds(t)||6;t.rounds=[];
+      for(let i=0;i<R;i++){const r=nextRound(t,false);t.rounds.push(r);
+        r.matches.forEach(m=>{if(t.scoring==='gs'){m.sets[0]=[6,Math.floor(Math.random()*5)];if(Math.random()<.5)m.sets[0].reverse();}else{const T=t.total||21;const a=Math.floor(Math.random()*(T+1));m.sa=a;m.sb=t.total?T-a:Math.floor(Math.random()*(T+1));}});}
+      note=F.mex?'Pasangan Mexicano bergantung pada hasil tiap ronde. Simulasi ini memakai skor acak.':F.koth?'Perpindahan lapangan bergantung pada hasil. Simulasi ini memakai skor acak.':`Simulasi ${R} ronde pertama dari turnamen tanpa batas.`;
+    }
+  }catch(e){formErr=e.message;render();return;}
+  stopSim();sim={t,k:1,playing:false,timer:null,note};renderSim();
+}
+function stopSim(){if(sim&&sim.timer){clearInterval(sim.timer);sim.timer=null;}if(sim)sim.playing=false;}
+function renderSim(){
+  const {t,k,note}=sim,R=t.rounds.length,F=FORMATS[t.type];
+  openSheet('sim',`<div class="spread" style="align-items:flex-start"><div><h2 style="font-weight:700;font-size:20px">Simulasi ${F.label}</h2><p class="help">Cek pembagian main dan keadilan jadwal.</p></div>
+      <button class="btn outline sm" data-act="reshuffle">${I.shuffle}Acak ulang</button></div>
+    <div class="spread"><b id="simlbl">Preview ronde (${k} / ${R})</b><button class="btn ghost sm" data-act="simplay" id="simplay">${sim.playing?I.pause+'Jeda':I.play+'Putar'}</button></div>
+    <input type="range" class="simrange" id="simrange" min="1" max="${R}" value="${k}" aria-label="Pilih ronde">
+    <h3>Pembagian main</h3>
+    <div class="distwrap" id="simdist">${distHtml()}</div>
+    <h3>Ronde</h3>
+    <div class="car" id="simcar">${t.rounds.map((r,i)=>`<div class="rcard${i===k-1?' on':''}${i>=k?' later':''}" data-i="${i}"><h4>Ronde ${i+1}<span class="chip ${i<k?'tan':''}">${i<k?'Selesai':'Nanti'}</span></h4>
+      ${r.matches.map(m=>`<div class="mm"><span class="c">${G(t)>1?grpName(m.grp)+' · ':''}Lapangan ${courtName(m.court)}</span><div class="v"><span>${esc(sideName(t,m.a))}</span><span>vs</span><span>${esc(sideName(t,m.b))}</span></div></div>`).join('')}
+      ${r.bye.length?`<div class="rs">Istirahat: ${esc(r.bye.map(id=>eName(t,id)).join(', '))}</div>`:''}</div>`).join('')}</div>
+    ${note?`<p class="help">${note}</p>`:isUpfront(t)?'<p class="help">Jadwal dan pembagian grup yang kamu lihat di sini yang dipakai saat menekan Buat turnamen. Tekan Acak ulang untuk susunan lain.</p>':''}
+    <button class="btn primary block" data-act="sheetclose">Tutup</button>`);
+  scrollCar();
+}
+function distHtml(){
+  const {t,k}=sim,c={};t.entries.forEach(e=>c[e.id]=0);
+  t.rounds.slice(0,k).forEach(r=>r.matches.forEach(m=>[...m.a,...m.b].forEach(id=>c[id]++)));
+  const vals=Object.values(c),mx=Math.max(...vals),mn=Math.min(...vals),spread=mx-mn;
+  const lvl=spread<=1?['good','Baik']:spread===2?['ok','Cukup']:['bad','Kurang merata'];
+  const order=t.entries.slice().sort((a,b)=>(a.grp||0)-(b.grp||0));
+  return `<table class="dist"><thead><tr><th>#</th><th>${FORMATS[t.type].kind==='team'?'Tim':'Pemain'}</th><th>Main</th></tr></thead><tbody>
+  ${order.map((e,i)=>`<tr><td>${i+1}</td><td>${esc(e.name)}${G(t)>1?` <span class="gpill dim">${grpName(e.grp)}</span>`:''}</td><td><span class="gchip ${c[e.id]===0?'zero':c[e.id]===mx&&spread>0?'hi':'lo'}">${c[e.id]}</span></td></tr>`).join('')}</tbody></table>
+  <div class="fair">Keadilan: <b class="${lvl[0]}">${lvl[1]}</b> (${mn===mx?mn:mn+'–'+mx} kali main)</div>`;
+}
+function scrollCar(){const car=document.getElementById('simcar');if(!car||!sim)return;const c=car.children[sim.k-1];if(c)car.scrollTo({left:c.offsetLeft-car.offsetLeft-16,behavior:'smooth'});}
+function setSimK(k){
+  sim.k=k;const R=sim.t.rounds.length;
+  document.getElementById('simlbl').textContent=`Preview ronde (${k} / ${R})`;
+  document.getElementById('simrange').value=k;
+  document.getElementById('simdist').innerHTML=distHtml();
+  [...document.getElementById('simcar').children].forEach((el,i)=>{el.classList.toggle('on',i===k-1);el.classList.toggle('later',i>=k);const ch=el.querySelector('.chip');ch.textContent=i<k?'Selesai':'Nanti';ch.classList.toggle('tan',i<k);});
+  scrollCar();
+}
+function toggleSimPlay(){
+  const btn=document.getElementById('simplay');
+  if(sim.playing){stopSim();btn.innerHTML=I.play+'Putar';return;}
+  if(sim.k>=sim.t.rounds.length)setSimK(1);
+  sim.playing=true;btn.innerHTML=I.pause+'Jeda';
+  sim.timer=setInterval(()=>{if(!sim)return;if(sim.k>=sim.t.rounds.length){stopSim();const b=document.getElementById('simplay');if(b)b.innerHTML=I.play+'Putar';return;}setSimK(sim.k+1);},900);
+}
+
+/* Participants & attendance */
+function playedCount(t,id){let c=0;t.rounds.forEach(r=>r.matches.forEach(m=>{if([...m.a,...m.b].includes(id)&&started(t,m))c++;}));return c;}
+function inAnyMatch(t,id){return t.rounds.some(r=>r.matches.some(m=>[...m.a,...m.b].includes(id)));}
+function openRoster(){menuOpen=false;rosterDirty=false;renderRoster();}
+function renderRoster(){
+  const t=cur(),F=FORMATS[t.type],pres=present(t).length,{m,f}=counts({type:t.type,entries:present(t)});
+  openSheet('roster',`<div><h2 style="font-weight:700;font-size:20px">Peserta & kehadiran</h2>
+      <p class="help">${pres} dari ${t.entries.length} ${unitWord(t)} hadir${F.kind==='mix'?` · ${m} putra, ${f} putri hadir`:''}</p></div>
+    <p class="note">Nama bisa langsung diganti, misalnya nama sementara jadi nama asli saat orangnya datang. Tandai <b>Absen</b> untuk yang belum datang atau pulang duluan. Ronde yang belum ada skornya akan disusun ulang saat kamu menekan Selesai.</p>
+    <div class="elist">${t.entries.map((e,i)=>`<div class="prow${e.away?' away':''}"><span class="n">${i+1}.</span>
+      <input class="pname" data-pid="${e.id}" value="${esc(e.name)}" aria-label="Nama ${i+1}" autocomplete="off">
+      <span class="ctrls">
+      ${G(t)>1?`<select class="input gsel" data-pgrp="${e.id}" aria-label="Grup">${Array.from({length:G(t)},(_,g)=>`<option value="${g}" ${(e.grp||0)===g?'selected':''}>${String.fromCharCode(65+g)}</option>`).join('')}</select>`:''}
+      ${F.kind==='mix'?`<button type="button" class="gtog ${e.g}" data-act="pgtog" data-id="${e.id}">${e.g==='M'?'Putra':'Putri'}</button>`:''}
+      <button type="button" class="att ${e.away?'off':'on'}" data-act="patt" data-id="${e.id}">${e.away?'Absen':'Hadir'}</button>
+      ${inAnyMatch(t,e.id)&&playedCount(t,e.id)?'':`<button type="button" class="ebtn del" data-act="pdel" data-id="${e.id}" aria-label="Hapus ${esc(e.name)}">${I.x}</button>`}
+      </span></div>`).join('')}</div>
+    <div class="field"><span class="lbl">Tambah ${unitWord(t)} baru</span>
+      <div class="add"><textarea class="input" id="r-entry" rows="1" placeholder="${F.kind==='team'?'Nama tim':'Nama pemain'}" aria-label="Nama ${unitWord(t)} baru"></textarea><button type="button" class="btn primary" data-act="padd">Tambah</button></div>
+      <p class="help">Peserta baru langsung ikut di ronde yang belum dimulai${G(t)>1?' dan masuk ke grup dengan peserta paling sedikit':''}. Poin kompensasi (+M) menjaga klasemen tetap adil.</p></div>
+    ${rosterDirty?'<p class="note"><b>Ada perubahan kehadiran atau peserta.</b> Jadwal ronde yang belum dimulai akan disusun ulang.</p>':''}
+    <button class="btn primary block" data-act="sheetclose">${rosterDirty?'Selesai & susun ulang jadwal':'Selesai'}</button>`);
+}
+function rosterRerender(){const sh=document.querySelector('.sheet'),y=sh?sh.scrollTop:0;renderRoster();const n=document.querySelector('.sheet');if(n)n.scrollTop=y;}
+function applyRoster(){
+  const t=cur();if(!t)return;
+  if(rosterDirty&&!t.finished){
+    try{const r=reschedule(t);selRound=Math.min(selRound,t.rounds.length-1);const firstOpen=t.rounds.findIndex(x=>!x.matches.some(m=>started(t,m)));if(firstOpen>=0)selRound=firstOpen;
+      toast(r.to>=r.from?`Ronde ${r.from}${r.to>r.from?'–'+r.to:''} disusun ulang`:'Perubahan disimpan');}
+    catch(e){toast(e.message);}
+  }
+  rosterDirty=false;save();render();
+}
+
+/* ---------- Replace a player who has not arrived (any unstarted match) ---------- */
+let swapCtx=null;
+/* Only Mexicano round 1: later rounds are built from the standings, so they follow normal Mexicano rules */
+const canSwap=(t,ri)=>ri===0&&!!FORMATS[t.type].mex;
+function findIn(r,id){let loc=null;r.matches.forEach((mm,j)=>['a','b'].forEach(sd=>mm[sd].forEach((x,p)=>{if(x===id)loc={j,sd,p};})));return loc;}
+function openSwap(ri,mi,side,pi){
+  const t=cur(),m=t.rounds[ri].matches[mi];if(!canSwap(t,ri))return;
+  if(started(t,m)){toast('Skor match ini sudah diisi, jadi pemainnya tidak bisa diganti');return;}
+  swapCtx={ri,mi,side,pi,id:m[side][pi],absent:true};renderSwap();
+}
+function openSwapPick(ri,mi){
+  const t=cur(),m=t.rounds[ri].matches[mi];if(!canSwap(t,ri))return;
+  if(started(t,m)){toast('Skor match ini sudah diisi, jadi pemainnya tidak bisa diganti');return;}
+  const row=side=>m[side].map((id,pi)=>`<button type="button" class="prow pick" data-act="swap" data-r="${ri}" data-m="${mi}" data-side="${side}" data-pi="${pi}"><span class="nm">${esc(eName(t,id))}</span><span class="chip">${I.pencil} Ganti</span></button>`).join('');
+  openSheet('swap',`<div><h2 style="font-weight:700;font-size:20px">Siapa yang belum datang?</h2>
+      <p class="help">Ronde ${ri+1} · ${G(t)>1?grpName(m.grp||0)+' · ':''}Lapangan ${courtName(m.court)}. Pilih ${unitWord(t)} yang mau diganti.</p></div>
+    <div class="elist">${row('a')}<p class="help" style="text-align:center;margin:2px 0">vs</p>${row('b')}</div>
+    <button class="btn ghost block" data-act="sheetclose">Batal</button>`);
+}
+function swapCandidates(t,ctx){
+  const r=t.rounds[ctx.ri],old=t.entries.find(e=>e.id===ctx.id),F=FORMATS[t.type],ap=appear(t);
+  const rest=[],swap=[];
+  for(const e of t.entries){
+    if(e.id===ctx.id||e.away)continue;
+    if(G(t)>1&&(e.grp||0)!==(old.grp||0))continue;
+    if(F.kind==='mix'&&e.g!==old.g)continue;
+    const loc=findIn(r,e.id);
+    if(!loc)rest.push({e,c:ap[e.id]||0});
+    else if(!(loc.j===ctx.mi&&loc.sd===ctx.side)&&!started(t,r.matches[loc.j]))swap.push({e,loc});
+  }
+  rest.sort((x,y)=>x.c-y.c||x.e.name.localeCompare(y.e.name));
+  return {rest,swap};
+}
+function renderSwap(){
+  const t=cur(),ctx=swapCtx,r=t.rounds[ctx.ri],m=r.matches[ctx.mi],F=FORMATS[t.type],old=t.entries.find(e=>e.id===ctx.id);
+  const {rest,swap}=swapCandidates(t,ctx),u=unitWord(t);
+  openSheet('swap',`<div><h2 style="font-weight:700;font-size:20px">Ganti ${esc(old.name)}</h2>
+      <p class="help">Ronde ${ctx.ri+1} · ${G(t)>1?grpName(m.grp||0)+' · ':''}Lapangan ${courtName(m.court)}${F.kind==='mix'?` · hanya ${old.g==='M'?'putra':'putri'}`:''}</p></div>
+    <label class="check"><input type="checkbox" id="swap-absent" ${ctx.absent?'checked':''}><span><b>Tandai ${esc(old.name)} belum datang</b><span class="help">Tidak dijadwalkan sampai ditandai Hadir lagi di Peserta & kehadiran. Poin kompensasi (+M) menutup match yang terlewat.</span></span></label>
+    <div class="field"><span class="lbl">Sudah datang & sedang istirahat</span>
+      ${rest.length?`<div class="elist">${rest.map(x=>`<button type="button" class="prow pick" data-act="swapdo" data-id="${x.e.id}"><span class="nm">${esc(x.e.name)}</span><span class="chip">${x.c}x main</span></button>`).join('')}</div>`
+        :`<p class="note">Tidak ada ${u} yang sedang istirahat. Tukar dengan yang ada di lapangan lain, atau tambahkan ${u} baru.</p>`}</div>
+    ${swap.length?`<div class="field"><span class="lbl">Tukar posisi dengan lapangan lain</span><p class="help">${esc(old.name)} pindah ke posisi ${u} yang dipilih. Cocok kalau dia sudah dalam perjalanan dan bisa main di lapangan yang mulai belakangan.</p>
+      <div class="elist">${swap.map(x=>{const mm=r.matches[x.loc.j];return `<button type="button" class="prow pick" data-act="swapdo" data-id="${x.e.id}"><span class="nm">${esc(x.e.name)}</span><span class="chip">Lap. ${courtName(mm.court)}${x.loc.j===ctx.mi?' · lawan':''}</span></button>`;}).join('')}</div></div>`:''}
+    <button class="btn ghost block" data-act="roster">${I.people} Tambah ${u} baru / atur kehadiran</button>
+    <button class="btn ghost block" data-act="sheetclose">Batal</button>`);
+}
+function doSwap(cid){
+  const t=cur(),ctx=swapCtx;if(!t||!ctx)return;
+  const r=t.rounds[ctx.ri],m=r.matches[ctx.mi],old=t.entries.find(e=>e.id===ctx.id),nu=t.entries.find(e=>e.id===cid);
+  const absentEl=document.getElementById('swap-absent');if(absentEl)ctx.absent=absentEl.checked;
+  const loc=findIn(r,cid);let msg;
+  if(loc){
+    r.matches[loc.j][loc.sd][loc.p]=ctx.id;m[ctx.side][ctx.pi]=cid;
+    msg=`${old.name} ditukar dengan ${nu.name}`;
+  }else{
+    m[ctx.side][ctx.pi]=cid;r.bye=r.bye.filter(id=>id!==cid&&id!==ctx.id);
+    if(ctx.absent)old.away=true;else r.bye.push(ctx.id);
+    msg=`${nu.name} main menggantikan ${old.name}`+(ctx.absent?' · ditandai belum datang':'');
+    if(ctx.absent&&isUpfront(t)){
+      let last=ctx.ri;t.rounds.forEach((x,i)=>{if(i>ctx.ri&&x.matches.some(mm=>started(t,mm)))last=i;});
+      t.rounds=t.rounds.slice(0,last+1);try{fillUpfront(t);}catch(e){}
+      msg+=' · ronde berikutnya disusun ulang';
+    }
+  }
+  swapCtx=null;save();closeSheet();render();toast(msg);
+}
+
+/* ---------- PDF export ---------- */
+function loadScript(src){return new Promise((res,rej)=>{const s=document.createElement('script');s.src=src;s.onload=res;s.onerror=()=>rej(new Error('load'));document.head.appendChild(s);});}
+async function logoPng(){return new Promise(res=>{const img=new Image();img.onload=()=>{const c=document.createElement('canvas');c.width=c.height=160;c.getContext('2d').drawImage(img,0,0,160,160);try{res(c.toDataURL('image/png'));}catch(e){res(null);}};img.onerror=()=>res(null);img.src=LOGO_SRC;});}
+async function buildPdf(t){
+  if(!window.jspdf)await loadScript('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js');
+  const {jsPDF}=window.jspdf,doc=new jsPDF({unit:'mm',format:'a4'}),F=FORMATS[t.type];
+  const W=210,M=14,BR=[15,42,92],TAN=[170,196,245],INK=[14,27,58],MUT=[91,107,135],LINE=[214,224,240];
+  const clean=s=>String(s).replace(/[^\x20-\x7E -ÿ–—·•]/g,'');
+  let y=0;
+  const header=()=>{doc.setFillColor(...BR);doc.rect(0,0,W,30,'F');if(logo)doc.addImage(logo,'PNG',M,5,20,20);
+    doc.setTextColor(255,255,255);doc.setFont('helvetica','bold');doc.setFontSize(16);doc.text(doc.splitTextToSize(clean(t.name),W-M*2-26)[0],M+25,14);
+    doc.setFont('helvetica','normal');doc.setFontSize(9);doc.setTextColor(...TAN);doc.text(clean(`${F.label} · ${fmtDate(t.date)} · ${totalLabel(t)} · ${t.entries.length} ${unitWord(t)} · ${t.courts} lapangan${G(t)>1?' · '+G(t)+' grup':''}`),M+25,21);y=40;};
+  const need=h=>{if(y+h>285){doc.addPage();header();}};
+  const logo=await logoPng();header();
+  const h2=s=>{need(14);doc.setFont('helvetica','bold');doc.setFontSize(13);doc.setTextColor(...INK);doc.text(clean(s),M,y);y+=7;};
+  if(t.finished){
+    const champs=G(t)===1?[['Juara',computeStats(t)[0]]]:Array.from({length:G(t)},(_,g)=>['Juara '+grpName(g),computeStats(t,null,g)[0]]);
+    champs.forEach(([lbl,s])=>{if(!s)return;need(14);doc.setFillColor(...TAN);doc.roundedRect(M,y-5,W-M*2,11,2,2,'F');doc.setTextColor(...INK);doc.setFont('helvetica','bold');doc.setFontSize(11);doc.text(clean(`${lbl}: ${s.name}  (${s.total} poin, ${s.w} menang)`),M+4,y+2);y+=15;});
+  }
+  if(privateNow(t)){h2('Klasemen');doc.setFont('helvetica','normal');doc.setFontSize(10);doc.setTextColor(...MUT);doc.text('Klasemen dirahasiakan sampai turnamen selesai.',M,y);y+=10;}
+  else{
+    const cols=[['#',8],[F.kind==='team'?'Tim':'Pemain',78],['G',14],['M-K-S',24],['Diff',18],['+M',16],['P',24]];
+    const table=(st,title)=>{h2(title);need(10);let x=M;doc.setFillColor(...BR);doc.rect(M,y-4.5,W-M*2,7,'F');doc.setFontSize(8.5);doc.setTextColor(255,255,255);doc.setFont('helvetica','bold');
+      cols.forEach(([c,w],i)=>{doc.text(c,i<2?x+1.5:x+w/2,y,{align:i<2?'left':'center'});x+=w;});y+=7;
+      st.forEach((s,i)=>{need(8);x=M;if(i<3&&s.played){doc.setFillColor(...[[248,236,206],[240,237,232],[246,229,214]][i]);doc.rect(M,y-4.5,W-M*2,7,'F');}
+        doc.setDrawColor(...LINE);doc.line(M,y+2.5,W-M,y+2.5);doc.setTextColor(...INK);doc.setFont('helvetica',i<3&&s.played?'bold':'normal');doc.setFontSize(9.5);
+        const vals=[String(i+1),clean(s.name)+(s.away?' (absen)':''),String(s.played),`${s.w}-${s.l}-${s.d}`,String(s.diff),String(s.comp),String(s.total)];
+        cols.forEach(([c,w],j)=>{const v=j===1?doc.splitTextToSize(vals[j],w-3)[0]:vals[j];doc.text(v,j<2?x+1.5:x+w/2,y,{align:j<2?'left':'center'});x+=w;});y+=7;});
+      y+=6;};
+    if(G(t)===1)table(computeStats(t),'Klasemen');else for(let g=0;g<G(t);g++)table(computeStats(t,null,g),'Klasemen '+grpName(g));
+  }
+  h2('Hasil per ronde');
+  t.rounds.forEach((r,i)=>{if(!r.matches.length)return;need(8+r.matches.length*6);doc.setFont('helvetica','bold');doc.setFontSize(10);doc.setTextColor(...INK);doc.text(`Ronde ${i+1}`,M,y);y+=5.5;
+    r.matches.forEach(m=>{const res=matchResult(t,m);const sc=res?(t.scoring==='gs'?m.sets.filter(s=>s[0]!==''&&s[1]!=='').map(s=>s[0]+'-'+s[1]).join(', '):`${res.ga} - ${res.gb}`):'belum main';
+      doc.setFont('helvetica','normal');doc.setFontSize(9);doc.setTextColor(...MUT);doc.text(clean(`${G(t)>1?grpName(m.grp||0)+' · ':''}Lap. ${courtName(m.court)}`),M+2,y);
+      doc.setTextColor(...INK);doc.text(doc.splitTextToSize(clean(sideName(t,m.a)),62)[0],M+30,y);doc.setFont('helvetica','bold');doc.text(sc,M+104,y,{align:'center'});doc.setFont('helvetica','normal');doc.text(doc.splitTextToSize(clean(sideName(t,m.b)),62)[0],M+120,y);y+=5.5;});
+    y+=2;});
+  const pages=doc.getNumberOfPages();for(let p=1;p<=pages;p++){doc.setPage(p);doc.setFontSize(8);doc.setTextColor(...MUT);doc.text(`TMP · Teman Main Padelmu  ·  Halaman ${p}/${pages}`,W/2,292,{align:'center'});}
+  return doc.output('blob');
+}
+async function exportPdf(){
+  const t=cur();menuOpen=false;render();
+  const dl=window.claude?.use?await window.claude.use('downloads'):null;
+  toast('Menyiapkan PDF…');
+  let blob;try{blob=await buildPdf(t);}catch(e){toast('PDF gagal dibuat. Periksa koneksi internet lalu coba lagi.');return;}
+  const fname=(t.name.replace(/[^\w\- ]+/g,'').trim().replace(/\s+/g,'-')||'turnamen')+'.pdf';
+  if(!dl){
+    /* Standalone website: native share sheet (iPhone/Android), otherwise a normal download */
+    try{const file=new File([blob],fname,{type:'application/pdf'});
+      if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:t.name});return;}}catch(e){if(e&&e.name==='AbortError')return;}
+    try{const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=fname;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),4000);toast('PDF diunduh');}
+    catch(e){toast('PDF tidak bisa diunduh di browser ini');}
+    return;
+  }
+  try{const r=await dl.save({filename:fname,data:blob});if(r.status==='saved')toast('PDF siap dibagikan');}
+  catch(e){if(e&&e.code==='declined')return;toast(e&&e.code==='rate_limited'?'Tunggu sebentar lalu coba lagi':'PDF tidak bisa diunduh di tampilan ini');}
+}
+
+/* ---------- Spin wheel ---------- */
+function wheelObj(){return (S.wheels||[]).find(w=>w.id===curWheel);}
+function renderWheels(){
+  const ws=S.wheels||[];
+  return `<section class="hero"><span class="brush">SPIN WHEEL</span><h1>Undi siapa duluan.</h1><p class="muted" style="margin:0">Buat roda sendiri untuk servis pertama, bagi tim, hukuman yang kalah, atau doorprize.</p></section>
+  <button class="btn primary block" data-act="wnew">+ Buat roda baru</button>
+  <div class="wlist">${ws.length?ws.map(w=>`<button class="titem" data-act="wopen" data-id="${w.id}"><span class="badge">${I.wheel}</span><span class="meta"><span class="name">${esc(w.name)}</span><span class="sub">${w.items.length} pilihan${w.last?' · terakhir: '+esc(w.last):''}</span></span></button>`).join('')
+    :'<div class="card muted" style="text-align:center">Belum ada roda. Buat satu, atau buka turnamen lalu pilih Spin wheel peserta di menu.</div>'}</div>`;
+}
+function renderWheel(){
+  const w=wheelObj();
+  return `<div class="field"><label for="w-name">Nama roda</label><input class="input" id="w-name" value="${esc(w.name)}" autocomplete="off"></div>
+  <div class="wheelbox"><div class="pointer"></div><canvas id="wcanvas" width="680" height="680" aria-label="Roda undian dengan ${w.items.length} pilihan"></canvas><div class="hub">${logoImg(80).replace('class="logo"','')}</div></div>
+  <div class="result" id="wresult">${w.last?`<span class="hand">Hasil terakhir</span><span class="pill">${esc(w.last)}</span>`:'<span class="muted">Tekan Putar untuk mengundi.</span>'}</div>
+  <button class="btn primary block" data-act="wspin" id="wspin" ${w.items.length<2?'disabled':''}>${I.wheel} Putar</button>
+  <label class="check"><input type="checkbox" id="w-remove" ${w.removeWinner?'checked':''}><span><b>Hapus hasil dari roda</b><span class="help">Cocok untuk undian doorprize atau urutan, supaya nama yang sama tidak keluar dua kali.</span></span></label>
+  <div class="field"><label for="w-items">Pilihan (${w.items.length})</label><textarea class="input" id="w-items" rows="6" placeholder="Satu pilihan per baris">${esc(w.items.join('\n'))}</textarea><p class="help">Satu pilihan per baris, maksimal 60.</p></div>
+  ${w.hist&&w.hist.length?`<div class="field"><span class="lbl">Riwayat</span><div class="hist">${w.hist.slice(-12).reverse().map(h=>`<span class="chip">${esc(h)}</span>`).join('')}</div></div>`:''}
+  ${confirmKey==='wdel'?`<div class="confirm"><p>Hapus roda "${esc(w.name)}"?</p><div class="row"><button class="btn danger" style="flex:1" data-act="wdel-yes">Ya, hapus</button><button class="btn ghost" style="flex:1" data-act="cancel">Batal</button></div></div>`:`<button class="btn ghost block" data-act="wdel">${I.trash} Hapus roda</button>`}`;
+}
+const WCOL=[['#1F5FE0','#FFFFFF'],['#E8EFFB','#0E1B3A'],['#4C82EC','#FFFFFF'],['#FFFFFF','#1F5FE0'],['#0F2A5C','#FFFFFF'],['#BFD3F7','#0E1B3A']];
+function drawWheel(){
+  const w=wheelObj(),cv=document.getElementById('wcanvas');if(!w||!cv)return;
+  const ctx=cv.getContext('2d'),S2=cv.width,R=S2/2-8,n=Math.max(1,w.items.length),seg=2*Math.PI/n,rot=(spin&&spin.rot)||w.rot||0;
+  ctx.clearRect(0,0,S2,S2);ctx.save();ctx.translate(S2/2,S2/2);
+  ctx.beginPath();ctx.arc(0,0,R+6,0,2*Math.PI);ctx.fillStyle='#1F5FE0';ctx.fill();
+  if(!w.items.length){ctx.beginPath();ctx.arc(0,0,R,0,2*Math.PI);ctx.fillStyle='#EEF3FC';ctx.fill();ctx.restore();return;}
+  ctx.rotate(rot);
+  for(let i=0;i<n;i++){
+    const [bg,fg]=WCOL[(n%WCOL.length===1&&i===n-1)?2:i%WCOL.length];
+    ctx.beginPath();ctx.moveTo(0,0);ctx.arc(0,0,R,-Math.PI/2+i*seg,-Math.PI/2+(i+1)*seg);ctx.closePath();ctx.fillStyle=bg;ctx.fill();
+    ctx.strokeStyle='rgba(0,0,0,.25)';ctx.lineWidth=2;ctx.stroke();
+    ctx.save();ctx.rotate(-Math.PI/2+(i+.5)*seg);ctx.fillStyle=fg;ctx.textAlign='right';ctx.textBaseline='middle';
+    const fs=Math.max(16,Math.min(34,Math.floor(seg*R*.42)));ctx.font=`700 ${fs}px Figtree, system-ui, sans-serif`;
+    let label=w.items[i];const maxW=R*.62;while(ctx.measureText(label).width>maxW&&label.length>2)label=label.slice(0,-2)+'…';
+    ctx.fillText(label,R-22,0);ctx.restore();
+  }
+  ctx.restore();
+}
+function doSpin(){
+  const w=wheelObj();if(!w||w.items.length<2||spin)return;
+  const n=w.items.length,seg=2*Math.PI/n,idx=Math.floor(Math.random()*n),a=idx*seg+seg*(.15+.7*Math.random());
+  const start=w.rot||0,TAU=2*Math.PI,base=((-a-start)%TAU+TAU)%TAU,end=start+TAU*6+base;
+  const reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches,dur=reduce?500:4200,t0=performance.now();
+  spin={rot:start};document.getElementById('wspin').disabled=true;
+  document.getElementById('wresult').innerHTML='<span class="hand">Memutar…</span>';
+  const step=now=>{const p=Math.min(1,(now-t0)/dur),e=1-Math.pow(1-p,4);spin.rot=start+(end-start)*e;drawWheel();
+    if(p<1){requestAnimationFrame(step);return;}
+    w.rot=end%TAU;spin=null;const win=w.items[idx];w.last=win;(w.hist=w.hist||[]).push(win);
+    let extra='';if(w.removeWinner){w.items.splice(idx,1);extra=`<span class="help">Dihapus dari roda. Sisa ${w.items.length} pilihan.</span>`;}
+    save();document.getElementById('wresult').innerHTML=`<span class="hand">Terpilih</span><span class="pill">${esc(win)}</span>${extra}`;
+    if(w.removeWinner){const ta=document.getElementById('w-items');if(ta)ta.value=w.items.join('\n');const lb=document.querySelector('label[for="w-items"]');if(lb)lb.textContent=`Pilihan (${w.items.length})`;}
+    document.getElementById('wspin').disabled=w.items.length<2;drawWheel();};
+  requestAnimationFrame(step);
+}
+function wheelFromTournament(){
+  const t=cur();menuOpen=false;S.wheels=S.wheels||[];
+  let w=S.wheels.find(x=>x.src===t.id);const items=present(t).map(e=>e.name).slice(0,60);
+  if(!w){w={id:uid(),src:t.id,name:t.name+' · Peserta',items,removeWinner:false,hist:[],rot:0};S.wheels.unshift(w);}else w.items=items;
+  save();curWheel=w.id;prevView='tour';view='wheel';confirmKey=null;render();window.scrollTo(0,0);
+}
+
+/* ---------- Events ---------- */
+function addEntries(){
+  const ta=document.getElementById('f-entry');if(!ta)return;
+  const F=FORMATS[draft.type],names=parseNames(ta.value,F.kind==='team');
+  if(!names.length){ta.focus();return;}
+  names.forEach(n=>{const {m,f}=counts(draft);draft.entries.push({id:uid(),name:n,g:F.kind==='mix'?(m<=f?'M':'F'):'M'});});
+  formErr='';draft.sim=null;render();document.getElementById('f-entry')?.focus();
+}
+function commitEdit(){
+  const inp=document.getElementById('edit-input');if(!inp)return;
+  const e=draft.entries.find(x=>x.id===inp.dataset.id);if(e&&inp.value.trim())e.name=inp.value.trim().slice(0,48);
+  editingId=null;draft.sim=null;render();
+}
+function goView(v){if(spin)return;view=v;menuOpen=false;confirmKey=null;render();window.scrollTo(0,0);}
+function goBack(){
+  if(view==='wheel')return goView(prevView==='tour'&&cur()?'tour':'wheels');
+  goView('home');
+}
+document.addEventListener('click',e=>{
+  userNavigated=true;
+  if(menuOpen&&!e.target.closest('.menu')){menuOpen=false;render();if(!e.target.closest('[data-act],[data-tab]'))return;}
+  const el=e.target.closest('[data-act],[data-seg],[data-tab]');if(!el)return;
+  if(el.dataset.seg){const k=el.dataset.seg,v=el.dataset.val;draft[k]=v;if(k==='scoring')draft.total=v==='point'?21:v==='normal'?4:null;draft.sim=null;render();return;}
+  if(el.dataset.tab){tab=el.dataset.tab;confirmKey=null;render();window.scrollTo(0,0);return;}
+  const act=el.dataset.act,t=cur();
+  switch(act){
+    case 'back':goBack();break;
+    case 'new':draft=newDraft();formErr='';editingId=null;goView('create');break;
+    case 'hidehint':S.hideHint=true;save();render();break;
+    case 'open':curId=el.dataset.id;tab='rounds';{const tt=cur();const firstOpen=tt.rounds.findIndex(r=>!roundComplete(tt,r));selRound=firstOpen<0?tt.rounds.length-1:firstOpen;}goView('tour');break;
+    case 'court-':draft.courts=Math.max(1,draft.courts-1);if(draft.groups>draft.courts)draft.groups=draft.courts;draft.sim=null;render();break;
+    case 'court+':draft.courts=Math.min(MAX_COURTS,draft.courts+1);draft.sim=null;render();break;
+    case 'grp-':draft.groups=Math.max(1,draft.groups-1);draft.sim=null;render();break;
+    case 'grp+':draft.groups=draft.groups+1;if(draft.courts<draft.groups)draft.courts=draft.groups;draft.sim=null;render();break;
+    case 'adde':addEntries();break;
+    case 'rme':draft.entries=draft.entries.filter(x=>x.id!==el.dataset.id);draft.sim=null;render();break;
+    case 'edit':editingId=el.dataset.id;render();{const i=document.getElementById('edit-input');if(i){i.focus();i.select();}}break;
+    case 'gtog':{const p=draft.entries.find(x=>x.id===el.dataset.id);p.g=p.g==='M'?'F':'M';draft.sim=null;render();break;}
+    case 'sim':openSim();break;
+    case 'sheetclose':closeSheet();break;
+    case 'reshuffle':{const k=sim.k;openSim();if(sim)setSimK(Math.min(k,sim.t.rounds.length));toast('Jadwal diacak ulang');break;}
+    case 'simplay':toggleSimPlay();break;
+    case 'menu':menuOpen=!menuOpen;render();break;
+    case 'roster':openRoster();break;
+    case 'swap':openSwap(+el.dataset.r,+el.dataset.m,el.dataset.side,+el.dataset.pi);break;
+    case 'swapdo':doSwap(el.dataset.id);break;
+    case 'swappick':openSwapPick(+el.dataset.r,+el.dataset.m);break;
+    case 'patt':{const x=t.entries.find(y=>y.id===el.dataset.id);x.away=!x.away;rosterDirty=true;save();rosterRerender();break;}
+    case 'pgtog':{const x=t.entries.find(y=>y.id===el.dataset.id);x.g=x.g==='M'?'F':'M';rosterDirty=true;save();rosterRerender();break;}
+    case 'pdel':{t.entries=t.entries.filter(y=>y.id!==el.dataset.id);t.rounds.forEach(r=>{r.bye=r.bye.filter(id=>id!==el.dataset.id);});
+      if(inAnyMatch(t,el.dataset.id))rosterDirty=true;else rosterDirty=rosterDirty||false;rosterDirty=true;save();rosterRerender();break;}
+    case 'padd':{const ta=document.getElementById('r-entry'),F=FORMATS[t.type],names=parseNames(ta.value,F.kind==='team');if(!names.length){ta.focus();break;}
+      names.forEach(n=>{const sizes=Array.from({length:G(t)},(_,g)=>t.entries.filter(x=>(x.grp||0)===g).length);const grp=sizes.indexOf(Math.min(...sizes));const {m,f}=counts({type:t.type,entries:t.entries});
+        t.entries.push({id:uid(),name:n,g:F.kind==='mix'?(m<=f?'M':'F'):'M',grp,away:false});});
+      rosterDirty=true;save();rosterRerender();document.getElementById('r-entry')?.focus();toast(names.length+' '+unitWord(t)+' ditambahkan');break;}
+    case 'pdf':exportPdf();break;
+    case 'togglepriv':t.hidePublic=!t.hidePublic;menuOpen=false;save();render();toast(t.hidePublic?'Klasemen privat aktif':'Klasemen privat dimatikan');break;
+    case 'wheel-from':wheelFromTournament();break;
+    case 'rgo':selRound=+el.dataset.i;render();break;
+    case 'rprev':selRound=Math.max(0,selRound-1);render();break;
+    case 'rnext':selRound=Math.min(t.rounds.length-1,selRound+1);render();break;
+    case 'next':try{t.rounds.push(nextRound(t,false));selRound=t.rounds.length-1;save();render();window.scrollTo(0,0);toast('Ronde '+t.rounds.length+' siap dimainkan');}catch(err){toast(err.message);}break;
+    case 'extra':confirmKey='extra';extraN=1;document.getElementById('ractions').innerHTML=actionsHtml(t);break;
+    case 'ex-':extraN=Math.max(1,extraN-1);document.getElementById('ractions').innerHTML=actionsHtml(t);break;
+    case 'ex+':extraN=Math.min(20,extraN+1);document.getElementById('ractions').innerHTML=actionsHtml(t);break;
+    case 'extra-yes':confirmKey=null;try{
+      if(isUpfront(t)){const first=t.rounds.length;for(let i=0;i<extraN;i++)t.rounds.push(nextRound(t,false));t.target=t.rounds.length;selRound=first;}
+      else{t.extra=(+t.extra||0)+extraN;}
+      save();render();
+      if(isUpfront(t)){const ap=appear(t),c=present(t).map(e=>ap[e.id]||0);toast(`${extraN} ronde ekstra ditambahkan · main ${Math.min(...c)}–${Math.max(...c)}x`);}
+      else toast(extraN+' ronde ekstra ditambahkan, yang paling sedikit main didahulukan');}catch(err){toast(err.message);render();}break;
+    case 'undo':confirmKey='undo';document.getElementById('ractions').innerHTML=actionsHtml(t);break;
+    case 'undo-yes':confirmKey=null;t.rounds.pop();selRound=t.rounds.length-1;save();render();toast('Ronde dibatalkan');break;
+    case 'finish':confirmKey='finish';document.getElementById('ractions').innerHTML=actionsHtml(t);break;
+    case 'finish-yes':confirmKey=null;t.finished=true;save();render();window.scrollTo(0,0);toast('Turnamen selesai');break;
+    case 'cancel':confirmKey=null;render();break;
+    case 'reopen':t.finished=false;menuOpen=false;save();render();break;
+    case 'askdel':menuOpen=false;confirmKey='del';render();window.scrollTo(0,0);break;
+    case 'del-yes':S.tournaments=S.tournaments.filter(x=>x.id!==t.id);(S.deleted=S.deleted||[]).push(t.id);save();toast('Turnamen dihapus');goView('home');break;
+    case 'wheels':prevView='home';goView('wheels');break;
+    case 'wnew':{S.wheels=S.wheels||[];const w={id:uid(),name:'Roda baru',items:['Servis duluan','Pilih sisi','Traktir minum','Push up 10x'],removeWinner:false,hist:[],rot:0};S.wheels.unshift(w);save();curWheel=w.id;prevView='wheels';goView('wheel');break;}
+    case 'wopen':curWheel=el.dataset.id;prevView='wheels';goView('wheel');break;
+    case 'wspin':doSpin();break;
+    case 'wdel':confirmKey='wdel';render();break;
+    case 'wdel-yes':S.wheels=S.wheels.filter(w=>w.id!==curWheel);(S.deleted=S.deleted||[]).push(curWheel);save();goView('wheels');break;
+    case 'copy':{const txt=shareText(t);menuOpen=false;
+      const fb=()=>{render();const box=document.getElementById('copyfallback');if(!box)return;box.innerHTML=`<textarea class="input copyarea" id="copytxt" readonly>${esc(txt)}</textarea><p class="help">Teks sudah dipilih. Ketuk lama lalu pilih Copy.</p>`;const a=document.getElementById('copytxt');a.focus();a.select();};
+      try{navigator.clipboard.writeText(txt).then(()=>{render();toast('Klasemen disalin');},fb);}catch(err){fb();}break;}
+  }
+});
+document.addEventListener('input',e=>{
+  const el=e.target;
+  if(view==='create'&&draft&&el.dataset&&el.dataset.k){draft[el.dataset.k]=el.type==='checkbox'?el.checked:el.value;return;}
+  if(el.id==='simrange'&&sim){stopSim();const b=document.getElementById('simplay');if(b)b.innerHTML=I.play+'Putar';setSimK(+el.value);return;}
+  if(el.dataset&&el.dataset.pid){const t=cur(),x=t.entries.find(y=>y.id===el.dataset.pid);if(x&&el.value.trim()){x.name=el.value.trim().slice(0,48);save();}return;}
+  if(el.id==='w-name'){const w=wheelObj();w.name=el.value.slice(0,60)||'Roda';save();return;}
+  if(el.id==='w-items'){const w=wheelObj();w.items=el.value.split('\n').map(s=>s.trim()).filter(Boolean).slice(0,60);save();drawWheel();
+    const lb=document.querySelector('label[for="w-items"]');if(lb)lb.textContent=`Pilihan (${w.items.length})`;const b=document.getElementById('wspin');if(b&&!spin)b.disabled=w.items.length<2;return;}
+  if(el.classList&&(el.classList.contains('sbox')||el.classList.contains('sset'))&&el.dataset.r!==undefined){
+    const t=cur(),m=t.rounds[+el.dataset.r].matches[+el.dataset.m],side=el.dataset.side,o=side==='a'?'b':'a';
+    const v=el.value.replace(/[^0-9]/g,'').slice(0,2);if(v!==el.value)el.value=v;
+    if(t.scoring==='gs'){m.sets[+el.dataset.set][side==='a'?0:1]=v;}
+    else{
+      m['s'+side]=v;
+      if(t.total&&v!==''&&+v<=t.total){m['s'+o]=String(t.total-+v);el.closest('.mcard').querySelector(`.sbox[data-side="${o}"]`).value=m['s'+o];}
+      else if(t.total&&v===''){m['s'+o]='';el.closest('.mcard').querySelector(`.sbox[data-side="${o}"]`).value='';}
+    }
+    save();refreshLive(el.closest('.mcard'));
+  }
+});
+document.addEventListener('change',e=>{
+  const id=e.target.id,v=e.target.value;
+  if(view==='create'&&draft){
+    if(id==='f-type'){draft.type=v;if(FORMATS[v].family!=='americano'&&draft.roundsMode==='full')draft.roundsMode='n';formErr='';draft.sim=null;render();}
+    else if(id==='f-total'){draft.total=+v;draft.sim=null;render();}
+    else if(id==='f-rounds'){if(v==='full'||v==='unlimited')draft.roundsMode=v;else{draft.roundsMode='n';draft.roundsN=+v;}draft.sim=null;render();}
+    else if(id==='f-court'){draft.courtUsage=v;draft.sim=null;render();}
+    else if(id==='f-sort'){draft.sortBy=v;render();}
+    else if(id==='f-nocomp'){draft.comp=!e.target.checked;}
+    else if(e.target.name==='order'){draft.order=v;draft.sim=null;render();}
+  }
+  if(e.target.dataset&&e.target.dataset.pgrp){const t=cur(),x=t.entries.find(y=>y.id===e.target.dataset.pgrp);x.grp=+v;rosterDirty=true;save();rosterRerender();}
+  if(id==='w-remove'){const w=wheelObj();w.removeWinner=e.target.checked;save();}
+  if(id==='lb-sort'&&cur()){cur().sortBy=v;save();render();}
+});
+document.addEventListener('toggle',e=>{if(e.target.classList&&e.target.classList.contains('adv')&&draft)draft.advOpen=e.target.open;},true);
+document.addEventListener('focusout',e=>{if(e.target.id==='edit-input')commitEdit();});
+document.addEventListener('keydown',e=>{
+  if(e.target.id==='f-entry'&&e.key==='Enter'&&!e.shiftKey){e.preventDefault();addEntries();}
+  if(e.target.id==='r-entry'&&e.key==='Enter'&&!e.shiftKey){e.preventDefault();document.querySelector('[data-act="padd"]').click();}
+  if(e.target.id==='edit-input'&&e.key==='Enter'){e.preventDefault();e.target.blur();}
+  if(e.target.dataset&&e.target.dataset.pid&&e.key==='Enter'){e.preventDefault();e.target.blur();}
+  if(e.key==='Escape'&&sheetKind)closeSheet();
+});
+document.addEventListener('submit',e=>{
+  e.preventDefault();if(view!=='create')return;
+  if(document.getElementById('f-entry')?.value.trim())addEntries();
+  formErr=validate(draft);if(formErr){render();document.querySelector('.err')?.scrollIntoView({block:'center'});return;}
+  try{const t=createFromDraft(draft);S.tournaments.push(t);save();curId=t.id;tab='rounds';selRound=0;goView('tour');toast('Jadwal siap, selamat main!');}
+  catch(err){formErr=err.message;render();}
+});
+
+/* ---------- Boot ---------- */
+try{const raw=localStorage.getItem(KEY);if(raw){const s=JSON.parse(raw);if(s&&Array.isArray(s.tournaments))S=s;}}catch(e){}
+migrate();
+if(!S.seeded&&!S.tournaments.length){S.tournaments=[makeSample()];S.seeded=true;localSave();}
+restoreLast();
+render();
+Cloud.init();
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')Cloud.schedule(0);else Cloud.refresh();});
+window.addEventListener('pagehide',()=>Cloud.schedule(0));
+</script>
+
+<script>
+if('serviceWorker' in navigator && location.protocol==='https:'){window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));}
+</script>
+</body>
+</html>

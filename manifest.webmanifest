@@ -1,0 +1,16 @@
+{
+  "name": "TMP · Teman Main Padelmu",
+  "short_name": "TMP",
+  "description": "Atur turnamen padel Americano, Mexicano, Mix dan King of the Court. Jadwal otomatis, skor langsung masuk klasemen.",
+  "lang": "id",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F3F6FC",
+  "theme_color": "#FFFFFF",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
