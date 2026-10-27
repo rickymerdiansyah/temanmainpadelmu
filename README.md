@@ -12,6 +12,12 @@ Data turnamen tersimpan di HP itu. Kalau kamu buka TMP dari ikon home screen, da
 
 Setelah dibuka sekali saat online, TMP tetap bisa dipakai tanpa sinyal di lapangan.
 
+## Link live untuk peserta
+
+Di halaman turnamen, ketuk ikon **Bagikan** lalu **Buat link live**. Kirim linknya ke grup peserta. Setiap skor yang diisi langsung ter-update di HP peserta. Peserta hanya bisa melihat, tidak bisa mengubah skor. Hanya HP yang membuat link yang bisa meng-update skornya.
+
+Data link live disimpan di Firebase Firestore (project `temanmainpadelmu`).
+
 ## Isi repo
 
 | File | Fungsi |

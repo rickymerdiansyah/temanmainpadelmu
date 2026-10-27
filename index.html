@@ -389,6 +389,19 @@ h2{font-weight:700}
 .dots i{width:6px;height:6px}
 .pts{font-size:15px}
 .cloud.device i{background:var(--win)}
+
+/* live link */
+.livechip{margin-left:auto;display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.04em;color:#B3261E;background:#FDE7E5;border-radius:999px;padding:5px 10px;white-space:nowrap;flex:none}
+.livechip i{width:7px;height:7px;border-radius:50%;background:#D23F33}
+.thead .livechip{margin-left:0}
+.livechip.connecting,.livechip.offline{color:var(--muted);background:var(--raised)}
+.livechip.connecting i,.livechip.offline i{background:var(--gold)}
+.livechip.gone,.livechip.error{color:var(--muted);background:var(--raised)}
+.livechip.gone i,.livechip.error i{background:var(--tie)}
+@media (prefers-reduced-motion:no-preference){.livechip.live i{animation:livepulse 1.4s ease-in-out infinite}}
+@keyframes livepulse{0%,100%{opacity:1}50%{opacity:.25}}
+.iconbtn.liveon{color:#D23F33}
+#livelink{font-size:14px}
 </style>
 </head>
 <body>
@@ -423,7 +436,7 @@ const courtName=i=>i<26?String.fromCharCode(65+i):String(i+1);
 const grpName=g=>'Grup '+String.fromCharCode(65+g);
 function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 function localSave(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
-function save(){localSave();Cloud.schedule();}
+function save(){localSave();Cloud.schedule();if(typeof Live!=='undefined')Live.schedule();}
 
 /* ---------- Cloud save: keeps tournaments in the viewer's own private space on their Claude account ---------- */
 const Cloud={db:null,uid:null,status:'local',synced:{},metaSynced:null,timer:null,chain:Promise.resolve(),
@@ -514,10 +527,13 @@ function onRemoteData(first,unchanged){
 }
 function restoreLast(){const l=S.last;if(l&&S.tournaments.find(t=>t.id===l.id)){curId=l.id;tab=l.tab==='board'?'board':'rounds';selRound=+l.selRound||0;view='tour';}}
 function rememberView(){
+  if(view==='live')return;
   const l=view==='tour'&&curId?{id:curId,tab,selRound}:null;
   if(JSON.stringify(l)!==JSON.stringify(S.last||null)){S.last=l;save();}
 }
-function cur(){return S.tournaments.find(t=>t.id===curId);}
+let liveT=null,liveViewId=null,liveState='connecting',liveFollow=true;
+const STANDALONE=!window.claude;
+function cur(){if(view==='live')return liveT;return S.tournaments.find(t=>t.id===curId);}
 function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.hidden=false;clearTimeout(toast._t);toast._t=setTimeout(()=>el.hidden=true,2400);}
 function fmtDate(d){try{return new Date(d).toLocaleString('id-ID',{weekday:'short',day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});}catch(e){return d;}}
 function nowLocal(){const d=new Date();d.setMinutes(0,0,0);d.setHours(d.getHours()+1);const p=n=>String(n).padStart(2,'0');return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())}T${p(d.getHours())}:00`;}
@@ -841,6 +857,7 @@ const logoImg=(s=38)=>`<img class="logo" src="${LOGO_SRC}" alt="" width="${s}" h
 function renderBar(){
   const bar=document.getElementById('bar');
   if(view==='home'){bar.innerHTML=`${logoImg()}<div class="brand"><b>TMP</b><small>Teman Main Padelmu</small></div><span id="cloudchip"></span>`;paintCloud();return;}
+  if(view==='live'){bar.innerHTML=`${logoImg()}<div class="brand"><b>TMP</b><small>Teman Main Padelmu</small></div><span class="livechip ${liveState}" id="livechip"><i></i>${{live:'LIVE',connecting:'Menghubungkan…',offline:'Offline',error:'Terputus',gone:'Tidak aktif'}[liveState]||'LIVE'}</span>`;return;}
   const title={create:'Buat Turnamen',tour:'Turnamen',wheels:'Spin Wheel',wheel:'Spin Wheel'}[view]||'';
   bar.innerHTML=`<button class="iconbtn" data-act="back" aria-label="Kembali">${I.back}</button>${logoImg(32)}<span class="bar-title">${title}</span><span id="cloudchip"></span>`;paintCloud();
 }
@@ -848,11 +865,13 @@ function render(){
   renderBar();const app=document.getElementById('app'),nav=document.getElementById('bnav');
   if(view==='create')app.innerHTML=renderCreate();
   else if(view==='tour'&&cur())app.innerHTML=renderTour();
+  else if(view==='live')app.innerHTML=liveT?renderTour():renderLiveWait();
   else if(view==='wheels')app.innerHTML=renderWheels();
   else if(view==='wheel'&&wheelObj())app.innerHTML=renderWheel();
   else{view='home';renderBar();app.innerHTML=renderHome();}
-  nav.hidden=view!=='tour';
-  if(view==='tour'){
+  const tourLike=view==='tour'||(view==='live'&&!!liveT);
+  nav.hidden=!tourLike;
+  if(tourLike){
     nav.innerHTML=`<div class="bnav-in" role="tablist"><button role="tab" data-tab="rounds" aria-selected="${tab==='rounds'}">${I.list}Ronde</button><button role="tab" data-tab="board" aria-selected="${tab==='board'}">${I.chart}Klasemen</button></div>`;
     const c=document.querySelector('.rchip[aria-current="true"]');if(c){const box=c.parentElement;box.scrollLeft=c.offsetLeft-box.clientWidth/2+c.clientWidth/2;}
   }
@@ -956,12 +975,15 @@ function renderTour(){
     if(G(t)===1){const st=computeStats(t);if(st[0])champ=`<section class="champ"><div class="q">“<span class="pill"><span class="medal g1">1</span>${esc(st[0].name)}</span>”</div><span class="hand">Juara Turnamen</span></section>`;}
     else champ=`<section class="champ"><span class="hand">Juara Grup</span><div class="champs">${Array.from({length:G(t)},(_,g)=>{const st=computeStats(t,null,g);return st[0]?`<span class="pill"><span class="gpill">${grpName(g)}</span>${esc(st[0].name)}</span>`:'';}).join('')}</div></section>`;
   }
+  const RO=view==='live';
   const head=`<section class="thead">
     <div class="ttitle"><h1>${esc(t.name)}</h1>
+      ${RO?'':`${STANDALONE?`<button class="iconbtn${t.liveId?' liveon':''}" data-act="live" aria-label="Bagikan link live">${I.share}</button>`:''}
       <button class="iconbtn" data-act="roster" aria-label="Peserta & kehadiran">${I.people}</button>
       <div class="menu"><button class="iconbtn" data-act="menu" aria-label="Menu" aria-expanded="${menuOpen}">${I.dots}</button>
       ${menuOpen?`<div class="menu-pop">
         <button data-act="roster">${I.people} Peserta & kehadiran</button>
+        ${STANDALONE?`<button data-act="live">${I.share} ${t.liveId?'Link live (aktif)':'Bagikan link live'}</button>`:''}
         <button data-act="pdf">${I.pdf} Bagikan / unduh PDF</button>
         <a href="${waLink(t)}" target="_blank" rel="noopener">${I.share} Kirim klasemen ke WA</a>
         <button data-act="copy">${I.list} Salin klasemen</button>
@@ -969,9 +991,9 @@ function renderTour(){
         <button data-act="togglepriv">${I.eye} Klasemen privat: ${t.hidePublic?'Aktif':'Nonaktif'}</button>
         <hr>
         ${t.finished?`<button data-act="reopen">${I.left} Buka lagi turnamen</button>`:''}
-        <button class="del" data-act="askdel">${I.trash} Hapus turnamen</button></div>`:''}</div></div>
+        <button class="del" data-act="askdel">${I.trash} Hapus turnamen</button></div>`:''}</div>`}</div>
     <div class="info"><span>${I.list}${F.label}</span><span>${esc(fmtDate(t.date))} ${I.cal}</span><span>${I.target}${totalLabel(t)}</span><span>${t.entries.length} ${F.kind==='team'?'Tim':'Pemain'}${G(t)>1?' · '+G(t)+' Grup':''} · ${t.courts} Lap. ${I.people}</span></div>
-    <div class="row" style="gap:6px">${t.sample?'<span class="chip tan">Contoh</span>':''}${t.hidePublic?`<span class="privchip">${I.eye} Klasemen privat</span>`:''}${away?`<button class="chip" data-act="roster" style="border:0">${away} tidak hadir</button>`:''}</div>
+    <div class="row" style="gap:6px">${RO?`<span class="livechip live"><i></i>Skor ter-update otomatis</span>`:''}${!RO&&t.liveId?`<button class="livechip live" data-act="live" style="border:0"><i></i>Link live aktif</button>`:''}${t.sample&&!RO?'<span class="chip tan">Contoh</span>':''}${t.hidePublic?`<span class="privchip">${I.eye} Klasemen privat</span>`:''}${away&&!RO?`<button class="chip" data-act="roster" style="border:0">${away} tidak hadir</button>`:''}</div>
     ${confirmKey==='del'?`<div class="confirm"><p>Hapus turnamen ini? Semua skor ikut terhapus.</p><div class="row"><button class="btn danger" style="flex:1" data-act="del-yes">Ya, hapus</button><button class="btn ghost" style="flex:1" data-act="cancel">Batal</button></div></div>`:''}
     <div id="copyfallback"></div>
   </section>${champ}`;
@@ -984,11 +1006,11 @@ function renderRounds(t){
   return `<section class="sech"><h2>Match Ronde</h2></section>
   <div class="rchips" id="rchips">${chipsHtml(t)}</div>
   <div class="rnav"><button data-act="rprev" aria-label="Ronde sebelumnya" ${selRound===0?'disabled':''}>${I.left}</button><h2>Ronde #${selRound+1}</h2><button data-act="rnext" aria-label="Ronde berikutnya" ${selRound>=t.rounds.length-1?'disabled':''}>${I.right}</button></div>
-  ${canSwap(t,selRound)&&r.matches.some(m=>!started(t,m))&&!t.finished?`<p class="help" style="margin:-4px 0 0">Ada yang belum datang? Ketuk <b>Ganti</b> di pojok kartu match untuk menukarnya dengan yang sudah datang.</p>`:''}
-  <div class="matches">${r.matches.length?r.matches.map((m,mi)=>matchCard(t,selRound,m,mi)).join(''):'<div class="note">Belum ada match di ronde ini. Tandai peserta yang sudah datang di <b>Peserta & kehadiran</b>.</div>'}</div>
+  ${view!=='live'&&canSwap(t,selRound)&&r.matches.some(m=>!started(t,m))&&!t.finished?`<p class="help" style="margin:-4px 0 0">Ada yang belum datang? Ketuk <b>Ganti</b> di pojok kartu match untuk menukarnya dengan yang sudah datang.</p>`:''}
+  <div class="matches">${r.matches.length?r.matches.map((m,mi)=>matchCard(t,selRound,m,mi)).join(''):(view==='live'?'<div class="note">Belum ada match di ronde ini.</div>':'<div class="note">Belum ada match di ronde ini. Tandai peserta yang sudah datang di <b>Peserta & kehadiran</b>.</div>')}</div>
   ${r.bye.length?`<div class="rest"><b>Istirahat:</b> ${esc(r.bye.map(id=>eName(t,id)).join(', '))}</div>`:''}
   ${away.length?`<div class="rest"><b>Tidak hadir:</b> ${esc(away.map(e=>e.name).join(', '))}</div>`:''}
-  <div class="ractions" id="ractions">${actionsHtml(t)}</div>`;
+  ${view==='live'?'':`<div class="ractions" id="ractions">${actionsHtml(t)}</div>`}`;
 }
 function eName(t,id){const e=t.entries.find(x=>x.id===id);return e?e.name:'?';}
 function sideName(t,ids){return ids.map(id=>eName(t,id)).join(' & ');}
@@ -1002,10 +1024,10 @@ function resKind(res,side){if(!res)return '';if(res.sa===res.sb)return 't';retur
 const RES_TXT={w:'Menang',l:'Kalah',t:'Seri'};
 function resTag(res,side){const k=resKind(res,side);return `<span class="tag ${k}">${k?RES_TXT[k]:''}</span>`;}
 function matchCard(t,ri,m,mi){
-  const res=matchResult(t,m),wa=res&&res.sa>res.sb,wb=res&&res.sb>res.sa,gs=t.scoring==='gs';
-  const box=side=>gs?`<input class="sbox" readonly tabindex="-1" aria-label="Set dimenangkan" value="${res?String(side==='a'?res.sa:res.sb):''}" placeholder="0">`
+  const res=matchResult(t,m),wa=res&&res.sa>res.sb,wb=res&&res.sb>res.sa,gs=t.scoring==='gs',RO=view==='live';
+  const box=side=>gs||RO?`<input class="sbox" readonly tabindex="-1" aria-label="${gs?'Set dimenangkan':'Skor'}" value="${gs?(res?String(side==='a'?res.sa:res.sb):''):esc(m['s'+side]??'')}" placeholder="${gs?'0':'00'}">`
     :`<input class="sbox" inputmode="numeric" pattern="[0-9]*" autocomplete="off" placeholder="00" aria-label="Skor ${side==='a'?'kiri':'kanan'}" data-r="${ri}" data-m="${mi}" data-side="${side}" value="${esc(m['s'+side]??'')}">`;
-  const sets=side=>gs?`<div class="sets">${[0,1,2].map(s=>`<input class="sset" inputmode="numeric" pattern="[0-9]*" aria-label="Set ${s+1}" data-r="${ri}" data-m="${mi}" data-side="${side}" data-set="${s}" value="${esc(m.sets[s][side==='a'?0:1]??'')}">`).join('')}</div>`:'';
+  const sets=side=>gs?`<div class="sets">${[0,1,2].map(s=>`<input class="sset" inputmode="numeric" pattern="[0-9]*" ${RO?'readonly tabindex="-1"':''} aria-label="Set ${s+1}" data-r="${ri}" data-m="${mi}" data-side="${side}" data-set="${s}" value="${esc(m.sets[s][side==='a'?0:1]??'')}">`).join('')}</div>`:'';
   const st=started(t,m);
   const pnames=side=>m[side].map(id=>esc(eName(t,id))).join('<span class="amp"> & </span>');
   const king=FORMATS[t.type].koth&&(m.court-courtOffset(t,m.grp||0))===0;
@@ -1016,7 +1038,7 @@ function matchCard(t,ri,m,mi){
       <div class="half a${wa?' win':''}">${resTag(res,'a')}<span class="nm">${pnames('a')}</span>${sets('a')}</div>
       <div class="half b${wb?' win':''}">${resTag(res,'b')}<span class="nm">${pnames('b')}</span>${sets('b')}</div>
     </div>
-    <button type="button" class="swapbtn" data-act="swappick" data-r="${ri}" data-m="${mi}" ${st||t.finished||!canSwap(t,ri)?'hidden':''} aria-label="Ganti ${unitWord(t)} di match ini">${I.pencil}<span>Ganti</span></button>
+    <button type="button" class="swapbtn" data-act="swappick" data-r="${ri}" data-m="${mi}" ${st||t.finished||RO||!canSwap(t,ri)?'hidden':''} aria-label="Ganti ${unitWord(t)} di match ini">${I.pencil}<span>Ganti</span></button>
     <span class="ctag l">${G(t)>1?grpName(m.grp||0)+' · ':''}Lap. ${courtName(m.court)}${king?' · Raja':''}${hasAway?' · <span class="away-tag">ada yang tidak hadir</span>':''}</span>
   </div>`;
 }
@@ -1059,14 +1081,15 @@ function boardTable(t,st){
 }
 function renderBoard(t){
   const F=FORMATS[t.type];
+  if(view==='live'&&privateNow(t))return `<section class="sech"><h2>Klasemen</h2></section><p class="note"><b>Klasemen dirahasiakan</b> sampai turnamen selesai. Skor tiap match tetap bisa dilihat di tab Ronde.</p>`;
   const tables=G(t)===1?boardTable(t,computeStats(t)):Array.from({length:G(t)},(_,g)=>`<div class="gtitle"><span class="gpill">${grpName(g)}</span><h3>${groupCourts(t,g)} lapangan</h3></div>${boardTable(t,computeStats(t,null,g))}`).join('');
   return `<section class="sech"><h2>Klasemen</h2>
     <select class="input sortsel" id="lb-sort" aria-label="Urutkan klasemen"><option value="points" ${t.sortBy!=='wins'?'selected':''}>Berdasar poin</option><option value="wins" ${t.sortBy==='wins'?'selected':''}>Berdasar menang</option></select></section>
-  ${t.hidePublic&&!t.finished?`<p class="note"><b>Klasemen privat aktif.</b> Kamu tetap bisa melihatnya di sini, tapi teks WA dan PDF yang dibagikan tidak menampilkan peringkat sampai turnamen selesai.</p>`:''}
+  ${t.hidePublic&&!t.finished&&view!=='live'?`<p class="note"><b>Klasemen privat aktif.</b> Kamu tetap bisa melihatnya di sini, tapi teks WA dan PDF yang dibagikan tidak menampilkan peringkat sampai turnamen selesai.</p>`:''}
   ${tables}
   <div class="legend"><b>G</b><span>Jumlah main</span><b>M-K-S</b><span>Menang - Kalah - Seri (titik = 5 hasil terakhir)</span><b>Diff</b><span>Selisih ${t.scoring==='point'?'poin':'game'}</span>${t.scoring!=='gs'?'<b>+M</b><span>Poin kompensasi untuk yang main lebih sedikit (telat datang atau pulang duluan)</span>':''}<b>P</b><span>${ptsLabel(t)}${F.koth?', termasuk bonus lapangan atas':''}</span></div>
-  <div class="row"><button class="btn ghost" style="flex:1" data-act="pdf">${I.pdf} PDF</button><a class="btn primary" style="flex:1" target="_blank" rel="noopener" href="${waLink(t)}">Kirim ke WhatsApp</a></div>
-  <button class="btn ghost block" data-act="copy">Salin teks klasemen</button>`;
+  ${view==='live'?'':`<div class="row"><button class="btn ghost" style="flex:1" data-act="pdf">${I.pdf} PDF</button><a class="btn primary" style="flex:1" target="_blank" rel="noopener" href="${waLink(t)}">Kirim ke WhatsApp</a></div>
+  <button class="btn ghost block" data-act="copy">Salin teks klasemen</button>`}`;
 }
 const privateNow=t=>t.hidePublic&&!t.finished;
 function shareText(t){
@@ -1092,7 +1115,7 @@ function refreshLive(card){
 }
 
 /* ---------- Bottom sheets: simulation & participants ---------- */
-function openSheet(kind,html){sheetKind=kind;document.body.style.overflow='hidden';document.getElementById('sheet').innerHTML=`<div class="sheet-bg" data-act="sheetclose"></div><div class="sheet" role="dialog" aria-label="${kind==='sim'?'Simulasi jadwal':kind==='swap'?'Ganti pemain':'Peserta'}"><div class="sheet-in"><div class="grab"></div>${html}</div></div>`;}
+function openSheet(kind,html){sheetKind=kind;document.body.style.overflow='hidden';document.getElementById('sheet').innerHTML=`<div class="sheet-bg" data-act="sheetclose"></div><div class="sheet" role="dialog" aria-label="${kind==='sim'?'Simulasi jadwal':kind==='swap'?'Ganti pemain':kind==='live'?'Link live':'Peserta'}"><div class="sheet-in"><div class="grab"></div>${html}</div></div>`;}
 function closeSheet(){
   if(sheetKind==='sim')stopSim();
   const wasRoster=sheetKind==='roster';
@@ -1189,6 +1212,97 @@ function applyRoster(){
     catch(e){toast(e.message);}
   }
   rosterDirty=false;save();render();
+}
+
+/* ---------- Live link: participants watch scores and standings update on their own phones ---------- */
+const FB_CFG={apiKey:"AIzaSyCWwyOOyFcXWYqwoaq1y6z_a-Vo4cMaPeM",authDomain:"temanmainpadelmu.firebaseapp.com",projectId:"temanmainpadelmu",storageBucket:"temanmainpadelmu.firebasestorage.app",messagingSenderId:"762166045173",appId:"1:762166045173:web:10c12b40aa0b1c27fcd8bc"};
+const FB_V='10.12.2',FB_URL=n=>`https://www.gstatic.com/firebasejs/${FB_V}/firebase-${n}.js`;
+const Live={base:null,authP:null,uid:null,pushed:{},timer:null,chain:Promise.resolve(),warned:false,
+  async core(){
+    if(!this.base)this.base=(async()=>{const [a,f]=await Promise.all([import(FB_URL('app')),import(FB_URL('firestore'))]);const app=a.initializeApp(FB_CFG);return {app,f,db:f.getFirestore(app)};})();
+    try{return await this.base;}catch(e){this.base=null;throw e;}
+  },
+  async owner(){
+    const c=await this.core();
+    if(!this.authP)this.authP=(async()=>{const au=await import(FB_URL('auth'));const auth=au.getAuth(c.app);await auth.authStateReady();if(!auth.currentUser)await au.signInAnonymously(auth);this.uid=auth.currentUser.uid;return this.uid;})();
+    try{return await this.authP;}catch(e){this.authP=null;throw e;}
+  },
+  ref(c,id){return c.f.doc(c.db,'live',id);},
+  async push(t){
+    const c=await this.core();await this.owner();
+    const j=JSON.stringify(t);
+    await c.f.setDoc(this.ref(c,t.liveId),{owner:t.liveOwner||this.uid,json:j,name:String(t.name).slice(0,120),updated:Date.now()});
+    this.pushed[t.liveId]=j;
+  },
+  schedule(){
+    if(!STANDALONE)return;
+    clearTimeout(this.timer);
+    this.timer=setTimeout(()=>{this.chain=this.chain.then(async()=>{
+      for(const t of S.tournaments){if(!t.liveId)continue;const j=JSON.stringify(t);if(this.pushed[t.liveId]===j)continue;
+        try{await this.push(t);t.liveErr=null;}
+        catch(e){const code=e&&e.code||'';t.liveErr=code;
+          if(code==='permission-denied'&&!this.warned){this.warned=true;toast('Link live hanya bisa di-update dari HP yang membuatnya');}}
+      }});},700);
+  },
+  watch(id){
+    return this.core().then(c=>c.f.onSnapshot(this.ref(c,id),{includeMetadataChanges:true},snap=>{
+      if(!snap.exists()){liveT=null;liveState='gone';render();return;}
+      try{liveT=JSON.parse(snap.data().json);}catch(e){return;}
+      liveState=snap.metadata.fromCache?'offline':'live';
+      if(liveFollow)followRound();
+      const y=window.scrollY;render();window.scrollTo(0,y);
+    },err=>{liveState='error';render();}));
+  }
+};
+function followRound(){if(!liveT)return;const i=liveT.rounds.findIndex(r=>r.matches.length&&!roundComplete(liveT,r));selRound=i<0?Math.max(0,liveT.rounds.length-1):i;}
+function liveUrl(t){return location.origin+location.pathname.replace(/index\.html$/,'')+'#live-'+t.liveId;}
+function renderLiveWait(){
+  const msg={connecting:['Menghubungkan…','Sebentar, sedang mengambil jadwal dan skor terbaru.'],
+    gone:['Link live tidak aktif','Penyelenggara sudah menghentikan link ini, atau link-nya salah ketik. Minta link terbaru ke penyelenggara.'],
+    error:['Tidak bisa terhubung','Periksa koneksi internet, lalu muat ulang halaman ini.'],
+    offline:['Sedang offline','Skor akan muncul lagi begitu HP terhubung ke internet.']}[liveState]||['Menghubungkan…',''];
+  return `<section class="hero"><span class="brush">LINK LIVE</span><h1>${msg[0]}</h1><p class="muted" style="margin:0">${msg[1]}</p></section>`;
+}
+function openLiveSheet(){
+  const t=cur();if(!t)return;
+  if(!t.liveId){
+    openSheet('live',`<div><h2 style="font-weight:700;font-size:20px">Bagikan link live</h2>
+      <p class="help">Peserta bisa melihat jadwal, skor, dan klasemen dari HP masing-masing. Setiap skor yang kamu isi langsung ter-update di link, tanpa perlu refresh.</p></div>
+      <p class="note">Peserta hanya bisa melihat, tidak bisa mengubah skor. Tidak perlu login atau install apa pun.${t.hidePublic?' <b>Klasemen privat aktif</b>, jadi peringkat baru terlihat setelah turnamen selesai.':''}</p>
+      <button class="btn primary block" data-act="liveon" id="liveonbtn">${I.share} Buat link live</button>
+      <button class="btn ghost block" data-act="sheetclose">Nanti saja</button>`);
+    return;
+  }
+  const url=liveUrl(t),wa='https://wa.me/?text='+encodeURIComponent(`Pantau skor & klasemen ${t.name} live di sini:\n${url}`);
+  openSheet('live',`<div><h2 style="font-weight:700;font-size:20px">Link live aktif</h2>
+      <p class="help">Bagikan link ini ke grup. Skor yang kamu isi langsung ter-update di HP peserta.</p></div>
+    <input class="input" id="livelink" readonly value="${esc(url)}" aria-label="Link live">
+    <div class="row"><button class="btn ghost" style="flex:1" data-act="livecopy">Salin link</button><a class="btn primary" style="flex:1" href="${wa}" target="_blank" rel="noopener">Kirim ke WhatsApp</a></div>
+    ${t.liveErr==='permission-denied'?'<p class="err">Link ini dibuat dari HP lain, jadi skor di HP ini tidak ter-update ke link. Update skor dari HP pembuatnya.</p>':t.liveErr?'<p class="note">Sedang offline. Skor terbaru dikirim begitu HP terhubung lagi.</p>':''}
+    <p class="note">Hanya HP ini yang bisa meng-update link. Jangan hapus data Safari di HP ini selama turnamen berjalan.</p>
+    ${confirmKey==='liveoff'?`<div class="confirm"><p>Hentikan link live? Peserta tidak bisa membuka link ini lagi.</p><div class="row"><button class="btn danger" data-act="liveoff">Ya, hentikan</button><button class="btn ghost" data-act="live">Batal</button></div></div>`
+      :`<button class="btn danger block" data-act="liveoff">Hentikan link live</button>`}
+    <button class="btn ghost block" data-act="sheetclose">Tutup</button>`);
+}
+async function liveOn(){
+  const t=cur(),btn=document.getElementById('liveonbtn');if(!t)return;
+  if(btn){btn.disabled=true;btn.textContent='Membuat link…';}
+  try{
+    const uid=await Live.owner();
+    t.liveId=Math.random().toString(36).slice(2,8)+Math.random().toString(36).slice(2,8);t.liveOwner=uid;
+    await Live.push(t);t.liveErr=null;localSave();Cloud.schedule();toast('Link live siap dibagikan');openLiveSheet();render();openLiveSheet();
+  }catch(e){
+    delete t.liveId;delete t.liveOwner;
+    if(btn){btn.disabled=false;btn.innerHTML=I.share+' Buat link live';}
+    toast('Gagal membuat link. Pastikan HP terhubung ke internet, lalu coba lagi.');
+  }
+}
+async function liveOff(){
+  const t=cur();if(!t)return;
+  if(confirmKey!=='liveoff'){confirmKey='liveoff';openLiveSheet();return;}
+  confirmKey=null;
+  try{const c=await Live.core();await Live.owner();await c.f.deleteDoc(Live.ref(c,t.liveId));}catch(e){}
+  delete Live.pushed[t.liveId];delete t.liveId;delete t.liveOwner;delete t.liveErr;save();closeSheet();render();toast('Link live dihentikan');
 }
 
 /* ---------- Replace a player who has not arrived (any unstarted match) ---------- */
@@ -1401,6 +1515,15 @@ document.addEventListener('click',e=>{
   userNavigated=true;
   if(menuOpen&&!e.target.closest('.menu')){menuOpen=false;render();if(!e.target.closest('[data-act],[data-tab]'))return;}
   const el=e.target.closest('[data-act],[data-seg],[data-tab]');if(!el)return;
+  if(view==='live'){
+    if(el.dataset.tab){tab=el.dataset.tab;render();window.scrollTo(0,0);return;}
+    const a=el.dataset.act,t=liveT;if(!t)return;
+    if(a==='rgo'){selRound=+el.dataset.i;liveFollow=false;render();}
+    else if(a==='rprev'){selRound=Math.max(0,selRound-1);liveFollow=false;render();}
+    else if(a==='rnext'){selRound=Math.min(t.rounds.length-1,selRound+1);liveFollow=false;render();}
+    else if(a==='livefollow'){liveFollow=true;followRound();render();}
+    return;
+  }
   if(el.dataset.seg){const k=el.dataset.seg,v=el.dataset.val;draft[k]=v;if(k==='scoring')draft.total=v==='point'?21:v==='normal'?4:null;draft.sim=null;render();return;}
   if(el.dataset.tab){tab=el.dataset.tab;confirmKey=null;render();window.scrollTo(0,0);return;}
   const act=el.dataset.act,t=cur();
@@ -1426,6 +1549,10 @@ document.addEventListener('click',e=>{
     case 'swap':openSwap(+el.dataset.r,+el.dataset.m,el.dataset.side,+el.dataset.pi);break;
     case 'swapdo':doSwap(el.dataset.id);break;
     case 'swappick':openSwapPick(+el.dataset.r,+el.dataset.m);break;
+    case 'live':menuOpen=false;render();openLiveSheet();break;
+    case 'liveon':liveOn();break;
+    case 'liveoff':liveOff();break;
+    case 'livecopy':{const inp=document.getElementById('livelink');const url=inp.value;try{navigator.clipboard.writeText(url).then(()=>toast('Link disalin'),()=>{inp.select();toast('Ketuk lama lalu Copy');});}catch(err){inp.select();}break;}
     case 'patt':{const x=t.entries.find(y=>y.id===el.dataset.id);x.away=!x.away;rosterDirty=true;save();rosterRerender();break;}
     case 'pgtog':{const x=t.entries.find(y=>y.id===el.dataset.id);x.g=x.g==='M'?'F':'M';rosterDirty=true;save();rosterRerender();break;}
     case 'pdel':{t.entries=t.entries.filter(y=>y.id!==el.dataset.id);t.rounds.forEach(r=>{r.bye=r.bye.filter(id=>id!==el.dataset.id);});
@@ -1525,9 +1652,17 @@ document.addEventListener('submit',e=>{
 try{const raw=localStorage.getItem(KEY);if(raw){const s=JSON.parse(raw);if(s&&Array.isArray(s.tournaments))S=s;}}catch(e){}
 migrate();
 if(!S.seeded&&!S.tournaments.length){S.tournaments=[makeSample()];S.seeded=true;localSave();}
-restoreLast();
+function enterLiveFromHash(){
+  const m=/^#live-([a-z0-9]{6,20})$/.exec(location.hash);
+  if(!m)return false;
+  liveViewId=m[1];view='live';tab='rounds';liveT=null;liveState='connecting';liveFollow=true;
+  Live.watch(liveViewId).catch(()=>{liveState='error';render();});
+  return true;
+}
+if(!enterLiveFromHash())restoreLast();
 render();
-Cloud.init();
+if(view!=='live')Cloud.init();
+window.addEventListener('hashchange',()=>{if(enterLiveFromHash())render();});
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')Cloud.schedule(0);else Cloud.refresh();});
 window.addEventListener('pagehide',()=>Cloud.schedule(0));
 </script>
