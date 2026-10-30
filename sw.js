@@ -1,5 +1,5 @@
 /* TMP offline support: the app works on court without signal once it has been opened online. */
-const VERSION = 'tmp-v6';
+const VERSION = 'tmp-v7';
 const SHELL = ['./', './index.html', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png', './icons/apple-touch-icon.png'];
 
 self.addEventListener('install', e => {

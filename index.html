@@ -710,7 +710,7 @@ function byeIds(t,inM){return [...present(t),...t.entries.filter(e=>e.away)].map
 function withBye(t,matches){const inM=new Set(matches.flatMap(m=>[...m.a,...m.b]));t.entries.forEach(e=>{if(inM.has(e.id))e.arr=false;});return {matches:blank(t,matches),bye:byeIds(t,inM)};}
 function restNames(t,r){const inM=new Set(r.matches.flatMap(m=>[...m.a,...m.b]));const ids=[...r.bye];
   t.entries.forEach(e=>{if(e.away&&!inM.has(e.id)&&!ids.includes(e.id))ids.push(e.id);});
-  return ids.map(id=>{const e=t.entries.find(x=>x.id===id);return e?esc(e.name)+(e.away?' <span class="late">(telat)</span>':e.arr?' <span class="late">(baru datang, main ronde berikutnya)</span>':''):'?';}).join(', ');}
+  return ids.map(id=>{const e=t.entries.find(x=>x.id===id);return e?esc(e.name)+(e.away?' <span class="late">(telat)</span>':e.arr?' <span class="late">(baru datang)</span>':''):'?';}).join(', ');}
 function genCore(v,isLast){
   const F=FORMATS[v.type],first=!v.rounds.some(r=>r.matches.length),keep=first&&v.order==='keep';
   if(F.koth&&!first){const r=kothNext(v);if(r)return r;}
@@ -853,33 +853,17 @@ function patchRound(t,ri){
   r.bye=byeIds(t,inRound());
   return swaps;
 }
-/* Opsi A: pemain yang baru datang tidak masuk ke ronde yang sedang berjalan.
-   Kalau ronde berikutnya sudah dibuat tapi belum mulai, dia menggantikan pemain hadir yang paling sering main. */
-function placeArrivals(t,ri){
-  const r=t.rounds[ri],F=FORMATS[t.type],out=[];if(!r)return out;
-  const ap=appear(t),inR=()=>new Set(r.matches.flatMap(m=>[...m.a,...m.b]));
-  for(const e of t.entries.filter(x=>x.arr&&!x.away)){
-    if(inR().has(e.id)){e.arr=false;continue;}
-    let best=null;
-    r.matches.forEach((m,j)=>{if(started(t,m))return;['a','b'].forEach(sd=>m[sd].forEach((id,pi)=>{const v=t.entries.find(x=>x.id===id);
-      if(!v||v.arr||(G(t)>1&&(v.grp||0)!==(e.grp||0))||(F.kind==='mix'&&v.g!==e.g))return;
-      const c=ap[id]||0;if(!best||c>best.c||(c===best.c&&v.name.localeCompare(best.v.name)<0))best={j,sd,pi,v,c};}));});
-    if(best){r.matches[best.j][best.sd][best.pi]=e.id;ap[e.id]=(ap[e.id]||0)+1;ap[best.v.id]--;e.arr=false;out.push([best.v.name,e.name]);}
-  }
-  r.bye=byeIds(t,inR());
-  return out;
-}
 function reschedule(t){
   let last=-1;t.rounds.forEach((r,i)=>{if(r.matches.some(m=>started(t,m)))last=i;});
-  let swaps=[],patched=-1,arrivals=[];
+  let swaps=[],patched=-1;
   const cur=last+1<t.rounds.length?last+1:-1;
   if(last>=0&&t.rounds[last].matches.some(m=>!started(t,m))){swaps=patchRound(t,last);patched=last;}
-  if(cur>=0){swaps=swaps.concat(patchRound(t,cur));patched=cur;if(last>=0)arrivals=placeArrivals(t,cur);}
+  if(cur>=0){swaps=swaps.concat(patchRound(t,cur));patched=cur;}
   const keep=Math.max(last,patched)+1;const before=t.rounds.length;t.rounds=t.rounds.slice(0,keep);
   if(isUpfront(t)){fillUpfront(t);}
   else if(!t.rounds.length){if(!t.finished)t.rounds.push(nextRound(t,false));}
   if(!t.rounds.length)t.rounds.push({matches:[],bye:byeIds(t,new Set())});
-  return {swaps,arrivals,patched,rebuiltFrom:isUpfront(t)&&t.rounds.length>keep?keep+1:null,to:t.rounds.length};
+  return {swaps,patched,rebuiltFrom:isUpfront(t)&&t.rounds.length>keep?keep+1:null,to:t.rounds.length};
 }
 
 /* ---------- Draft / tournament creation ---------- */
@@ -1300,7 +1284,7 @@ function renderRoster(){
   const t=cur(),F=FORMATS[t.type],pres=present(t).length,{m,f}=counts({type:t.type,entries:present(t)});
   openSheet('roster',`<div><h2 style="font-weight:700;font-size:20px">Peserta & kehadiran</h2>
       <p class="help">${pres} dari ${t.entries.length} ${unitWord(t)} hadir${F.kind==='mix'?` · ${m} putra, ${f} putri hadir`:''}</p></div>
-    <p class="note">Nama bisa langsung diganti, misalnya nama sementara jadi nama asli saat orangnya datang. Tandai <b>Telat</b> untuk yang belum datang. Saat kamu menekan Selesai, hanya pemain yang telat di ronde berjalan yang diganti dengan pemain hadir yang sedang istirahat. Pemain lain tetap di lapangan dan pasangannya, dan yang telat masuk daftar istirahat. Saat orangnya datang, tandai <b>Hadir</b>: dia istirahat dulu di ronde yang sedang berjalan dan main mulai ronde berikutnya, didahulukan karena jumlah mainnya paling sedikit.</p>
+    <p class="note">Nama bisa langsung diganti, misalnya nama sementara jadi nama asli saat orangnya datang. Tandai <b>Telat</b> untuk yang belum datang. Saat kamu menekan Selesai, hanya pemain yang telat di ronde berjalan yang diganti dengan pemain hadir yang sedang istirahat. Pemain lain tetap di lapangan dan pasangannya, dan yang telat masuk daftar istirahat. Saat orangnya datang, tandai <b>Hadir</b>: ronde yang sudah dibuat tidak berubah, dia istirahat dulu dan main mulai ronde berikutnya yang dibuat, didahulukan karena jumlah mainnya paling sedikit.</p>
     <div class="elist">${t.entries.map((e,i)=>`<div class="prow${e.away?' away':''}"><span class="n">${i+1}.</span>
       <input class="pname" data-pid="${e.id}" value="${esc(e.name)}" aria-label="Nama ${i+1}" autocomplete="off">
       <span class="ctrls">
@@ -1323,7 +1307,11 @@ function applyRoster(){
       const ok=r.swaps.filter(x=>x[1]),miss=r.swaps.filter(x=>!x[1]);
       let msg=ok.length?ok.map(x=>`${x[0]} → ${x[1]}`).join(', '):'Perubahan disimpan';
       if(miss.length)msg+=` · ${miss.map(x=>x[0]).join(', ')} belum ada pengganti (tidak ada pemain hadir yang istirahat), match-nya ditunda`;
-      if(r.arrivals&&r.arrivals.length)msg=(ok.length?msg+' · ':'')+r.arrivals.map(x=>`${x[1]} main di ronde ${r.patched+1}, ${x[0]} istirahat`).join(', ');
+      const arr=t.entries.filter(e=>e.arr&&!e.away);
+      if(arr.length){const n=t.rounds.length;
+        const txt=arr.map(e=>{const k=t.rounds.findIndex(rr=>rr.matches.some(m=>[...m.a,...m.b].includes(e.id)));
+          if(k>=0)e.arr=false;const from=k>=0?k+1:n+1;return from>1?`${e.name} istirahat sampai ronde ${from-1}, main mulai ronde ${from}`:`${e.name} main mulai ronde ${from}`;}).join(' · ');
+        msg=ok.length?msg+' · '+txt:txt;}
       if(r.rebuiltFrom)msg+=` · ronde ${r.rebuiltFrom}–${r.to} disusun ulang`;
       toast(msg);if(r.patched>=0)selRound=r.patched;}
     catch(e){toast(e.message);}
@@ -1675,7 +1663,7 @@ document.addEventListener('click',e=>{
     case 'liveoff':liveOff();break;
     case 'livecopy':{const inp=document.getElementById('livelink');const url=inp.value;try{navigator.clipboard.writeText(url).then(()=>toast('Link disalin'),()=>{inp.select();toast('Ketuk lama lalu Copy');});}catch(err){inp.select();}break;}
     case 'patt':{const x=t.entries.find(y=>y.id===el.dataset.id);x.away=!x.away;
-      if(!x.away&&t.rounds.some(r=>r.matches.some(m=>started(t,m)))){x.arr=true;toast(`${x.name} hadir · istirahat dulu di ronde berjalan, main mulai ronde berikutnya`);}else x.arr=false;
+      if(!x.away&&t.rounds.length){x.arr=true;toast(`${x.name} hadir · ronde yang sudah dibuat tidak berubah`);}else x.arr=false;
       rosterDirty=true;save();rosterRerender();break;}
     case 'pgtog':{const x=t.entries.find(y=>y.id===el.dataset.id);x.g=x.g==='M'?'F':'M';rosterDirty=true;save();rosterRerender();break;}
     case 'pdel':{t.entries=t.entries.filter(y=>y.id!==el.dataset.id);t.rounds.forEach(r=>{r.bye=r.bye.filter(id=>id!==el.dataset.id);});
