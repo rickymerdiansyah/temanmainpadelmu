@@ -1,5 +1,5 @@
 /* TMP offline support: the app works on court without signal once it has been opened online. */
-const VERSION = 'tmp-v7';
+const VERSION = 'tmp-v8';
 const SHELL = ['./', './index.html', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png', './icons/apple-touch-icon.png'];
 
 self.addEventListener('install', e => {
@@ -14,7 +14,7 @@ self.addEventListener('fetch', e => {
   const url = new URL(req.url);
   // App page: try the network first so updates arrive, fall back to the cached copy offline.
   if (req.mode === 'navigate' || (url.origin === location.origin && url.pathname.endsWith('.html'))) {
-    e.respondWith(fetch(req).then(r => { const copy = r.clone(); caches.open(VERSION).then(c => c.put('./index.html', copy)); return r; })
+    e.respondWith(fetch(url.origin === location.origin ? url.href : req, { cache: 'no-store', credentials: 'same-origin' }).then(r => { const copy = r.clone(); caches.open(VERSION).then(c => c.put('./index.html', copy)); return r; })
       .catch(() => caches.match('./index.html')));
     return;
   }
