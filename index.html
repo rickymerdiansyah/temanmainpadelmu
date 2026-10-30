@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>TMP · Teman Main Padelmu</title>
 <meta name="description" content="Atur turnamen padel Americano, Mexicano, Mix dan King of the Court. Jadwal otomatis, skor langsung masuk klasemen. Semua fitur gratis.">
-<meta name="theme-color" content="#FFFFFF">
+<meta name="theme-color" content="#F6F3EE">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="TMP">
@@ -17,7 +17,7 @@
 <meta property="og:description" content="Atur turnamen padel bareng teman. Jadwal otomatis, skor langsung masuk klasemen.">
 <meta property="og:image" content="icons/icon-512.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=DM+Mono:wght@500&family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=DM+Mono:wght@500&family=Instrument+Sans:wght@400;500;600;700&display=swap">
 <style>
 :root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 html,body{margin:0}
@@ -27,20 +27,20 @@ img{max-width:100%}
 <style>
 /* Layout: single-column phone app in the TMP banner look — espresso ground, tan brush labels, black scoreboard boxes, fixed bottom nav */
 :root{
-  --bg:#F3F6FC; --bg2:#E8EFFB; --surface:#FFFFFF; --raised:#EEF3FC; --sunk:#F7F9FE; --line:#D6E0F0;
-  --cream:#0E1B3A; --muted:#5B6B87; --tan:#1F5FE0; --tan-deep:#8FB0EE; --tan-ink:#FFFFFF; --box:#0F2A5C;
+  --bg:#F6F3EE; --bg2:#EFE8DD; --surface:#FFFFFF; --raised:#F1ECE4; --sunk:#FAF7F2; --line:#E3DBCF;
+  --cream:#231A13; --muted:#6F604F; --tan:#D9A441; --tan-deep:#E3C88E; --tan-ink:#231A13; --box:#231A13;
   --win:#178A4A; --loss:#D23F33; --tie:#8C99B0;
-  --gold:#E3A72F; --silver:#A9B3C2; --bronze:#C77B3F;
-  --f-brush:"Poppins",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --f-hand:"Poppins",system-ui,-apple-system,sans-serif;
-  --f-score:"Poppins",system-ui,-apple-system,sans-serif;
-  --f-body:"Poppins",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --gold:#D9A441; --silver:#A9B3C2; --bronze:#C77B3F;
+  --f-brush:"Bricolage Grotesque",system-ui,-apple-system,sans-serif;
+  --f-hand:"Bricolage Grotesque",system-ui,-apple-system,sans-serif;
+  --f-score:"Bricolage Grotesque",system-ui,-apple-system,sans-serif;
+  --f-body:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
   --r:16px;
   color-scheme:light;
 }
 *{box-sizing:border-box}
 html{background:var(--bg)}
-body{background:var(--bg) radial-gradient(120% 60% at 50% 0%,#DCE7FB 0%,var(--bg) 60%) fixed;color:var(--cream);font-family:var(--f-body);font-size:16px;line-height:1.45;-webkit-tap-highlight-color:transparent}
+body{background:var(--bg);color:var(--cream);font-family:var(--f-body);font-size:16px;line-height:1.45;-webkit-tap-highlight-color:transparent}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--surface)}
 button,input,select,textarea{font:inherit;color:inherit}
 button{cursor:pointer}
@@ -48,7 +48,7 @@ button{cursor:pointer}
 a{color:inherit}
 
 /* App bar */
-.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgb(255 255 255 / .92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line);
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgb(246 243 238 / .94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line);
   padding-block:10px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 .bar-in{max-width:640px;margin:0 auto;display:flex;align-items:center;gap:10px;min-height:40px}
 .logo{width:38px;height:38px;border-radius:50%;flex:none;box-shadow:0 0 0 1px var(--tan-deep)}
@@ -105,7 +105,7 @@ form{display:flex;flex-direction:column;gap:20px}
 select.input{appearance:none;-webkit-appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--tan) 50%),linear-gradient(135deg,var(--tan) 50%,transparent 50%);
   background-position:calc(100% - 20px) 22px,calc(100% - 14px) 22px;background-size:6px 6px;background-repeat:no-repeat;padding-right:40px}
 textarea.input{resize:vertical;min-height:50px}
-.input::placeholder{color:#93A2BD}
+.input::placeholder{color:#A99A87}
 .seg{display:grid;grid-template-columns:repeat(auto-fit,minmax(92px,1fr));gap:6px;background:var(--sunk);padding:5px;border-radius:13px}
 .seg button{border:0;background:transparent;border-radius:9px;padding:10px 6px;font-weight:700;font-size:14px;color:var(--muted);line-height:1.2}
 .seg button[aria-pressed="true"]{background:var(--tan);color:var(--tan-ink)}
@@ -160,12 +160,12 @@ details.adv .inner{display:flex;flex-direction:column;gap:20px;padding-bottom:18
 .info span{display:flex;align-items:center;gap:8px;min-width:0}
 .info span:nth-child(even){justify-content:flex-end;text-align:right}
 .menu{position:relative}
-.menu-pop{position:absolute;right:0;top:44px;z-index:15;background:var(--raised);border:1px solid var(--line);border-radius:14px;padding:6px;min-width:220px;box-shadow:0 12px 30px rgb(15 30 60 / .16);display:flex;flex-direction:column}
+.menu-pop{position:absolute;right:0;top:44px;z-index:15;background:var(--raised);border:1px solid var(--line);border-radius:14px;padding:6px;min-width:220px;box-shadow:0 12px 30px rgb(35 26 19 / .16);display:flex;flex-direction:column}
 .menu-pop>*{display:flex;align-items:center;gap:10px;background:transparent;border:0;text-align:left;padding:12px;border-radius:10px;font-weight:700;font-size:15px;text-decoration:none}
 .menu-pop>*:active{background:var(--surface)}
 .menu-pop .del{color:var(--loss)}
 .champ{display:flex;flex-direction:column;align-items:center;gap:8px;padding:18px 12px;text-align:center;
-  background:radial-gradient(80% 100% at 50% 50%,rgb(31 95 224 / .10),transparent 70%)}
+  background:radial-gradient(80% 100% at 50% 50%,rgb(217 164 65 / .16),transparent 70%)}
 .champ .q{display:flex;align-items:center;gap:10px;font-family:var(--f-brush);font-size:40px;color:var(--tan-deep);line-height:.6}
 .champ .pill{font-weight:800;font-size:20px;background:var(--tan);color:var(--tan-ink);border-radius:14px;padding:8px 16px;display:inline-flex;align-items:center;gap:8px;overflow-wrap:anywhere}
 .medal{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;font-size:12px;font-weight:800;color:var(--tan-ink);flex:none}
@@ -188,8 +188,8 @@ details.adv .inner{display:flex;flex-direction:column;gap:20px;padding-bottom:18
 .matches{display:flex;flex-direction:column;gap:22px;padding-top:6px}
 .mcard{position:relative;padding-top:26px}
 .boxes{position:absolute;top:0;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:2}
-.sbox{width:58px;height:54px;border:0;border-radius:7px;background:var(--box);color:#FFFFFF;text-align:center;font-family:var(--f-score);font-size:38px;line-height:1;padding:0;box-shadow:0 4px 0 rgb(15 42 92 / .22)}
-.sbox::placeholder{color:#6F86B8}
+.sbox{width:58px;height:54px;border:0;border-radius:7px;background:var(--box);color:#FFFFFF;text-align:center;font-family:var(--f-score);font-size:38px;line-height:1;padding:0;box-shadow:0 4px 0 rgb(35 26 19 / .22)}
+.sbox::placeholder{color:#8C7B66}
 .sbox:focus{outline:2px solid var(--tan);outline-offset:1px}
 .sbox[readonly]{cursor:default}
 .mbody{display:grid;grid-template-columns:1fr 1fr;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);min-height:92px}
@@ -244,7 +244,7 @@ details.adv .inner{display:flex;flex-direction:column;gap:20px;padding-bottom:18
 .bnav button[aria-selected="true"]{color:var(--tan)}
 
 /* Simulation sheet */
-.sheet-bg{position:fixed;inset:0;background:rgb(15 27 58 / .45);z-index:40}
+.sheet-bg{position:fixed;inset:0;background:rgb(35 26 19 / .45);z-index:40}
 .sheet{position:fixed;left:0;right:0;bottom:0;z-index:41;max-height:calc(100% - 40px - env(safe-area-inset-top,0px));overflow-y:auto;background:var(--bg2);border-radius:22px 22px 0 0;border-top:1px solid var(--line);
   padding-block:10px calc(20px + env(safe-area-inset-bottom,0px));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 .sheet-in{max-width:640px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
@@ -289,13 +289,13 @@ details.adv .inner{display:flex;flex-direction:column;gap:20px;padding-bottom:18
 .gpill.dim{background:var(--raised);color:var(--tan)}
 .away-tag{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--loss)}
 .prow{display:flex;align-items:center;gap:8px;background:var(--raised);border-radius:12px;padding:8px 8px 8px 12px;flex-wrap:wrap}
-.prow.away{opacity:.62}
+.prow.away{opacity:.85}
 .prow .n{font-family:var(--f-score);font-size:18px;color:var(--tan);width:24px;flex:none}
 .prow .pname{flex:1 1 140px;min-width:0;min-height:42px;padding:8px 10px;background:var(--sunk);border:1px solid var(--line);border-radius:10px;font-weight:700;font-size:16px;color:var(--cream)}
 .prow .ctrls{display:flex;gap:6px;align-items:center;margin-left:auto}
 .att{border:0;border-radius:8px;padding:8px 10px;font-size:12px;font-weight:800;min-width:76px}
 .att.on{background:rgb(156 197 122 / .18);color:var(--win)}
-.att.off{background:rgb(226 119 92 / .18);color:var(--loss)}
+.att.off{background:rgb(217 164 65 / .22);color:#8A5A12}
 .gsel{min-height:36px;padding:4px 26px 4px 8px;font-size:13px;font-weight:800;border-radius:8px;background-position:calc(100% - 13px) 15px,calc(100% - 8px) 15px}
 .note{font-size:13px;color:var(--muted);background:var(--sunk);border-radius:12px;padding:12px 14px;margin:0}
 .note b{color:var(--cream)}
@@ -347,10 +347,10 @@ details.adv .inner{display:flex;flex-direction:column;gap:20px;padding-bottom:18
 .half .tag.t{color:var(--muted)}
 
 /* white & blue theme tweaks */
-.medal{color:#0E1B3A}
-.mbody,.titem,.card,.lbwrap{box-shadow:0 1px 2px rgb(15 42 92 / .06)}
+.medal{color:#231A13}
+.mbody,.titem,.card,.lbwrap{box-shadow:0 1px 2px rgb(35 26 19 / .06)}
 
-/* PDLUP-style typography: Poppins throughout */
+/* Typography sizes */
 body{font-size:15px;letter-spacing:0}
 h1{font-weight:700;font-size:28px;line-height:1.2;letter-spacing:-.01em}
 h2{font-weight:700}
@@ -402,6 +402,14 @@ h2{font-weight:700}
 @keyframes livepulse{0%,100%{opacity:1}50%{opacity:.25}}
 .iconbtn.liveon{color:#D23F33}
 #livelink{font-size:14px}
+/* B·Tiket Main across all pages */
+h1,h2,.bar-title,.rnav h2,.sech h2,.ttitle h1{font-family:var(--f-brush);letter-spacing:-.01em}
+.brush,.hand{font-family:"DM Mono",ui-monospace,monospace;font-weight:500}
+.chip.tan,.free,.gpill{color:var(--tan-ink)}
+.away-tag{color:#8A5A12}
+.late{color:#8A5A12;font-weight:700}
+.rest .late{font-weight:600}
+
 /* ===== B · Tiket Main — HOME ONLY (body.v-home) ===== */
 body.v-home{--hb:#F6F3EE;--hink:#231A13;--hmut:#6F604F;--hgold:#D9A441;--hline:#E3DBCF;--hmono:"DM Mono",ui-monospace,monospace;--hdisp:"Bricolage Grotesque",system-ui,sans-serif;
   background:var(--hb);color:var(--hink);font-family:"Instrument Sans",system-ui,-apple-system,sans-serif}
@@ -698,7 +706,11 @@ function pick(ids,ap,n,keep,last){
   return arr.slice(0,n).map(x=>x.id);
 }
 function blank(t,matches){matches.forEach(m=>{if(t.scoring==='gs')m.sets=[['',''],['',''],['','']];else{m.sa='';m.sb='';}});return matches;}
-function withBye(t,matches){const inM=new Set(matches.flatMap(m=>[...m.a,...m.b]));return {matches:blank(t,matches),bye:present(t).map(e=>e.id).filter(id=>!inM.has(id))};}
+function byeIds(t,inM){return [...present(t),...t.entries.filter(e=>e.away)].map(e=>e.id).filter(id=>!inM.has(id));}
+function withBye(t,matches){const inM=new Set(matches.flatMap(m=>[...m.a,...m.b]));return {matches:blank(t,matches),bye:byeIds(t,inM)};}
+function restNames(t,r){const inM=new Set(r.matches.flatMap(m=>[...m.a,...m.b]));const ids=[...r.bye];
+  t.entries.forEach(e=>{if(e.away&&!inM.has(e.id)&&!ids.includes(e.id))ids.push(e.id);});
+  return ids.map(id=>{const e=t.entries.find(x=>x.id===id);return e?esc(e.name)+(e.away?' <span class="late">(telat)</span>':''):'?';}).join(', ');}
 function genCore(v,isLast){
   const F=FORMATS[v.type],first=!v.rounds.some(r=>r.matches.length),keep=first&&v.order==='keep';
   if(F.koth&&!first){const r=kothNext(v);if(r)return r;}
@@ -838,7 +850,7 @@ function patchRound(t,ri){
   }
   /* A match that still has an absent player and no replacement is dropped; its present players rest. */
   r.matches=r.matches.filter(m=>started(t,m)||[...m.a,...m.b].every(id=>{const e=ent(id);return e&&!e.away;}));
-  const used=inRound();r.bye=present(t).map(e=>e.id).filter(id=>!used.has(id));
+  r.bye=byeIds(t,inRound());
   return swaps;
 }
 function reschedule(t){
@@ -850,7 +862,7 @@ function reschedule(t){
   const keep=Math.max(last,patched)+1;const before=t.rounds.length;t.rounds=t.rounds.slice(0,keep);
   if(isUpfront(t)){fillUpfront(t);}
   else if(!t.rounds.length){if(!t.finished)t.rounds.push(nextRound(t,false));}
-  if(!t.rounds.length)t.rounds.push({matches:[],bye:present(t).map(e=>e.id)});
+  if(!t.rounds.length)t.rounds.push({matches:[],bye:byeIds(t,new Set())});
   return {swaps,patched,rebuiltFrom:isUpfront(t)&&t.rounds.length>keep?keep+1:null,to:t.rounds.length};
 }
 
@@ -1078,7 +1090,7 @@ function renderTour(){
         ${t.finished?`<button data-act="reopen">${I.left} Buka lagi turnamen</button>`:''}
         <button class="del" data-act="askdel">${I.trash} Hapus turnamen</button></div>`:''}</div>`}</div>
     <div class="info"><span>${I.list}${F.label}</span><span>${esc(fmtDate(t.date))} ${I.cal}</span><span>${I.target}${totalLabel(t)}</span><span>${t.entries.length} ${F.kind==='team'?'Tim':'Pemain'}${G(t)>1?' · '+G(t)+' Grup':''} · ${t.courts} Lap. ${I.people}</span></div>
-    <div class="row" style="gap:6px">${RO?`<span class="livechip live"><i></i>Skor ter-update otomatis</span>`:''}${!RO&&t.liveId?`<button class="livechip live" data-act="live" style="border:0"><i></i>Link live aktif</button>`:''}${t.sample&&!RO?'<span class="chip tan">Contoh</span>':''}${t.hidePublic?`<span class="privchip">${I.eye} Klasemen privat</span>`:''}${away&&!RO?`<button class="chip" data-act="roster" style="border:0">${away} tidak hadir</button>`:''}</div>
+    <div class="row" style="gap:6px">${RO?`<span class="livechip live"><i></i>Skor ter-update otomatis</span>`:''}${!RO&&t.liveId?`<button class="livechip live" data-act="live" style="border:0"><i></i>Link live aktif</button>`:''}${t.sample&&!RO?'<span class="chip tan">Contoh</span>':''}${t.hidePublic?`<span class="privchip">${I.eye} Klasemen privat</span>`:''}${away&&!RO?`<button class="chip" data-act="roster" style="border:0">${away} telat</button>`:''}</div>
     ${confirmKey==='del'?`<div class="confirm"><p>Hapus turnamen ini? Semua skor ikut terhapus.</p><div class="row"><button class="btn danger" style="flex:1" data-act="del-yes">Ya, hapus</button><button class="btn ghost" style="flex:1" data-act="cancel">Batal</button></div></div>`:''}
     <div id="copyfallback"></div>
   </section>${champ}`;
@@ -1091,10 +1103,9 @@ function renderRounds(t){
   return `<section class="sech"><h2>Match Ronde</h2></section>
   <div class="rchips" id="rchips">${chipsHtml(t)}</div>
   <div class="rnav"><button data-act="rprev" aria-label="Ronde sebelumnya" ${selRound===0?'disabled':''}>${I.left}</button><h2>Ronde #${selRound+1}</h2><button data-act="rnext" aria-label="Ronde berikutnya" ${selRound>=t.rounds.length-1?'disabled':''}>${I.right}</button></div>
-  ${view!=='live'&&canSwap(t,selRound)&&r.matches.some(m=>!started(t,m))&&!t.finished?`<p class="help" style="margin:-4px 0 0">Ada yang belum datang? Ketuk <b>Ganti</b> di pojok kartu match untuk menukarnya dengan yang sudah datang.</p>`:''}
-  <div class="matches">${r.matches.length?r.matches.map((m,mi)=>matchCard(t,selRound,m,mi)).join(''):(view==='live'?'<div class="note">Belum ada match di ronde ini.</div>':'<div class="note">Belum ada match di ronde ini. Tandai peserta yang sudah datang di <b>Peserta & kehadiran</b>.</div>')}</div>
-  ${r.bye.length?`<div class="rest"><b>Istirahat:</b> ${esc(r.bye.map(id=>eName(t,id)).join(', '))}</div>`:''}
-  ${away.length?`<div class="rest"><b>Tidak hadir:</b> ${esc(away.map(e=>e.name).join(', '))}</div>`:''}
+  ${view!=='live'&&canSwap(t,selRound)&&r.matches.some(m=>!started(t,m))&&!t.finished?`<p class="help" style="margin:-4px 0 0">Ada yang telat? Ketuk <b>Ganti</b> di pojok kartu match. Hanya pemain yang telat yang diganti, sisanya tetap.</p>`:''}
+  <div class="matches">${r.matches.length?r.matches.map((m,mi)=>matchCard(t,selRound,m,mi)).join(''):(view==='live'?'<div class="note">Belum ada match di ronde ini.</div>':'<div class="note">Belum ada match di ronde ini. Atur yang hadir dan telat di <b>Peserta & kehadiran</b>.</div>')}</div>
+  ${(()=>{const s=restNames(t,r);return s?`<div class="rest"><b>Istirahat:</b> ${s}</div>`:'';})()}
   ${view==='live'?'':`<div class="ractions" id="ractions">${actionsHtml(t)}</div>`}`;
 }
 function eName(t,id){const e=t.entries.find(x=>x.id===id);return e?e.name:'?';}
@@ -1124,7 +1135,7 @@ function matchCard(t,ri,m,mi){
       <div class="half b${wb?' win':''}">${resTag(res,'b')}<span class="nm">${pnames('b')}</span>${sets('b')}</div>
     </div>
     <button type="button" class="swapbtn" data-act="swappick" data-r="${ri}" data-m="${mi}" ${st||t.finished||RO||!canSwap(t,ri)?'hidden':''} aria-label="Ganti ${unitWord(t)} di match ini">${I.pencil}<span>Ganti</span></button>
-    <span class="ctag l">${G(t)>1?grpName(m.grp||0)+' · ':''}Lap. ${courtName(m.court)}${king?' · Raja':''}${hasAway?' · <span class="away-tag">ada yang tidak hadir</span>':''}</span>
+    <span class="ctag l">${G(t)>1?grpName(m.grp||0)+' · ':''}Lap. ${courtName(m.court)}${king?' · Raja':''}${hasAway?' · <span class="away-tag">ada yang telat</span>':''}</span>
   </div>`;
 }
 function actionsHtml(t){
@@ -1156,7 +1167,7 @@ function boardTable(t,st){
   const F=FORMATS[t.type];
   return `<div class="lbwrap"><div class="lbscroll"><table class="lb"><thead><tr><th>${F.kind==='team'?'Tim':'Pemain'}</th><th>G</th><th>M-K-S</th><th>Diff</th>${t.scoring!=='gs'?'<th>+M</th>':''}<th>P</th></tr></thead><tbody>
   ${st.map((s,i)=>{const rk=i<3&&s.played?`<span class="medal g${i+1}">${i+1}</span>`:`<span class="rk">${i+1}</span>`;
-    return `<tr class="${i<3&&s.played?'r'+(i+1):''}"><td class="nmc"><div class="nmw">${rk}<span>${esc(s.name)}${F.kind==='mix'?` <small class="muted">${s.g==='M'?'PA':'PI'}</small>`:''}${s.away?' <span class="away-tag">absen</span>':''}</span></div></td>
+    return `<tr class="${i<3&&s.played?'r'+(i+1):''}"><td class="nmc"><div class="nmw">${rk}<span>${esc(s.name)}${F.kind==='mix'?` <small class="muted">${s.g==='M'?'PA':'PI'}</small>`:''}${s.away?' <span class="away-tag">telan</span>':''}</span></div></td>
     <td>${s.played}</td>
     <td><div class="wlt"><span class="w">${s.w}</span>-<span class="l">${s.l}</span>-<span class="t">${s.d}</span></div><div class="dots">${s.form.slice(-5).map(x=>`<i class="${x}"></i>`).join('')}</div></td>
     <td class="${s.diff>0?'pos':s.diff<0?'neg':''}">${s.diff}</td>
@@ -1273,20 +1284,20 @@ function renderRoster(){
   const t=cur(),F=FORMATS[t.type],pres=present(t).length,{m,f}=counts({type:t.type,entries:present(t)});
   openSheet('roster',`<div><h2 style="font-weight:700;font-size:20px">Peserta & kehadiran</h2>
       <p class="help">${pres} dari ${t.entries.length} ${unitWord(t)} hadir${F.kind==='mix'?` · ${m} putra, ${f} putri hadir`:''}</p></div>
-    <p class="note">Nama bisa langsung diganti, misalnya nama sementara jadi nama asli saat orangnya datang. Tandai <b>Absen</b> untuk yang belum datang atau pulang duluan. Saat kamu menekan Selesai, hanya pemain yang absen di ronde berjalan yang diganti dengan pemain hadir yang sedang istirahat. Pemain lain tetap di lapangan dan pasangannya.</p>
+    <p class="note">Nama bisa langsung diganti, misalnya nama sementara jadi nama asli saat orangnya datang. Tandai <b>Telat</b> untuk yang belum datang. Saat kamu menekan Selesai, hanya pemain yang telat di ronde berjalan yang diganti dengan pemain hadir yang sedang istirahat. Pemain lain tetap di lapangan dan pasangannya, dan yang telat masuk daftar istirahat. Tandai <b>Hadir</b> lagi saat orangnya datang supaya ikut di ronde berikutnya.</p>
     <div class="elist">${t.entries.map((e,i)=>`<div class="prow${e.away?' away':''}"><span class="n">${i+1}.</span>
       <input class="pname" data-pid="${e.id}" value="${esc(e.name)}" aria-label="Nama ${i+1}" autocomplete="off">
       <span class="ctrls">
       ${G(t)>1?`<select class="input gsel" data-pgrp="${e.id}" aria-label="Grup">${Array.from({length:G(t)},(_,g)=>`<option value="${g}" ${(e.grp||0)===g?'selected':''}>${String.fromCharCode(65+g)}</option>`).join('')}</select>`:''}
       ${F.kind==='mix'?`<button type="button" class="gtog ${e.g}" data-act="pgtog" data-id="${e.id}">${e.g==='M'?'Putra':'Putri'}</button>`:''}
-      <button type="button" class="att ${e.away?'off':'on'}" data-act="patt" data-id="${e.id}">${e.away?'Absen':'Hadir'}</button>
+      <button type="button" class="att ${e.away?'off':'on'}" data-act="patt" data-id="${e.id}">${e.away?'Telat':'Hadir'}</button>
       ${inAnyMatch(t,e.id)&&playedCount(t,e.id)?'':`<button type="button" class="ebtn del" data-act="pdel" data-id="${e.id}" aria-label="Hapus ${esc(e.name)}">${I.x}</button>`}
       </span></div>`).join('')}</div>
     <div class="field"><span class="lbl">Tambah ${unitWord(t)} baru</span>
       <div class="add"><textarea class="input" id="r-entry" rows="1" placeholder="${F.kind==='team'?'Nama tim':'Nama pemain'}" aria-label="Nama ${unitWord(t)} baru"></textarea><button type="button" class="btn primary" data-act="padd">Tambah</button></div>
       <p class="help">Peserta baru langsung ikut di ronde yang belum dimulai${G(t)>1?' dan masuk ke grup dengan peserta paling sedikit':''}. Poin kompensasi (+M) menjaga klasemen tetap adil.</p></div>
-    ${rosterDirty?'<p class="note"><b>Ada perubahan kehadiran.</b> Pemain yang absen akan diganti, sisanya tetap.</p>':''}
-    <button class="btn primary block" data-act="sheetclose">${rosterDirty?'Selesai & ganti yang absen':'Selesai'}</button>`);
+    ${rosterDirty?'<p class="note"><b>Ada perubahan kehadiran.</b> Hanya pemain yang telat yang diganti, sisanya tetap.</p>':''}
+    <button class="btn primary block" data-act="sheetclose">${rosterDirty?'Selesai & ganti yang telat':'Selesai'}</button>`);
 }
 function rosterRerender(){const sh=document.querySelector('.sheet'),y=sh?sh.scrollTop:0;renderRoster();const n=document.querySelector('.sheet');if(n)n.scrollTop=y;}
 function applyRoster(){
@@ -1295,7 +1306,7 @@ function applyRoster(){
     try{const r=reschedule(t);selRound=Math.min(selRound,t.rounds.length-1);const firstOpen=t.rounds.findIndex(x=>!x.matches.some(m=>started(t,m)));if(firstOpen>=0)selRound=firstOpen;
       const ok=r.swaps.filter(x=>x[1]),miss=r.swaps.filter(x=>!x[1]);
       let msg=ok.length?ok.map(x=>`${x[0]} → ${x[1]}`).join(', '):'Perubahan disimpan';
-      if(miss.length)msg+=` · ${miss.map(x=>x[0]).join(', ')} belum ada pengganti, match-nya ditunda`;
+      if(miss.length)msg+=` · ${miss.map(x=>x[0]).join(', ')} belum ada pengganti (tidak ada pemain hadir yang istirahat), match-nya ditunda`;
       if(r.rebuiltFrom)msg+=` · ronde ${r.rebuiltFrom}–${r.to} disusun ulang`;
       toast(msg);if(r.patched>=0)selRound=r.patched;}
     catch(e){toast(e.message);}
@@ -1408,7 +1419,7 @@ function openSwapPick(ri,mi){
   const t=cur(),m=t.rounds[ri].matches[mi];if(!canSwap(t,ri))return;
   if(started(t,m)){toast('Skor match ini sudah diisi, jadi pemainnya tidak bisa diganti');return;}
   const row=side=>m[side].map((id,pi)=>`<button type="button" class="prow pick" data-act="swap" data-r="${ri}" data-m="${mi}" data-side="${side}" data-pi="${pi}"><span class="nm">${esc(eName(t,id))}</span><span class="chip">${I.pencil} Ganti</span></button>`).join('');
-  openSheet('swap',`<div><h2 style="font-weight:700;font-size:20px">Siapa yang belum datang?</h2>
+  openSheet('swap',`<div><h2 style="font-weight:700;font-size:20px">Siapa yang telat?</h2>
       <p class="help">Ronde ${ri+1} · ${G(t)>1?grpName(m.grp||0)+' · ':''}Lapangan ${courtName(m.court)}. Pilih ${unitWord(t)} yang mau diganti.</p></div>
     <div class="elist">${row('a')}<p class="help" style="text-align:center;margin:2px 0">vs</p>${row('b')}</div>
     <button class="btn ghost block" data-act="sheetclose">Batal</button>`);
@@ -1432,7 +1443,7 @@ function renderSwap(){
   const {rest,swap}=swapCandidates(t,ctx),u=unitWord(t);
   openSheet('swap',`<div><h2 style="font-weight:700;font-size:20px">Ganti ${esc(old.name)}</h2>
       <p class="help">Ronde ${ctx.ri+1} · ${G(t)>1?grpName(m.grp||0)+' · ':''}Lapangan ${courtName(m.court)}${F.kind==='mix'?` · hanya ${old.g==='M'?'putra':'putri'}`:''}</p></div>
-    <label class="check"><input type="checkbox" id="swap-absent" ${ctx.absent?'checked':''}><span><b>Tandai ${esc(old.name)} belum datang</b><span class="help">Tidak dijadwalkan sampai ditandai Hadir lagi di Peserta & kehadiran. Poin kompensasi (+M) menutup match yang terlewat.</span></span></label>
+    <label class="check"><input type="checkbox" id="swap-absent" ${ctx.absent?'checked':''}><span><b>Tandai ${esc(old.name)} telat</b><span class="help">Masuk daftar istirahat dan tidak dijadwalkan sampai ditandai Hadir lagi di Peserta & kehadiran. Poin kompensasi (+M) menutup match yang terlewat.</span></span></label>
     <div class="field"><span class="lbl">Sudah datang & sedang istirahat</span>
       ${rest.length?`<div class="elist">${rest.map(x=>`<button type="button" class="prow pick" data-act="swapdo" data-id="${x.e.id}"><span class="nm">${esc(x.e.name)}</span><span class="chip">${x.c}x main</span></button>`).join('')}</div>`
         :`<p class="note">Tidak ada ${u} yang sedang istirahat. Tukar dengan yang ada di lapangan lain, atau tambahkan ${u} baru.</p>`}</div>
@@ -1451,8 +1462,8 @@ function doSwap(cid){
     msg=`${old.name} ditukar dengan ${nu.name}`;
   }else{
     m[ctx.side][ctx.pi]=cid;r.bye=r.bye.filter(id=>id!==cid&&id!==ctx.id);
-    if(ctx.absent)old.away=true;else r.bye.push(ctx.id);
-    msg=`${nu.name} main menggantikan ${old.name}`+(ctx.absent?' · ditandai belum datang':'');
+    if(ctx.absent)old.away=true;r.bye.push(ctx.id);
+    msg=`${nu.name} main menggantikan ${old.name}`+(ctx.absent?` · ${old.name} telat, masuk istirahat`:'');
     if(ctx.absent&&isUpfront(t)){
       let last=ctx.ri;t.rounds.forEach((x,i)=>{if(i>ctx.ri&&x.matches.some(mm=>started(t,mm)))last=i;});
       t.rounds=t.rounds.slice(0,last+1);try{fillUpfront(t);}catch(e){}
@@ -1488,7 +1499,7 @@ async function buildPdf(t){
       cols.forEach(([c,w],i)=>{doc.text(c,i<2?x+1.5:x+w/2,y,{align:i<2?'left':'center'});x+=w;});y+=7;
       st.forEach((s,i)=>{need(8);x=M;if(i<3&&s.played){doc.setFillColor(...[[248,236,206],[240,237,232],[246,229,214]][i]);doc.rect(M,y-4.5,W-M*2,7,'F');}
         doc.setDrawColor(...LINE);doc.line(M,y+2.5,W-M,y+2.5);doc.setTextColor(...INK);doc.setFont('helvetica',i<3&&s.played?'bold':'normal');doc.setFontSize(9.5);
-        const vals=[String(i+1),clean(s.name)+(s.away?' (absen)':''),String(s.played),`${s.w}-${s.l}-${s.d}`,String(s.diff),String(s.comp),String(s.total)];
+        const vals=[String(i+1),clean(s.name)+(s.away?' (telat)':''),String(s.played),`${s.w}-${s.l}-${s.d}`,String(s.diff),String(s.comp),String(s.total)];
         cols.forEach(([c,w],j)=>{const v=j===1?doc.splitTextToSize(vals[j],w-3)[0]:vals[j];doc.text(v,j<2?x+1.5:x+w/2,y,{align:j<2?'left':'center'});x+=w;});y+=7;});
       y+=6;};
     if(G(t)===1)table(computeStats(t),'Klasemen');else for(let g=0;g<G(t);g++)table(computeStats(t,null,g),'Klasemen '+grpName(g));
@@ -1540,12 +1551,12 @@ function renderWheel(){
   ${w.hist&&w.hist.length?`<div class="field"><span class="lbl">Riwayat</span><div class="hist">${w.hist.slice(-12).reverse().map(h=>`<span class="chip">${esc(h)}</span>`).join('')}</div></div>`:''}
   ${confirmKey==='wdel'?`<div class="confirm"><p>Hapus roda "${esc(w.name)}"?</p><div class="row"><button class="btn danger" style="flex:1" data-act="wdel-yes">Ya, hapus</button><button class="btn ghost" style="flex:1" data-act="cancel">Batal</button></div></div>`:`<button class="btn ghost block" data-act="wdel">${I.trash} Hapus roda</button>`}`;
 }
-const WCOL=[['#1F5FE0','#FFFFFF'],['#E8EFFB','#0E1B3A'],['#4C82EC','#FFFFFF'],['#FFFFFF','#1F5FE0'],['#0F2A5C','#FFFFFF'],['#BFD3F7','#0E1B3A']];
+const WCOL=[['#D9A441','#231A13'],['#F1ECE4','#231A13'],['#231A13','#F6F3EE'],['#FFFFFF','#8A5A12'],['#8A5A12','#FFFFFF'],['#E9DCC4','#231A13']];
 function drawWheel(){
   const w=wheelObj(),cv=document.getElementById('wcanvas');if(!w||!cv)return;
   const ctx=cv.getContext('2d'),S2=cv.width,R=S2/2-8,n=Math.max(1,w.items.length),seg=2*Math.PI/n,rot=(spin&&spin.rot)||w.rot||0;
   ctx.clearRect(0,0,S2,S2);ctx.save();ctx.translate(S2/2,S2/2);
-  ctx.beginPath();ctx.arc(0,0,R+6,0,2*Math.PI);ctx.fillStyle='#1F5FE0';ctx.fill();
+  ctx.beginPath();ctx.arc(0,0,R+6,0,2*Math.PI);ctx.fillStyle='#231A13';ctx.fill();
   if(!w.items.length){ctx.beginPath();ctx.arc(0,0,R,0,2*Math.PI);ctx.fillStyle='#EEF3FC';ctx.fill();ctx.restore();return;}
   ctx.rotate(rot);
   for(let i=0;i<n;i++){
