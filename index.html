@@ -410,6 +410,47 @@ h1,h2,.bar-title,.rnav h2,.sech h2,.ttitle h1{font-family:var(--f-brush);letter-
 .late{color:#8A5A12;font-weight:700}
 .rest .late{font-weight:600}
 
+/* ===== Import dari Reclub (prototype) ===== */
+.rcbtn{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:var(--surface);border:1.5px dashed var(--tan);border-radius:14px;padding:12px 14px;color:var(--cream)}
+.rcbtn .ic{width:38px;height:38px;flex:none;border-radius:10px;background:var(--box);color:var(--tan);display:grid;place-items:center}
+.rcbtn .tx{display:flex;flex-direction:column;gap:2px;min-width:0}
+.rcbtn b{font-family:var(--f-brush);font-weight:700;font-size:15px}
+.rcbtn small{font-size:12px;color:var(--muted)}
+.rcsteps{display:flex;gap:6px;font:500 10px "DM Mono",ui-monospace,monospace;letter-spacing:.08em;color:var(--muted)}
+.rcsteps span{padding:4px 8px;border-radius:999px;background:var(--raised)}
+.rcsteps span.on{background:var(--box);color:var(--tan)}
+.rcurl{display:flex;align-items:center;gap:6px;background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:4px 4px 4px 12px}
+.rcurl.bad{border-color:var(--loss)}
+.rcurl input{flex:1;min-width:0;border:0;background:transparent;min-height:42px;font-size:16px;outline:none}
+.rcpaste{border:0;background:var(--raised);border-radius:9px;padding:0 12px;min-height:40px;font-weight:600;font-size:13px;display:flex;align-items:center;gap:6px}
+.rcmeet{background:var(--box);color:#F6F3EE;border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:6px;position:relative;overflow:hidden}
+.rcmeet::after{content:"";position:absolute;right:-24px;top:-24px;width:96px;height:96px;border-radius:50%;background:var(--tan);opacity:.14}
+.rcmeet>*{position:relative}
+.rcmeet .tg{font:500 10px "DM Mono",ui-monospace,monospace;letter-spacing:.1em;color:var(--tan)}
+.rcmeet b{font-family:var(--f-brush);font-weight:700;font-size:15px;line-height:1.25}
+.rcmeet small{font-size:12px;color:#BFAF9A}
+.rclist{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.rcrow{display:flex;align-items:center;gap:12px;padding:8px 12px;border-top:1px solid var(--line);min-height:50px}
+.rcrow:first-child{border-top:0}
+.rcrow input[type=checkbox]{width:22px;height:22px;accent-color:var(--tan);flex:none;margin:0}
+.rcrow .rcn{flex:1;min-width:0;border:0;background:transparent;font-weight:600;font-size:16px;padding:6px 0;border-bottom:1px dashed transparent}
+.rcrow .rcn:focus{outline:none;border-bottom-color:var(--tan)}
+.rcrow.off .rcn{color:var(--muted);text-decoration:line-through}
+.rcdup{font:500 9px "DM Mono",ui-monospace,monospace;letter-spacing:.08em;color:#8A5A12;background:rgb(217 164 65 / .18);border-radius:5px;padding:3px 6px;flex:none}
+.rcskel{height:50px;border-radius:10px;background:linear-gradient(90deg,var(--raised),#F8F4EE,var(--raised));background-size:200% 100%;animation:rcsh 1.1s linear infinite}
+@keyframes rcsh{to{background-position:-200% 0}}
+@media (prefers-reduced-motion:reduce){.rcskel{animation:none}}
+.rcpool{display:flex;flex-wrap:wrap;gap:6px}
+.rcchip{border:1.5px solid var(--line);background:var(--surface);border-radius:999px;padding:8px 12px;font-weight:600;font-size:14px}
+.rcchip.sel{border-color:var(--tan);background:rgb(217 164 65 / .2)}
+.rcteam{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:8px 8px 8px 12px}
+.rcteam .n{font:500 11px "DM Mono",ui-monospace,monospace;color:#8A5A12}
+.rcteam b{flex:1;min-width:0;overflow-wrap:anywhere}
+.rcrowh{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.rcrowh b{font-size:14px}
+.rcrowh button{border:0;background:transparent;color:#8A5A12;font-weight:700;font-size:13px;padding:6px}
+.rcbtns{display:flex;gap:8px}.rcbtns .btn{flex:1}
+
 /* ===== B · Tiket Main — HOME ONLY (body.v-home) ===== */
 body.v-home{--hb:#F6F3EE;--hink:#231A13;--hmut:#6F604F;--hgold:#D9A441;--hline:#E3DBCF;--hmono:"DM Mono",ui-monospace,monospace;--hdisp:"Bricolage Grotesque",system-ui,sans-serif;
   background:var(--hb);color:var(--hink);font-family:"Instrument Sans",system-ui,-apple-system,sans-serif}
@@ -473,7 +514,7 @@ body.v-home .bnav button[aria-selected="true"]{font-weight:700;color:var(--hink)
 <script>
 const LOGO_SRC='data:image/webp;base64,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';
 const KEY='tmp.v2';
-const APP_V='v9 · 1 Nov 2026';
+const APP_V='v10 · 3 Nov 2026';
 const FORMATS={
   'americano':{label:'Americano',group:'Americano',family:'americano',kind:'ind',desc:'Main bareng dan melawan semua orang secara bergiliran. Skor dihitung per pemain.'},
   'team-americano':{label:'Team Americano',group:'Americano',family:'americano',kind:'team',desc:'Tim tetap. Setiap tim bergiliran melawan semua tim lain.'},
@@ -1040,6 +1081,7 @@ function renderCreate(){
   <div class="field"><span class="lbl">${isTeam?'Tim':'Pemain'} (${d.entries.length})${F.kind==='mix'?` <span class="muted" style="font-weight:500">· ${m} putra, ${f} putri</span>`:''}</span>
     <div class="elist">${d.entries.map((e,i)=>echip(e,i,F)).join('')}</div>
     <div class="add"><textarea class="input" id="f-entry" rows="1" placeholder="${isTeam?'Nama tim, mis. Debiy & Frans':'Nama pemain'}" aria-label="${isTeam?'Nama tim':'Nama pemain'}"></textarea><button type="button" class="btn primary" data-act="adde">Tambah</button></div>
+    <button type="button" class="rcbtn" data-act="rcopen"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a4 4 0 005.7 0l3-3a4 4 0 00-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 00-5.7 0l-3 3a4 4 0 005.7 5.7l1-1"/></svg></span><span class="tx"><b>Import dari Reclub</b><small>Tempel link meet, peserta yang sudah dikonfirmasi langsung terisi</small></span></button>
     <p class="help">Bisa tempel daftar dari grup WA, satu ${isTeam?'tim':'nama'} per baris. Belum tahu namanya? Pakai nama sementara, nanti bisa diganti setelah turnamen dibuat.</p></div>
   <section class="panel"><div class="panel-h"><h3>Pengaturan ${F.label}</h3><p class="help">Atur jumlah ronde dan pemakaian lapangan.</p></div>
     <div class="field"><label for="f-rounds">Jumlah ronde</label><select class="input" id="f-rounds">${roundOpts.map(([v,l])=>`<option value="${v}" ${v===rVal?'selected':''}>${l}</option>`).join('')}</select></div>
@@ -1214,10 +1256,10 @@ function refreshLive(card){
 }
 
 /* ---------- Bottom sheets: simulation & participants ---------- */
-function openSheet(kind,html){sheetKind=kind;document.body.style.overflow='hidden';document.getElementById('sheet').innerHTML=`<div class="sheet-bg" data-act="sheetclose"></div><div class="sheet" role="dialog" aria-label="${kind==='sim'?'Simulasi jadwal':kind==='swap'?'Ganti pemain':kind==='live'?'Link live':'Peserta'}"><div class="sheet-in"><div class="grab"></div>${html}</div></div>`;}
+function openSheet(kind,html){sheetKind=kind;document.body.style.overflow='hidden';document.getElementById('sheet').innerHTML=`<div class="sheet-bg" data-act="sheetclose"></div><div class="sheet" role="dialog" aria-label="${kind==='sim'?'Simulasi jadwal':kind==='swap'?'Ganti pemain':kind==='live'?'Link live':kind==='reclub'?'Import dari Reclub':'Peserta'}"><div class="sheet-in"><div class="grab"></div>${html}</div></div>`;}
 function closeSheet(){
   if(sheetKind==='sim')stopSim();
-  const wasRoster=sheetKind==='roster';
+  const wasRoster=sheetKind==='roster';if(sheetKind==='reclub')rc=null;
   sim=null;sheetKind=null;document.getElementById('sheet').innerHTML='';document.body.style.overflow='';
   if(wasRoster)applyRoster();
 }
@@ -1631,6 +1673,7 @@ document.addEventListener('click',e=>{
     else if(a==='livefollow'){liveFollow=true;followRound();render();}
     return;
   }
+  if(el.dataset.act&&el.dataset.act.startsWith('rc')){if(!rcAction(el.dataset.act,el))return;}
   if(el.dataset.act==='hometop'){window.scrollTo({top:0,behavior:'smooth'});return;}
   if(el.dataset.act==='tolist'){const x=document.getElementById('tlist');if(x)x.scrollIntoView({behavior:'smooth',block:'start'});return;}
   if(el.dataset.act==='sharelink'){const u=location.origin+location.pathname;const d={title:'TMP · Teman Main Padelmu',text:'Bikin turnamen padel bareng, skor otomatis masuk klasemen.',url:u};
@@ -1760,6 +1803,90 @@ document.addEventListener('submit',e=>{
   try{const t=createFromDraft(draft);S.tournaments.push(t);save();curId=t.id;tab='rounds';selRound=0;goView('tour');toast('Jadwal siap, selamat main!');}
   catch(err){formErr=err.message;render();}
 });
+
+
+/* ---------- Import dari Reclub (prototype: Reclub response simulated) ---------- */
+const RC_WORKER='https://tmp-reclub.ricky-merdiansyah.workers.dev';
+let rc=null;
+const rcNorm=s=>String(s).trim().toLowerCase().replace(/\s+/g,' ');
+function rcOpen(){rc={step:'link',url:'',err:'',fail:false,rows:[],sel:[],teams:[],pick:null,meet:null};rcRender();setTimeout(()=>document.getElementById('rc-url')?.focus(),50);}
+function rcTeam(){return FORMATS[draft.type].kind==='team';}
+function rcRender(){
+  const team=rcTeam(),u=team?'tim':'pemain';
+  const steps=[['link','LINK'],['pick','CEK'],...(team?[['pair','PASANGKAN']]:[])];
+  let h=`<div class="rcsteps">${steps.map(([k,l])=>`<span class="${k===rc.step||(rc.step==='load'&&k==='link')?'on':''}">${l}</span>`).join('')}</div>`;
+  if(rc.step==='link'||rc.step==='load'){
+    h+=`<div><h2 style="font-weight:700;font-size:20px">Import dari Reclub</h2><p class="help">Tempel link meet Reclub. Yang diambil hanya peserta yang sudah dikonfirmasi.</p></div>
+    <div class="rcurl${rc.err?' bad':''}"><input id="rc-url" inputmode="url" autocomplete="off" placeholder="https://reclub.co/m/…" value="${esc(rc.url)}" aria-label="Link meet Reclub">
+      <button type="button" class="rcpaste" data-act="rcpaste"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="3" width="8" height="4" rx="1"/><path d="M16 5h2a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V7a2 2 0 012-2h2"/></svg>Tempel</button></div>
+    ${rc.err?`<div class="err">${rc.err}</div>`:''}
+    ${rc.step==='load'?'<div class="rcskel"></div><div class="rcskel"></div><div class="rcskel"></div><p class="help" style="text-align:center">Mengambil peserta dari Reclub…</p>':''}
+    ${rc.fail?`<div class="field"><label for="rc-text">Tempel daftar nama saja</label><textarea class="input" id="rc-text" rows="4" placeholder="Satu ${team?'tim':'nama'} per baris"></textarea><p class="help">Salin nama dari Reclub atau grup WA, satu ${team?'tim':'nama'} per baris.</p></div>`:''}
+    <div class="rcbtns"><button type="button" class="btn ghost" data-act="sheetclose">Batal</button>${rc.fail?'<button type="button" class="btn primary" data-act="rcfromtext">Pakai daftar ini</button>':`<button type="button" class="btn primary" data-act="rcgo" ${rc.step==='load'?'disabled':''}>Ambil peserta</button>`}</div>`;
+  }else if(rc.step==='pick'){
+    const on=rc.rows.filter(r=>r.on&&!r.dup).length,m=rc.meet;
+    h+=`<div class="rcmeet"><span class="tg">RECLUB · DIKONFIRMASI ${m.confirmed.length}</span><b>${esc(m.title)}</b></div>
+    <div class="rcrowh"><b>Cek peserta (${on} dipilih)</b><button type="button" data-act="rcall">${rc.rows.every(r=>r.on||r.dup)?'Kosongkan':'Pilih semua'}</button></div>
+    <div class="rclist">${rc.rows.map((r,i)=>`<label class="rcrow${r.on&&!r.dup?'':' off'}"><input type="checkbox" data-rck="${i}" ${r.on&&!r.dup?'checked':''} ${r.dup?'disabled':''} aria-label="Pilih ${esc(r.name)}"><input class="rcn" data-rcn="${i}" value="${esc(r.name)}" aria-label="Nama peserta ${i+1}" ${r.dup?'disabled':''}>${r.dup?'<span class="rcdup">SUDAH ADA</span>':''}</label>`).join('')}</div>
+    <p class="help">Hilangkan centang untuk yang batal ikut. Nama bisa diganti langsung, misalnya nama singkatan jadi nama lengkap.</p>
+    <div class="rcbtns"><button type="button" class="btn ghost" data-act="rcback">Ganti link</button><button type="button" class="btn primary" data-act="rcnext" ${on?'':'disabled'}>${team?`Lanjut pasangkan (${on})`:`Tambah ${on} pemain`}</button></div>`;
+  }else if(rc.step==='pair'){
+    const left=rc.sel.filter(n=>!rc.teams.some(x=>x.includes(n)));
+    h+=`<div><h2 style="font-weight:700;font-size:20px">Pasangkan tim</h2><p class="help">Ketuk dua nama untuk jadi satu tim. Urutan mengikuti daftar Reclub.</p></div>
+    <div class="rcrowh"><b>Belum berpasangan (${left.length})</b>${left.length>1?'<button type="button" data-act="rcauto">Pasangkan berurutan</button>':''}</div>
+    <div class="rcpool">${left.length?left.map(n=>`<button type="button" class="rcchip${rc.pick===n?' sel':''}" data-act="rcpk" data-n="${esc(n)}">${esc(n)}</button>`).join(''):'<span class="help">Semua sudah berpasangan.</span>'}</div>
+    <div class="rcrowh"><b>Tim (${rc.teams.length})</b></div>
+    <div class="elist">${rc.teams.length?rc.teams.map((x,i)=>`<div class="rcteam"><span class="n">${i+1}.</span><b>${esc(x[0])} & ${esc(x[1])}</b><button type="button" class="btn ghost sm" data-act="rcun" data-i="${i}">Pisahkan</button></div>`).join(''):'<p class="note">Belum ada tim.</p>'}</div>
+    ${left.length===1?`<p class="note">${esc(left[0])} belum punya pasangan dan tidak ikut ditambahkan.</p>`:''}
+    <div class="rcbtns"><button type="button" class="btn ghost" data-act="rcpairback">Kembali</button><button type="button" class="btn primary" data-act="rcdone" ${rc.teams.length?'':'disabled'}>Tambah ${rc.teams.length} tim</button></div>`;
+  }
+  openSheet('reclub',h);
+}
+function rcFetch(){
+  const v=(document.getElementById('rc-url')?.value||'').trim();rc.url=v;rc.err='';rc.fail=false;
+  const m=/^(?:https?:\/\/)?(?:www\.)?reclub\.co\/(?:[a-z]{2}\/)?m\/([A-Za-z0-9]{4,12})\/?(?:[?#].*)?$/.exec(v);
+  if(!m){rc.err='Ini bukan link meet Reclub. Contoh yang benar: reclub.co/m/XZ5I8Q';rcRender();return;}
+  rc.step='load';rcRender();
+  const fail=msg=>{if(!rc||sheetKind!=='reclub')return;rc.step='link';rc.fail=true;rc.err=msg;rcRender();};
+  const ctl=new AbortController(),tm=setTimeout(()=>ctl.abort(),15000);
+  fetch(RC_WORKER+'/?link='+encodeURIComponent(v),{signal:ctl.signal}).then(r=>r.json()).then(d=>{clearTimeout(tm);
+    if(!rc||sheetKind!=='reclub')return;
+    if(!d.ok){fail(d.error==='no_confirmed'?'Meet ini belum punya peserta yang dikonfirmasi. Tempel daftar nama di bawah sebagai gantinya.':d.error==='bad_link'?'Ini bukan link meet Reclub. Contoh yang benar: reclub.co/m/XZ5I8Q':'Peserta meet ini tidak bisa dibaca. Biasanya karena meet-nya private atau sudah dihapus. Tempel daftar nama di bawah sebagai gantinya.');return;}
+    const have=new Set(draft.entries.map(e=>rcNorm(e.name)));rc.meet={title:d.title||('Meet '+d.code),confirmed:d.confirmed};
+    rc.rows=d.confirmed.map(n=>({name:n,on:true,dup:have.has(rcNorm(n))}));rc.step='pick';rcRender();})
+  .catch(()=>{clearTimeout(tm);fail('Tidak bisa terhubung ke Reclub sekarang. Cek koneksi internet lalu coba lagi, atau tempel daftar nama di bawah.');});
+}
+function rcAdd(names){
+  const F=FORMATS[draft.type],have=new Set(draft.entries.map(e=>rcNorm(e.name)));let k=0;
+  names.map(s=>String(s).trim().slice(0,48)).filter(Boolean).forEach(n=>{if(have.has(rcNorm(n)))return;const {m,f}=counts(draft);draft.entries.push({id:uid(),name:n,g:F.kind==='mix'?(m<=f?'M':'F'):'M'});have.add(rcNorm(n));k++;});
+  rc=null;closeSheet();formErr='';draft.sim=null;render();return k;
+}
+function rcAction(a,el){
+  if(!rc&&a!=='rcopen')return true;
+  switch(a){
+    case 'rcopen':rcOpen();break;
+    case 'rcpaste':{const fill=v=>{rc.url=v;rc.err='';rcRender();};
+      const manual=()=>{document.getElementById('rc-url')?.focus();toast('Tekan lama kolom link lalu pilih Tempel');};
+      if(navigator.clipboard&&navigator.clipboard.readText)navigator.clipboard.readText().then(t=>{t=t.trim();if(t)fill(t);else manual();},manual);else manual();break;}
+    case 'rcgo':rcFetch();break;
+    case 'rcback':rc.step='link';rcRender();break;
+    case 'rcall':{const all=rc.rows.every(r=>r.on||r.dup);rc.rows.forEach(r=>r.on=!all);rcRender();break;}
+    case 'rcnext':{const names=rc.rows.filter(r=>r.on&&!r.dup).map(r=>r.name.trim()).filter(Boolean);
+      if(rcTeam()){rc.sel=names;rc.teams=[];rc.pick=null;rc.step='pair';rcRender();}
+      else{const k=rcAdd(names);toast(`${k} pemain dari Reclub ditambahkan`);}break;}
+    case 'rcfromtext':{const names=parseNames(document.getElementById('rc-text')?.value||'',rcTeam());const k=rcAdd(names);toast(`${k} ${rcTeam()?'tim':'pemain'} ditambahkan`);break;}
+    case 'rcauto':{const left=rc.sel.filter(n=>!rc.teams.some(x=>x.includes(n)));for(let i=0;i+1<left.length;i+=2)rc.teams.push([left[i],left[i+1]]);rc.pick=null;rcRender();break;}
+    case 'rcpk':{const n=el.dataset.n;if(!rc.pick)rc.pick=n;else if(rc.pick===n)rc.pick=null;else{rc.teams.push([rc.pick,n]);rc.pick=null;}rcRender();break;}
+    case 'rcun':rc.teams.splice(+el.dataset.i,1);rcRender();break;
+    case 'rcpairback':rc.step='pick';rcRender();break;
+    case 'rcdone':{const k=rcAdd(rc.teams.map(x=>x[0]+' & '+x[1]));toast(`${k} tim dari Reclub ditambahkan`);break;}
+    default:return true;
+  }
+  return false;
+}
+document.addEventListener('change',e=>{if(rc&&e.target.dataset&&e.target.dataset.rck!=null){rc.rows[+e.target.dataset.rck].on=e.target.checked;const y=document.querySelector('.sheet')?.scrollTop||0;rcRender();const s=document.querySelector('.sheet');if(s)s.scrollTop=y;}});
+document.addEventListener('input',e=>{if(!rc||!e.target.dataset)return;if(e.target.dataset.rcn!=null)rc.rows[+e.target.dataset.rcn].name=e.target.value;if(e.target.id==='rc-url')rc.url=e.target.value;});
+document.addEventListener('keydown',e=>{if(rc&&e.target.id==='rc-url'&&e.key==='Enter'){e.preventDefault();rcFetch();}});
 
 /* ---------- Boot ---------- */
 try{const raw=localStorage.getItem(KEY);if(raw){const s=JSON.parse(raw);if(s&&Array.isArray(s.tournaments))S=s;}}catch(e){}
