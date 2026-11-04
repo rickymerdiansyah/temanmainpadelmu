@@ -488,6 +488,149 @@ h1,h2,.bar-title,.rnav h2,.sech h2,.ttitle h1{font-family:var(--f-brush);letter-
 .pairrow.pending i{color:var(--muted);font-style:normal}
 .poolnote{font-size:13px;color:var(--muted);text-align:center}
 
+/* ===== Akun & paket ===== */
+.accbtn{flex:none;width:38px;height:38px;border-radius:50%;border:1.5px solid var(--line);background:var(--surface);display:grid;place-items:center;color:var(--muted);font:700 15px var(--f-brush);position:relative}
+.accbtn.in{background:var(--box);color:var(--tan);border-color:var(--box)}
+.accbtn .dot{position:absolute;right:-1px;bottom:-1px;width:12px;height:12px;border-radius:50%;background:var(--tan);box-shadow:0 0 0 2px var(--bg)}
+.bar .cloud{margin-left:auto}
+.bar .accbtn{margin-left:auto}
+.bar .cloud+.accbtn{margin-left:8px}
+.bar-in:has(.accbtn.in) .accbtn.in{margin-left:auto}
+.bar-in{max-width:608px}
+.gbtn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:50px;border-radius:12px;border:1.5px solid var(--line);background:#fff;color:#231A13;font-weight:700;font-size:15px}
+.gbtn svg{width:20px;height:20px}
+.acard{display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px}
+.avatar{width:46px;height:46px;border-radius:50%;background:var(--box);color:var(--tan);display:grid;place-items:center;font:800 18px var(--f-brush);flex:none}
+.acard .who{flex:1;min-width:0}
+.acard .who b{display:block;font-family:var(--f-brush);font-size:16px;overflow-wrap:anywhere}
+.acard .who small{color:var(--muted);font-size:13px;overflow-wrap:anywhere}
+.plan-pill{display:inline-flex;align-items:center;gap:6px;font:500 10px "DM Mono",ui-monospace,monospace;letter-spacing:.1em;border-radius:999px;padding:4px 10px;background:var(--raised);color:var(--muted)}
+.plan-pill.org{background:rgb(217 164 65 / .2);color:#8A5A12}
+.plan-pill.venue{background:var(--box);color:var(--tan)}
+.plan-pill.wait{background:#FFF4D6;color:#8A5A12}
+.statusbox{background:var(--box);color:#F6F3EE;border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:6px;position:relative;overflow:hidden}
+.statusbox::after{content:"";position:absolute;right:-26px;top:-26px;width:110px;height:110px;border-radius:50%;background:var(--tan);opacity:.14}
+.statusbox>*{position:relative}
+.statusbox small{font:500 10px "DM Mono",ui-monospace,monospace;letter-spacing:.12em;color:var(--tan)}
+.statusbox b{font-family:var(--f-brush);font-size:22px}
+.statusbox span{font-size:13px;color:#BFAF9A}
+.plans{display:flex;flex-direction:column;gap:12px}
+.plan{background:var(--surface);border:1.5px solid var(--line);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.plan.cur{border-color:var(--tan)}
+.plan .top{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.plan h3{font-family:var(--f-brush);font-size:18px;margin:0}
+.plan .price{font-family:var(--f-brush);font-weight:800;font-size:20px;white-space:nowrap}
+.plan .price small{font:500 11px var(--f-body);color:var(--muted)}
+.plan ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;font-size:14px}
+.plan li{display:grid;grid-template-columns:18px minmax(0,1fr);gap:8px;align-items:start}
+.plan li::before{content:"✓";color:#2F7A3E;font-weight:800}
+.plan li.no::before{content:"–";color:var(--muted)}
+.plan li.no{color:var(--muted)}
+.example{font:500 10px "DM Mono",ui-monospace,monospace;letter-spacing:.08em;color:var(--muted)}
+.paysteps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px;counter-reset:s}
+.paysteps li{display:grid;grid-template-columns:30px minmax(0,1fr);gap:12px;counter-increment:s}
+.paysteps li::before{content:counter(s);width:30px;height:30px;border-radius:9px;background:var(--tan);color:var(--tan-ink);display:grid;place-items:center;font:800 14px var(--f-brush)}
+.qris{aspect-ratio:1;width:min(100%,200px);border-radius:14px;border:1.5px dashed var(--line);background:repeating-linear-gradient(45deg,var(--raised) 0 8px,var(--surface) 8px 16px);display:grid;place-items:center;text-align:center;color:var(--muted);font-size:12px;margin-top:8px}
+.copyline{display:flex;align-items:center;justify-content:space-between;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-top:8px;font-weight:700}
+.menu button svg{flex:none}
+.locktag{margin-left:auto;flex:none;white-space:nowrap;display:inline-flex;align-items:center;gap:4px;font:500 9px "DM Mono",ui-monospace,monospace;letter-spacing:.08em;background:var(--box);color:var(--tan);border-radius:5px;padding:3px 6px}
+.adminrow{display:flex;flex-direction:column;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.adminrow .l1{display:flex;align-items:center;gap:8px;justify-content:space-between}
+.adminrow b{overflow-wrap:anywhere;min-width:0}
+.adminrow small{color:var(--muted);font-size:12px}
+.adminrow .acts{display:flex;flex-wrap:wrap;gap:6px}
+.adminrow select{min-height:40px;border-radius:10px;border:1px solid var(--line);background:#FAF7F2;padding:0 10px;font-size:14px}
+.chooser{display:flex;flex-direction:column;gap:8px}
+.chooser button{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:10px 12px}
+.chooser .avatar{width:38px;height:38px;font-size:15px}
+.chooser small{display:block;color:var(--muted);font-size:12px}
+.landing{display:flex;flex-direction:column;gap:22px}
+.lshow{display:flex;flex-direction:column;gap:10px}
+.lshow small{display:block;font:500 10px "DM Mono",ui-monospace,monospace;letter-spacing:.12em;color:var(--muted);margin-bottom:2px}
+.lshow b{font-family:var(--f-brush);font-size:16px}
+.lshow .live{display:inline-flex;align-items:center;gap:6px;font:500 10px "DM Mono",ui-monospace,monospace;letter-spacing:.1em;color:#2F7A3E;align-self:flex-start}
+.lshow .lbwrap{pointer-events:none}
+.demobar{display:flex;align-items:center;gap:12px;justify-content:space-between;background:var(--box);color:#F6F3EE;border-radius:14px;padding:12px 14px}
+.demobar b{display:block;font-family:var(--f-brush);font-size:15px}
+.demobar small{display:block;font-size:12px;color:#BFAF9A}
+.lcap{margin:0;font-size:13px;color:var(--muted);text-align:center}
+.lhero{background:var(--box);border-radius:20px;padding:26px 20px;display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden}
+.lhero::before{content:"";position:absolute;right:-30px;top:-30px;width:150px;height:150px;border-radius:50%;background:var(--tan);opacity:.14}
+.lhero>*{position:relative}
+.lhero .kick{font:500 10px "DM Mono",ui-monospace,monospace;letter-spacing:.14em;color:var(--tan)}
+.lhero h1{margin:0;color:#F6F3EE;font-size:30px;line-height:1.08}
+.lhero p{margin:0;color:#BFAF9A;font-size:14px;line-height:1.5}
+.lhero .ctas{display:flex;flex-direction:column;gap:8px;margin-top:4px}
+.lhero .gbtn{border-color:transparent}
+.lpreview{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.lpreview .lrow{display:grid;grid-template-columns:22px minmax(0,1fr) auto;gap:10px;align-items:center;font-size:14px}
+.lpreview .lrow .rk{font:500 11px "DM Mono",ui-monospace,monospace;color:#8A5A12}
+.lpreview .lrow b{font-family:var(--f-brush)}
+.lpreview .live{display:inline-flex;align-items:center;gap:6px;font:500 10px "DM Mono",ui-monospace,monospace;letter-spacing:.1em;color:#2F7A3E}
+.lfeat{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.lfeat div{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:4px}
+.lfeat b{font-family:var(--f-brush);font-size:14px}
+.lfeat span{font-size:12px;color:var(--muted);line-height:1.4}
+.lsteps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;counter-reset:s}
+.lsteps li{display:grid;grid-template-columns:28px minmax(0,1fr);gap:12px;counter-increment:s;align-items:start}
+.lsteps li::before{content:counter(s);width:28px;height:28px;border-radius:8px;background:var(--tan);color:var(--tan-ink);display:grid;place-items:center;font:800 13px var(--f-brush)}
+.lsteps b{display:block}.lsteps span{font-size:13px;color:var(--muted)}
+.lfoot{text-align:center;font-size:12px;color:var(--muted)}
+.quota{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:8px}
+.quota .q1{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.quota .q1 b{font-size:14px}
+.quota .bar3{height:6px;border-radius:3px;background:var(--raised)}
+.quota .bar3 i{display:block;height:6px;border-radius:3px;background:var(--tan)}
+.quota.warn{border-color:var(--tan);background:rgb(217 164 65 / .08)}
+.quota.full{border-color:var(--loss);background:var(--loss-bg,#FDE7E5)}
+.quota small{font-size:12px;color:var(--muted)}
+.gate{display:flex;flex-direction:column;gap:14px;align-items:stretch;text-align:center;padding-top:20px}
+.gate .big{width:72px;height:72px;border-radius:20px;background:var(--box);color:var(--tan);display:grid;place-items:center;margin:0 auto}
+.gate h1{font-size:24px;margin:0}
+.switchrow{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:14px}
+.switchrow b{display:block}.switchrow small{font-size:12px;color:var(--muted)}
+.switch{position:relative;width:52px;height:30px;flex:none}
+.switch input{position:absolute;opacity:0;width:100%;height:100%;margin:0;cursor:pointer}
+.switch span{position:absolute;inset:0;border-radius:999px;background:var(--line);transition:background .15s}
+.switch span::after{content:"";position:absolute;left:3px;top:3px;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgb(0 0 0 / .2);transition:transform .15s}
+.switch input:checked+span{background:var(--tan)}
+.switch input:checked+span::after{transform:translateX(22px)}
+.switch input:focus-visible+span{outline:2px solid var(--tan);outline-offset:2px}
+.plan-pill.block{background:var(--loss-bg,#FDE7E5);color:var(--loss)}
+.bar-in:has(.accbtn.in) #cloudchip{display:none}
+.simnote{font:500 10px "DM Mono",ui-monospace,monospace;letter-spacing:.08em;color:#8A5A12;background:rgb(217 164 65 / .16);border-radius:8px;padding:8px 10px}
+.pc{display:flex;flex-direction:column;gap:10px}
+.pc-track{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:2px 2px 6px;margin:0 -2px}
+.pc-track::-webkit-scrollbar{display:none}
+.pc-slide{flex:0 0 86%;scroll-snap-align:center;background:var(--surface);border:1.5px solid var(--line);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:12px;position:relative}
+.pc-slide.hot{border-color:var(--tan);box-shadow:0 6px 20px rgb(35 26 19 / .08)}
+.pc-slide.dark{background:var(--box);color:#F6F3EE;border-color:var(--box)}
+.pc-slide .tagline{font:500 10px "DM Mono",ui-monospace,monospace;letter-spacing:.12em;color:#8A5A12}
+.pc-slide.dark .tagline{color:var(--tan)}
+.pc-slide h3{margin:0;font-family:var(--f-brush);font-size:22px}
+.pc-slide .pr{display:flex;align-items:baseline;gap:6px}
+.pc-slide .pr b{font-family:var(--f-brush);font-weight:800;font-size:30px;letter-spacing:-.02em}
+.pc-slide .pr small{font-size:13px;color:var(--muted)}
+.pc-slide.dark .pr small{color:#BFAF9A}
+.pc-slide p.for{margin:0;font-size:13px;color:var(--muted)}
+.pc-slide.dark p.for{color:#BFAF9A}
+.pc-slide ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:14px;flex:1}
+.pc-slide li{display:grid;grid-template-columns:18px minmax(0,1fr);gap:8px;align-items:start}
+.pc-slide li::before{content:"✓";color:#2F7A3E;font-weight:800}
+.pc-slide.dark li::before{color:var(--tan)}
+.pc-slide li i{font-style:normal;font:500 9px "DM Mono",ui-monospace,monospace;letter-spacing:.06em;color:#8A5A12;background:rgb(217 164 65 / .18);border-radius:5px;padding:2px 5px;margin-left:6px;white-space:nowrap}
+.pc-slide.dark li i{background:rgb(217 164 65 / .22);color:var(--tan)}
+.pc-slide .badge2{position:absolute;top:14px;right:14px;font:500 9px "DM Mono",ui-monospace,monospace;letter-spacing:.08em;background:var(--tan);color:var(--tan-ink);border-radius:999px;padding:4px 8px}
+.pc-dots{display:flex;justify-content:center;gap:6px}
+.pc-dots button{width:8px;height:8px;border-radius:999px;border:0;padding:0;background:var(--line);transition:width .2s}
+.pc-dots button[aria-current="true"]{width:22px;background:var(--tan)}
+.plinks{display:flex;justify-content:center}
+.plinks button{border:0;background:transparent;color:#BFAF9A;font-weight:600;font-size:13px;text-decoration:underline;text-underline-offset:3px;padding:6px}
+.bnav .nb{position:relative}
+.bnav .nb i{position:absolute;top:8px;left:calc(50% + 18px);min-width:18px;height:18px;border-radius:999px;background:var(--loss);color:#fff;font:700 10px/18px var(--f-body);font-style:normal;padding:0 5px}
+.adminnote{display:block;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:13px;color:var(--muted)}
+body.v-home.is-admin .bnav-in{grid-template-columns:repeat(4,1fr)}
+
 /* ===== B · Tiket Main — HOME ONLY (body.v-home) ===== */
 body.v-home{--hb:#F6F3EE;--hink:#231A13;--hmut:#6F604F;--hgold:#D9A441;--hline:#E3DBCF;--hmono:"DM Mono",ui-monospace,monospace;--hdisp:"Bricolage Grotesque",system-ui,sans-serif;
   background:var(--hb);color:var(--hink);font-family:"Instrument Sans",system-ui,-apple-system,sans-serif}
@@ -551,7 +694,7 @@ body.v-home .bnav button[aria-selected="true"]{font-weight:700;color:var(--hink)
 <script>
 const LOGO_SRC='data:image/webp;base64,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';
 const KEY='tmp.v2';
-const APP_V='v13 · 4 Nov 2026';
+const APP_V='v14 · 5 Nov 2026';
 const FORMATS={
   'americano':{label:'Americano',group:'Americano',family:'americano',kind:'ind',desc:'Main bareng dan melawan semua orang secara bergiliran. Skor dihitung per pemain.'},
   'team-americano':{label:'Team Americano',group:'Americano',family:'americano',kind:'team',desc:'Tim tetap. Setiap tim bergiliran melawan semua tim lain.'},
@@ -574,7 +717,7 @@ const courtName=i=>i<26?String.fromCharCode(65+i):String(i+1);
 const grpName=g=>'Grup '+String.fromCharCode(65+g);
 function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 function localSave(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
-function save(){localSave();Cloud.schedule();if(typeof Live!=='undefined')Live.schedule();}
+function save(){localSave();Cloud.schedule();if(typeof Live!=='undefined')Live.schedule();if(typeof CT!=='undefined')CT.schedule();}
 
 /* ---------- Cloud save: keeps tournaments in the viewer's own private space on their Claude account ---------- */
 const Cloud={db:null,uid:null,status:'local',synced:{},metaSynced:null,timer:null,chain:Promise.resolve(),
@@ -1026,23 +1169,30 @@ const logoImg=(s=38)=>`<img class="logo" src="${LOGO_SRC}" alt="" width="${s}" h
 /* ---------- Rendering ---------- */
 function renderBar(){
   const bar=document.getElementById('bar');
-  if(view==='home'){bar.innerHTML=`${logoImg()}<div class="brand"><b>Teman Main Padelmu</b><small>PLAY · CONNECT · GROW</small></div><span id="cloudchip"></span>`;paintCloud();return;}
+  if(view==='landing'||view==='gate'){bar.innerHTML=`${logoImg()}<div class="brand"><b>Teman Main Padelmu</b><small>PLAY · CONNECT · GROW</small></div>${view==='landing'?'<button class="btn primary sm" data-act="login-go" style="margin-left:auto">Masuk</button>':''}`;return;}
+  if(view==='home'){bar.innerHTML=`${logoImg()}<div class="brand"><b>Teman Main Padelmu</b><small>PLAY · CONNECT · GROW</small></div><span id="cloudchip"></span>${STANDALONE?accBtn():''}`;paintCloud();return;}
   if(view==='live'){bar.innerHTML=`${logoImg()}<div class="brand"><b>TMP</b><small>Teman Main Padelmu</small></div><span class="livechip ${liveState}" id="livechip"><i></i>${{live:'LIVE',connecting:'Menghubungkan…',offline:'Offline',error:'Terputus',gone:'Tidak aktif'}[liveState]||'LIVE'}</span>`;return;}
-  const title={create:'Buat Turnamen',tour:'Turnamen',wheels:'Spin Wheel',wheel:'Spin Wheel'}[view]||'';
-  bar.innerHTML=`<button class="iconbtn" data-act="back" aria-label="Kembali">${I.back}</button>${logoImg(32)}<span class="bar-title">${title}</span><span id="cloudchip"></span>`;paintCloud();
+  const title={create:'Buat Turnamen',tour:'Turnamen',wheels:'Spin Wheel',wheel:'Spin Wheel',account:'Akun & Paket',admin:'Admin TMP'}[view]||'';
+  bar.innerHTML=`<button class="iconbtn" data-act="back" aria-label="Kembali">${I.back}</button>${logoImg(32)}<span class="bar-title">${title}</span><span id="cloudchip"></span>${STANDALONE&&view!=='account'&&accMe()?accBtn():''}`;paintCloud();
 }
 function render(){
+  document.body.classList.toggle('is-admin',!!(STANDALONE&&accMe()&&accMe().admin));
+  if(STANDALONE&&view!=='live'){if(!accMe()&&!isGuest())view='landing';else if(isGuest()){if(view==='landing'||view==='gate'||view==='admin'||view==='account')view='home';}else if(!accActive())view='gate';else if(view==='landing'||view==='gate')view='home';}
   renderBar();const app=document.getElementById('app'),nav=document.getElementById('bnav');
-  if(view==='create')app.innerHTML=renderCreate();
+  if(view==='create'){app.innerHTML=renderCreate();const u=accMe();if(u&&!u.admin&&planOf(u)==='free'&&quotaLeft(u)<=2&&quotaLeft(u)>0)app.insertAdjacentHTML('afterbegin',`<div class="quota warn"><div class="q1"><b>${quotaLeft(u)===1?'Ini turnamen gratis terakhirmu':'Ini turnamen gratis ke-'+((u.made||0)+1)+' dari '+FREE_LIMIT}</b><button class="btn primary sm" data-act="go-plans">Upgrade</button></div><small>${quotaLeft(u)===1?'Setelah ini, upgrade untuk membuat turnamen baru.':'Sisa '+(quotaLeft(u)-1)+' turnamen gratis setelah ini.'}</small></div>`);}
   else if(view==='tour'&&cur())app.innerHTML=renderTour();
-  else if(view==='live')app.innerHTML=liveT?renderTour():renderLiveWait();
+  else if(view==='live'){app.innerHTML=liveT?renderTour():renderLiveWait();if(liveT&&liveT===LDEMO)app.insertAdjacentHTML('afterbegin',`<div class="demobar"><span><b>Contoh live</b><small>Begini tampilan link yang kamu bagikan ke penonton. Data contoh.</small></span><button class="btn primary sm" data-act="demo-exit">Kembali</button></div>`);}
+  else if(view==='landing')app.innerHTML=renderLanding();
+  else if(view==='gate')app.innerHTML=renderGate();
+  else if(view==='account')app.innerHTML=renderAccount();
+  else if(view==='admin')app.innerHTML=renderAdmin();
   else if(view==='wheels')app.innerHTML=renderWheels();
   else if(view==='wheel'&&wheelObj())app.innerHTML=renderWheel();
   else{view='home';renderBar();app.innerHTML=renderHome();}
   const tourLike=view==='tour'||(view==='live'&&!!liveT);
   document.body.classList.toggle('v-home',view==='home');
   nav.hidden=!tourLike&&view!=='home';
-  if(view==='home')nav.innerHTML=`<div class="bnav-in"><button type="button" data-act="hometop" aria-selected="true">Home</button><button type="button" data-act="new">+ Buat</button><button type="button" data-act="wheels">Wheel</button></div>`;
+  if(view==='home')nav.innerHTML=`<div class="bnav-in"><button type="button" data-act="hometop" aria-selected="true">Home</button><button type="button" data-act="new">+ Buat</button><button type="button" data-act="wheels">Wheel</button>${STANDALONE&&accMe()&&accMe().admin?`<button type="button" class="nb" data-act="admin">Admin${admCount()?`<i>${admCount()}</i>`:''}</button>`:''}</div>`;
   if(tourLike){
     nav.innerHTML=`<div class="bnav-in" role="tablist"><button role="tab" data-tab="rounds" aria-selected="${tab==='rounds'}">${I.list}Ronde</button><button role="tab" data-tab="board" aria-selected="${tab==='board'}">${I.chart}Klasemen</button></div>`;
     const c=document.querySelector('.rchip[aria-current="true"]');if(c){const box=c.parentElement;box.scrollLeft=c.offsetLeft-box.clientWidth/2+c.clientWidth/2;}
@@ -1051,7 +1201,7 @@ function render(){
   rememberView();
 }
 function renderHome(){
-  const list=S.tournaments.filter(t=>!t.sample).sort((a,b)=>b.created-a.created);
+  const list=STANDALONE?myTournaments():S.tournaments.filter(t=>!t.sample).sort((a,b)=>b.created-a.created);
   const ICAL='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>';
   const card=t=>{const F=FORMATS[t.type];const done=t.rounds.filter(r=>r.matches.length&&roundComplete(t,r)).length;const pr=plannedRounds(t);
     const on=!t.finished;const tot=pr||t.rounds.length;const pct=tot?Math.min(100,Math.round(done/tot*100)):0;
@@ -1062,12 +1212,13 @@ function renderHome(){
       <span class="sub">${F.label} · ${t.entries.length} ${unitWord(t)}${G(t)>1?' · '+G(t)+' grup':''} · Ronde ${done}/${tot||'–'}</span>
       <span class="sub">${esc(fmtDate(t.date))}</span>
       ${on&&tot?`<span class="bar2"><i style="width:${pct}%"></i></span>`:''}</span></button>`;};
-  return `<section class="hhero"><span class="kick">SEMUA FITUR GRATIS</span>
+  return `<section class="hhero"><span class="kick">${accMe()&&!accMe().admin&&accPaid()?'PAKET '+PLANS[planOf(accMe())].label.toUpperCase():'TEMAN MAIN PADELMU'}</span>
     <h1>Main bareng yuk,<br>skor beres otomatis.</h1>
     <p>Americano, Mexicano, Mix, dan King of the Court. Jadwal adil, klasemen langsung update.</p>
     <button type="button" class="hcta" data-act="new">+ Buat turnamen</button></section>
+  ${STANDALONE?quotaCard():''}
   <div class="hq"><button type="button" data-act="wheels">${I.wheel}<span>SPIN</span></button><button type="button" data-act="sharelink">${I.share}<span>SHARE</span></button><button type="button" data-act="tolist">${ICAL}<span>RIWAYAT</span></button></div>
-  <p class="note" id="cloudnote" ${Cloud.status==='local'||Cloud.status==='readonly'?'':'hidden'}><b>Turnamen belum tersimpan di akun.</b> Data saat ini hanya ada di perangkat ini dan bisa hilang saat app ditutup. Supaya aman, buka TMP lewat app Claude, atau login ke claude.ai di browser yang sama lalu buka lagi link TMP.</p>
+  <p class="note" id="cloudnote" ${!(STANDALONE&&accMe())&&(Cloud.status==='local'||Cloud.status==='readonly')?'':'hidden'}><b>Turnamen belum tersimpan di akun.</b> Data saat ini hanya ada di perangkat ini dan bisa hilang saat app ditutup. Supaya aman, buka TMP lewat app Claude, atau login ke claude.ai di browser yang sama lalu buka lagi link TMP.</p>
   ${S.hideHint?'':`<div class="hint">${logoImg(34)}<p><b>Pasang di iPhone:</b> buka halaman ini di Safari, ketuk Bagikan, lalu pilih <b>Add to Home Screen</b>.</p><button class="x" data-act="hidehint" aria-label="Tutup">×</button></div>`}
   <div class="hsec" id="tlist"><b>Turnamen kamu</b><span>${list.length} sesi</span></div>
   <div class="tlist">${list.length?list.map(card).join(''):'<div class="hempty"><b>Belum ada turnamen</b>Turnamen yang kamu buat akan muncul di sini.</div>'}</div>
@@ -1164,6 +1315,8 @@ function renderTour(){
         <button data-act="pdf">${I.pdf} Bagikan / unduh PDF</button>
         <a href="${waLink(t)}" target="_blank" rel="noopener">${I.share} Kirim klasemen ke WA</a>
         <button data-act="copy">${I.list} Salin klasemen</button>
+        ${STANDALONE?`<button data-act="pro" data-f="rank">${I.list} Ranking antar-chapter<span class="locktag">${accPaid()?'':LOCK}ORGANIZER</span></button>
+        <button data-act="pro" data-f="brand">${I.share} Logo komunitas<span class="locktag">${accPaid()?'':LOCK}ORGANIZER</span></button>`:''}
         <button data-act="wheel-from">${I.wheel} Spin wheel peserta</button>
         <button data-act="wdoor-from">${I.wheel} Doorprize dari peserta hadir</button>
         <button data-act="togglepriv">${I.eye} Klasemen privat: ${t.hidePublic?'Aktif':'Nonaktif'}</button>
@@ -1292,7 +1445,7 @@ function refreshLive(card){
 }
 
 /* ---------- Bottom sheets: simulation & participants ---------- */
-function openSheet(kind,html){sheetKind=kind;document.body.style.overflow='hidden';document.getElementById('sheet').innerHTML=`<div class="sheet-bg" data-act="sheetclose"></div><div class="sheet" role="dialog" aria-label="${kind==='sim'?'Simulasi jadwal':kind==='swap'?'Ganti pemain':kind==='live'?'Link live':kind==='reclub'?'Import dari Reclub':kind==='wtpl'?'Buat roda baru':'Peserta'}"><div class="sheet-in"><div class="grab"></div>${html}</div></div>`;}
+function openSheet(kind,html){sheetKind=kind;document.body.style.overflow='hidden';document.getElementById('sheet').innerHTML=`<div class="sheet-bg" data-act="sheetclose"></div><div class="sheet" role="dialog" aria-label="${kind==='sim'?'Simulasi jadwal':kind==='swap'?'Ganti pemain':kind==='live'?'Link live':kind==='reclub'?'Import dari Reclub':kind==='wtpl'?'Buat roda baru':kind==='login'?'Masuk':kind==='pay'?'Minta paket':kind==='upsell'?'Fitur Organizer':'Peserta'}"><div class="sheet-in"><div class="grab"></div>${html}</div></div>`;}
 function closeSheet(){
   if(sheetKind==='sim')stopSim();
   const wasRoster=sheetKind==='roster';if(sheetKind==='reclub')rc=null;
@@ -1413,10 +1566,11 @@ const Live={base:null,authP:null,uid:null,pushed:{},timer:null,chain:Promise.res
     try{return await this.authP;}catch(e){this.authP=null;throw e;}
   },
   ref(c,id){return c.f.doc(c.db,'live',id);},
+  async tagEmail(email){const c=await this.core();const uid=this.uid||(await this.owner());for(const t of S.tournaments){if(t.liveId&&(t.liveOwner||uid)===uid){try{await c.f.setDoc(this.ref(c,t.liveId),{ownerEmail:email},{merge:true});}catch(e){}}}},
   async push(t){
     const c=await this.core();await this.owner();
     const j=JSON.stringify(t);
-    await c.f.setDoc(this.ref(c,t.liveId),{owner:t.liveOwner||this.uid,json:j,name:String(t.name).slice(0,120),updated:Date.now()});
+    await c.f.setDoc(this.ref(c,t.liveId),{owner:t.liveOwner||this.uid,...(ACCT.me?{ownerEmail:ACCT.me.email}:{}),json:j,name:String(t.name).slice(0,120),updated:Date.now()});
     this.pushed[t.liveId]=j;
   },
   schedule(){
@@ -1818,6 +1972,332 @@ function wAction(a,el){
   return true;
 }
 
+
+/* ================= Akun, paket & penyimpanan di akun (Firebase) ================= */
+const ADMIN_EMAIL='ricky.merdiansyah@gmail.com';
+const FREE_LIMIT=5;
+const PLANS={free:{label:'Gratis',cls:''},org:{label:'Organizer',cls:'org'},venue:{label:'Venue',cls:'venue'}};
+const PRO_F={rank:{t:'Ranking antar-chapter',d:'Klasemen gabungan semua chapter: siapa paling sering menang, poin total, dan tren tiap pemain.'},
+  brand:{t:'Logo komunitas di live link & PDF',d:'Nama dan logo komunitasmu tampil di live link penonton dan file PDF klasemen.'}};
+const LOCK='<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>';
+const GICON='<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.5 12.3c0-.8-.1-1.5-.2-2.3H12v4.3h5.9a5 5 0 01-2.2 3.3v2.7h3.5c2.1-1.9 3.3-4.7 3.3-8z"/><path fill="#34A853" d="M12 23c3 0 5.5-1 7.3-2.7l-3.5-2.7c-1 .7-2.3 1.1-3.8 1.1-2.9 0-5.4-2-6.3-4.6H2.1v2.8A11 11 0 0012 23z"/><path fill="#FBBC05" d="M5.7 14.1a6.6 6.6 0 010-4.2V7.1H2.1a11 11 0 000 9.8z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3.1.6 4.2 1.7l3.1-3.1A11 11 0 002.1 7.1l3.6 2.8C6.6 7.4 9.1 5.4 12 5.4z"/></svg>';
+const ME_KEY='tmp.me',GUEST_KEY='tmp.guest';
+const lsGet=k=>{try{return localStorage.getItem(k);}catch(e){return null;}};
+const lsSet=(k,v)=>{try{v==null?localStorage.removeItem(k):localStorage.setItem(k,v);}catch(e){}};
+
+/* Account state. ACCT.me mirrors users/{uid}; a cached copy keeps the app usable offline at the court. */
+const ACCT={me:null,state:'boot',users:[],beta:true,au:null,unsubMe:null,unsubAdmin:[],started:false,
+  cacheMe(){lsSet(ME_KEY,this.me?JSON.stringify({...this.me,until:this.me.until?+this.me.until:null,req:this.me.req?{plan:this.me.req.plan,at:this.me.req.at?+this.me.req.at:null}:null,joined:null}):null);},
+  loadCache(){try{const v=JSON.parse(lsGet(ME_KEY)||'null');if(!v)return null;v.until=v.until?new Date(v.until):null;if(v.req&&v.req.at)v.req.at=new Date(v.req.at);return v;}catch(e){return null;}}
+};
+function toDate(v){return v&&typeof v.toDate==='function'?v.toDate():(v instanceof Date?v:null);}
+function convUser(uid,d){return {uid,email:d.email||'',name:d.name||(d.email||'?').split('@')[0],status:d.status||'pending',plan:d.plan||'free',until:toDate(d.until),made:d.made||0,
+  joined:toDate(d.joined),req:d.req?{plan:d.req.plan,at:toDate(d.req.at)}:null,legacyOpen:!!d.legacyOpen,admin:(d.email||'').toLowerCase()===ADMIN_EMAIL};}
+function accMe(){return ACCT.me;}
+function isGuest(){return !ACCT.me&&lsGet(GUEST_KEY)==='1';}
+function ownerKey(){return ACCT.me?ACCT.me.uid:'guest';}
+function accActive(){const u=accMe();return !!u&&u.status==='active';}
+function planOf(u){if(!u||u.plan==='free'||!u.until)return 'free';return u.until>new Date()?u.plan:'free';}
+function accPaid(){return planOf(accMe())!=='free';}
+function quotaLeft(u){if(!u)return 0;if(u.admin||planOf(u)!=='free')return Infinity;return Math.max(0,FREE_LIMIT-(u.made||0));}
+function fmtD(d){return d?d.toLocaleDateString('id-ID',{day:'numeric',month:'short',year:'numeric'}):'';}
+function fmtDT(d){return d?d.toLocaleString('id-ID',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}):'';}
+function myTournaments(){const k=ownerKey();return S.tournaments.filter(t=>!t.sample&&(t.owner||'')===k);}
+function legacyLocal(){return S.tournaments.filter(t=>!t.sample&&!t.owner);}
+const tj=t=>JSON.stringify(t,(k,v)=>k==='_u'||k==='_legacy'?undefined:v);
+
+async function authMod(){if(!ACCT.au)ACCT.au=await import(FB_URL('auth'));return ACCT.au;}
+async function authInst(){const c=await Live.core();const au=await authMod();return {c,au,auth:au.getAuth(c.app)};}
+
+/* ---------- boot: watch Firebase auth ---------- */
+async function accInit(){
+  const cached=ACCT.loadCache();if(cached){ACCT.me=cached;ACCT.state='cached';}
+  else ACCT.state='out';
+  try{
+    const {c,au,auth}=await authInst();ACCT.ready={au,auth};
+    au.getRedirectResult(auth).catch(e=>loginError(e));
+    au.onAuthStateChanged(auth,u=>accOnUser(u).catch(e=>console.warn('acct',e)));
+  }catch(e){console.warn('auth offline',e);}
+}
+async function accOnUser(u){
+  Live.authP=null;Live.uid=null;
+  if(ACCT.unsubMe){ACCT.unsubMe();ACCT.unsubMe=null;}
+  ACCT.unsubAdmin.forEach(f=>f());ACCT.unsubAdmin=[];
+  const isG=u&&!u.isAnonymous&&u.email&&(u.providerData||[]).some(p=>p.providerId==='google.com');
+  if(!isG){ACCT.me=null;ACCT.state='out';ACCT.started=false;ACCT.cacheMe();render();return;}
+  const c=await Live.core(),f=c.f,ref=f.doc(c.db,'users',u.uid);
+  ACCT.unsubMe=f.onSnapshot(ref,async snap=>{
+    if(!snap.exists()){await accCreate(c,u);return;}
+    const prev=ACCT.me;ACCT.me=convUser(u.uid,snap.data());ACCT.state='in';ACCT.cacheMe();
+    lsSet(GUEST_KEY,null);
+    if(ACCT.me.status==='active'&&!ACCT.started){ACCT.started=true;CT.start().catch(e=>console.warn('sync',e));}
+    if(ACCT.me.admin&&!ACCT.unsubAdmin.length)accWatchAdmin(c);
+    if(prev&&prev.status!=='active'&&ACCT.me.status==='active')toast('Akunmu sudah disetujui. Selamat main!');
+    render();
+  },err=>{console.warn('me',err);});
+}
+async function accCreate(c,u){
+  const f=c.f,admin=(u.email||'').toLowerCase()===ADMIN_EMAIL;
+  let beta=true;try{const cs=await f.getDoc(f.doc(c.db,'config','app'));beta=cs.exists()?cs.data().beta!==false:true;}catch(e){}
+  if(admin){try{const cs=await f.getDoc(f.doc(c.db,'config','app'));if(!cs.exists())await f.setDoc(f.doc(c.db,'config','app'),{beta:true});}catch(e){}}
+  await f.setDoc(f.doc(c.db,'users',u.uid),{email:u.email,name:String(u.displayName||u.email.split('@')[0]).slice(0,80),
+    status:(admin||!beta)?'active':'pending',plan:'free',until:null,made:0,joined:f.serverTimestamp(),req:null,legacyOpen:true});
+}
+function accWatchAdmin(c){
+  const f=c.f;
+  ACCT.unsubAdmin.push(f.onSnapshot(f.collection(c.db,'users'),s=>{ACCT.users=s.docs.map(d=>convUser(d.id,d.data())).sort((a,b)=>(b.joined||0)-(a.joined||0));if(view==='admin'||view==='home')render();}));
+  ACCT.unsubAdmin.push(f.onSnapshot(f.doc(c.db,'config','app'),s=>{ACCT.beta=s.exists()?s.data().beta!==false:true;if(view==='admin')render();}));
+}
+
+/* ---------- login / logout ---------- */
+function doLogin(){
+  closeSheet();
+  const R=ACCT.ready;
+  if(!R){toast('Menyiapkan login… coba ketuk lagi sebentar lagi');if(!ACCT.initP)ACCT.initP=accInit();return;}
+  const {au,auth}=R,prov=new au.GoogleAuthProvider();prov.setCustomParameters({prompt:'select_account'});
+  const cu=auth.currentUser,anon=!!(cu&&cu.isAnonymous);
+  const p=anon?au.linkWithPopup(cu,prov):au.signInWithPopup(auth,prov);
+  p.then(async()=>{if(anon){await cu.reload();await cu.getIdToken(true);await accOnUser(auth.currentUser);}})
+   .catch(e=>loginError(e,anon?cu:null));
+}
+async function loginError(e,anonUser){
+  if(!e)return;const R=ACCT.ready;if(!R)return;const {au,auth}=R;
+  try{
+    if(e.code==='auth/credential-already-in-use'||e.code==='auth/email-already-in-use'){
+      const cred=au.GoogleAuthProvider.credentialFromError(e),email=e.customData&&e.customData.email;
+      if(email)await Live.tagEmail(email).catch(()=>{});
+      if(cred)await au.signInWithCredential(auth,cred);return;}
+    if(e.code==='auth/popup-closed-by-user'||e.code==='auth/cancelled-popup-request'||e.code==='auth/user-cancelled')return;
+    if(e.code==='auth/popup-blocked'||e.code==='auth/operation-not-supported-in-this-environment'){
+      const prov=new au.GoogleAuthProvider();prov.setCustomParameters({prompt:'select_account'});
+      if(anonUser)await au.linkWithRedirect(anonUser,prov);else await au.signInWithRedirect(auth,prov);return;}
+    console.warn('login',e);toast(e.code==='auth/network-request-failed'?'Tidak ada koneksi. Coba lagi saat online.':'Login belum berhasil ('+(e.code||'error')+'). Coba lagi.');
+  }catch(err){console.warn('login2',err);toast('Login belum berhasil ('+(err.code||'error')+'). Coba lagi.');}
+}
+async function doLogout(){
+  try{await CT.flush();}catch(e){}
+  const uid=ACCT.me&&ACCT.me.uid;
+  try{const {au,auth}=await authInst();await au.signOut(auth);}catch(e){}
+  if(uid){S.tournaments=S.tournaments.filter(t=>t.owner!==uid);localSave();}
+  ACCT.me=null;ACCT.started=false;ACCT.cacheMe();lsSet(GUEST_KEY,null);CT.pushed={};
+  view='landing';render();toast('Kamu sudah keluar');
+}
+
+/* ---------- tournaments stored in the account ---------- */
+const CT={pushed:{},timer:null,chain:Promise.resolve(),
+  ref(c,id){return c.f.doc(c.db,'users',ACCT.me.uid,'tournaments',id);},
+  async start(){await this.pull();await this.migrate();await this.pull();render();},
+  async pull(){
+    if(!accActive())return;const c=await Live.core(),f=c.f,uid=ACCT.me.uid;
+    const snap=await f.getDocs(f.collection(c.db,'users',uid,'tournaments'));let ch=false;
+    snap.forEach(d=>{const x=d.data();let t;try{t=JSON.parse(x.json);}catch(e){return;}
+      t.owner=uid;t._u=x.updated||0;t._legacy=!!x.legacy;
+      const i=S.tournaments.findIndex(y=>y.id===t.id);
+      if(i<0){S.tournaments.push(t);ch=true;}
+      else if((S.tournaments[i]._u||0)<t._u){S.tournaments[i]=t;ch=true;}
+      else if(!S.tournaments[i].owner){S.tournaments[i].owner=uid;S.tournaments[i]._legacy=!!x.legacy;ch=true;}
+      this.pushed[t.id]=x.json;});
+    if(ch){localSave();render();}
+  },
+  async migrate(){
+    const me=ACCT.me;if(!me||me.status!=='active')return;
+    const c=await Live.core(),f=c.f,uref=f.doc(c.db,'users',me.uid);let moved=0,left=0;
+    for(const t of S.tournaments.filter(t=>t.owner==='guest')){
+      if(quotaLeft(me)<=0){left++;continue;}
+      const j=tj({...t,owner:me.uid}),b=f.writeBatch(c.db),now=Date.now();
+      b.set(this.ref(c,t.id),{json:j,name:String(t.name).slice(0,120),updated:now,legacy:false});
+      if(!me.admin)b.update(uref,{made:f.increment(1)});
+      try{await b.commit();t.owner=me.uid;t._u=now;t._legacy=false;this.pushed[t.id]=j;moved++;if(!me.admin)me.made++;}catch(e){console.warn('guest move',e);left++;}
+    }
+    if(me.legacyOpen){
+      for(const t of legacyLocal()){
+        const j=tj({...t,owner:me.uid}),now=Date.now();
+        try{await f.setDoc(this.ref(c,t.id),{json:j,name:String(t.name).slice(0,120),updated:now,legacy:true});t.owner=me.uid;t._u=now;t._legacy=true;this.pushed[t.id]=j;moved++;}catch(e){console.warn('legacy move',e);}
+      }
+      try{await f.updateDoc(uref,{legacyOpen:false});}catch(e){}
+    }
+    localSave();
+    if(moved)toast(`${moved} turnamen dari HP ini dipindah ke akunmu`);
+    if(left)setTimeout(()=>toast(`${left} turnamen tamu belum dipindah karena kuota gratis habis`),2800);
+  },
+  async create(t){
+    const me=ACCT.me,c=await Live.core(),f=c.f,now=Date.now(),j=tj(t),b=f.writeBatch(c.db);
+    b.set(this.ref(c,t.id),{json:j,name:String(t.name).slice(0,120),updated:now,legacy:false});
+    if(!me.admin)b.update(f.doc(c.db,'users',me.uid),{made:f.increment(1)});
+    t._u=now;t._legacy=false;
+    await b.commit();this.pushed[t.id]=j;
+  },
+  schedule(){
+    if(!accActive())return;clearTimeout(this.timer);
+    this.timer=setTimeout(()=>this.flush(),900);
+  },
+  flush(){
+    clearTimeout(this.timer);
+    this.chain=this.chain.then(async()=>{
+      if(!accActive())return;const c=await Live.core(),uid=ACCT.me.uid;
+      for(const t of S.tournaments){
+        if(t.owner!==uid||this.pushed[t.id]===undefined)continue;
+        const j=tj(t);if(this.pushed[t.id]===j)continue;
+        const now=Date.now();
+        try{await c.f.setDoc(this.ref(c,t.id),{json:j,name:String(t.name).slice(0,120),updated:now,legacy:!!t._legacy});this.pushed[t.id]=j;t._u=now;}
+        catch(e){console.warn('push',e);}
+      }
+      localSave();
+    }).catch(()=>{});
+    return this.chain;
+  },
+  async remove(id){if(!accActive()||this.pushed[id]===undefined)return;try{const c=await Live.core();await c.f.deleteDoc(this.ref(c,id));delete this.pushed[id];}catch(e){console.warn('del',e);}}
+};
+
+/* ---------- UI (sama dengan mockup yang disetujui) ---------- */
+function accBtn(){const u=accMe();return u?`<button class="accbtn in" data-act="acct" aria-label="Akun ${esc(u.name)}">${esc((u.name[0]||'?').toUpperCase())}${planOf(u)!=='free'?'<i class="dot"></i>':''}</button>`
+  :`<button class="accbtn" data-act="acct" aria-label="Masuk"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></button>`;}
+const PLAN_SLIDES=[
+  {k:'free',tag:'UNTUK MENCOBA',name:'Gratis',price:'Rp0',per:'selamanya',for:'Cocok untuk mabar sesekali.',items:['5 turnamen (total)','Live link untuk penonton','Spin wheel, doorprize, undi pasangan','Import peserta dari Reclub','Tersimpan di akun']},
+  {k:'org',tag:'UNTUK ORGANIZER KOMUNITAS',name:'Organizer',price:'Rp49.000',per:'/ bulan',for:'Cocok untuk komunitas yang main tiap minggu.',hot:true,items:['Turnamen tanpa batas','Semua fitur Gratis','Riwayat semua chapter','Ranking & statistik antar-chapter|segera','Logo komunitas di live link & PDF|segera','Tambah co-host|segera']},
+  {k:'venue',tag:'UNTUK VENUE & KLUB',name:'Venue',price:'Rp299.000',per:'/ bulan',for:'Cocok untuk venue yang rutin bikin event.',dark:true,items:['Semua fitur Organizer','Klasemen live di layar TV venue|segera','Beberapa organizer dalam 1 akun|segera','Branding venue & sponsor di spin wheel|segera','Rekap turnamen bulanan untuk promosi|segera']}
+];
+function planCarousel(cur,only){
+  const sl=PLAN_SLIDES.filter(x=>!only||only.includes(x.k));
+  const cta=x=>cur===x.k?`<span class="plan-pill ${PLANS[x.k].cls}" style="align-self:flex-start">PAKET KAMU SEKARANG</span>`:x.k==='free'?(cur?'':`<button class="btn ghost block" data-act="guest">Coba gratis</button>`):`<button class="btn primary block" data-act="buy" data-plan="${x.k}">Pilih ${x.name}</button>`;
+  return `<div class="pc"><div class="pc-track" id="pc-track" tabindex="0" aria-label="Pilihan paket, geser untuk melihat">${sl.map((x,i)=>`<article class="pc-slide${x.hot?' hot':''}${x.dark?' dark':''}" data-i="${i}" aria-label="Paket ${x.name}">${x.hot?'<span class="badge2">PALING COCOK</span>':''}
+    <span class="tagline">${x.tag}</span><h3>${x.name}</h3><div class="pr"><b>${x.price}</b><small>${x.per}</small></div><p class="for">${x.for}</p>
+    <ul>${x.items.map(t=>{const [a,b]=t.split('|');return `<li><span>${a}${b?'<i>SEGERA</i>':''}</span></li>`;}).join('')}</ul>${cta(x)}</article>`).join('')}</div>
+    ${sl.length>1?`<div class="pc-dots">${sl.map((x,i)=>`<button type="button" data-act="pc-go" data-i="${i}" aria-label="Paket ${x.name}" aria-current="${i===0}"></button>`).join('')}</div>`:''}</div>`;
+}
+function planCards(cur){return planCarousel(cur);}
+function admCount(){return ACCT.users.filter(x=>x.status==='pending'||(x.req&&x.status==='active')).length;}
+document.addEventListener('scroll',e=>{const tr=e.target;if(!tr||tr.id!=='pc-track')return;const w=tr.firstElementChild?tr.firstElementChild.offsetWidth+12:1;const i=Math.round(tr.scrollLeft/w);
+  document.querySelectorAll('.pc-dots button').forEach((b,j)=>b.setAttribute('aria-current',String(j===i)));},true);
+function renderAccount(){
+  const u=accMe();if(!u)return renderLanding();
+  const p=planOf(u),expired=u.plan!=='free'&&p==='free';
+  if(u.admin)return `<div class="acard"><span class="avatar">${esc((u.name[0]||'?').toUpperCase())}</span><span class="who"><b>${esc(u.name)}</b><small>${esc(u.email)}</small></span><span class="plan-pill venue">ADMIN</span></div>
+  <div class="adminnote">Akun admin tidak memakai paket dan kuota. Kelola pengguna lewat tab <b>Admin</b> di menu bawah.</div>
+  <button class="btn ghost block" data-act="logout">Keluar</button>`;
+  return `<div class="acard"><span class="avatar">${esc((u.name[0]||'?').toUpperCase())}</span><span class="who"><b>${esc(u.name)}</b><small>${esc(u.email)}</small></span><span class="plan-pill ${PLANS[p].cls}">${PLANS[p].label.toUpperCase()}</span></div>
+  ${quotaCard()}
+  <div class="statusbox"><small>STATUS PAKET</small><b>${p==='free'?(u.req?'Menunggu konfirmasi':'Gratis'):PLANS[p].label+' aktif'}</b>
+    <span>${p!=='free'?`Berlaku sampai ${fmtD(u.until)}`:u.req?`Permintaan paket ${PLANS[u.req.plan].label} sudah terkirim. Admin akan menghubungimu untuk pembayaran, lalu paket diaktifkan.`:expired?`Paket ${PLANS[u.plan].label} berakhir ${fmtD(u.until)}. Datamu tetap aman; perpanjang untuk membuka fiturnya lagi.`:'Semua fitur gratis bisa dipakai. Upgrade untuk turnamen tanpa batas dan fitur Organizer.'}</span></div>
+  <div class="field"><span class="lbl">${p==='free'?'Pilih paket':'Paket'}</span>${planCards(p)}</div>
+  <button class="btn ghost block" data-act="logout">Keluar</button>`;
+}
+function renderAdmin(){
+  const u=accMe();if(!u||!u.admin)return '<p class="note">Halaman ini hanya untuk admin TMP.</p>';
+  const all=ACCT.users,q=(window._admQ||'').toLowerCase(),regs=all.filter(x=>x.status==='pending'),pays=all.filter(x=>x.req&&x.status==='active');
+  const others=all.filter(x=>!x.admin&&x.status!=='pending'&&!x.req&&(!q||x.email.toLowerCase().includes(q)||x.name.toLowerCase().includes(q)));
+  const sel=x=>`<select id="ap-${x.uid}" aria-label="Paket untuk ${esc(x.email)}"><option value="org" ${(x.req?x.req.plan:x.plan)==='org'?'selected':''}>Organizer</option><option value="venue" ${(x.req?x.req.plan:x.plan)==='venue'?'selected':''}>Venue</option></select>
+      <select id="ad-${x.uid}" aria-label="Durasi untuk ${esc(x.email)}"><option value="30">30 hari</option><option value="90">90 hari</option><option value="365">1 tahun</option></select>`;
+  const regRow=x=>`<div class="adminrow"><div class="l1"><b>${esc(x.name)}</b><span class="plan-pill wait">PENDAFTAR BARU</span></div><small>${esc(x.email)} · daftar ${esc(fmtDT(x.joined))}</small>
+    <div class="acts"><button class="btn primary sm" data-act="adm-approve" data-u="${x.uid}">Setujui</button><button class="btn ghost sm" data-act="adm-reject" data-u="${x.uid}">Tolak</button></div></div>`;
+  const payRow=x=>`<div class="adminrow"><div class="l1"><b>${esc(x.name)}</b><span class="plan-pill wait">MINTA ${PLANS[x.req.plan].label.toUpperCase()}</span></div><small>${esc(x.email)} · ${esc(fmtDT(x.req.at))} · ${x.made||0}/${FREE_LIMIT} turnamen gratis terpakai</small>
+    <div class="acts">${sel(x)}<button class="btn primary sm" data-act="adm-on" data-u="${x.uid}">Aktifkan</button><button class="btn ghost sm" data-act="adm-no" data-u="${x.uid}">Tolak</button></div></div>`;
+  const row=x=>{const p=planOf(x),exp=x.plan!=='free'&&p==='free',bl=x.status==='blocked';return `<div class="adminrow"><div class="l1"><b>${esc(x.name)}</b><span class="plan-pill ${bl?'block':PLANS[p].cls}">${bl?'DIBLOKIR':PLANS[p].label.toUpperCase()}</span></div>
+    <small>${esc(x.email)}${p!=='free'?' · aktif s.d. '+fmtD(x.until):exp?' · paket berakhir '+fmtD(x.until):''} · ${x.made||0} turnamen${p==='free'?' dari '+FREE_LIMIT:''}</small>
+    <div class="acts">${bl?`<button class="btn ghost sm" data-act="adm-unblock" data-u="${x.uid}">Buka blokir</button>`:`${sel(x)}<button class="btn primary sm" data-act="adm-on" data-u="${x.uid}">${p!=='free'?'Perpanjang':'Aktifkan'}</button>${p!=='free'?`<button class="btn ghost sm" data-act="adm-off" data-u="${x.uid}">Cabut</button>`:''}<button class="btn ghost sm" data-act="adm-block" data-u="${x.uid}">Blokir</button>`}</div></div>`;};
+  return `<section class="hero"><span class="brush">ADMIN</span><h1>Kelola pengguna.</h1><p class="muted" style="margin:0">Setujui pendaftar baru, aktifkan paket setelah pembayaran dicek, dan blokir akun bermasalah.</p></section>
+  <label class="switchrow" for="adm-beta"><span><b>Mode beta tertutup</b><small>${ACCT.beta?'Menyala: pendaftar baru menunggu persetujuanmu.':'Mati: pendaftar baru langsung aktif dengan 5 turnamen gratis.'}</small></span><span class="switch"><input type="checkbox" id="adm-beta" ${ACCT.beta?'checked':''}><span></span></span></label>
+  <div class="field"><span class="lbl">Pendaftar baru (${regs.length})</span>${regs.length?regs.map(regRow).join(''):`<p class="note">${ACCT.beta?'Belum ada pendaftar baru.':'Mode beta mati, pendaftar baru langsung aktif.'}</p>`}</div>
+  <div class="field"><span class="lbl">Permintaan paket (${pays.length})</span>${pays.length?pays.map(payRow).join(''):'<p class="note">Tidak ada permintaan paket.</p>'}</div>
+  <div class="field"><label for="adm-q">Pengguna aktif (${all.filter(x=>!x.admin&&x.status!=='pending'&&!x.req).length})</label><input class="input" id="adm-q" placeholder="Cari email atau nama" value="${esc(window._admQ||'')}" autocomplete="off"></div>
+  <div class="elist">${others.map(row).join('')||'<p class="note">Tidak ada akun yang cocok.</p>'}</div>`;
+}
+let LDEMO=null;
+function landingDemo(){
+  if(LDEMO)return LDEMO;
+  const d=newDraft();d.name='Mabar Jumat Malam';d.type='team-americano';d.scoring='point';d.total=21;d.courts=4;d.order='keep';d.roundsMode='n';d.roundsN=7;
+  d.entries=['Andi & Bima','Citra & Dodi','Eka & Fajar','Gita & Hani','Indra & Joko','Kiki & Lala','Mira & Nando','Oki & Putri'].map(n=>({id:uid(),name:n,g:'M'}));
+  const t=createFromDraft(d);const sc=[[14,7],[12,9],[9,12],[15,6],[11,10],[8,13],[13,8],[10,11],[16,5],[7,14],[12,9],[11,10],[6,15],[13,8],[10,11],[14,7]];let i=0;
+  t.rounds.slice(0,4).forEach(r=>r.matches.forEach(m=>{const x=sc[i++%sc.length];m.sa=String(x[0]);m.sb=String(x[1]);}));
+  t.sample=true;return LDEMO=t;
+}
+function renderLanding(){
+  const t=landingDemo(),st=computeStats(t).slice(0,4);
+  return `<div class="landing">
+  <section class="lhero"><h1>Kamu main, TMP yang ngitung.</h1>
+    <p>Jadwal adil, klasemen langsung jadi.</p>
+    <div class="ctas"><button class="btn primary block" data-act="guest">Coba gratis</button><button class="gbtn" data-act="login-go">${GICON} Masuk dengan Google</button></div></section>
+  <div class="lshow"><div class="spread"><span><small>BEGINI YANG DILIHAT PENONTONMU</small><b>${esc(t.name)}</b></span><span class="live">● LIVE</span></div>
+    ${boardTable(t,st)}
+    <button class="btn ghost block" data-act="demo-live">Lihat Live Lengkap</button></div></div>`;
+}
+function renderGate(){
+  const u=accMe();
+  if(u.status==='blocked')return `<div class="gate"><span class="big">${LOCK.replace(/10/g,'30')}</span><h1>Akun tidak aktif</h1><p class="muted" style="margin:0">Akun ${esc(u.email)} belum bisa memakai TMP. Hubungi admin lewat Instagram @temanmainpadelmu kalau menurutmu ini keliru.</p>
+    <button class="btn ghost block" data-act="logout">Keluar</button></div>`;
+  return `<div class="gate"><span class="big"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+    <h1>Akunmu menunggu persetujuan</h1><p class="muted" style="margin:0">TMP sedang dalam beta tertutup. Admin akan mengecek pendaftaranmu, biasanya kurang dari 1×24 jam. Halaman ini otomatis berubah begitu disetujui, dan kamu langsung dapat 5 turnamen gratis.</p>
+    <div class="acard" style="text-align:left"><span class="avatar">${esc((u.name[0]||'?').toUpperCase())}</span><span class="who"><b>${esc(u.name)}</b><small>${esc(u.email)}</small></span><span class="plan-pill wait">MENUNGGU</span></div>
+    <p class="muted" style="margin:0;font-size:13px">Butuh cepat? Hubungi admin lewat Instagram @temanmainpadelmu.</p>
+    <button class="btn ghost block" data-act="logout">Keluar</button></div>`;
+}
+function quotaCard(){
+  if(isGuest()){const n=S.tournaments.filter(t=>t.owner==='guest').length,lg=legacyLocal().length;
+    return `<div class="quota"><div class="q1"><b>Mode tamu</b><button class="btn primary sm" data-act="login">Masuk</button></div><small>${lg?`Ada ${lg} turnamen lama di HP ini. Masuk untuk memindahkannya ke akunmu. `:''}${n?'Turnamenmu hanya tersimpan di HP ini. Masuk untuk membagikan live link, menyimpan riwayat, dan membuat turnamen berikutnya.':'Coba buat 1 turnamen tanpa login. Masuk untuk membagikan live link dan menyimpan riwayat.'}</small></div>`;}
+  const u=accMe();if(!u)return '';const p=planOf(u);
+  if(u.admin)return '';
+  if(p!=='free')return `<div class="quota"><div class="q1"><b>${PLANS[p].label} aktif</b><span class="plan-pill ${PLANS[p].cls}">TANPA BATAS</span></div><small>Berlaku sampai ${fmtD(u.until)} · ${u.made||0} turnamen dibuat</small></div>`;
+  const used=Math.min(u.made||0,FREE_LIMIT),left=FREE_LIMIT-used;
+  return `<div class="quota${left===0?' full':left===1?' warn':''}"><div class="q1"><b>Paket Gratis · ${used} dari ${FREE_LIMIT} turnamen terpakai</b><button class="btn ${left<=1?'primary':'ghost'} sm" data-act="go-plans">Upgrade</button></div>
+    <span class="bar3"><i style="width:${used/FREE_LIMIT*100}%"></i></span><small>${left===0?'Kuota gratis habis. Turnamenmu tetap bisa dibuka; upgrade untuk membuat turnamen baru.':left===1?'Sisa 1 turnamen gratis.':`Sisa ${left} turnamen gratis.`}</small></div>`;
+}
+function quotaSheet(){
+  openSheet('upsell',`<div><span class="plan-pill org">${LOCK} KUOTA GRATIS HABIS</span><h2 style="font-weight:700;font-size:20px;margin-top:8px">Kamu sudah memakai 5 turnamen gratis</h2><p class="help">Turnamen yang sudah ada tetap bisa dibuka, diisi skor, dan dibagikan. Upgrade untuk membuat turnamen baru tanpa batas.</p></div>
+  ${planCarousel(null,['org','venue'])}
+  <button class="btn ghost block" data-act="sheetclose">Nanti saja</button>`);
+}
+function loginSheet(reason){
+  openSheet('login',`<div><h2 style="font-weight:700;font-size:20px">${reason?esc(reason):'Masuk ke TMP'}</h2><p class="help">${reason?'Gratis. Turnamen yang sudah kamu buat ikut pindah ke akunmu.':'Pakai akun Google, tanpa password baru.'}</p></div>
+  <button class="gbtn" data-act="login-go">${GICON} Masuk dengan Google</button>`);
+}
+function upgradeSheet(plan){
+  const P=PLANS[plan];
+  openSheet('pay',`<div><span class="plan-pill ${P.cls}">${P.label.toUpperCase()}</span><h2 style="font-weight:700;font-size:20px;margin-top:8px">Minta paket ${P.label}</h2><p class="help">Admin TMP akan menghubungimu untuk cara bayar. Setelah pembayaran dicek, paket langsung aktif di akunmu.</p></div>
+  <div class="wactions"><button class="btn ghost" data-act="sheetclose">Nanti</button><button class="btn primary" data-act="reqplan" data-plan="${plan}">Kirim permintaan</button></div>`);
+}
+function upsellSheet(f){
+  const F=PRO_F[f];
+  openSheet('upsell',`<div><span class="plan-pill org">${LOCK} ORGANIZER</span><h2 style="font-weight:700;font-size:20px;margin-top:8px">${F.t}</h2><p class="help">${F.d}</p></div>
+  <p class="note">${accMe()?'Fitur ini akan tersedia di paket Organizer dan Venue.':'Masuk dulu, lalu pilih paket Organizer atau Venue.'}</p>
+  <div class="wactions"><button class="btn ghost" data-act="sheetclose">Nanti</button><button class="btn primary" data-act="${accMe()?'go-plans':'login'}">${accMe()?'Lihat paket':'Masuk dengan Google'}</button></div>`);
+}
+async function admUpdate(uid,data,msg){
+  try{const c=await Live.core();await c.f.updateDoc(c.f.doc(c.db,'users',uid),data);if(msg)toast(msg);}
+  catch(e){console.warn('admin',e);toast('Gagal menyimpan ('+(e.code||'error')+')');}
+}
+function accAction(a,el){
+  const xu=el.dataset.u&&ACCT.users.find(x=>x.uid===el.dataset.u);
+  switch(a){
+    case 'acct':if(!accMe()){loginSheet();return false;}prevView=view==='account'||view==='admin'?prevView:view;goView('account');return false;
+    case 'login':loginSheet();return false;
+    case 'login-go':doLogin();return false;
+    case 'guest':closeSheet();lsSet(GUEST_KEY,'1');goView('home');return false;
+    case 'demo-live':liveT=landingDemo();liveViewId='contoh';liveState='live';tab='board';selRound=Math.min(3,liveT.rounds.length-1);view='live';render();window.scrollTo(0,0);return false;
+    case 'demo-exit':liveT=null;liveViewId=null;view='landing';render();window.scrollTo(0,0);return false;
+    case 'logout':closeSheet();doLogout();return false;
+    case 'new':{if(isGuest()&&S.tournaments.some(t=>t.owner==='guest')){loginSheet('Masuk untuk membuat turnamen berikutnya');return false;}const u=accMe();if(u&&quotaLeft(u)<=0){quotaSheet();return false;}return true;}
+    case 'live':{if(isGuest()){menuOpen=false;render();loginSheet('Masuk untuk membagikan live link');return false;}return true;}
+    case 'buy':closeSheet();if(!accMe()){loginSheet();return false;}upgradeSheet(el.dataset.plan);return false;
+    case 'reqplan':{(async()=>{try{const c=await Live.core();await c.f.updateDoc(c.f.doc(c.db,'users',accMe().uid),{req:{plan:el.dataset.plan,at:c.f.serverTimestamp()}});closeSheet();toast('Permintaan terkirim. Admin akan menghubungimu.');}catch(e){toast('Gagal mengirim ('+(e.code||'error')+')');}})();return false;}
+    case 'pro':{menuOpen=false;render();if(accPaid())toast('Fitur ini segera hadir di paketmu.');else upsellSheet(el.dataset.f);return false;}
+    case 'go-plans':closeSheet();prevView=view;goView('account');return false;
+    case 'admin':if(!(accMe()&&accMe().admin))return false;prevView=view==='admin'?prevView:view;goView('admin');return false;
+    case 'pc-go':{const tr=document.getElementById('pc-track');const sl=tr&&tr.children[+el.dataset.i];if(sl)tr.scrollTo({left:sl.offsetLeft-tr.offsetLeft,behavior:'smooth'});return false;}
+    case 'adm-approve':admUpdate(xu.uid,{status:'active'},`${xu.name} disetujui · 5 turnamen gratis`);return false;
+    case 'adm-reject':admUpdate(xu.uid,{status:'blocked'},`Pendaftaran ${xu.name} ditolak`);return false;
+    case 'adm-block':admUpdate(xu.uid,{status:'blocked'},`${xu.name} diblokir`);return false;
+    case 'adm-unblock':admUpdate(xu.uid,{status:'active'},`Blokir ${xu.name} dibuka`);return false;
+    case 'adm-no':admUpdate(xu.uid,{req:null},`Permintaan ${xu.name} ditolak`);return false;
+    case 'adm-off':admUpdate(xu.uid,{plan:'free',until:null},`Paket ${xu.name} dicabut`);return false;
+    case 'adm-on':{(async()=>{const pl=document.getElementById('ap-'+xu.uid).value,dur=+document.getElementById('ad-'+xu.uid).value;
+      const base=planOf(xu)!=='free'&&xu.plan===pl?new Date(xu.until):new Date();base.setDate(base.getDate()+dur);
+      const c=await Live.core();await admUpdate(xu.uid,{plan:pl,until:c.f.Timestamp.fromDate(base),req:null},`${xu.name}: ${PLANS[pl].label} aktif s.d. ${fmtD(base)}`);})();return false;}
+  }
+  return true;
+}
+document.addEventListener('change',e=>{if(e.target.id==='adm-beta'){const v=e.target.checked;(async()=>{try{const c=await Live.core();await c.f.setDoc(c.f.doc(c.db,'config','app'),{beta:v});toast(v?'Mode beta tertutup menyala':'Mode beta tertutup mati: pendaftar baru langsung aktif');}catch(err){toast('Gagal menyimpan ('+(err.code||'error')+')');render();}})();}});
+document.addEventListener('input',e=>{if(e.target.id==='adm-q'){window._admQ=e.target.value;const pos=e.target.selectionStart;render();const i=document.getElementById('adm-q');if(i){i.focus();i.setSelectionRange(pos,pos);}}});
+
 /* ---------- Events ---------- */
 function addEntries(){
   const ta=document.getElementById('f-entry');if(!ta)return;
@@ -1833,6 +2313,8 @@ function commitEdit(){
 }
 function goView(v){if(spin)return;view=v;menuOpen=false;confirmKey=null;render();window.scrollTo(0,0);}
 function goBack(){
+  if(view==='admin')return goView('home');
+  if(view==='account')return goView(prevView&&prevView!=='account'&&prevView!=='admin'&&(prevView!=='tour'||cur())&&(prevView!=='wheel'||wheelObj())?prevView:'home');
   if(view==='create'&&prevView==='wheel'&&wheelObj()){draft=null;return goView('wheel');}
   if(view==='wheel')return goView(prevView==='tour'&&cur()?'tour':'wheels');
   goView('home');
@@ -1841,6 +2323,7 @@ document.addEventListener('click',e=>{
   userNavigated=true;
   if(menuOpen&&!e.target.closest('.menu')){menuOpen=false;render();if(!e.target.closest('[data-act],[data-tab]'))return;}
   const el=e.target.closest('[data-act],[data-seg],[data-tab]');if(!el)return;
+  if(el.dataset.act==='demo-exit'){accAction('demo-exit',el);return;}
   if(view==='live'){
     if(el.dataset.tab){tab=el.dataset.tab;render();window.scrollTo(0,0);return;}
     const a=el.dataset.act,t=liveT;if(!t)return;
@@ -1852,6 +2335,7 @@ document.addEventListener('click',e=>{
   }
   if(el.dataset.act&&el.dataset.act.startsWith('rc')){if(!rcAction(el.dataset.act,el))return;}
   if(el.dataset.act&&/^(wnew|wtpl|wsrc|wd[a-z-]+|wp[a-z-]+)$/.test(el.dataset.act)&&!/^(wdel|wdel-yes)$/.test(el.dataset.act)){if(!wAction(el.dataset.act,el))return;}
+  if(STANDALONE&&el.dataset.act&&/^(pc-go|guest|demo-live|demo-exit|live|acct|login|login-go|logout|buy|reqplan|pro|go-plans|admin|adm-on|adm-no|adm-off|adm-approve|adm-reject|adm-block|adm-unblock|new)$/.test(el.dataset.act)){if(!accAction(el.dataset.act,el))return;}
   if(el.dataset.act==='hometop'){window.scrollTo({top:0,behavior:'smooth'});return;}
   if(el.dataset.act==='tolist'){const x=document.getElementById('tlist');if(x)x.scrollIntoView({behavior:'smooth',block:'start'});return;}
   if(el.dataset.act==='sharelink'){const u=location.origin+location.pathname;const d={title:'TMP · Teman Main Padelmu',text:'Bikin turnamen padel bareng, skor otomatis masuk klasemen.',url:u};
@@ -1919,7 +2403,7 @@ document.addEventListener('click',e=>{
     case 'cancel':confirmKey=null;render();break;
     case 'reopen':t.finished=false;menuOpen=false;save();render();break;
     case 'askdel':menuOpen=false;confirmKey='del';render();window.scrollTo(0,0);break;
-    case 'del-yes':S.tournaments=S.tournaments.filter(x=>x.id!==t.id);(S.deleted=S.deleted||[]).push(t.id);save();toast('Turnamen dihapus');goView('home');break;
+    case 'del-yes':if(typeof CT!=='undefined')CT.remove(t.id);S.tournaments=S.tournaments.filter(x=>x.id!==t.id);(S.deleted=S.deleted||[]).push(t.id);save();toast('Turnamen dihapus');goView('home');break;
     case 'wheels':prevView='home';goView('wheels');break;
     case 'wnew':{S.wheels=S.wheels||[];const w={id:uid(),name:'Roda baru',items:['Servis duluan','Pilih sisi','Traktir minum','Push up 10x'],removeWinner:false,hist:[],rot:0};S.wheels.unshift(w);save();curWheel=w.id;prevView='wheels';goView('wheel');break;}
     case 'wopen':curWheel=el.dataset.id;prevView='wheels';goView('wheel');break;
@@ -1982,7 +2466,8 @@ document.addEventListener('submit',e=>{
   e.preventDefault();if(view!=='create')return;
   if(document.getElementById('f-entry')?.value.trim())addEntries();
   formErr=validate(draft);if(formErr){render();document.querySelector('.err')?.scrollIntoView({block:'center'});return;}
-  try{const t=createFromDraft(draft);S.tournaments.push(t);save();curId=t.id;tab='rounds';selRound=0;goView('tour');toast('Jadwal siap, selamat main!');}
+  if(STANDALONE){const u=accMe();if(u&&quotaLeft(u)<=0){quotaSheet();return;}if(isGuest()&&S.tournaments.some(t=>t.owner==='guest')){loginSheet('Masuk untuk membuat turnamen berikutnya');return;}}
+  try{const t=createFromDraft(draft);if(STANDALONE)t.owner=ownerKey();S.tournaments.push(t);save();if(STANDALONE&&accActive()){const left=quotaLeft(accMe());CT.create(t).then(()=>{CT.schedule();if(left===2)setTimeout(()=>toast('Sisa 1 turnamen gratis'),2600);}).catch(e=>{console.warn('create',e);toast(e.code==='permission-denied'?'Kuota gratis habis: turnamen ini hanya tersimpan di HP ini':'Turnamen belum tersimpan di akun. Coba lagi saat online.');});}curId=t.id;tab='rounds';selRound=0;goView('tour');toast('Jadwal siap, selamat main!');}
   catch(err){formErr=err.message;render();}
 });
 
@@ -2081,8 +2566,10 @@ function enterLiveFromHash(){
   Live.watch(liveViewId).catch(()=>{liveState='error';render();});
   return true;
 }
+if(STANDALONE){const cm=ACCT.loadCache();if(cm){ACCT.me=cm;ACCT.state='cached';}}
 if(!enterLiveFromHash())restoreLast();
 render();
+if(STANDALONE)ACCT.initP=accInit();
 if(view!=='live')Cloud.init();
 window.addEventListener('hashchange',()=>{if(enterLiveFromHash())render();});
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')Cloud.schedule(0);else Cloud.refresh();});
