@@ -451,6 +451,43 @@ h1,h2,.bar-title,.rnav h2,.sech h2,.ttitle h1{font-family:var(--f-brush);letter-
 .rcrowh button{border:0;background:transparent;color:#8A5A12;font-weight:700;font-size:13px;padding:6px}
 .rcbtns{display:flex;gap:8px}.rcbtns .btn{flex:1}
 
+/* ===== Spin wheel: templates, doorprize, undi pasangan ===== */
+.tplgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.tpl{display:flex;flex-direction:column;align-items:flex-start;gap:6px;text-align:left;background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:14px;color:var(--cream);min-height:118px}
+.tpl:active,.tpl:focus-visible{border-color:var(--tan)}
+.tpl .ic{width:36px;height:36px;border-radius:10px;background:var(--box);color:var(--tan);display:grid;place-items:center}
+.tpl .ic svg{width:20px;height:20px}
+.tpl b{font-family:var(--f-brush);font-weight:700;font-size:15px}
+.tpl small{font-size:12px;color:var(--muted);line-height:1.35}
+.tpl.wide{grid-column:1/-1;min-height:0;flex-direction:row;align-items:center;gap:12px}
+.srcopt{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:12px 14px;color:var(--cream)}
+.srcopt b{display:block;font-weight:700}
+.srcopt small{color:var(--muted);font-size:12px}
+.wkind{display:inline-flex;align-items:center;gap:6px;font:500 10px "DM Mono",ui-monospace,monospace;letter-spacing:.1em;color:#8A5A12;background:rgb(217 164 65 / .18);border-radius:999px;padding:4px 10px;align-self:flex-start}
+.srcbar{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px 12px}
+.srcbar .tx{flex:1;min-width:0;font-size:13px;color:var(--muted)}
+.srcbar .tx b{color:var(--cream);display:block;font-size:14px;overflow-wrap:anywhere}
+.prizebar{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--box);color:#F6F3EE;border-radius:14px;padding:12px 14px}
+.prizebar small{display:block;font:500 10px "DM Mono",ui-monospace,monospace;letter-spacing:.1em;color:var(--tan)}
+.prizebar b{font-family:var(--f-brush);font-size:18px;overflow-wrap:anywhere}
+.prizebar span.n{font:500 12px "DM Mono",ui-monospace,monospace;color:#BFAF9A;flex:none}
+.wactions{display:flex;gap:8px}.wactions .btn{flex:1}
+.winlist{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.winrow{display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:10px;align-items:center;padding:10px 12px;border-top:1px solid var(--line)}
+.winrow:first-child{border-top:0}
+.winrow .n{font:500 12px "DM Mono",ui-monospace,monospace;color:#8A5A12}
+.winrow b{display:block;overflow-wrap:anywhere}
+.winrow small{color:var(--muted);font-size:12px}
+.winrow time{font:500 11px "DM Mono",ui-monospace,monospace;color:var(--muted)}
+.winrow.void b{text-decoration:line-through;color:var(--muted)}
+.pairgrid{display:flex;flex-direction:column;gap:6px}
+.pairrow{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.pairrow .n{font:500 12px "DM Mono",ui-monospace,monospace;color:#8A5A12;width:22px;flex:none}
+.pairrow b{flex:1;min-width:0;overflow-wrap:anywhere}
+.pairrow.pending{border:1.5px dashed var(--tan);background:rgb(217 164 65 / .08)}
+.pairrow.pending i{color:var(--muted);font-style:normal}
+.poolnote{font-size:13px;color:var(--muted);text-align:center}
+
 /* ===== B · Tiket Main — HOME ONLY (body.v-home) ===== */
 body.v-home{--hb:#F6F3EE;--hink:#231A13;--hmut:#6F604F;--hgold:#D9A441;--hline:#E3DBCF;--hmono:"DM Mono",ui-monospace,monospace;--hdisp:"Bricolage Grotesque",system-ui,sans-serif;
   background:var(--hb);color:var(--hink);font-family:"Instrument Sans",system-ui,-apple-system,sans-serif}
@@ -514,7 +551,7 @@ body.v-home .bnav button[aria-selected="true"]{font-weight:700;color:var(--hink)
 <script>
 const LOGO_SRC='data:image/webp;base64,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';
 const KEY='tmp.v2';
-const APP_V='v11 · 3 Nov 2026';
+const APP_V='v12 · 4 Nov 2026';
 const FORMATS={
   'americano':{label:'Americano',group:'Americano',family:'americano',kind:'ind',desc:'Main bareng dan melawan semua orang secara bergiliran. Skor dihitung per pemain.'},
   'team-americano':{label:'Team Americano',group:'Americano',family:'americano',kind:'team',desc:'Tim tetap. Setiap tim bergiliran melawan semua tim lain.'},
@@ -1128,6 +1165,7 @@ function renderTour(){
         <a href="${waLink(t)}" target="_blank" rel="noopener">${I.share} Kirim klasemen ke WA</a>
         <button data-act="copy">${I.list} Salin klasemen</button>
         <button data-act="wheel-from">${I.wheel} Spin wheel peserta</button>
+        <button data-act="wdoor-from">${I.wheel} Doorprize dari peserta hadir</button>
         <button data-act="togglepriv">${I.eye} Klasemen privat: ${t.hidePublic?'Aktif':'Nonaktif'}</button>
         <hr>
         ${t.finished?`<button data-act="reopen">${I.left} Buka lagi turnamen</button>`:''}
@@ -1254,7 +1292,7 @@ function refreshLive(card){
 }
 
 /* ---------- Bottom sheets: simulation & participants ---------- */
-function openSheet(kind,html){sheetKind=kind;document.body.style.overflow='hidden';document.getElementById('sheet').innerHTML=`<div class="sheet-bg" data-act="sheetclose"></div><div class="sheet" role="dialog" aria-label="${kind==='sim'?'Simulasi jadwal':kind==='swap'?'Ganti pemain':kind==='live'?'Link live':kind==='reclub'?'Import dari Reclub':'Peserta'}"><div class="sheet-in"><div class="grab"></div>${html}</div></div>`;}
+function openSheet(kind,html){sheetKind=kind;document.body.style.overflow='hidden';document.getElementById('sheet').innerHTML=`<div class="sheet-bg" data-act="sheetclose"></div><div class="sheet" role="dialog" aria-label="${kind==='sim'?'Simulasi jadwal':kind==='swap'?'Ganti pemain':kind==='live'?'Link live':kind==='reclub'?'Import dari Reclub':kind==='wtpl'?'Buat roda baru':'Peserta'}"><div class="sheet-in"><div class="grab"></div>${html}</div></div>`;}
 function closeSheet(){
   if(sheetKind==='sim')stopSim();
   const wasRoster=sheetKind==='roster';if(sheetKind==='reclub')rc=null;
@@ -1584,11 +1622,13 @@ function renderWheels(){
   const ws=S.wheels||[];
   return `<section class="hero"><span class="brush">SPIN WHEEL</span><h1>Undi siapa duluan.</h1><p class="muted" style="margin:0">Buat roda sendiri untuk servis pertama, bagi tim, hukuman yang kalah, atau doorprize.</p></section>
   <button class="btn primary block" data-act="wnew">+ Buat roda baru</button>
-  <div class="wlist">${ws.length?ws.map(w=>`<button class="titem" data-act="wopen" data-id="${w.id}"><span class="badge">${I.wheel}</span><span class="meta"><span class="name">${esc(w.name)}</span><span class="sub">${w.items.length} pilihan${w.last?' · terakhir: '+esc(w.last):''}</span></span></button>`).join('')
+  <div class="wlist">${ws.length?ws.map(w=>`<button class="titem" data-act="wopen" data-id="${w.id}"><span class="badge">${I.wheel}</span><span class="meta"><span class="name">${esc(w.name)}</span><span class="sub">${wheelSub(w)}</span></span></button>`).join('')
     :'<div class="card muted" style="text-align:center">Belum ada roda. Buat satu, atau buka turnamen lalu pilih Spin wheel peserta di menu.</div>'}</div>`;
 }
 function renderWheel(){
   const w=wheelObj();
+  if(w.kind==='doorprize')return renderDoorprize(w);
+  if(w.kind==='pairs')return renderPairs(w);
   return `<div class="field"><label for="w-name">Nama roda</label><input class="input" id="w-name" value="${esc(w.name)}" autocomplete="off"></div>
   <div class="wheelbox"><div class="pointer"></div><canvas id="wcanvas" width="680" height="680" aria-label="Roda undian dengan ${w.items.length} pilihan"></canvas><div class="hub">${logoImg(80).replace('class="logo"','')}</div></div>
   <div class="result" id="wresult">${w.last?`<span class="hand">Hasil terakhir</span><span class="pill">${esc(w.last)}</span>`:'<span class="muted">Tekan Putar untuk mengundi.</span>'}</div>
@@ -1618,7 +1658,7 @@ function drawWheel(){
   ctx.restore();
 }
 function doSpin(){
-  const w=wheelObj();if(!w||w.items.length<2||spin)return;
+  const w=wheelObj();if(!w||w.items.length<(w.kind==='pairs'?1:2)||spin)return;
   const n=w.items.length,seg=2*Math.PI/n,idx=Math.floor(Math.random()*n),a=idx*seg+seg*(.15+.7*Math.random());
   const start=w.rot||0,TAU=2*Math.PI,base=((-a-start)%TAU+TAU)%TAU,end=start+TAU*6+base;
   const reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches,dur=reduce?500:4200,t0=performance.now();
@@ -1626,7 +1666,7 @@ function doSpin(){
   document.getElementById('wresult').innerHTML='<span class="hand">Memutar…</span>';
   const step=now=>{const p=Math.min(1,(now-t0)/dur),e=1-Math.pow(1-p,4);spin.rot=start+(end-start)*e;drawWheel();
     if(p<1){requestAnimationFrame(step);return;}
-    w.rot=end%TAU;spin=null;const win=w.items[idx];w.last=win;(w.hist=w.hist||[]).push(win);
+    w.rot=end%TAU;spin=null;const win=w.items[idx];w.last=win;(w.hist=w.hist||[]).push(win);if(wAfterSpin(w,idx,win))return;
     let extra='';if(w.removeWinner){w.items.splice(idx,1);extra=`<span class="help">Dihapus dari roda. Sisa ${w.items.length} pilihan.</span>`;}
     save();document.getElementById('wresult').innerHTML=`<span class="hand">Terpilih</span><span class="pill">${esc(win)}</span>${extra}`;
     if(w.removeWinner){const ta=document.getElementById('w-items');if(ta)ta.value=w.items.join('\n');const lb=document.querySelector('label[for="w-items"]');if(lb)lb.textContent=`Pilihan (${w.items.length})`;}
@@ -1638,6 +1678,144 @@ function wheelFromTournament(){
   let w=S.wheels.find(x=>x.src===t.id);const items=present(t).map(e=>e.name).slice(0,60);
   if(!w){w={id:uid(),src:t.id,name:t.name+' · Peserta',items,removeWinner:false,hist:[],rot:0};S.wheels.unshift(w);}else w.items=items;
   save();curWheel=w.id;prevView='tour';view='wheel';confirmKey=null;render();window.scrollTo(0,0);
+}
+
+
+/* ---------- Spin wheel: templates, doorprize, undi pasangan ---------- */
+const WTPL={
+  doorprize:{name:'Doorprize',kind:'doorprize',desc:'Undi dari peserta yang hadir. Pemenang tidak bisa menang dua kali.'},
+  pairs:{name:'Undi pasangan',kind:'pairs',desc:'Pasangkan pemain secara acak, lalu jadikan daftar tim turnamen.'},
+  serve:{name:'Servis duluan',kind:'basic',items:['Tim kiri','Tim kanan'],desc:'Pengganti lempar raket. Yang terpilih memilih servis atau sisi.'},
+  punish:{name:'Hukuman yang kalah',kind:'basic',items:['Traktir minum','Squat 10x','Pose foto bebas','Bawa bola minggu depan','Pakai bandana pink','Bebas hukuman'],desc:'Untuk tim yang kalah atau posisi terbawah klasemen.'},
+  rules:{name:'Aturan kejutan',kind:'basic',items:['Servis bawah saja','Tanpa smash','Hanya boleh lob','Poin dobel 3 menit terakhir','Ganti tangan','Normal, tanpa aturan'],desc:'Satu aturan seru untuk ronde berikutnya.'},
+  blank:{name:'Roda kosong',kind:'basic',items:[],desc:'Isi pilihan sendiri.'}
+};
+const WIC={
+  doorprize:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12h18M12 8c-2-4-6-4-6-1.5S9 8 12 8zm0 0c2-4 6-4 6-1.5S15 8 12 8z"/></svg>',
+  pairs:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><path d="M2 20c0-3 3-5 6-5s6 2 6 5M10 20c0-3 3-5 6-5s6 2 6 5"/></svg>',
+  serve:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M5.5 6c3 2 3 10 0 12M18.5 6c-3 2-3 10 0 12"/></svg>',
+  punish:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h8l-1 9H9zM9 12l-1 9h8l-1-9"/></svg>',
+  rules:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg>',
+  blank:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>'
+};
+let wNewKind=null;
+function wheelSub(w){
+  if(w.kind==='doorprize'){const ok=(w.wins||[]).filter(x=>!x.void).length;return `Doorprize · ${ok} pemenang · sisa ${w.items.length} peserta`;}
+  if(w.kind==='pairs'){return `Undi pasangan · ${(w.pairs||[]).length} pasangan · sisa ${wPool(w).length} pemain`;}
+  return `${w.items.length} pilihan${w.last?' · terakhir: '+esc(w.last):''}`;
+}
+function wTplSheet(){
+  wNewKind=null;
+  const card=k=>{const t=WTPL[k];return `<button type="button" class="tpl${k==='blank'?' wide':''}" data-act="wtpl" data-k="${k}"><span class="ic">${WIC[k]}</span><span style="display:flex;flex-direction:column;gap:4px"><b>${t.name}</b><small>${t.desc}</small></span></button>`;};
+  openSheet('wtpl',`<div><h2 style="font-weight:700;font-size:20px">Pilih jenis roda</h2><p class="help">Template bisa diubah isinya setelah dibuat.</p></div>
+  <div class="tplgrid">${['doorprize','pairs','serve','punish','rules','blank'].map(card).join('')}</div>`);
+}
+function wSrcSheet(kind){
+  wNewKind=kind;const ts=S.tournaments.slice().sort((a,b)=>b.created-a.created).slice(0,8);
+  const lbl=kind==='doorprize'?'Ambil peserta yang hadir dari turnamen':'Ambil pemain dari turnamen';
+  openSheet('wtpl',`<div><span class="wkind">${WTPL[kind].name.toUpperCase()}</span><h2 style="font-weight:700;font-size:20px;margin-top:8px">${lbl}</h2><p class="help">${kind==='doorprize'?'Yang ditandai Telat tidak ikut diundi.':'Nama pemain masuk ke roda. Untuk format tim, nama tim dipecah per orang.'}</p></div>
+  <div class="elist">${ts.length?ts.map(t=>{const p=wPeople(t,kind==='doorprize');return `<button type="button" class="srcopt" data-act="wsrc" data-id="${t.id}"><span class="badge">${I.wheel}</span><span style="min-width:0"><b>${esc(t.name)}</b><small>${FORMATS[t.type].label} · ${p.length} orang${kind==='doorprize'?' hadir':''}</small></span></button>`;}).join(''):'<p class="note">Belum ada turnamen. Pilih isi manual.</p>'}
+  <button type="button" class="srcopt" data-act="wsrc" data-id=""><span class="badge">${I.edit||'✎'}</span><span><b>Isi manual</b><small>Ketik atau tempel nama, satu per baris</small></span></button></div>`);
+}
+/* people of a tournament; team names "A & B" are split into persons */
+function wPeople(t,onlyPresent){
+  const es=onlyPresent?present(t):t.entries,kind=FORMATS[t.type].kind,out=[];
+  es.forEach(e=>{if(kind==='team')String(e.name).split(/\s*(?:&|\+|\/|,)\s*/).map(s=>s.trim()).filter(Boolean).forEach(n=>out.push({name:n,g:e.g}));else out.push({name:e.name,g:e.g});});
+  const seen=new Set();return out.filter(p=>{const k=p.name.toLowerCase();if(seen.has(k))return false;seen.add(k);return true;}).slice(0,60);
+}
+function wCreate(kind,srcId){
+  S.wheels=S.wheels||[];const T=WTPL[kind],t=srcId?S.tournaments.find(x=>x.id===srcId):null;let w;
+  if(kind==='doorprize'){const ppl=t?wPeople(t,true).map(p=>p.name):[];
+    w={id:uid(),kind,name:'Doorprize'+(t?' · '+t.name:''),src:t?t.id:null,items:ppl,prizes:[],wins:[],removeWinner:true,hist:[],rot:0};}
+  else if(kind==='pairs'){const ppl=t?wPeople(t,true):[];const mixable=t&&FORMATS[t.type].kind==='mix';
+    w={id:uid(),kind,name:'Undi pasangan'+(t?' · '+t.name:''),src:t?t.id:null,people:ppl,mixed:mixable,pairs:[],pending:null,items:[],hist:[],rot:0};wSyncPairs(w);}
+  else w={id:uid(),kind:'basic',tpl:kind,name:T.name,items:T.items.slice(),removeWinner:false,hist:[],rot:0};
+  S.wheels.unshift(w);save();closeSheet();curWheel=w.id;prevView='wheels';goView('wheel');
+}
+/* ---- doorprize ---- */
+function wPrizeNext(w){const done=(w.wins||[]).filter(x=>!x.void).length;return {i:done,name:(w.prizes||[])[done]||null,total:(w.prizes||[]).length};}
+function wDoorSync(w){
+  const t=w.src&&S.tournaments.find(x=>x.id===w.src);if(!t)return 0;
+  const won=new Set((w.wins||[]).map(x=>x.name.toLowerCase()));
+  const ppl=wPeople(t,true).map(p=>p.name).filter(n=>!won.has(n.toLowerCase()));const add=ppl.filter(n=>!w.items.includes(n)).length;
+  w.items=ppl;save();return add;
+}
+function renderDoorprize(w){
+  const t=w.src&&S.tournaments.find(x=>x.id===w.src),pn=wPrizeNext(w),wins=w.wins||[],ok=wins.filter(x=>!x.void).length;
+  const away=t?wPeople({...t,entries:t.entries.filter(e=>e.away)},false).length:0;
+  const allDone=pn.total&&pn.i>=pn.total;
+  return `<span class="wkind">DOORPRIZE</span>
+  <div class="field"><label for="w-name">Nama roda</label><input class="input" id="w-name" value="${esc(w.name)}" autocomplete="off"></div>
+  ${t?`<div class="srcbar"><span class="tx"><b>${esc(t.name)}</b>${w.items.length} peserta di roda${away?` · ${away} telat tidak ikut`:''}${ok?` · ${ok} sudah menang`:''}</span><button type="button" class="btn ghost sm" data-act="wdsync">Perbarui</button></div>`:''}
+  ${pn.total?`<div class="prizebar"><span><small>${allDone?'SEMUA HADIAH SUDAH DIUNDI':'HADIAH BERIKUTNYA'}</small><b>${allDone?'Selesai':esc(pn.name)}</b></span><span class="n">${Math.min(pn.i+1,pn.total)}/${pn.total}</span></div>`:''}
+  <div class="wheelbox"><div class="pointer"></div><canvas id="wcanvas" width="680" height="680" aria-label="Roda doorprize dengan ${w.items.length} peserta"></canvas><div class="hub">${logoImg(80).replace('class="logo"','')}</div></div>
+  <div class="result" id="wresult">${w.lastWin!=null&&wins[w.lastWin]&&!wins[w.lastWin].void?`<span class="hand">Pemenang${wins[w.lastWin].prize?' · '+esc(wins[w.lastWin].prize):''}</span><span class="pill">${esc(wins[w.lastWin].name)}</span>`:'<span class="muted">Tekan Putar untuk mengundi.</span>'}</div>
+  <button class="btn primary block" data-act="wspin" id="wspin" ${w.items.length<2||allDone?'disabled':''}>${I.wheel} ${allDone?'Semua hadiah sudah diundi':'Putar'+(pn.name?' untuk '+esc(pn.name):'')}</button>
+  ${w.lastWin!=null&&wins[w.lastWin]&&!wins[w.lastWin].void?`<button class="btn ghost block" data-act="wdvoid">Pemenang tidak di tempat · undi ulang hadiah ini</button>`:''}
+  <p class="help" style="text-align:center">Pemenang otomatis keluar dari roda dan tidak bisa menang dua kali.</p>
+  <div class="field"><label for="w-prizes">Daftar hadiah (${(w.prizes||[]).length})</label><textarea class="input" id="w-prizes" rows="4" placeholder="Satu hadiah per baris, sesuai urutan undian. Contoh:&#10;Voucher main 1 jam&#10;Sembako&#10;Grand prize: Raket">${esc((w.prizes||[]).join('\n'))}</textarea><p class="help">Boleh dikosongkan kalau hanya mengundi nama.</p></div>
+  ${t?'':`<div class="field"><label for="w-items">Peserta (${w.items.length})</label><textarea class="input" id="w-items" rows="5" placeholder="Satu nama per baris">${esc(w.items.join('\n'))}</textarea></div>`}
+  <div class="field"><div class="spread"><span class="lbl">Riwayat pemenang (${ok})</span>${wins.length?`<button type="button" class="btn ghost sm" data-act="wdcopy">${I.copy||''} Salin</button>`:''}</div>
+    ${wins.length?`<div class="winlist">${wins.map((x,i)=>`<div class="winrow${x.void?' void':''}"><span class="n">${x.void?'–':wins.slice(0,i+1).filter(y=>!y.void).length+'.'}</span><span><b>${esc(x.name)}</b><small>${x.void?'Tidak di tempat, hadiah diundi ulang':esc(x.prize||'Doorprize')}</small></span><time>${esc(x.at||'')}</time></div>`).join('')}</div>`:'<p class="note">Belum ada pemenang.</p>'}
+  </div>
+  ${wins.length?(confirmKey==='wdreset'?`<div class="confirm"><p>Mulai ulang undian? Riwayat pemenang dihapus dan semua peserta hadir kembali ke roda.</p><div class="row"><button class="btn danger" style="flex:1" data-act="wdreset-yes">Ya, mulai ulang</button><button class="btn ghost" style="flex:1" data-act="cancel">Batal</button></div></div>`:`<button class="btn ghost block" data-act="wdreset">Mulai ulang undian</button>`):''}
+  ${confirmKey==='wdel'?`<div class="confirm"><p>Hapus roda "${esc(w.name)}"?</p><div class="row"><button class="btn danger" style="flex:1" data-act="wdel-yes">Ya, hapus</button><button class="btn ghost" style="flex:1" data-act="cancel">Batal</button></div></div>`:`<button class="btn ghost block" data-act="wdel">${I.trash} Hapus roda</button>`}`;
+}
+function wDoorText(w){const ok=(w.wins||[]).filter(x=>!x.void);return `Pemenang ${w.name}\n`+ok.map((x,i)=>`${i+1}. ${x.name}${x.prize?' — '+x.prize:''}`).join('\n');}
+/* ---- undi pasangan ---- */
+function wPool(w){const used=new Set([...(w.pairs||[]).flat(),...(w.pending?[w.pending]:[])]);return (w.people||[]).filter(p=>!used.has(p.name));}
+function wPairStage(w){
+  if(!w.mixed)return {pool:wPool(w),label:w.pending?'Undi pasangan untuk '+w.pending:'Undi pemain pertama'};
+  const pool=wPool(w),pg=w.pending&&(w.people.find(p=>p.name===w.pending)||{}).g;
+  if(!w.pending){const m=pool.filter(p=>p.g==='M'),f=pool.filter(p=>p.g!=='M');const use=m.length&&f.length?m:pool;return {pool:use,label:m.length&&f.length?'Undi pemain putra':'Undi sisa pemain'};}
+  const opp=pool.filter(p=>pg==='M'?p.g!=='M':p.g==='M');return {pool:opp.length?opp:pool,label:'Undi pasangan putri untuk '+w.pending};
+}
+function wSyncPairs(w){w.items=wPairStage(w).pool.map(p=>p.name);}
+function renderPairs(w){
+  wSyncPairs(w);const st=wPairStage(w),pool=wPool(w),pairs=w.pairs||[],done=!w.pending&&pool.length<2&&pairs.length>0;
+  const t=w.src&&S.tournaments.find(x=>x.id===w.src);const hasG=(w.people||[]).some(p=>p.g!=='M')&&(w.people||[]).some(p=>p.g==='M');
+  return `<span class="wkind">UNDI PASANGAN</span>
+  <div class="field"><label for="w-name">Nama roda</label><input class="input" id="w-name" value="${esc(w.name)}" autocomplete="off"></div>
+  ${t?`<div class="srcbar"><span class="tx"><b>${esc(t.name)}</b>${(w.people||[]).length} pemain hadir · sisa ${pool.length} belum berpasangan</span></div>`:''}
+  ${hasG?`<label class="check"><input type="checkbox" id="w-mixed" ${w.mixed?'checked':''} ${pairs.length||w.pending?'disabled':''}><span><b>Pasangan campuran</b><span class="help">Setiap tim berisi 1 putra dan 1 putri.${pairs.length||w.pending?' Tidak bisa diubah setelah undian dimulai.':''}</span></span></label>`:''}
+  ${done?'':`<div class="wheelbox"><div class="pointer"></div><canvas id="wcanvas" width="680" height="680" aria-label="Roda undi pasangan dengan ${w.items.length} pemain"></canvas><div class="hub">${logoImg(80).replace('class="logo"','')}</div></div>
+  <div class="result" id="wresult"><span class="hand">${esc(st.label)}</span>${w.lastPick?`<span class="muted">Terakhir: ${esc(w.lastPick)}</span>`:''}</div>
+  <div class="wactions"><button class="btn primary" data-act="wspin" id="wspin" ${w.items.length<1?'disabled':''}>${I.wheel} Putar</button><button class="btn ghost" data-act="wpall" id="wpall" ${pool.length<2&&!w.pending?'disabled':''}>Undi semua sekaligus</button></div>`}
+  ${t?'':`<div class="field"><label for="w-people">Pemain (${(w.people||[]).length})</label><textarea class="input" id="w-people" rows="5" placeholder="Satu nama per baris" ${pairs.length||w.pending?'disabled':''}>${esc((w.people||[]).map(p=>p.name).join('\n'))}</textarea>${pairs.length||w.pending?'<p class="help">Daftar pemain terkunci selama undian berjalan. Undi ulang untuk mengubah.</p>':''}</div>`}
+  <div class="field"><span class="lbl">Tim (${pairs.length})</span>
+    <div class="pairgrid">${pairs.map((p,i)=>`<div class="pairrow"><span class="n">${i+1}.</span><b>${esc(p[0])} & ${esc(p[1])}</b></div>`).join('')}${w.pending?`<div class="pairrow pending"><span class="n">${pairs.length+1}.</span><b>${esc(w.pending)} & <i>menunggu…</i></b></div>`:''}${!pairs.length&&!w.pending?'<p class="note">Belum ada tim. Putar roda untuk mulai.</p>':''}</div>
+    ${done&&pool.length===1?`<p class="note">${esc(pool[0].name)} belum punya pasangan dan tidak ikut ke daftar tim.</p>`:''}
+  </div>
+  ${pairs.length?`<button class="btn primary block" data-act="wpteam" ${done?'':'style="opacity:.92"'}>Buat turnamen dengan ${pairs.length} tim</button>${done?'':'<p class="help" style="text-align:center">Bisa langsung dibuat sekarang, atau selesaikan undian dulu.</p>'}`:''}
+  ${pairs.length||w.pending?(confirmKey==='wpreset'?`<div class="confirm"><p>Undi ulang dari awal? Semua pasangan yang sudah terbentuk dihapus.</p><div class="row"><button class="btn danger" style="flex:1" data-act="wpreset-yes">Ya, undi ulang</button><button class="btn ghost" style="flex:1" data-act="cancel">Batal</button></div></div>`:`<button class="btn ghost block" data-act="wpreset">Undi ulang dari awal</button>`):''}
+  ${confirmKey==='wdel'?`<div class="confirm"><p>Hapus roda "${esc(w.name)}"?</p><div class="row"><button class="btn danger" style="flex:1" data-act="wdel-yes">Ya, hapus</button><button class="btn ghost" style="flex:1" data-act="cancel">Batal</button></div></div>`:`<button class="btn ghost block" data-act="wdel">${I.trash} Hapus roda</button>`}`;
+}
+function wPairPick(w,name){if(!w.pending)w.pending=name;else{w.pairs.push([w.pending,name]);w.pending=null;}w.lastPick=name;wSyncPairs(w);}
+/* result of a spin for the special kinds; returns true when handled */
+function wAfterSpin(w,idx,win){
+  const nowT=new Date().toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'});
+  if(w.kind==='doorprize'){const pn=wPrizeNext(w);(w.wins=w.wins||[]).push({name:win,prize:pn.name,at:nowT});(w._wonAll=w._wonAll||[]).push(win);w.lastWin=w.wins.length-1;w.items.splice(idx,1);save();render();return true;}
+  if(w.kind==='pairs'){wPairPick(w,win);save();render();return true;}
+  return false;
+}
+function wAction(a,el){
+  const w=wheelObj();
+  switch(a){
+    case 'wnew':wTplSheet();return false;
+    case 'wtpl':{const k=el.dataset.k;if(WTPL[k].kind==='basic')wCreate(k,null);else wSrcSheet(k);return false;}
+    case 'wsrc':wCreate(wNewKind,el.dataset.id||null);return false;
+    case 'wdsync':{const n=wDoorSync(w);render();toast(n?`${n} peserta ditambahkan ke roda`:'Roda sudah sesuai daftar hadir');return false;}
+    case 'wdvoid':{const x=w.wins[w.lastWin];if(!x)return false;x.void=true;w.lastWin=null;save();render();toast(`${x.name} tidak di tempat. ${x.prize?'Hadiah '+x.prize:'Undian'} diulang.`);return false;}
+    case 'wdcopy':{const txt=wDoorText(w);try{navigator.clipboard.writeText(txt).then(()=>toast('Daftar pemenang disalin'),()=>toast('Tidak bisa menyalin di perangkat ini'));}catch(e){toast('Tidak bisa menyalin di perangkat ini');}return false;}
+    case 'wdreset':confirmKey='wdreset';render();return false;
+    case 'wdreset-yes':{w.wins=[];w.lastWin=null;confirmKey=null;const t=w.src&&S.tournaments.find(x=>x.id===w.src);if(t)w.items=wPeople(t,true).map(p=>p.name);else{const back=(w._wonAll||[]).filter(n=>!w.items.includes(n));w.items=w.items.concat(back);w._wonAll=[];}save();render();return false;}
+    case 'wpall':{for(let guard=0;guard<200;guard++){if(!w.pending&&wPool(w).length<2)break;const st=wPairStage(w);if(!st.pool.length)break;const p=st.pool[Math.floor(Math.random()*st.pool.length)];wPairPick(w,p.name);}save();render();return false;}
+    case 'wpreset':confirmKey='wpreset';render();return false;
+    case 'wpreset-yes':w.pairs=[];w.pending=null;w.lastPick=null;confirmKey=null;wSyncPairs(w);save();render();return false;
+    case 'wpteam':{const t=w.src&&S.tournaments.find(x=>x.id===w.src);draft=newDraft();draft.type='team-mexicano';draft.name=(t?t.name:'Turnamen')+' · Tim acak';
+      draft.entries=w.pairs.map(p=>({id:uid(),name:p[0]+' & '+p[1],g:'M'}));formErr='';editingId=null;prevView='wheel';goView('create');toast(`${w.pairs.length} tim masuk ke daftar. Pilih format, lalu buat turnamen.`);return false;}
+  }
+  return true;
 }
 
 /* ---------- Events ---------- */
@@ -1655,6 +1833,7 @@ function commitEdit(){
 }
 function goView(v){if(spin)return;view=v;menuOpen=false;confirmKey=null;render();window.scrollTo(0,0);}
 function goBack(){
+  if(view==='create'&&prevView==='wheel'&&wheelObj()){draft=null;return goView('wheel');}
   if(view==='wheel')return goView(prevView==='tour'&&cur()?'tour':'wheels');
   goView('home');
 }
@@ -1672,6 +1851,7 @@ document.addEventListener('click',e=>{
     return;
   }
   if(el.dataset.act&&el.dataset.act.startsWith('rc')){if(!rcAction(el.dataset.act,el))return;}
+  if(el.dataset.act&&/^(wnew|wtpl|wsrc|wd[a-z-]+|wp[a-z-]+)$/.test(el.dataset.act)&&!/^(wdel|wdel-yes)$/.test(el.dataset.act)){if(!wAction(el.dataset.act,el))return;}
   if(el.dataset.act==='hometop'){window.scrollTo({top:0,behavior:'smooth'});return;}
   if(el.dataset.act==='tolist'){const x=document.getElementById('tlist');if(x)x.scrollIntoView({behavior:'smooth',block:'start'});return;}
   if(el.dataset.act==='sharelink'){const u=location.origin+location.pathname;const d={title:'TMP · Teman Main Padelmu',text:'Bikin turnamen padel bareng, skor otomatis masuk klasemen.',url:u};
@@ -1718,6 +1898,7 @@ document.addEventListener('click',e=>{
     case 'pdf':exportPdf();break;
     case 'togglepriv':t.hidePublic=!t.hidePublic;menuOpen=false;save();render();toast(t.hidePublic?'Klasemen privat aktif':'Klasemen privat dimatikan');break;
     case 'wheel-from':wheelFromTournament();break;
+    case 'wdoor-from':{menuOpen=false;wNewKind='doorprize';const ex=(S.wheels||[]).find(x=>x.kind==='doorprize'&&x.src===t.id);if(ex){curWheel=ex.id;prevView='tour';goView('wheel');}else{wCreate('doorprize',t.id);prevView='tour';}break;}
     case 'rgo':selRound=+el.dataset.i;render();break;
     case 'rprev':selRound=Math.max(0,selRound-1);render();break;
     case 'rnext':selRound=Math.min(t.rounds.length-1,selRound+1);render();break;
@@ -1755,6 +1936,8 @@ document.addEventListener('input',e=>{
   if(view==='create'&&draft&&el.dataset&&el.dataset.k){draft[el.dataset.k]=el.type==='checkbox'?el.checked:el.value;return;}
   if(el.id==='simrange'&&sim){stopSim();const b=document.getElementById('simplay');if(b)b.innerHTML=I.play+'Putar';setSimK(+el.value);return;}
   if(el.dataset&&el.dataset.pid){const t=cur(),x=t.entries.find(y=>y.id===el.dataset.pid);if(x&&el.value.trim()){x.name=el.value.trim().slice(0,48);save();}return;}
+  if(el.id==='w-prizes'){const w=wheelObj();w.prizes=el.value.split('\n').map(s=>s.trim()).filter(Boolean).slice(0,60);save();const lb=document.querySelector('label[for="w-prizes"]');if(lb)lb.textContent=`Daftar hadiah (${w.prizes.length})`;return;}
+  if(el.id==='w-people'){const w=wheelObj();const seen=new Set();w.people=el.value.split('\n').map(s=>s.trim()).filter(s=>s&&!seen.has(s.toLowerCase())&&seen.add(s.toLowerCase())).slice(0,60).map(n=>({name:n,g:'M'}));wSyncPairs(w);save();drawWheel();const lb=document.querySelector('label[for="w-people"]');if(lb)lb.textContent=`Pemain (${w.people.length})`;const b=document.getElementById('wspin');if(b&&!spin)b.disabled=w.items.length<1;const pa=document.getElementById('wpall');if(pa)pa.disabled=w.people.length<2;return;}
   if(el.id==='w-name'){const w=wheelObj();w.name=el.value.slice(0,60)||'Roda';save();return;}
   if(el.id==='w-items'){const w=wheelObj();w.items=el.value.split('\n').map(s=>s.trim()).filter(Boolean).slice(0,60);save();drawWheel();
     const lb=document.querySelector('label[for="w-items"]');if(lb)lb.textContent=`Pilihan (${w.items.length})`;const b=document.getElementById('wspin');if(b&&!spin)b.disabled=w.items.length<2;return;}
@@ -1783,6 +1966,7 @@ document.addEventListener('change',e=>{
   }
   if(e.target.dataset&&e.target.dataset.pgrp){const t=cur(),x=t.entries.find(y=>y.id===e.target.dataset.pgrp);x.grp=+v;rosterDirty=true;save();rosterRerender();}
   if(id==='w-remove'){const w=wheelObj();w.removeWinner=e.target.checked;save();}
+  if(id==='w-mixed'){const w=wheelObj();w.mixed=e.target.checked;wSyncPairs(w);save();render();}
   if(id==='lb-sort'&&cur()){cur().sortBy=v;save();render();}
 });
 document.addEventListener('toggle',e=>{if(e.target.classList&&e.target.classList.contains('adv')&&draft)draft.advOpen=e.target.open;},true);
