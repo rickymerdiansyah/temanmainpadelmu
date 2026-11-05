@@ -2886,7 +2886,7 @@ function renewBanner(u){if(!u||u.admin)return '';const p=planOf(u);if(p==='free'
   return `<div class="paybox wait"><b>Paket ${PLANS[p].label} berakhir ${n<=1?'besok':'dalam '+n+' hari'}</b><span>Berlaku sampai ${fmtD(u.until)}. Perpanjang sekarang supaya fitur ${PLANS[p].label} tidak terputus. Turnamen dan rankingmu tetap tersimpan.</span><button class="btn primary sm" data-act="buy" data-plan="${p}">Perpanjang</button></div>`;}
 
 /* --- notifikasi Telegram admin lewat Cloudflare Worker --- */
-async function notifyAdmin(type,extra){try{const {auth}=await authInst();const cu=auth.currentUser;if(!cu)return;const tk=await cu.getIdToken();
+async function notifyAdmin(type,extra){try{const {auth}=await authInst();const cu=auth.currentUser;if(!cu)return;const tk=await cu.getIdToken(true);
   await fetch(NOTIFY_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({type,token:tk,...(extra||{})})});}catch(e){console.warn('notify',e);}}
 
 /* --- bukti bayar (opsional) --- */
