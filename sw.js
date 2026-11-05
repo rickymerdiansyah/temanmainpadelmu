@@ -14,6 +14,8 @@ self.addEventListener('fetch', e => {
   const url = new URL(req.url);
   // App page: try the network first so updates arrive, fall back to the cached copy offline.
   if (req.mode === 'navigate' || (url.origin === location.origin && url.pathname.endsWith('.html'))) {
+    const root = new URL(self.registration.scope).pathname, isApp = url.origin === location.origin && (url.pathname === root || url.pathname === root + 'index.html');
+    if (!isApp && url.origin === location.origin) return; // halaman lain (mis. uji coba) tidak disimpan sebagai aplikasi utama
     e.respondWith(fetch(url.origin === location.origin ? url.href : req, { cache: 'no-store', credentials: 'same-origin' }).then(r => { const copy = r.clone(); caches.open(VERSION).then(c => c.put('./index.html', copy)); return r; })
       .catch(() => caches.match('./index.html')));
     return;
