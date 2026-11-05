@@ -692,6 +692,60 @@ body.v-home.is-admin .bnav-in{grid-template-columns:repeat(4,1fr)}
 .brandbar b{display:block;font:800 15px/1.15 var(--f-brush);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .brandbar small{font:500 9.5px "DM Mono",monospace;letter-spacing:.08em;color:var(--muted)}
 .brandbar .lv{margin-left:auto;font:500 10px "DM Mono",monospace;color:#178A4A;flex:none}
+.rankcard{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;color:inherit}
+.rankcard>span:first-child{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.rankcard small{font:500 10px "DM Mono",ui-monospace,monospace;letter-spacing:.1em;color:#8A5A12}
+.rankcard b{font:700 15px/1.25 var(--f-brush)}
+.rankcard span span{font-size:12.5px;color:var(--muted)}
+.rankcard .go{font-size:22px;color:var(--muted)}
+.rankcard.locked{background:var(--bg2,#EFE8DD)}
+.rchips{display:flex;gap:6px;flex-wrap:wrap}
+.rchips button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:7px 12px;font:600 13px var(--f-body);color:var(--muted)}
+.rchips button[aria-pressed="true"]{background:var(--cream);border-color:var(--cream);color:#F6F3EE}
+.rchips.static span{font-size:12px;font-weight:600;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 10px}
+.rchips.static i{font-style:normal;color:#8A5A12;font-weight:800}
+.rhead{display:flex;justify-content:space-between;align-items:flex-end;gap:10px}
+.rhead small{display:block;font:500 10px "DM Mono",ui-monospace,monospace;letter-spacing:.1em;color:var(--muted)}
+.rhead b{font:800 19px var(--f-brush)}
+.rtbl{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--surface)}
+.rtbl table{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}
+.rtbl th{font:500 10px "DM Mono",ui-monospace,monospace;letter-spacing:.08em;color:var(--muted);text-align:right;padding:9px 10px;background:var(--bg2,#EFE8DD);text-transform:uppercase}
+.rtbl th:first-child,.rtbl td:first-child{text-align:left}
+.rtbl td{padding:10px;border-top:1px solid var(--line);text-align:right}
+.rtbl tr[data-act]{cursor:pointer}
+.rtbl tr[data-act]:hover td{background:var(--bg2,#EFE8DD)}
+.rtbl td.pt{font:800 15px var(--f-brush);color:#8A5A12}
+.rtbl .rk{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;font:800 11px var(--f-brush);margin-right:8px;background:var(--bg2,#EFE8DD)}
+.rtbl .rk.g{background:var(--tan);color:var(--tan-ink)}
+.rtbl em{font-style:normal;font-size:10px;font-weight:700;margin-left:5px}
+.rtbl em.up{color:#178A4A}.rtbl em.dn{color:#D23F33}
+.mlist{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:2px 12px}
+.mrow{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--line)}
+.mrow:first-child{border-top:0}
+.mrow .ini,.prof .ini{width:32px;height:32px;border-radius:50%;background:var(--bg2,#EFE8DD);display:grid;place-items:center;font:800 13px var(--f-brush);flex:none}
+.mrow .nm{flex:1;min-width:0}
+.mrow b{display:block;font-size:14px}
+.mrow small{display:block;font-size:12px;color:var(--muted)}
+.tlist{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:2px 12px}
+.trow{display:flex;align-items:center;gap:12px;padding:11px 0;border-top:1px solid var(--line);cursor:pointer}
+.trow:first-child{border-top:0}
+.trow input{width:20px;height:20px;accent-color:#231A13;flex:none}
+.trow b{display:block;font-size:14px}
+.trow small{display:block;font-size:12px;color:var(--muted)}
+.prof{display:flex;align-items:center;gap:12px}
+.prof .ini{width:54px;height:54px;font-size:21px;background:var(--cream);color:var(--tan)}
+.prof b{display:block;font:800 21px/1.1 var(--f-brush)}
+.prof small{display:block;font-size:13px;color:var(--muted)}
+.kpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.kpis div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.kpis small{font:500 10px "DM Mono",ui-monospace,monospace;letter-spacing:.08em;color:var(--muted)}
+.kpis b{display:block;font:800 22px var(--f-brush);font-variant-numeric:tabular-nums}
+.hbars{display:flex;align-items:flex-end;gap:6px;height:110px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px;overflow-x:auto}
+.hbars div{flex:1;min-width:26px;display:flex;flex-direction:column;align-items:center;gap:4px;height:100%;justify-content:flex-end}
+.hbars i{display:block;width:100%;border-radius:6px 6px 2px 2px;background:var(--tan)}
+.hbars i.abs{background:repeating-linear-gradient(45deg,var(--bg2,#EFE8DD) 0 4px,var(--surface) 4px 8px);border:1px dashed var(--line)}
+.hbars span{font:500 9px "DM Mono",monospace;color:var(--muted)}
+.hbars em{font-style:normal;font:800 11px var(--f-brush)}
 
 /* ===== B · Tiket Main — HOME ONLY (body.v-home) ===== */
 body.v-home{--hb:#F6F3EE;--hink:#231A13;--hmut:#6F604F;--hgold:#D9A441;--hline:#E3DBCF;--hmono:"DM Mono",ui-monospace,monospace;--hdisp:"Bricolage Grotesque",system-ui,sans-serif;
@@ -756,7 +810,7 @@ body.v-home .bnav button[aria-selected="true"]{font-weight:700;color:var(--hink)
 <script>
 const LOGO_SRC='data:image/webp;base64,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';
 const KEY='tmp.v2';
-const APP_V='v17 · 5 Nov 2026';
+const APP_V='v18 · 5 Nov 2026';
 const FORMATS={
   'americano':{label:'Americano',group:'Americano',family:'americano',kind:'ind',desc:'Main bareng dan melawan semua orang secara bergiliran. Skor dihitung per pemain.'},
   'team-americano':{label:'Team Americano',group:'Americano',family:'americano',kind:'team',desc:'Tim tetap. Setiap tim bergiliran melawan semua tim lain.'},
@@ -1234,12 +1288,12 @@ function renderBar(){
   if(view==='landing'||view==='gate'){bar.innerHTML=`${logoImg()}<div class="brand"><b>Teman Main Padelmu</b><small>PLAY · CONNECT · GROW</small></div>${view==='landing'?'<button class="btn primary sm" data-act="login-go" style="margin-left:auto">Masuk</button>':''}`;return;}
   if(view==='home'){bar.innerHTML=`${logoImg()}<div class="brand"><b>Teman Main Padelmu</b><small>PLAY · CONNECT · GROW</small></div><span id="cloudchip"></span>${STANDALONE?accBtn():''}`;paintCloud();return;}
   if(view==='live'){bar.innerHTML=`${logoImg()}<div class="brand"><b>TMP</b><small>Teman Main Padelmu</small></div><span class="livechip ${liveState}" id="livechip"><i></i>${{live:'LIVE',connecting:'Menghubungkan…',offline:'Offline',error:'Terputus',gone:'Tidak aktif'}[liveState]||'LIVE'}</span>`;return;}
-  const title={create:'Buat Turnamen',tour:'Turnamen',wheels:'Spin Wheel',wheel:'Spin Wheel',account:'Akun & Paket',admin:'Admin TMP',buy:'Pilih paket',pay:'Pembayaran',brand:'Identitas komunitas'}[view]||'';
+  const title={create:'Buat Turnamen',tour:'Turnamen',wheels:'Spin Wheel',wheel:'Spin Wheel',account:'Akun & Paket',admin:'Admin TMP',buy:'Pilih paket',pay:'Pembayaran',brand:'Identitas komunitas',rank:'Ranking musim',members:'Anggota komunitas',seasons:'Atur musim',player:'Profil pemain'}[view]||'';
   bar.innerHTML=`<button class="iconbtn" data-act="back" aria-label="Kembali">${I.back}</button>${logoImg(32)}<span class="bar-title">${title}</span><span id="cloudchip"></span>${STANDALONE&&view!=='account'&&accMe()?accBtn():''}`;paintCloud();
 }
 function render(){
   document.body.classList.toggle('is-admin',!!(STANDALONE&&accMe()&&accMe().admin));
-  if(STANDALONE&&view!=='live'){if(!accMe()&&!isGuest())view='landing';else if(isGuest()){if(['landing','gate','admin','account','buy','pay','brand'].includes(view))view='home';}else if(!accActive())view='gate';else if(view==='landing'||view==='gate')view='home';}
+  if(STANDALONE&&view!=='live'){if(!accMe()&&!isGuest())view='landing';else if(isGuest()){if(['landing','gate','admin','account','buy','pay','brand','rank','members','seasons','player'].includes(view))view='home';}else if(!accActive())view='gate';else if(view==='landing'||view==='gate')view='home';}
   renderBar();const app=document.getElementById('app'),nav=document.getElementById('bnav');
   if(view==='create'){app.innerHTML=renderCreate();const u=accMe();if(u&&!u.admin&&planOf(u)==='free'&&quotaLeft(u)<=2&&quotaLeft(u)>0)app.insertAdjacentHTML('afterbegin',`<div class="quota warn"><div class="q1"><b>${quotaLeft(u)===1?'Ini turnamen gratis terakhirmu':'Ini turnamen gratis ke-'+((u.made||0)+1)+' dari '+FREE_LIMIT}</b><button class="btn primary sm" data-act="go-plans">Upgrade</button></div><small>${quotaLeft(u)===1?'Setelah ini, upgrade untuk membuat turnamen baru.':'Sisa '+(quotaLeft(u)-1)+' turnamen gratis setelah ini.'}</small></div>`);}
   else if(view==='tour'&&cur())app.innerHTML=renderTour();
@@ -1250,6 +1304,10 @@ function render(){
   else if(view==='buy')app.innerHTML=renderBuy();
   else if(view==='pay')app.innerHTML=renderPay();
   else if(view==='brand')app.innerHTML=renderBrand();
+  else if(view==='rank')app.innerHTML=renderRank();
+  else if(view==='members')app.innerHTML=renderMembers();
+  else if(view==='seasons')app.innerHTML=renderSeasons();
+  else if(view==='player')app.innerHTML=renderPlayer();
   else if(view==='admin')app.innerHTML=renderAdmin();
   else if(view==='wheels')app.innerHTML=renderWheels();
   else if(view==='wheel'&&wheelObj())app.innerHTML=renderWheel();
@@ -1279,7 +1337,7 @@ function renderHome(){
       <span class="sub">${esc(fmtDate(t.date))}</span>
       ${on&&tot?`<span class="bar2"><i style="width:${pct}%"></i></span>`:''}</span></button>`;};
   return `${heroB(list)}
-  ${STANDALONE?quotaCard():''}
+  ${STANDALONE?quotaCard()+rankCard():''}
   <div class="hq"><button type="button" data-act="wheels">${I.wheel}<span>SPIN</span></button><button type="button" data-act="sharelink">${I.share}<span>SHARE</span></button><button type="button" data-act="tolist">${ICAL}<span>RIWAYAT</span></button></div>
   <p class="note" id="cloudnote" ${!(STANDALONE&&accMe())&&(Cloud.status==='local'||Cloud.status==='readonly')?'':'hidden'}><b>Turnamen belum tersimpan di akun.</b> Data saat ini hanya ada di perangkat ini dan bisa hilang saat app ditutup. Supaya aman, buka TMP lewat app Claude, atau login ke claude.ai di browser yang sama lalu buka lagi link TMP.</p>
   ${S.hideHint?'':`<div class="hint">${logoImg(34)}<p><b>Pasang di iPhone:</b> buka halaman ini di Safari, ketuk Bagikan, lalu pilih <b>Add to Home Screen</b>.</p><button class="x" data-act="hidehint" aria-label="Tutup">×</button></div>`}
@@ -2057,6 +2115,7 @@ const ACCT={me:null,state:'boot',users:[],beta:true,au:null,unsubMe:null,unsubAd
 function toDate(v){return v&&typeof v.toDate==='function'?v.toDate():(v instanceof Date?v:null);}
 function convUser(uid,d){return {uid,email:d.email||'',name:d.name||(d.email||'?').split('@')[0],status:d.status||'pending',plan:d.plan||'free',until:toDate(d.until),made:d.made||0,
   joined:toDate(d.joined),req:d.req?{plan:d.req.plan,at:toDate(d.req.at),dur:d.req.dur||null,code:d.req.code||'',amount:d.req.amount||0,paid:!!d.req.paid,rej:!!d.req.rej}:null,
+  club:d.club&&typeof d.club==='object'?d.club:null,
   brand:d.brand&&typeof d.brand==='object'?{name:String(d.brand.name||''),acc:String(d.brand.acc||''),logo:d.brand.logo||null}:null,legacyOpen:!!d.legacyOpen,admin:(d.email||'').toLowerCase()===ADMIN_EMAIL};}
 function accMe(){return ACCT.me;}
 function isGuest(){return !ACCT.me&&lsGet(GUEST_KEY)==='1';}
@@ -2325,7 +2384,7 @@ function accBtn(){const u=accMe();return u?`<button class="accbtn in" data-act="
   :`<button class="accbtn" data-act="acct" aria-label="Masuk"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></button>`;}
 const PLAN_SLIDES=[
   {k:'free',tag:'UNTUK MENCOBA',name:'Gratis',price:'Rp0',per:'selamanya',for:'Cocok untuk mabar sesekali.',items:['5 turnamen (total)','Live link untuk penonton','Spin wheel, doorprize, undi pasangan','Import peserta dari Reclub','Tersimpan di akun']},
-  {k:'org',tag:'UNTUK ORGANIZER KOMUNITAS',name:'Organizer',price:'Rp49.000',per:'/ bulan',for:'Cocok untuk komunitas yang main tiap minggu.',hot:true,items:['Turnamen tanpa batas','Semua fitur Gratis','Riwayat semua chapter','Ranking & statistik antar-chapter|segera','Logo komunitas di live link, PDF & spin wheel','Gambar klasemen untuk story','Tambah co-host|segera']},
+  {k:'org',tag:'UNTUK ORGANIZER KOMUNITAS',name:'Organizer',price:'Rp49.000',per:'/ bulan',for:'Cocok untuk komunitas yang main tiap minggu.',hot:true,items:['Turnamen tanpa batas','Semua fitur Gratis','Riwayat semua chapter','Ranking musim & profil pemain','Logo komunitas di live link, PDF & spin wheel','Gambar klasemen untuk story','Tambah co-host|segera']},
   {k:'venue',tag:'UNTUK VENUE & KLUB',name:'Venue',price:'Rp299.000',per:'/ bulan',for:'Cocok untuk venue yang rutin bikin event.',dark:true,items:['Semua fitur Organizer','Klasemen live di layar TV venue|segera','Beberapa organizer dalam 1 akun|segera','Branding venue & sponsor di spin wheel|segera','Rekap turnamen bulanan untuk promosi|segera']}
 ];
 function planCarousel(cur,only){
@@ -2461,6 +2520,7 @@ async function admUpdate(uid,data,msg){
 }
 function accAction(a,el){
   const xu=el.dataset.u&&ACCT.users.find(x=>x.uid===el.dataset.u);
+  if(a==='rank'||a.startsWith('r-'))return rankAction(a,el);
   switch(a){
     case 'acct':if(!accMe()){loginSheet();return false;}prevView=view==='account'||view==='admin'?prevView:view;goView('account');return false;
     case 'login':loginSheet();return false;
@@ -2488,7 +2548,7 @@ function accAction(a,el){
       catch(e){el.disabled=false;console.warn('brand',e);toast('Gagal menyimpan ('+(e.code||'error')+')');}})();return false;}
     case 'story':menuOpen=false;render();shareStory();return false;
     case 'reqplan':{(async()=>{try{const c=await Live.core();await c.f.updateDoc(c.f.doc(c.db,'users',accMe().uid),{req:{plan:el.dataset.plan,at:c.f.serverTimestamp()}});closeSheet();toast('Permintaan terkirim. Admin akan menghubungimu.');}catch(e){toast('Gagal mengirim ('+(e.code||'error')+')');}})();return false;}
-    case 'pro':{menuOpen=false;if(accPaid()&&el.dataset.f==='brand'){BR=null;prevView=view;goView('brand');return false;}render();if(accPaid())toast('Fitur ini segera hadir di paketmu.');else upsellSheet(el.dataset.f);return false;}
+    case 'pro':{menuOpen=false;if(accPaid()&&el.dataset.f==='brand'){BR=null;prevView=view;goView('brand');return false;}if(accPaid()&&el.dataset.f==='rank'){prevView=view;goView('rank');return false;}render();if(accPaid())toast('Fitur ini segera hadir di paketmu.');else upsellSheet(el.dataset.f);return false;}
     case 'go-plans':closeSheet();prevView=view;goView('account');return false;
     case 'admin':if(!(accMe()&&accMe().admin))return false;prevView=view==='admin'?prevView:view;goView('admin');return false;
     case 'pc-go':{const tr=document.getElementById('pc-track');const sl=tr&&tr.children[+el.dataset.i];if(sl)tr.scrollTo({left:sl.offsetLeft-tr.offsetLeft,behavior:'smooth'});return false;}
@@ -2509,6 +2569,157 @@ function accAction(a,el){
 }
 document.addEventListener('change',e=>{if(e.target.id==='adm-beta'){const v=e.target.checked;(async()=>{try{const c=await Live.core();await c.f.setDoc(c.f.doc(c.db,'config','app'),{beta:v});toast(v?'Mode beta tertutup menyala':'Mode beta tertutup mati: pendaftar baru langsung aktif');}catch(err){toast('Gagal menyimpan ('+(err.code||'error')+')');render();}})();}});
 document.addEventListener('input',e=>{if(e.target.id==='adm-q'){window._admQ=e.target.value;const pos=e.target.selectionStart;render();const i=document.getElementById('adm-q');if(i){i.focus();i.setSelectionRange(pos,pos);}}});
+
+/* ===== Ranking musim & daftar anggota (Organizer & Venue) ===== */
+const R_PTS=[25,18,15,12,10,8,6,4,2,1],R_HADIR=3;
+let RS={sid:lsGet('tmp.season')||'',sel:null,edit:null};
+const rKey=s=>String(s||'').toLowerCase().normalize('NFKD').replace(/[^a-z0-9]/g,'');
+const rClean=s=>String(s||'').replace(/\s+/g,' ').trim();
+function club(){const u=accMe(),c=(u&&u.club)||{};return {aliases:{...(c.aliases||{})},notSame:(c.notSame||[]).slice(),seasons:(c.seasons||[]).map(x=>({...x,tids:(x.tids||[]).slice()}))};}
+function rPaid(){const u=accMe();return !!u&&!u.admin&&planOf(u)!=='free';}
+function rFinished(){return myTournaments().filter(t=>t.finished&&t.rounds.some(r=>r.matches.some(m=>matchResult(t,m)))).sort((a,b)=>new Date(a.date)-new Date(b.date));}
+function rSplit(t,name){return FORMATS[t.type].kind==='team'?String(name).split(/\s*(?:&|\/|\+|,|\bdan\b)\s*/i).map(rClean).filter(Boolean):[rClean(name)];}
+// canonical name for a raw name: follow aliases (key -> canonical display name)
+function rCanon(name,c){const k=rKey(name);return (c.aliases[k]&&rClean(c.aliases[k]))||rClean(name);}
+function rSeasons(){const c=club();return c.seasons.length?c.seasons:[{id:'all',name:'Semua chapter',tids:null}];}
+function rSeason(){const ss=rSeasons();return ss.find(s=>s.id===RS.sid)||ss[ss.length-1];}
+function rTours(season){const fin=rFinished();return season.tids?fin.filter(t=>season.tids.includes(t.id)):fin;}
+function rTourRows(t,c){
+  const rows=[],GG=G(t);
+  for(let g=0;g<GG;g++){const st=GG>1?computeStats(t,null,g):computeStats(t);
+    st.forEach((s,i)=>{if(!s.played)return;rows.push({names:rSplit(t,s.name).map(n=>rCanon(n,c)),rank:i+1,w:s.w,l:s.l,d:s.d,played:s.played,pf:s.pf});});}
+  return rows;
+}
+function rPartners(t,c,acc){
+  const ent={};t.entries.forEach(e=>ent[e.id]=e);const team=FORMATS[t.type].kind==='team';
+  for(const r of t.rounds)for(const m of r.matches){const res=matchResult(t,m);if(!res)continue;
+    [[m.a,res.sa>res.sb],[m.b,res.sb>res.sa]].forEach(([ids,won])=>{
+      const names=[];ids.forEach(id=>{const e=ent[id];if(e)names.push(...rSplit(t,e.name).map(n=>rCanon(n,c)));});
+      names.forEach(a=>names.forEach(b=>{if(a===b)return;const p=(acc[a]=acc[a]||{});const x=(p[b]=p[b]||{m:0,w:0});x.m++;if(won)x.w++;}));});}
+}
+function rStandings(tours,c){
+  const P={},part={};
+  tours.forEach((t,ti)=>{rTourRows(t,c).forEach(r=>r.names.forEach(n=>{
+      const p=(P[n]=P[n]||{name:n,pts:0,att:0,w:0,l:0,d:0,played:0,pf:0,best:99,pl:Array(tours.length).fill(null)});
+      if(p.pl[ti]!=null)return;p.pl[ti]=r.rank;p.pts+=(R_PTS[r.rank-1]||0)+R_HADIR;p.att++;p.w+=r.w;p.l+=r.l;p.d+=r.d;p.played+=r.played;p.pf+=r.pf;p.best=Math.min(p.best,r.rank);}));
+    rPartners(t,c,part);});
+  const list=Object.values(P).sort((a,b)=>b.pts-a.pts||b.att-a.att||b.w-a.w||a.name.localeCompare(b.name));
+  list.forEach(p=>{const ps=part[p.name]||{};const best=Object.entries(ps).filter(([,x])=>x.m>=2).sort((a,b)=>b[1].w/b[1].m-a[1].w/a[1].m||b[1].m-a[1].m)[0];p.partner=best?{name:best[0],m:best[1].m,w:best[1].w}:null;});
+  return list;
+}
+function rTable(){const s=rSeason(),c=club(),tours=rTours(s),now=rStandings(tours,c);
+  const prev=tours.length>1?rStandings(tours.slice(0,-1),c):[];const pr={};prev.forEach((p,i)=>pr[p.name]=i+1);
+  now.forEach((p,i)=>{p.rank=i+1;p.move=pr[p.name]?pr[p.name]-(i+1):0;});return {s,tours,list:now};}
+/* --- similar names --- */
+function lev(a,b){if(Math.abs(a.length-b.length)>2)return 9;const d=Array.from({length:a.length+1},(_,i)=>[i]);for(let j=1;j<=b.length;j++)d[0][j]=j;
+  for(let i=1;i<=a.length;i++)for(let j=1;j<=b.length;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1));return d[a.length][b.length];}
+function rMembers(){const c=club(),M={};rFinished().forEach(t=>{const seen=new Set();t.entries.forEach(e=>rSplit(t,e.name).forEach(raw=>{const n=rCanon(raw,c);if(seen.has(n))return;seen.add(n);
+    const m=(M[n]=M[n]||{name:n,n:0,raw:new Set()});m.n++;if(rClean(raw)!==n)m.raw.add(rClean(raw));}));});
+  return Object.values(M).sort((a,b)=>b.n-a.n||a.name.localeCompare(b.name));}
+function rSuggest(){const c=club(),ms=rMembers(),out=[],no=new Set(c.notSame);
+  for(let i=0;i<ms.length;i++)for(let j=i+1;j<ms.length;j++){const a=ms[i],b=ms[j],ka=rKey(a.name),kb=rKey(b.name);if(!ka||!kb)continue;
+    const pair=[ka,kb].sort().join('|');if(no.has(pair))continue;
+    const ta=a.name.toLowerCase().split(' '),tb=b.name.toLowerCase().split(' ');
+    const sim=(ka.length>=4&&kb.length>=4&&lev(ka,kb)<=1)||(ta[0]===tb[0]&&ta[0].length>=3&&(ta.length===1||tb.length===1||(ta[1]||'')[0]===(tb[1]||'')[0]));
+    if(sim)out.push({a,b,pair});}
+  return out.slice(0,8);}
+async function clubSave(c,msg){const u=accMe();try{const cc=await Live.core();await cc.f.updateDoc(cc.f.doc(cc.db,'users',u.uid),{club:c});u.club=c;if(msg)toast(msg);render();}
+  catch(e){console.warn('club',e);toast('Gagal menyimpan ('+(e.code||'error')+')');}}
+/* --- views --- */
+function rankCard(){const u=accMe();if(!u||u.admin)return '';
+  if(!rPaid())return `<button type="button" class="rankcard locked" data-act="pro" data-f="rank"><span><small>RANKING MUSIM</small><b>Siapa juara musim ini?</b><span>Klasemen gabungan semua chapter, profil tiap pemain.</span></span><span class="plan-pill org">${LOCK} ORGANIZER</span></button>`;
+  const {s,tours,list}=rTable();
+  if(!tours.length)return `<button type="button" class="rankcard" data-act="rank"><span><small>RANKING MUSIM</small><b>Belum ada chapter selesai</b><span>Ranking muncul setelah turnamen pertama selesai.</span></span></button>`;
+  return `<button type="button" class="rankcard" data-act="rank"><span><small>RANKING MUSIM · ${esc(s.name.toUpperCase())} · ${tours.length} CHAPTER</small><b>${esc(list[0].name)} memimpin dengan ${list[0].pts} poin</b>
+    <span>${list.slice(1,3).map((p,i)=>`${i+2}. ${esc(p.name)} ${p.pts}`).join(' · ')}</span></span><span class="go">›</span></button>`;}
+function renderRank(){
+  if(!rPaid())return renderAccount();const {s,tours,list}=rTable(),ss=rSeasons(),sug=rSuggest().length;
+  const rajin=list.slice().sort((a,b)=>b.att-a.att)[0],naik=list.slice().sort((a,b)=>b.move-a.move)[0],last=tours[tours.length-1];
+  const mvp=last?list.filter(p=>p.pl[tours.length-1]===1).map(p=>p.name):[];
+  return `<section class="hero"><h1>Ranking musim</h1><p class="muted" style="margin:0">Poin per chapter: juara 25, lalu 18, 15, 12, 10, 8, 6, 4, 2, 1, ditambah ${R_HADIR} poin setiap hadir.</p></section>
+  ${ss.length>1?`<div class="rchips">${ss.map(x=>`<button type="button" data-act="r-season" data-s="${esc(x.id)}" aria-pressed="${x.id===s.id}">${esc(x.name)}</button>`).join('')}</div>`:''}
+  ${sug?`<button type="button" class="paybox wait" data-act="r-members" style="text-align:left;border:1px solid #F0D9A6;width:100%"><b>${sug} nama mungkin orang yang sama</b><span>Rapikan dulu supaya poin tidak terpecah. Ketuk untuk cek.</span></button>`:''}
+  ${tours.length?`<div class="rhead"><span><small>${esc(s.name.toUpperCase())} · ${tours.length} CHAPTER</small><b>Klasemen musim</b></span><button class="btn ghost sm" data-act="r-story">${I.share} Bagikan</button></div>
+  <div class="rtbl"><table><thead><tr><th>Pemain</th><th>Hadir</th><th>Poin</th></tr></thead><tbody>${list.map(p=>`<tr data-act="r-player" data-p="${esc(p.name)}" tabindex="0"><td><span class="rk${p.rank<=3?' g':''}">${p.rank}</span>${esc(p.name)}${p.move>0?`<em class="up">▲${p.move}</em>`:p.move<0?`<em class="dn">▼${-p.move}</em>`:''}</td><td>${p.att}/${tours.length}</td><td class="pt">${p.pts}</td></tr>`).join('')}</tbody></table></div>
+  <div class="rchips static">${mvp.length?`<span><i>Juara ${esc(last.name.length>28?'chapter terakhir':last.name)}:</i> ${esc(mvp.join(', '))}</span>`:''}${rajin?`<span><i>Paling rajin:</i> ${esc(rajin.name)} (${rajin.att}/${tours.length})</span>`:''}${naik&&naik.move>0?`<span><i>Naik tertinggi:</i> ${esc(naik.name)} ▲${naik.move}</span>`:''}</div>`
+  :`<p class="note">Musim ini belum berisi turnamen yang selesai. Atur musim untuk memilih chapter.</p>`}
+  <div class="row" style="gap:8px"><button class="btn ghost" style="flex:1" data-act="r-members">Anggota</button><button class="btn ghost" style="flex:1" data-act="r-seasons">Atur musim</button></div>`;
+}
+function renderMembers(){
+  if(!rPaid())return renderAccount();const sug=rSuggest(),ms=rMembers();
+  return `<section class="hero"><h1>Anggota komunitas</h1><p class="muted" style="margin:0">Diambil otomatis dari peserta turnamen yang sudah selesai. Gabungkan nama yang sebenarnya orang yang sama.</p></section>
+  ${sug.map(x=>`<div class="paybox wait"><b>"${esc(x.a.name)}" dan "${esc(x.b.name)}" orang yang sama?</b><span>${x.a.n} dan ${x.b.n} chapter. Kalau digabung, hasilnya dihitung atas nama yang kamu pilih.</span>
+    <div class="row" style="gap:6px;flex-wrap:wrap"><button class="btn primary sm" data-act="r-merge" data-a="${esc(x.b.name)}" data-b="${esc(x.a.name)}">Gabung jadi ${esc(x.a.name)}</button><button class="btn ghost sm" data-act="r-merge" data-a="${esc(x.a.name)}" data-b="${esc(x.b.name)}">Gabung jadi ${esc(x.b.name)}</button><button class="btn ghost sm" data-act="r-nosame" data-pair="${esc(x.pair)}">Beda orang</button></div></div>`).join('')}
+  <div class="mlist">${ms.map(m=>`<div class="mrow"><span class="ini">${esc((m.name[0]||'?').toUpperCase())}</span><span class="nm"><b>${esc(m.name)}</b><small>${m.n} chapter${m.raw.size?` · juga tertulis: ${esc([...m.raw].join(', '))}`:''}</small></span>${m.raw.size?`<button class="btn ghost sm" data-act="r-unmerge" data-p="${esc(m.name)}">Pisahkan</button>`:''}</div>`).join('')||'<p class="note">Belum ada turnamen selesai.</p>'}</div>`;
+}
+function renderSeasons(){
+  if(!rPaid())return renderAccount();const c=club(),fin=rFinished().slice().reverse();
+  if(!RS.edit){const s=rSeason();RS.edit={id:s.id==='all'?'s'+Date.now().toString(36):s.id,name:s.id==='all'?'Musim 1':s.name,tids:s.tids?s.tids.slice():fin.map(t=>t.id),isNew:s.id==='all'};}
+  const E=RS.edit;
+  return `<section class="hero"><h1>Atur musim</h1><p class="muted" style="margin:0">Pilih chapter yang dihitung di musim ini. Chapter baru yang selesai otomatis bisa kamu tambahkan di sini.</p></section>
+  ${c.seasons.length?`<div class="rchips">${c.seasons.map(x=>`<button type="button" data-act="r-edit" data-s="${esc(x.id)}" aria-pressed="${x.id===E.id}">${esc(x.name)}</button>`).join('')}<button type="button" data-act="r-new">+ Musim baru</button></div>`:''}
+  <div class="field"><label for="r-sname">Nama musim</label><input class="input" id="r-sname" maxlength="30" value="${esc(E.name)}" autocomplete="off"></div>
+  <div class="field"><span class="lbl">Chapter di musim ini (${E.tids.filter(id=>fin.some(t=>t.id===id)).length})</span><div class="tlist">${fin.map(t=>`<label class="trow"><input type="checkbox" data-tid="${esc(t.id)}" ${E.tids.includes(t.id)?'checked':''}><span><b>${esc(t.name)}</b><small>${esc(fmtD(new Date(t.date)))} · ${FORMATS[t.type].label}</small></span></label>`).join('')||'<p class="note">Belum ada turnamen selesai.</p>'}</div></div>
+  <button class="btn primary block" data-act="r-ssave">Simpan musim</button>
+  ${!E.isNew&&c.seasons.length>1?`<button class="btn ghost block" data-act="r-sdel">Hapus musim ini</button>`:''}`;
+}
+function renderPlayer(){
+  if(!rPaid())return renderAccount();const {s,tours,list}=rTable(),p=list.find(x=>x.name===RS.sel);if(!p)return renderRank();
+  const avg=p.played?(p.pf/p.played).toFixed(1):'0';
+  return `<div class="prof"><span class="ini">${esc((p.name[0]||'?').toUpperCase())}</span><span><b>${esc(p.name)}</b><small>Peringkat ${p.rank} dari ${list.length} · ${esc(s.name)}</small></span></div>
+  <div class="kpis"><div><small>HADIR</small><b>${p.att}/${tours.length}</b></div><div><small>MENANG–KALAH</small><b>${p.w}–${p.l}${p.d?'–'+p.d:''}</b></div><div><small>RATA-RATA / MATCH</small><b>${avg}</b></div><div><small>FINIS TERBAIK</small><b>#${p.best}</b></div></div>
+  <div class="field"><span class="lbl">Peringkat per chapter</span><div class="hbars">${tours.map((t,i)=>{const v=p.pl[i];const m=String(t.name).match(/(\d{1,3})/);return `<div title="${esc(t.name)}">${v==null?'<em>–</em><i class="abs" style="height:26%"></i>':`<em>#${v}</em><i style="height:${Math.max(14,100-(v-1)*10)}%"></i>`}<span>${m?'CH'+m[1]:i+1}</span></div>`;}).join('')}</div></div>
+  ${p.partner?`<div class="statusbox"><small>PARTNER TERBAIK</small><b>${esc(p.partner.name)}</b><span>Menang ${p.partner.w} dari ${p.partner.m} match bersama (${Math.round(p.partner.w/p.partner.m*100)}%).</span></div>`:''}`;
+}
+async function seasonStory(){const {s,tours,list}=rTable();if(!list.length)return;toast('Membuat gambar…');
+  try{const W=1080,H=1920,cv=document.createElement('canvas');cv.width=W;cv.height=H;const x=cv.getContext('2d');const b=myBrand(),acc=(b&&b.acc)||'#D9A441';
+    try{await document.fonts.ready;}catch(e){}
+    x.fillStyle='#231A13';x.fillRect(0,0,W,H);x.globalAlpha=.18;x.fillStyle=acc;x.beginPath();x.arc(W-60,120,330,0,7);x.fill();x.globalAlpha=1;
+    const lg=await new Promise(res=>{const i=new Image();i.onload=()=>res(i);i.onerror=()=>res(null);i.src=b&&b.logo?b.logo:LOGO_SRC;});
+    if(lg){x.save();x.beginPath();x.roundRect?x.roundRect(90,110,150,150,34):x.rect(90,110,150,150);x.clip();x.fillStyle='#fff';x.fillRect(90,110,150,150);x.drawImage(lg,90,110,150,150);x.restore();}
+    const F=(w,sz,f)=>`${w} ${sz}px ${f==='m'?'"DM Mono",monospace':'"Bricolage Grotesque","Instrument Sans",system-ui,sans-serif'}`;
+    const fit=(t,max,font)=>{x.font=font;let v=String(t);while(x.measureText(v).width>max&&v.length>3)v=v.slice(0,-2)+'…';return v;};
+    const lum=h=>{const n=parseInt(h.slice(1),16);return (0.299*(n>>16)+0.587*((n>>8)&255)+0.114*(n&255))/255;},onAcc=lum(acc)>.55?'#231A13':'#FFFFFF';
+    x.fillStyle='#F6F3EE';x.font=F(800,50);x.fillText(fit(b&&b.name?b.name:'Teman Main Padelmu',740,F(800,50)),270,175);
+    x.fillStyle='#BFAF9A';x.font=F(500,30,'m');x.fillText(fit((s.name+' · setelah '+tours.length+' chapter').toUpperCase(),760,F(500,30,'m')),270,228);
+    x.fillStyle=acc;x.font=F(500,32,'m');x.fillText('POIN MUSIM · PERINGKAT + KEHADIRAN',90,400);
+    x.fillStyle='#F6F3EE';x.font=F(800,92);x.fillText('Top '+Math.min(8,list.length)+' musim ini',90,510);
+    let y=600;list.slice(0,8).forEach((p,i)=>{const h=130;x.fillStyle=i===0?acc:'rgba(255,255,255,.08)';if(x.roundRect){x.beginPath();x.roundRect(90,y,900,h,30);x.fill();}else x.fillRect(90,y,900,h);
+      x.fillStyle=i===0?onAcc:'#F6F3EE';x.font=F(800,50);x.fillText(String(i+1),135,y+84);x.font=F(700,46);x.fillText(fit(p.name,560,F(700,46)),215,y+82);
+      x.font=F(800,52);x.textAlign='right';x.fillText(String(p.pts),950,y+84);x.textAlign='left';y+=h+18;});
+    x.fillStyle='#BFAF9A';x.font=F(500,30,'m');x.fillText('dibuat dengan TMP · temanmainpadelmu',90,H-110);
+    const blob=await new Promise(res=>cv.toBlob(res,'image/png'));const file=new File([blob],'ranking-'+rKey(s.name).slice(0,20)+'.png',{type:'image/png'});
+    if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:s.name});return;}
+    const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=file.name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},4000);toast('Gambar diunduh');
+  }catch(e){if(e&&e.name==='AbortError')return;console.warn('rstory',e);toast('Gambar belum bisa dibuat');}}
+function rankAction(a,el){
+  switch(a){
+    case 'rank':if(!rPaid()){upsellSheet('rank');return false;}prevView=['rank','members','seasons','player'].includes(view)?prevView:view;goView('rank');window.scrollTo(0,0);return false;
+    case 'r-season':RS.sid=el.dataset.s;lsSet('tmp.season',RS.sid);render();return false;
+    case 'r-members':goView('members');window.scrollTo(0,0);return false;
+    case 'r-seasons':RS.edit=null;goView('seasons');window.scrollTo(0,0);return false;
+    case 'r-player':RS.sel=el.dataset.p;goView('player');window.scrollTo(0,0);return false;
+    case 'r-story':seasonStory();return false;
+    case 'r-merge':{const c=club(),from=el.dataset.a,to=el.dataset.b;
+      Object.keys(c.aliases).forEach(k=>{if(rClean(c.aliases[k])===from)c.aliases[k]=to;});c.aliases[rKey(from)]=to;
+      rFinished().forEach(t=>t.entries.forEach(e=>rSplit(t,e.name).forEach(raw=>{if(rClean(raw)===from&&rKey(raw)!==rKey(to))c.aliases[rKey(raw)]=to;})));
+      delete c.aliases[rKey(to)];clubSave(c,`${from} digabung ke ${to}`);return false;}
+    case 'r-unmerge':{const c=club(),n=el.dataset.p;Object.keys(c.aliases).forEach(k=>{if(rClean(c.aliases[k])===n)delete c.aliases[k];});
+      rMembers();clubSave(c,`Nama ${n} dipisahkan lagi`);return false;}
+    case 'r-nosame':{const c=club();if(!c.notSame.includes(el.dataset.pair))c.notSame.push(el.dataset.pair);clubSave(c,'Ditandai sebagai orang berbeda');return false;}
+    case 'r-edit':{const s=club().seasons.find(x=>x.id===el.dataset.s);if(s)RS.edit={id:s.id,name:s.name,tids:s.tids.slice(),isNew:false};render();return false;}
+    case 'r-new':RS.edit={id:'s'+Date.now().toString(36),name:'Musim '+(club().seasons.length+1),tids:[],isNew:true};render();return false;
+    case 'r-ssave':{const c=club(),E=RS.edit,nm=rClean(document.getElementById('r-sname').value)||'Musim';E.name=nm.slice(0,30);
+      const i=c.seasons.findIndex(x=>x.id===E.id),rec={id:E.id,name:E.name,tids:E.tids.slice(0,200)};if(i>=0)c.seasons[i]=rec;else c.seasons.push(rec);
+      RS.sid=E.id;lsSet('tmp.season',RS.sid);RS.edit=null;clubSave(c,'Musim disimpan').then(()=>goView('rank'));return false;}
+    case 'r-sdel':{const c=club();c.seasons=c.seasons.filter(x=>x.id!==RS.edit.id);RS.edit=null;RS.sid='';clubSave(c,'Musim dihapus').then(()=>goView('rank'));return false;}
+  }
+  return true;
+}
+document.addEventListener('change',e=>{const id=e.target.dataset&&e.target.dataset.tid;if(!id||!RS.edit)return;const E=RS.edit;
+  if(e.target.checked){if(!E.tids.includes(id))E.tids.push(id);}else E.tids=E.tids.filter(x=>x!==id);
+  const nm=document.getElementById('r-sname');if(nm)E.name=nm.value;});
+document.addEventListener('keydown',e=>{const tr=e.target.closest&&e.target.closest('tr[data-act="r-player"]');if(tr&&(e.key==='Enter'||e.key===' ')){e.preventDefault();tr.click();}});
 
 
 /* ===== Home hero: wording mengikuti keadaan turnamen ===== */
@@ -2562,6 +2773,8 @@ function goView(v){if(spin)return;view=v;menuOpen=false;confirmKey=null;render()
 function goBack(){
   if(view==='admin')return goView('home');
   if(view==='pay')return goView('buy');
+  if(['members','seasons','player'].includes(view)){RS.edit=null;return goView('rank');}
+  if(view==='rank')return goView(prevView&&!['rank','members','seasons','player'].includes(prevView)?prevView:'home');
   if(view==='buy'||view==='brand')return goView(prevView&&!['buy','pay','brand'].includes(prevView)?prevView:'account');
   if(view==='account')return goView(prevView&&prevView!=='account'&&prevView!=='admin'&&(prevView!=='tour'||cur())&&(prevView!=='wheel'||wheelObj())?prevView:'home');
   if(view==='create'&&prevView==='wheel'&&wheelObj()){draft=null;return goView('wheel');}
@@ -2584,7 +2797,7 @@ document.addEventListener('click',e=>{
   }
   if(el.dataset.act&&el.dataset.act.startsWith('rc')){if(!rcAction(el.dataset.act,el))return;}
   if(el.dataset.act&&/^(wnew|wtpl|wsrc|wd[a-z-]+|wp[a-z-]+)$/.test(el.dataset.act)&&!/^(wdel|wdel-yes)$/.test(el.dataset.act)){if(!wAction(el.dataset.act,el))return;}
-  if(STANDALONE&&el.dataset.act&&/^(dur|topay|paid|brand|br-acc|br-nologo|br-save|story|adm-pay|adm-rej|pc-go|guest|demo-live|demo-exit|live|acct|login|login-go|logout|buy|reqplan|pro|go-plans|admin|adm-on|adm-no|adm-off|adm-approve|adm-reject|adm-block|adm-unblock|new)$/.test(el.dataset.act)){if(!accAction(el.dataset.act,el))return;}
+  if(STANDALONE&&el.dataset.act&&/^(rank|r-season|r-members|r-seasons|r-player|r-story|r-merge|r-unmerge|r-nosame|r-edit|r-new|r-ssave|r-sdel|dur|topay|paid|brand|br-acc|br-nologo|br-save|story|adm-pay|adm-rej|pc-go|guest|demo-live|demo-exit|live|acct|login|login-go|logout|buy|reqplan|pro|go-plans|admin|adm-on|adm-no|adm-off|adm-approve|adm-reject|adm-block|adm-unblock|new)$/.test(el.dataset.act)){if(!accAction(el.dataset.act,el))return;}
   if(el.dataset.act==='hometop'){window.scrollTo({top:0,behavior:'smooth'});return;}
   if(el.dataset.act==='tolist'){const x=document.getElementById('tlist');if(x)x.scrollIntoView({behavior:'smooth',block:'start'});return;}
   if(el.dataset.act==='sharelink'){const u=location.origin+location.pathname;const d={title:'TMP · Teman Main Padelmu',text:'Bikin turnamen padel bareng, skor otomatis masuk klasemen.',url:u};
