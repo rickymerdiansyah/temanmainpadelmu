@@ -746,6 +746,57 @@ body.v-home.is-admin .bnav-in{grid-template-columns:repeat(4,1fr)}
 .hbars i.abs{background:repeating-linear-gradient(45deg,var(--bg2,#EFE8DD) 0 4px,var(--surface) 4px 8px);border:1px dashed var(--line)}
 .hbars span{font:500 9px "DM Mono",monospace;color:var(--muted)}
 .hbars em{font-style:normal;font:800 11px var(--f-brush)}
+.spon{display:flex;align-items:center;gap:10px;justify-content:center;background:var(--surface);border:1px dashed var(--line);border-radius:14px;padding:10px 12px}
+.spon img{width:42px;height:42px;object-fit:contain;border-radius:8px;background:#fff}
+.spon small{display:block;font:500 9px "DM Mono",monospace;letter-spacing:.1em;color:var(--muted)}
+.spon b{font:700 15px var(--f-brush)}
+.proofup{display:flex;align-items:center;gap:12px;border:1.5px dashed var(--line);border-radius:14px;padding:10px 12px;background:var(--surface);cursor:pointer}
+.proofup img,.proofup .ph{width:52px;height:68px;border-radius:8px;object-fit:cover;flex:none;border:1px solid var(--line)}
+.proofup .ph{display:grid;place-items:center;font:700 22px var(--f-brush);color:var(--muted);background:var(--bg2,#EFE8DD)}
+.proofup b{display:block;font:700 14px var(--f-brush)}
+.proofup small{display:block;font-size:12px;color:var(--muted)}
+.menu2{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.menu2 button{display:flex;align-items:center;justify-content:space-between;border:0;border-top:1px solid var(--line);background:transparent;padding:13px 14px;font:600 14px var(--f-body);color:inherit;text-align:left}
+.menu2 button:first-child{border-top:0}
+.menu2 button span{color:var(--muted);font-size:18px}
+.legallinks{display:flex;justify-content:center;gap:4px;padding:6px 0}
+.legallinks button{border:0;background:transparent;color:var(--muted);font:500 12px var(--f-body);text-decoration:underline;text-underline-offset:3px;padding:6px 8px}
+.legal{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:8px;font-size:14px;line-height:1.55}
+.legal h1{margin:0 0 4px;font:800 22px var(--f-brush)}
+.legal h3{margin:8px 0 0;font:700 15px var(--f-brush)}
+.legal p{margin:0;max-width:65ch}
+body.tvmode #bar,body.tvmode .bnav,body.tvmode #wafab{display:none!important}
+body.tvmode #app{max-width:none!important;padding:0!important}
+.tv{min-height:100vh;background:#1b140e;color:#F6F3EE;display:flex;flex-direction:column;padding:2.2vw 2.6vw;gap:1.6vw;box-sizing:border-box}
+.tvh{display:flex;align-items:center;gap:1.4vw;border-bottom:.35vw solid var(--bacc,#D9A441);padding-bottom:1.2vw}
+.tvh img{width:5vw;height:5vw;min-width:48px;min-height:48px;border-radius:1vw;object-fit:contain;background:#fff}
+.tvh b{display:block;font:800 clamp(22px,2.6vw,52px)/1.1 var(--f-brush)}
+.tvh small{display:block;font:500 clamp(12px,1.2vw,24px) "DM Mono",monospace;letter-spacing:.08em;color:#BFAF9A}
+.tvh .lv{margin-left:auto;font:500 clamp(12px,1.3vw,26px) "DM Mono",monospace;color:#4CC27D}
+.tvbody{flex:1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:2vw}
+@media (max-aspect-ratio:1/1){.tvbody{grid-template-columns:minmax(0,1fr)}}
+.tvp{background:rgb(255 255 255 / .05);border-radius:1.2vw;padding:1.4vw 1.6vw;min-width:0}
+.tvp h2{margin:0 0 1vw;font:800 clamp(18px,2vw,40px) var(--f-brush);color:var(--bacc,#D9A441)}
+.tvt{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.tvt td{padding:.55vw .4vw;border-top:1px solid rgb(255 255 255 / .08);font:600 clamp(14px,1.6vw,32px) var(--f-body)}
+.tvt td.r{width:3vw;font-family:var(--f-brush);font-weight:800;color:#BFAF9A}
+.tvt td.r.g{color:var(--bacc,#D9A441)}
+.tvt td.n{overflow-wrap:anywhere}
+.tvt td.w{text-align:right;color:#BFAF9A;white-space:nowrap}
+.tvt td.p{text-align:right;font:800 clamp(16px,1.9vw,38px) var(--f-brush);color:var(--bacc,#D9A441);width:6vw}
+.tvnote{font-size:clamp(14px,1.4vw,28px);color:#BFAF9A}
+.tvm{display:flex;flex-direction:column;gap:.8vw}
+.tvc{display:grid;grid-template-columns:7vw minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:1vw;background:rgb(255 255 255 / .05);border-radius:.8vw;padding:.8vw 1vw}
+.tvc .ct{font:500 clamp(10px,1vw,20px) "DM Mono",monospace;color:#BFAF9A}
+.tvc .sd{font:600 clamp(13px,1.4vw,28px) var(--f-body);overflow-wrap:anywhere}
+.tvc .sd:last-child{text-align:right}
+.tvc .sc{font:800 clamp(16px,2vw,40px) var(--f-brush);color:var(--bacc,#D9A441);white-space:nowrap}
+.tvf{display:flex;justify-content:space-between;align-items:center;gap:1vw}
+.tvf .spon{background:rgb(255 255 255 / .06);border-color:rgb(255 255 255 / .15);color:#F6F3EE}
+.tvf .spon small{color:#BFAF9A}
+.tvf .by{font:500 clamp(10px,1vw,20px) "DM Mono",monospace;color:#BFAF9A}
+body.tvmode{background:#1b140e}
+body.tvmode main,body.tvmode .wrap{padding:0!important;max-width:none!important}
 
 /* ===== B · Tiket Main — HOME ONLY (body.v-home) ===== */
 body.v-home{--hb:#F6F3EE;--hink:#231A13;--hmut:#6F604F;--hgold:#D9A441;--hline:#E3DBCF;--hmono:"DM Mono",ui-monospace,monospace;--hdisp:"Bricolage Grotesque",system-ui,sans-serif;
@@ -810,7 +861,7 @@ body.v-home .bnav button[aria-selected="true"]{font-weight:700;color:var(--hink)
 <script>
 const LOGO_SRC='data:image/webp;base64,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';
 const KEY='tmp.v2';
-const APP_V='v18 · 5 Nov 2026';
+const APP_V='v19 · 5 Nov 2026';
 const FORMATS={
   'americano':{label:'Americano',group:'Americano',family:'americano',kind:'ind',desc:'Main bareng dan melawan semua orang secara bergiliran. Skor dihitung per pemain.'},
   'team-americano':{label:'Team Americano',group:'Americano',family:'americano',kind:'team',desc:'Tim tetap. Setiap tim bergiliran melawan semua tim lain.'},
@@ -833,7 +884,7 @@ const courtName=i=>i<26?String.fromCharCode(65+i):String(i+1);
 const grpName=g=>'Grup '+String.fromCharCode(65+g);
 function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 function localSave(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
-function save(){localSave();Cloud.schedule();if(typeof Live!=='undefined')Live.schedule();if(typeof CT!=='undefined')CT.schedule();}
+function save(){localSave();Cloud.schedule();if(typeof Live!=='undefined')Live.schedule();if(typeof CT!=='undefined')CT.schedule();if(typeof SH!=='undefined')SH.schedule();}
 
 /* ---------- Cloud save: keeps tournaments in the viewer's own private space on their Claude account ---------- */
 const Cloud={db:null,uid:null,status:'local',synced:{},metaSynced:null,timer:null,chain:Promise.resolve(),
@@ -1288,16 +1339,16 @@ function renderBar(){
   if(view==='landing'||view==='gate'){bar.innerHTML=`${logoImg()}<div class="brand"><b>Teman Main Padelmu</b><small>PLAY · CONNECT · GROW</small></div>${view==='landing'?'<button class="btn primary sm" data-act="login-go" style="margin-left:auto">Masuk</button>':''}`;return;}
   if(view==='home'){bar.innerHTML=`${logoImg()}<div class="brand"><b>Teman Main Padelmu</b><small>PLAY · CONNECT · GROW</small></div><span id="cloudchip"></span>${STANDALONE?accBtn():''}`;paintCloud();return;}
   if(view==='live'){bar.innerHTML=`${logoImg()}<div class="brand"><b>TMP</b><small>Teman Main Padelmu</small></div><span class="livechip ${liveState}" id="livechip"><i></i>${{live:'LIVE',connecting:'Menghubungkan…',offline:'Offline',error:'Terputus',gone:'Tidak aktif'}[liveState]||'LIVE'}</span>`;return;}
-  const title={create:'Buat Turnamen',tour:'Turnamen',wheels:'Spin Wheel',wheel:'Spin Wheel',account:'Akun & Paket',admin:'Admin TMP',buy:'Pilih paket',pay:'Pembayaran',brand:'Identitas komunitas',rank:'Ranking musim',members:'Anggota komunitas',seasons:'Atur musim',player:'Profil pemain'}[view]||'';
+  const title={create:'Buat Turnamen',tour:'Turnamen',wheels:'Spin Wheel',wheel:'Spin Wheel',account:'Akun & Paket',admin:'Admin TMP',buy:'Pilih paket',pay:'Pembayaran',brand:'Identitas komunitas',rank:'Ranking musim',members:'Anggota komunitas',seasons:'Atur musim',player:'Profil pemain',cohost:'Co-host',seats:'Organizer venue',recap:'Rekap bulanan',legal:'Syarat & kebijakan'}[view]||'';
   bar.innerHTML=`<button class="iconbtn" data-act="back" aria-label="Kembali">${I.back}</button>${logoImg(32)}<span class="bar-title">${title}</span><span id="cloudchip"></span>${STANDALONE&&view!=='account'&&accMe()?accBtn():''}`;paintCloud();
 }
 function render(){
   document.body.classList.toggle('is-admin',!!(STANDALONE&&accMe()&&accMe().admin));
-  if(STANDALONE&&view!=='live'){if(!accMe()&&!isGuest())view='landing';else if(isGuest()){if(['landing','gate','admin','account','buy','pay','brand','rank','members','seasons','player'].includes(view))view='home';}else if(!accActive())view='gate';else if(view==='landing'||view==='gate')view='home';}
+  if(STANDALONE&&view!=='live'&&view!=='legal'){if(!accMe()&&!isGuest())view='landing';else if(isGuest()){if(['landing','gate','admin','account','buy','pay','brand','rank','members','seasons','player','cohost','seats','recap'].includes(view))view='home';}else if(!accActive())view='gate';else if(view==='landing'||view==='gate')view='home';}
   renderBar();const app=document.getElementById('app'),nav=document.getElementById('bnav');
   if(view==='create'){app.innerHTML=renderCreate();const u=accMe();if(u&&!u.admin&&planOf(u)==='free'&&quotaLeft(u)<=2&&quotaLeft(u)>0)app.insertAdjacentHTML('afterbegin',`<div class="quota warn"><div class="q1"><b>${quotaLeft(u)===1?'Ini turnamen gratis terakhirmu':'Ini turnamen gratis ke-'+((u.made||0)+1)+' dari '+FREE_LIMIT}</b><button class="btn primary sm" data-act="go-plans">Upgrade</button></div><small>${quotaLeft(u)===1?'Setelah ini, upgrade untuk membuat turnamen baru.':'Sisa '+(quotaLeft(u)-1)+' turnamen gratis setelah ini.'}</small></div>`);}
   else if(view==='tour'&&cur())app.innerHTML=renderTour();
-  else if(view==='live'){app.innerHTML=liveT?renderTour():renderLiveWait();if(liveT&&liveT._brand&&(liveT._brand.name||liveT._brand.logo)){const bd=liveT._brand;app.insertAdjacentHTML('afterbegin',`<div class="brandbar" style="--bacc:${esc(bd.acc||'#D9A441')}">${bd.logo?`<img src="${esc(bd.logo)}" alt="Logo ${esc(bd.name||'')}">`:''}<span><b>${esc(bd.name||'')}</b><small>LIVE · DIBUAT DENGAN TMP</small></span><span class="lv">● LIVE</span></div>`);}if(liveT&&liveT===LDEMO)app.insertAdjacentHTML('afterbegin',`<div class="demobar"><span><b>Contoh live</b><small>Begini tampilan link yang kamu bagikan ke penonton. Data contoh.</small></span><button class="btn primary sm" data-act="demo-exit">Kembali</button></div>`);}
+  else if(view==='live'){if(STANDALONE&&liveTV){app.innerHTML=renderTV(liveT);}else{app.innerHTML=liveT?renderTour():renderLiveWait();}if(!liveTV&&liveT&&liveT._brand&&(liveT._brand.name||liveT._brand.logo)){const bd=liveT._brand;app.insertAdjacentHTML('afterbegin',`<div class="brandbar" style="--bacc:${esc(bd.acc||'#D9A441')}">${bd.logo?`<img src="${esc(bd.logo)}" alt="Logo ${esc(bd.name||'')}">`:''}<span><b>${esc(bd.name||'')}</b><small>LIVE · DIBUAT DENGAN TMP</small></span><span class="lv">● LIVE</span></div>`);if(liveT._brand.sponsor&&liveT._venue)app.insertAdjacentHTML('beforeend',sponsorHtml(liveT._brand.sponsor));}if(liveT&&liveT===LDEMO)app.insertAdjacentHTML('afterbegin',`<div class="demobar"><span><b>Contoh live</b><small>Begini tampilan link yang kamu bagikan ke penonton. Data contoh.</small></span><button class="btn primary sm" data-act="demo-exit">Kembali</button></div>`);}
   else if(view==='landing')app.innerHTML=renderLanding();
   else if(view==='gate')app.innerHTML=renderGate();
   else if(view==='account')app.innerHTML=renderAccount();
@@ -1308,12 +1359,17 @@ function render(){
   else if(view==='members')app.innerHTML=renderMembers();
   else if(view==='seasons')app.innerHTML=renderSeasons();
   else if(view==='player')app.innerHTML=renderPlayer();
+  else if(view==='cohost')app.innerHTML=renderCohost();
+  else if(view==='seats')app.innerHTML=renderSeats();
+  else if(view==='recap')app.innerHTML=renderRecap();
+  else if(view==='legal')app.innerHTML=renderLegal();
   else if(view==='admin')app.innerHTML=renderAdmin();
   else if(view==='wheels')app.innerHTML=renderWheels();
   else if(view==='wheel'&&wheelObj())app.innerHTML=renderWheel();
   else{view='home';renderBar();app.innerHTML=renderHome();}
   const tourLike=view==='tour'||(view==='live'&&!!liveT);
   document.body.classList.toggle('v-home',view==='home');
+  document.body.classList.toggle('tvmode',STANDALONE&&view==='live'&&liveTV);
   nav.hidden=!tourLike&&view!=='home';
   if(view==='home')nav.innerHTML=`<div class="bnav-in"><button type="button" data-act="hometop" aria-selected="true">Home</button><button type="button" data-act="new">+ Buat</button><button type="button" data-act="wheels">Wheel</button>${STANDALONE&&accMe()&&accMe().admin?`<button type="button" class="nb" data-act="admin">Admin${admCount()?`<i>${admCount()}</i>`:''}</button>`:''}</div>`;
   if(tourLike){
@@ -1337,7 +1393,7 @@ function renderHome(){
       <span class="sub">${esc(fmtDate(t.date))}</span>
       ${on&&tot?`<span class="bar2"><i style="width:${pct}%"></i></span>`:''}</span></button>`;};
   return `${heroB(list)}
-  ${STANDALONE?quotaCard()+rankCard():''}
+  ${STANDALONE?quotaCard()+rankCard()+sharedList():''}
   <div class="hq"><button type="button" data-act="wheels">${I.wheel}<span>SPIN</span></button><button type="button" data-act="sharelink">${I.share}<span>SHARE</span></button><button type="button" data-act="tolist">${ICAL}<span>RIWAYAT</span></button></div>
   <p class="note" id="cloudnote" ${!(STANDALONE&&accMe())&&(Cloud.status==='local'||Cloud.status==='readonly')?'':'hidden'}><b>Turnamen belum tersimpan di akun.</b> Data saat ini hanya ada di perangkat ini dan bisa hilang saat app ditutup. Supaya aman, buka TMP lewat app Claude, atau login ke claude.ai di browser yang sama lalu buka lagi link TMP.</p>
   ${S.hideHint?'':`<div class="hint">${logoImg(34)}<p><b>Pasang di iPhone:</b> buka halaman ini di Safari, ketuk Bagikan, lalu pilih <b>Add to Home Screen</b>.</p><button class="x" data-act="hidehint" aria-label="Tutup">×</button></div>`}
@@ -1692,7 +1748,7 @@ const Live={base:null,authP:null,uid:null,pushed:{},timer:null,chain:Promise.res
   async push(t){
     const c=await this.core();await this.owner();
     const j=JSON.stringify(t);
-    await c.f.setDoc(this.ref(c,t.liveId),{owner:t.liveOwner||this.uid,...(ACCT.me?{ownerEmail:ACCT.me.email}:{}),...(STANDALONE&&myBrand()?{brand:myBrand()}:{}),json:j,name:String(t.name).slice(0,120),updated:Date.now()});
+    await c.f.setDoc(this.ref(c,t.liveId),{owner:t.liveOwner||this.uid,...(ACCT.me?{ownerEmail:ACCT.me.email}:{}),...(STANDALONE&&myBrand()?{brand:myBrand()}:{}),...(STANDALONE&&accMe()&&planOf(accMe())==='venue'?{venue:true}:{}),json:j,name:String(t.name).slice(0,120),updated:Date.now()});
     this.pushed[t.liveId]=j;
   },
   schedule(){
@@ -1708,7 +1764,7 @@ const Live={base:null,authP:null,uid:null,pushed:{},timer:null,chain:Promise.res
   watch(id){
     return this.core().then(c=>c.f.onSnapshot(this.ref(c,id),{includeMetadataChanges:true},snap=>{
       if(!snap.exists()){liveT=null;liveState='gone';render();return;}
-      try{liveT=JSON.parse(snap.data().json);liveT._brand=snap.data().brand||null;}catch(e){return;}
+      try{liveT=JSON.parse(snap.data().json);liveT._brand=snap.data().brand||null;liveT._venue=!!snap.data().venue;}catch(e){return;}
       liveState=snap.metadata.fromCache?'offline':'live';
       if(liveFollow)followRound();
       const y=window.scrollY;render();window.scrollTo(0,y);
@@ -1739,6 +1795,7 @@ function openLiveSheet(){
       <p class="help">Bagikan link ini ke grup. Skor yang kamu isi langsung ter-update di HP peserta.</p></div>
     <input class="input" id="livelink" readonly value="${esc(url)}" aria-label="Link live">
     <div class="row"><button class="btn ghost" style="flex:1" data-act="livecopy">Salin link</button><a class="btn primary" style="flex:1" href="${wa}" target="_blank" rel="noopener">Kirim ke WhatsApp</a></div>
+    ${STANDALONE?tvLinkBlock(t):''}
     ${t.liveErr==='permission-denied'?'<p class="err">Link ini dibuat dari HP lain, jadi skor di HP ini tidak ter-update ke link. Update skor dari HP pembuatnya.</p>':t.liveErr?'<p class="note">Sedang offline. Skor terbaru dikirim begitu HP terhubung lagi.</p>':''}
     <p class="note">Hanya HP ini yang bisa meng-update link. Jangan hapus data Safari di HP ini selama turnamen berjalan.</p>
     ${confirmKey==='liveoff'?`<div class="confirm"><p>Hentikan link live? Peserta tidak bisa membuka link ini lagi.</p><div class="row"><button class="btn danger" data-act="liveoff">Ya, hentikan</button><button class="btn ghost" data-act="live">Batal</button></div></div>`
@@ -1906,7 +1963,7 @@ function renderWheel(){
   if(w.kind==='doorprize')return renderDoorprize(w);
   if(w.kind==='pairs')return renderPairs(w);
   return `<div class="field"><label for="w-name">Nama roda</label><input class="input" id="w-name" value="${esc(w.name)}" autocomplete="off"></div>
-  <div class="wheelbox"><div class="pointer"></div><canvas id="wcanvas" width="680" height="680" aria-label="Roda undian dengan ${w.items.length} pilihan"></canvas><div class="hub">${STANDALONE?hubLogo():logoImg(80).replace('class="logo"','')}</div></div>
+  <div class="wheelbox"><div class="pointer"></div><canvas id="wcanvas" width="680" height="680" aria-label="Roda undian dengan ${w.items.length} pilihan"></canvas><div class="hub">${STANDALONE?hubLogo():logoImg(80).replace('class="logo"','')}</div></div>${STANDALONE?sponsorBar():''}
   <div class="result" id="wresult">${w.last?`<span class="hand">Hasil terakhir</span><span class="pill">${esc(w.last)}</span>`:'<span class="muted">Tekan Putar untuk mengundi.</span>'}</div>
   <button class="btn primary block" data-act="wspin" id="wspin" ${w.items.length<2?'disabled':''}>${I.wheel} Putar</button>
   <label class="check"><input type="checkbox" id="w-remove" ${w.removeWinner?'checked':''}><span><b>Hapus hasil dari roda</b><span class="help">Cocok untuk undian doorprize atau urutan, supaya nama yang sama tidak keluar dua kali.</span></span></label>
@@ -2024,7 +2081,7 @@ function renderDoorprize(w){
   <div class="field"><label for="w-name">Nama roda</label><input class="input" id="w-name" value="${esc(w.name)}" autocomplete="off"></div>
   ${t?`<div class="srcbar"><span class="tx"><b>${esc(t.name)}</b>${w.items.length} peserta di roda${away?` · ${away} telat tidak ikut`:''}${ok?` · ${ok} sudah menang`:''}</span><button type="button" class="btn ghost sm" data-act="wdsync">Perbarui</button></div>`:''}
   ${pn.total?`<div class="prizebar"><span><small>${allDone?'SEMUA HADIAH SUDAH DIUNDI':'HADIAH BERIKUTNYA'}</small><b>${allDone?'Selesai':esc(pn.name)}</b></span><span class="n">${Math.min(pn.i+1,pn.total)}/${pn.total}</span></div>`:''}
-  <div class="wheelbox"><div class="pointer"></div><canvas id="wcanvas" width="680" height="680" aria-label="Roda doorprize dengan ${w.items.length} peserta"></canvas><div class="hub">${STANDALONE?hubLogo():logoImg(80).replace('class="logo"','')}</div></div>
+  <div class="wheelbox"><div class="pointer"></div><canvas id="wcanvas" width="680" height="680" aria-label="Roda doorprize dengan ${w.items.length} peserta"></canvas><div class="hub">${STANDALONE?hubLogo():logoImg(80).replace('class="logo"','')}</div></div>${STANDALONE?sponsorBar():''}
   <div class="result" id="wresult">${w.lastWin!=null&&wins[w.lastWin]&&!wins[w.lastWin].void?`<span class="hand">Pemenang${wins[w.lastWin].prize?' · '+esc(wins[w.lastWin].prize):''}</span><span class="pill">${esc(wins[w.lastWin].name)}</span>`:'<span class="muted">Tekan Putar untuk mengundi.</span>'}</div>
   <button class="btn primary block" data-act="wspin" id="wspin" ${w.items.length<2||allDone?'disabled':''}>${I.wheel} ${allDone?'Semua hadiah sudah diundi':'Putar'+(pn.name?' untuk '+esc(pn.name):'')}</button>
   ${w.lastWin!=null&&wins[w.lastWin]&&!wins[w.lastWin].void?`<button class="btn ghost block" data-act="wdvoid">Pemenang tidak di tempat · undi ulang hadiah ini</button>`:''}
@@ -2054,7 +2111,7 @@ function renderPairs(w){
   <div class="field"><label for="w-name">Nama roda</label><input class="input" id="w-name" value="${esc(w.name)}" autocomplete="off"></div>
   ${t?`<div class="srcbar"><span class="tx"><b>${esc(t.name)}</b>${(w.people||[]).length} pemain hadir · sisa ${pool.length} belum berpasangan</span></div>`:''}
   ${hasG?`<label class="check"><input type="checkbox" id="w-mixed" ${w.mixed?'checked':''} ${pairs.length||w.pending?'disabled':''}><span><b>Pasangan campuran</b><span class="help">Setiap tim berisi 1 putra dan 1 putri.${pairs.length||w.pending?' Tidak bisa diubah setelah undian dimulai.':''}</span></span></label>`:''}
-  ${done?'':`<div class="wheelbox"><div class="pointer"></div><canvas id="wcanvas" width="680" height="680" aria-label="Roda undi pasangan dengan ${w.items.length} pemain"></canvas><div class="hub">${STANDALONE?hubLogo():logoImg(80).replace('class="logo"','')}</div></div>
+  ${done?'':`<div class="wheelbox"><div class="pointer"></div><canvas id="wcanvas" width="680" height="680" aria-label="Roda undi pasangan dengan ${w.items.length} pemain"></canvas><div class="hub">${STANDALONE?hubLogo():logoImg(80).replace('class="logo"','')}</div></div>${STANDALONE?sponsorBar():''}
   <div class="result" id="wresult"><span class="hand">${esc(st.label)}</span>${w.lastPick?`<span class="muted">Terakhir: ${esc(w.lastPick)}</span>`:''}</div>
   <div class="wactions"><button class="btn primary" data-act="wspin" id="wspin" ${w.items.length<1?'disabled':''}>${I.wheel} Putar</button><button class="btn ghost" data-act="wpall" id="wpall" ${pool.length<2&&!w.pending?'disabled':''}>Undi semua sekaligus</button></div>`}
   ${t?'':`<div class="field"><label for="w-people">Pemain (${(w.people||[]).length})</label><textarea class="input" id="w-people" rows="5" placeholder="Satu nama per baris" ${pairs.length||w.pending?'disabled':''}>${esc((w.people||[]).map(p=>p.name).join('\n'))}</textarea>${pairs.length||w.pending?'<p class="help">Daftar pemain terkunci selama undian berjalan. Undi ulang untuk mengubah.</p>':''}</div>`}
@@ -2114,21 +2171,21 @@ const ACCT={me:null,state:'boot',users:[],beta:true,au:null,unsubMe:null,unsubAd
 };
 function toDate(v){return v&&typeof v.toDate==='function'?v.toDate():(v instanceof Date?v:null);}
 function convUser(uid,d){return {uid,email:d.email||'',name:d.name||(d.email||'?').split('@')[0],status:d.status||'pending',plan:d.plan||'free',until:toDate(d.until),made:d.made||0,
-  joined:toDate(d.joined),req:d.req?{plan:d.req.plan,at:toDate(d.req.at),dur:d.req.dur||null,code:d.req.code||'',amount:d.req.amount||0,paid:!!d.req.paid,rej:!!d.req.rej}:null,
-  club:d.club&&typeof d.club==='object'?d.club:null,
-  brand:d.brand&&typeof d.brand==='object'?{name:String(d.brand.name||''),acc:String(d.brand.acc||''),logo:d.brand.logo||null}:null,legacyOpen:!!d.legacyOpen,admin:(d.email||'').toLowerCase()===ADMIN_EMAIL};}
+  joined:toDate(d.joined),req:d.req?{plan:d.req.plan,at:toDate(d.req.at),dur:d.req.dur||null,code:d.req.code||'',amount:d.req.amount||0,paid:!!d.req.paid,rej:!!d.req.rej,proof:!!d.req.proof}:null,
+  club:d.club&&typeof d.club==='object'?d.club:null,cohosts:Array.isArray(d.cohosts)?d.cohosts:[],seats:Array.isArray(d.seats)?d.seats:[],
+  brand:d.brand&&typeof d.brand==='object'?{name:String(d.brand.name||''),acc:String(d.brand.acc||''),logo:d.brand.logo||null,sponsor:d.brand.sponsor&&typeof d.brand.sponsor==='object'?{name:String(d.brand.sponsor.name||''),logo:d.brand.sponsor.logo||null}:null}:null,legacyOpen:!!d.legacyOpen,admin:(d.email||'').toLowerCase()===ADMIN_EMAIL};}
 function accMe(){return ACCT.me;}
 function isGuest(){return !ACCT.me&&lsGet(GUEST_KEY)==='1';}
 function ownerKey(){return ACCT.me?ACCT.me.uid:'guest';}
 function accActive(){const u=accMe();return !!u&&u.status==='active';}
-function planOf(u){if(!u||u.plan==='free'||!u.until)return 'free';return u.until>new Date()?u.plan:'free';}
+function planOf(u){if(!u)return 'free';if(u.plan!=='free'&&u.until&&u.until>new Date())return u.plan;if(ACCT.me&&u.uid===ACCT.me.uid&&ACCT.seat&&ACCT.seat.until>new Date())return 'org';return 'free';}
 function accPaid(){return planOf(accMe())!=='free';}
 function quotaLeft(u){if(!u)return 0;if(u.admin||planOf(u)!=='free')return Infinity;return Math.max(0,FREE_LIMIT-(u.made||0));}
 function fmtD(d){return d?d.toLocaleDateString('id-ID',{day:'numeric',month:'short',year:'numeric'}):'';}
 function fmtDT(d){return d?d.toLocaleString('id-ID',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}):'';}
 function myTournaments(){const k=ownerKey();return S.tournaments.filter(t=>!t.sample&&(t.owner||'')===k);}
 function legacyLocal(){return S.tournaments.filter(t=>!t.sample&&!t.owner);}
-const tj=t=>JSON.stringify(t,(k,v)=>k==='_u'||k==='_legacy'?undefined:v);
+const tj=t=>JSON.stringify(t,(k,v)=>k==='_u'||k==='_legacy'||k==='_shared'||k==='_ownerName'||k==='_brand'||k==='_venue'?undefined:v);
 
 async function authMod(){if(!ACCT.au)ACCT.au=await import(FB_URL('auth'));return ACCT.au;}
 async function authInst(){const c=await Live.core();const au=await authMod();return {c,au,auth:au.getAuth(c.app)};}
@@ -2166,6 +2223,7 @@ async function accCreate(c,u){
   if(admin){try{const cs=await f.getDoc(f.doc(c.db,'config','app'));if(!cs.exists())await f.setDoc(f.doc(c.db,'config','app'),{beta:true});}catch(e){}}
   await f.setDoc(f.doc(c.db,'users',u.uid),{email:u.email,name:String(u.displayName||u.email.split('@')[0]).slice(0,80),
     status:(admin||!beta)?'active':'pending',plan:'free',until:null,made:0,joined:f.serverTimestamp(),req:null,legacyOpen:true});
+  if(!admin)notifyAdmin('register');
 }
 function accWatchAdmin(c){
   const f=c.f;
@@ -2202,7 +2260,8 @@ async function doLogout(){
   try{await CT.flush();}catch(e){}
   const uid=ACCT.me&&ACCT.me.uid;
   try{const {au,auth}=await authInst();await au.signOut(auth);}catch(e){}
-  if(uid){S.tournaments=S.tournaments.filter(t=>t.owner!==uid);localSave();}
+  try{SH.stop();if(CT.unsub){CT.unsub();CT.unsub=null;}}catch(e){}ACCT.seat=null;
+  if(uid){S.tournaments=S.tournaments.filter(t=>t.owner!==uid&&!t._shared);localSave();}
   ACCT.me=null;ACCT.started=false;ACCT.cacheMe();lsSet(GUEST_KEY,null);CT.pushed={};
   view='landing';render();toast('Kamu sudah keluar');
 }
@@ -2320,18 +2379,21 @@ function renderPay(){
       <a class="btn wa block" href="${waAdmin(waText())}" target="_blank" rel="noopener">${CHAT_IC} Chat admin lewat WhatsApp</a></div></div>
     <div class="ps"><span class="n">2</span><div class="tx"><b>Bayar tepat ${rp(payAmount())}</b><span>Kirim screenshot bukti bayar di chat yang sama.</span></div></div>
     <div class="ps"><span class="n">3</span><div class="tx"><b>Tekan Saya sudah bayar</b><span>Pesananmu masuk ke daftar yang dicek admin. Paket aktif di akunmu setelah dicek.</span></div></div></div>
+  <div class="field"><span class="lbl">Bukti bayar (opsional)</span>
+    <label class="proofup" for="pay-proof">${PROOF?`<img src="${PROOF}" alt="Bukti bayar">`:'<span class="ph">+</span>'}<span><b>${PROOF?'Bukti terpilih':'Unggah screenshot bukti bayar'}</b><small>${PROOF?'Ketuk untuk ganti':'Membantu admin mengecek lebih cepat'}</small></span></label>
+    <input type="file" id="pay-proof" accept="image/*" hidden>${PROOF?'<button class="btn ghost sm" data-act="proof-clear" style="align-self:flex-start">Hapus bukti</button>':''}</div>
   <button class="btn primary block" data-act="paid">Saya sudah bayar</button>`;
 }
 /* ---------- Identitas komunitas (Organizer & Venue) ---------- */
 const BR_ACC=['#D9A441','#1F7A5A','#2E5AAC','#C2452D','#6B4BA0','#231A13'];
 let BR=null;
-function myBrand(){const u=accMe();return u&&planOf(u)!=='free'&&u.brand&&(u.brand.logo||u.brand.name)?u.brand:null;}
+function myBrand(){const u=accMe();if(!(u&&planOf(u)!=='free'&&u.brand&&(u.brand.logo||u.brand.name)))return null;return {name:u.brand.name,acc:u.brand.acc,logo:u.brand.logo,sponsor:planOf(u)==='venue'&&u.brand.sponsor&&(u.brand.sponsor.name||u.brand.sponsor.logo)?u.brand.sponsor:null};}
 function brandAcc(){const b=myBrand();return b&&b.acc?b.acc:null;}
 function hubLogo(){const b=myBrand();return b&&b.logo?`<img src="${esc(b.logo)}" alt="Logo ${esc(b.name)}" style="width:100%;height:100%;object-fit:contain;border-radius:50%">`:logoImg(80).replace('class="logo"','');}
 function brandInit(u){return esc(((u&&u.name)||'?').match(/\b\w/g).slice(0,3).join('').toUpperCase());}
 function renderBrand(){
   const u=accMe();if(!u||planOf(u)==='free')return renderAccount();
-  if(!BR)BR={name:(u.brand&&u.brand.name)||'',acc:(u.brand&&u.brand.acc)||BR_ACC[0],logo:(u.brand&&u.brand.logo)||null};
+  if(!BR)BR={name:(u.brand&&u.brand.name)||'',acc:(u.brand&&u.brand.acc)||BR_ACC[0],logo:(u.brand&&u.brand.logo)||null,sponsor:(u.brand&&u.brand.sponsor)?{...u.brand.sponsor}:null};
   return `<section class="hero"><h1>Identitas komunitas</h1><p class="muted" style="margin:0">Dipakai di live link penonton, PDF hasil turnamen, spin wheel, dan gambar klasemen untuk story.</p></section>
   <div class="brandup"><span class="blogo">${BR.logo?`<img src="${esc(BR.logo)}" alt="Logo komunitas">`:'<span>LOGO</span>'}</span>
     <span class="bt"><label class="btn ghost sm" for="br-file">${BR.logo?'Ganti logo':'Unggah logo'}</label><input type="file" id="br-file" accept="image/*" hidden>
@@ -2339,6 +2401,9 @@ function renderBrand(){
   <div class="field"><label for="br-name">Nama komunitas</label><input class="input" id="br-name" maxlength="40" value="${esc(BR.name)}" placeholder="Contoh: Padel Kemang Club" autocomplete="off"></div>
   <div class="field"><span class="lbl">Warna aksen</span><div class="bracc">${BR_ACC.map(c=>`<button type="button" data-act="br-acc" data-c="${c}" style="background:${c}" aria-label="Warna ${c}" aria-pressed="${BR.acc===c}"></button>`).join('')}</div></div>
   <div class="field"><span class="lbl">Pratinjau live link</span><div class="brandbar" style="--bacc:${BR.acc}">${BR.logo?`<img src="${esc(BR.logo)}" alt="">`:''}<span><b>${esc(BR.name||'Nama komunitas')}</b><small>CHAPTER 7 · LIVE</small></span><span class="lv">● LIVE</span></div></div>
+  ${planOf(u)==='venue'?`<div class="field"><span class="lbl">Sponsor (paket Venue)</span><p class="help" style="margin:0">Tampil di bawah spin wheel, layar TV, dan link live.</p>
+    <div class="brandup"><span class="blogo">${BR.sponsor&&BR.sponsor.logo?`<img src="${esc(BR.sponsor.logo)}" alt="Logo sponsor">`:'<span>SPONSOR</span>'}</span><span class="bt"><label class="btn ghost sm" for="sp-file">${BR.sponsor&&BR.sponsor.logo?'Ganti logo sponsor':'Unggah logo sponsor'}</label><input type="file" id="sp-file" accept="image/*" hidden>${BR.sponsor?'<button class="btn ghost sm" data-act="sp-clear">Hapus sponsor</button>':''}</span></div>
+    <input class="input" id="sp-name" maxlength="40" value="${esc((BR.sponsor&&BR.sponsor.name)||'')}" placeholder="Nama sponsor, contoh: Toko Raket Jaya" autocomplete="off"></div>`:''}
   <button class="btn primary block" data-act="br-save">Simpan</button>`;
 }
 function brandFile(f){const r=new FileReader();r.onload=()=>{const img=new Image();img.onload=()=>{
@@ -2384,8 +2449,8 @@ function accBtn(){const u=accMe();return u?`<button class="accbtn in" data-act="
   :`<button class="accbtn" data-act="acct" aria-label="Masuk"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></button>`;}
 const PLAN_SLIDES=[
   {k:'free',tag:'UNTUK MENCOBA',name:'Gratis',price:'Rp0',per:'selamanya',for:'Cocok untuk mabar sesekali.',items:['5 turnamen (total)','Live link untuk penonton','Spin wheel, doorprize, undi pasangan','Import peserta dari Reclub','Tersimpan di akun']},
-  {k:'org',tag:'UNTUK ORGANIZER KOMUNITAS',name:'Organizer',price:'Rp49.000',per:'/ bulan',for:'Cocok untuk komunitas yang main tiap minggu.',hot:true,items:['Turnamen tanpa batas','Semua fitur Gratis','Riwayat semua chapter','Ranking musim & profil pemain','Logo komunitas di live link, PDF & spin wheel','Gambar klasemen untuk story','Tambah co-host|segera']},
-  {k:'venue',tag:'UNTUK VENUE & KLUB',name:'Venue',price:'Rp299.000',per:'/ bulan',for:'Cocok untuk venue yang rutin bikin event.',dark:true,items:['Semua fitur Organizer','Klasemen live di layar TV venue|segera','Beberapa organizer dalam 1 akun|segera','Branding venue & sponsor di spin wheel|segera','Rekap turnamen bulanan untuk promosi|segera']}
+  {k:'org',tag:'UNTUK ORGANIZER KOMUNITAS',name:'Organizer',price:'Rp49.000',per:'/ bulan',for:'Cocok untuk komunitas yang main tiap minggu.',hot:true,items:['Turnamen tanpa batas','Semua fitur Gratis','Riwayat semua chapter','Ranking musim & profil pemain','Logo komunitas di live link, PDF & spin wheel','Gambar klasemen untuk story','Tambah co-host (isi skor bareng)']},
+  {k:'venue',tag:'UNTUK VENUE & KLUB',name:'Venue',price:'Rp299.000',per:'/ bulan',for:'Cocok untuk venue yang rutin bikin event.',dark:true,items:['Semua fitur Organizer','Klasemen live di layar TV venue','5 organizer dapat fitur Organizer','Logo sponsor di spin wheel & layar TV','Rekap turnamen bulanan untuk promosi']}
 ];
 function planCarousel(cur,only){
   const sl=PLAN_SLIDES.filter(x=>!only||only.includes(x.k));
@@ -2404,15 +2469,16 @@ function renderAccount(){
   const p=planOf(u),expired=u.plan!=='free'&&p==='free';
   if(u.admin)return `<div class="acard"><span class="avatar">${esc((u.name[0]||'?').toUpperCase())}</span><span class="who"><b>${esc(u.name)}</b><small>${esc(u.email)}</small></span><span class="plan-pill venue">ADMIN</span></div>
   <div class="adminnote">Akun admin tidak memakai paket dan kuota. Kelola pengguna lewat tab <b>Admin</b> di menu bawah.</div>
-  <button class="btn ghost block" data-act="logout">Keluar</button>`;
+  <button class="btn ghost block" data-act="logout">Keluar</button>${legalLinks()}`;
   return `<div class="acard"><span class="avatar">${esc((u.name[0]||'?').toUpperCase())}</span><span class="who"><b>${esc(u.name)}</b><small>${esc(u.email)}</small></span><span class="plan-pill ${PLANS[p].cls}">${PLANS[p].label.toUpperCase()}</span></div>
   ${quotaCard()}
+  ${paidTools(u)}
   ${p!=='free'?`<div class="brandcard"><span class="blogo">${u.brand&&u.brand.logo?`<img src="${esc(u.brand.logo)}" alt="">`:'<span>LOGO</span>'}</span><span class="who"><small>IDENTITAS KOMUNITAS</small><b>${esc((u.brand&&u.brand.name)||'Belum diatur')}</b></span><button class="btn ${u.brand?'ghost':'primary'} sm" data-act="brand">${u.brand?'Ubah':'Atur'}</button></div>`:''}
   <div class="statusbox"><small>STATUS PAKET</small><b>${p==='free'?(u.req&&u.req.paid?'Pembayaran dicek':u.req?'Menunggu konfirmasi':'Gratis'):PLANS[p].label+' aktif'}</b>
-    <span>${p!=='free'?`Berlaku sampai ${fmtD(u.until)}. Kalau tidak diperpanjang, akun kembali ke Gratis; turnamenmu tetap tersimpan.`:u.req?`Lihat status pembayaran di atas.`:expired?`Paket ${PLANS[u.plan].label} berakhir ${fmtD(u.until)}. Datamu tetap aman; perpanjang untuk membuka fiturnya lagi.`:'Semua fitur gratis bisa dipakai. Upgrade untuk turnamen tanpa batas dan fitur Organizer.'}</span></div>
-  ${p!=='free'&&!u.req?`<button class="btn primary block" data-act="buy" data-plan="${p}">Perpanjang ${PLANS[p].label}</button>`:''}
-  <div class="field"><span class="lbl">${p==='free'?'Pilih paket':'Paket'}</span>${planCards(p)}</div>
-  <button class="btn ghost block" data-act="logout">Keluar</button>`;
+    <span>${p!=='free'?(viaSeat(u)?`Dari paket Venue ${esc(ACCT.seat.venueName)}, berlaku sampai ${fmtD(untilOf(u))}.`:`Berlaku sampai ${fmtD(u.until)}. Kalau tidak diperpanjang, akun kembali ke Gratis; turnamenmu tetap tersimpan.`):u.req?`Lihat status pembayaran di atas.`:expired?`Paket ${PLANS[u.plan].label} berakhir ${fmtD(u.until)}. Datamu tetap aman; perpanjang untuk membuka fiturnya lagi.`:'Semua fitur gratis bisa dipakai. Upgrade untuk turnamen tanpa batas dan fitur Organizer.'}</span></div>
+  ${p!=='free'&&!u.req&&!viaSeat(u)?`<button class="btn primary block" data-act="buy" data-plan="${p}">Perpanjang ${PLANS[p].label}</button>`:''}
+  <div class="field"><span class="lbl">${p==='free'?'Pilih paket':'Paket'}</span>${planCards(viaSeat(u)?null:p)}</div>
+  <button class="btn ghost block" data-act="logout">Keluar</button>${legalLinks()}`;
 }
 function renderAdmin(){
   const u=accMe();if(!u||!u.admin)return '<p class="note">Halaman ini hanya untuk admin TMP.</p>';
@@ -2427,8 +2493,8 @@ function renderAdmin(){
     const d=durOf(r.plan,r.dur);return `<div class="adminrow"><div class="l1"><b>${esc(x.name)}</b><span class="plan-pill ${r.rej?'block':'wait'}">${r.rej?'BELUM DITEMUKAN':'SUDAH BAYAR'}</span></div>
     <div class="paymeta"><span><small>KODE</small><b>${esc(r.code)}</b></span><span><small>NOMINAL</small><b>${rp(r.amount)}</b></span><span><small>PAKET</small><b>${PLANS[r.plan].label} · ${d.label}</b></span></div>
     <small>${esc(x.email)} · ${esc(fmtDT(r.at))}. Cari kode di chat WhatsApp, lalu cocokkan nominal dengan mutasi rekening atau QRIS.</small>
-    <div class="acts"><button class="btn primary sm" data-act="adm-pay" data-u="${x.uid}">Aktifkan ${d.days} hari</button>${r.rej?'':`<button class="btn ghost sm" data-act="adm-rej" data-u="${x.uid}">Belum masuk</button>`}<button class="btn ghost sm" data-act="adm-no" data-u="${x.uid}">Hapus</button></div></div>`;};
-  const row=x=>{const p=planOf(x),exp=x.plan!=='free'&&p==='free',bl=x.status==='blocked';return `<div class="adminrow"><div class="l1"><b>${esc(x.name)}</b><span class="plan-pill ${bl?'block':PLANS[p].cls}">${bl?'DIBLOKIR':PLANS[p].label.toUpperCase()}</span></div>
+    <div class="acts">${r.proof?`<button class="btn ghost sm" data-act="adm-proof" data-u="${x.uid}">Lihat bukti</button>`:''}<button class="btn primary sm" data-act="adm-pay" data-u="${x.uid}">Aktifkan ${d.days} hari</button>${r.rej?'':`<button class="btn ghost sm" data-act="adm-rej" data-u="${x.uid}">Belum masuk</button>`}<button class="btn ghost sm" data-act="adm-no" data-u="${x.uid}">Hapus</button></div></div>`;};
+  const row=x=>{const p=planOf(x),exp=x.plan!=='free'&&p==='free',bl=x.status==='blocked';return `<div class="adminrow"><div class="l1"><b>${esc(x.name)}</b><span class="plan-pill ${bl?'block':PLANS[p].cls}">${bl?'DIBLOKIR':PLANS[p].label.toUpperCase()}</span>${p!=='free'&&x.until&&(x.until-new Date())<7*864e5?'<span class="plan-pill wait">≤7 HARI</span>':''}</div>
     <small>${esc(x.email)}${p!=='free'?' · aktif s.d. '+fmtD(x.until):exp?' · paket berakhir '+fmtD(x.until):''} · ${x.made||0} turnamen${p==='free'?' dari '+FREE_LIMIT:''}</small>
     <div class="acts">${bl?`<button class="btn ghost sm" data-act="adm-unblock" data-u="${x.uid}">Buka blokir</button>`:`${sel(x)}<button class="btn primary sm" data-act="adm-on" data-u="${x.uid}">${p!=='free'?'Perpanjang':'Aktifkan'}</button>${p!=='free'?`<button class="btn ghost sm" data-act="adm-off" data-u="${x.uid}">Cabut</button>`:''}<button class="btn ghost sm" data-act="adm-block" data-u="${x.uid}">Blokir</button>`}</div></div>`;};
   return `<section class="hero"><span class="brush">ADMIN</span><h1>Kelola pengguna.</h1><p class="muted" style="margin:0">Setujui pendaftar baru, aktifkan paket setelah pembayaran dicek, dan blokir akun bermasalah.</p></section>
@@ -2452,7 +2518,7 @@ function renderLanding(){
   <section class="lhero"><h1>Kamu main, TMP yang ngitung.</h1>
     <p>Jadwal adil, klasemen langsung jadi.</p>
     <div class="ctas"><button class="btn primary block" data-act="guest">Coba gratis</button><button class="gbtn" data-act="login-go">${GICON} Masuk dengan Google</button></div></section>
-  ${landingShow()}</div>`;
+  ${landingShow()}${legalLinks()}</div>`;
 }
 const SS={i:0,t:0,paused:false},SS_MS=4500;
 function landingShow(){
@@ -2486,10 +2552,10 @@ function quotaCard(){
   if(isGuest()){const n=S.tournaments.filter(t=>t.owner==='guest').length,lg=legacyLocal().length;
     return `<div class="quota"><div class="q1"><b>Mode tamu</b><button class="btn primary sm" data-act="login">Masuk</button></div><small>${lg?`Ada ${lg} turnamen lama di HP ini. Masuk untuk memindahkannya ke akunmu. `:''}${n?'Turnamenmu hanya tersimpan di HP ini. Masuk untuk membagikan live link, menyimpan riwayat, dan membuat turnamen berikutnya.':'Coba buat 1 turnamen tanpa login. Masuk untuk membagikan live link dan menyimpan riwayat.'}</small></div>`;}
   const u=accMe();if(!u)return '';const p=planOf(u);
-  if(u.admin)return '';const pb=payBanner(u);
-  if(pb)return pb+quotaCardBody(u,p);return quotaCardBody(u,p);}
+  if(u.admin)return '';const pb=payBanner(u)+renewBanner(u);
+  return pb+quotaCardBody(u,p);}
 function quotaCardBody(u,p){
-  if(p!=='free')return `<div class="quota"><div class="q1"><b>${PLANS[p].label} aktif</b><span class="plan-pill ${PLANS[p].cls}">TANPA BATAS</span></div><small>Berlaku sampai ${fmtD(u.until)} · ${u.made||0} turnamen dibuat</small></div>`;
+  if(p!=='free')return `<div class="quota"><div class="q1"><b>${PLANS[p].label} aktif${viaSeat(u)?' · '+esc(ACCT.seat.venueName):''}</b><span class="plan-pill ${PLANS[p].cls}">TANPA BATAS</span></div><small>Berlaku sampai ${fmtD(untilOf(u))} · ${u.made||0} turnamen dibuat</small></div>`;
   const used=Math.min(u.made||0,FREE_LIMIT),left=FREE_LIMIT-used;
   return `<div class="quota${left===0?' full':left===1?' warn':''}"><div class="q1"><b>Paket Gratis · ${used} dari ${FREE_LIMIT} turnamen terpakai</b><button class="btn ${left<=1?'primary':'ghost'} sm" data-act="go-plans">Upgrade</button></div>
     <span class="bar3"><i style="width:${used/FREE_LIMIT*100}%"></i></span><small>${left===0?'Kuota gratis habis. Turnamenmu tetap bisa dibuka; upgrade untuk membuat turnamen baru.':left===1?'Sisa 1 turnamen gratis.':`Sisa ${left} turnamen gratis.`}</small></div>`;
@@ -2521,6 +2587,7 @@ async function admUpdate(uid,data,msg){
 function accAction(a,el){
   const xu=el.dataset.u&&ACCT.users.find(x=>x.uid===el.dataset.u);
   if(a==='rank'||a.startsWith('r-'))return rankAction(a,el);
+  if(/^(cohost|seats|recap|legal|lg-tab|rc-m|rc-story|co-add|co-del|seat-add|seat-del|proof-clear|adm-proof|sp-clear)$/.test(a))return v19Action(a,el);
   switch(a){
     case 'acct':if(!accMe()){loginSheet();return false;}prevView=view==='account'||view==='admin'?prevView:view;goView('account');return false;
     case 'login':loginSheet();return false;
@@ -2537,13 +2604,15 @@ function accAction(a,el){
     case 'dur':PAY.dur=+el.dataset.k;paySave();render();return false;
     case 'topay':goView('pay');window.scrollTo(0,0);return false;
     case 'paid':{const u=accMe();if(!u||!PAY)return false;el.disabled=true;(async()=>{try{const c=await Live.core();
-        await c.f.updateDoc(c.f.doc(c.db,'users',u.uid),{req:{plan:PAY.plan,dur:PAY.dur,code:PAY.code,amount:payAmount(),paid:true,at:c.f.serverTimestamp()}});
+        const hasProof=!!PROOF;if(hasProof)await c.f.setDoc(c.f.doc(c.db,'users',u.uid,'private','proof'),{img:PROOF,code:PAY.code,at:c.f.serverTimestamp()});
+        await c.f.updateDoc(c.f.doc(c.db,'users',u.uid),{req:{plan:PAY.plan,dur:PAY.dur,code:PAY.code,amount:payAmount(),paid:true,proof:hasProof,at:c.f.serverTimestamp()}});
+        notifyAdmin('paid',{code:PAY.code,amount:payAmount(),plan:PLANS[PAY.plan].label,dur:PAY.dur,proof:hasProof});PROOF=null;
         toast('Konfirmasi terkirim. Admin akan mengecek pembayaranmu.');goView('home');window.scrollTo(0,0);}
       catch(e){el.disabled=false;console.warn('paid',e);toast('Gagal mengirim ('+(e.code||'error')+'). Coba lagi.');}})();return false;}
     case 'brand':BR=null;prevView=view==='brand'?prevView:view;goView('brand');return false;
     case 'br-acc':BR.acc=el.dataset.c;render();return false;
     case 'br-nologo':BR.logo=null;render();return false;
-    case 'br-save':{const u=accMe();const data={name:String(BR.name||'').trim().slice(0,40),acc:BR.acc,logo:BR.logo||null};el.disabled=true;(async()=>{try{const c=await Live.core();
+    case 'br-save':{const u=accMe();const sp=planOf(u)==='venue'&&BR.sponsor&&(String(BR.sponsor.name||'').trim()||BR.sponsor.logo)?{name:String(BR.sponsor.name||'').trim().slice(0,40),logo:BR.sponsor.logo||null}:null;const data={name:String(BR.name||'').trim().slice(0,40),acc:BR.acc,logo:BR.logo||null,sponsor:sp};el.disabled=true;(async()=>{try{const c=await Live.core();
         await c.f.updateDoc(c.f.doc(c.db,'users',u.uid),{brand:data});Live.pushed={};Live.schedule();toast('Identitas komunitas disimpan');BR=null;goView(prevView&&prevView!=='brand'?prevView:'account');}
       catch(e){el.disabled=false;console.warn('brand',e);toast('Gagal menyimpan ('+(e.code||'error')+')');}})();return false;}
     case 'story':menuOpen=false;render();shareStory();return false;
@@ -2721,6 +2790,233 @@ document.addEventListener('change',e=>{const id=e.target.dataset&&e.target.datas
   const nm=document.getElementById('r-sname');if(nm)E.name=nm.value;});
 document.addEventListener('keydown',e=>{const tr=e.target.closest&&e.target.closest('tr[data-act="r-player"]');if(tr&&(e.key==='Enter'||e.key===' ')){e.preventDefault();tr.click();}});
 
+/* ===== v19: sinkron realtime, co-host, kursi organizer Venue, mode TV, sponsor, rekap, notifikasi, legal ===== */
+const NOTIFY_URL='https://tmp-reclub.ricky-merdiansyah.workers.dev/notify';
+const MAX_COHOST=5,MAX_SEATS=5;
+const lowEmail=s=>String(s||'').trim().toLowerCase();
+const okEmail=s=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
+function untilOf(u){if(!u)return null;if(u.plan!=='free'&&u.until&&u.until>new Date())return u.until;if(ACCT.me&&u.uid===ACCT.me.uid&&ACCT.seat&&ACCT.seat.until>new Date())return ACCT.seat.until;return u.until;}
+function viaSeat(u){return !!(u&&ACCT.me&&u.uid===ACCT.me.uid&&!(u.plan!=='free'&&u.until&&u.until>new Date())&&ACCT.seat&&ACCT.seat.until>new Date());}
+
+/* --- 3-way merge: perubahan lokal menang, perubahan dari HP lain tetap masuk --- */
+function deq(a,b){return JSON.stringify(a)===JSON.stringify(b);}
+function merge3(base,local,remote){
+  if(deq(local,base))return remote;if(deq(remote,base))return local;if(deq(local,remote))return local;
+  const isO=v=>v&&typeof v==='object';
+  if(Array.isArray(local)&&Array.isArray(remote)&&Array.isArray(base)){const n=Math.max(local.length,remote.length),out=[];
+    for(let i=0;i<n;i++){if(i>=local.length){if(i<base.length)continue;out.push(remote[i]);continue;}if(i>=remote.length){if(i<base.length)continue;out.push(local[i]);continue;}out.push(merge3(base[i],local[i],remote[i]));}return out;}
+  if(isO(local)&&isO(remote)&&!Array.isArray(local)&&!Array.isArray(remote)){const b=isO(base)&&!Array.isArray(base)?base:{},out={};
+    new Set([...Object.keys(local),...Object.keys(remote)]).forEach(k=>{if(!(k in local)){if(!(k in b))out[k]=remote[k];return;}if(!(k in remote)){if(!(k in b))out[k]=local[k];return;}out[k]=merge3(b[k],local[k],remote[k]);});return out;}
+  return local;
+}
+function typing(){const a=document.activeElement;return !!(a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)&&document.getElementById('app').contains(a));}
+let _rq=null;function softRender(){if(typing()){clearTimeout(_rq);_rq=setTimeout(softRender,1200);return;}render();}
+function applyRemote(store,id,json,meta){
+  let remote;try{remote=JSON.parse(json);}catch(e){return false;}
+  const i=S.tournaments.findIndex(y=>y.id===id);
+  if(i<0){S.tournaments.push(Object.assign(remote,meta));store[id]=json;return true;}
+  const loc=S.tournaments[i],lj=tj(loc);
+  if(store[id]===undefined||lj===store[id]){S.tournaments[i]=Object.assign(remote,meta);store[id]=json;return true;}
+  const merged=merge3(JSON.parse(store[id]),JSON.parse(lj),remote);S.tournaments[i]=Object.assign(merged,meta);store[id]=json;return true;
+}
+/* pemilik: dengarkan turnamen sendiri secara realtime (skor dari co-host / HP lain langsung masuk) */
+CT.listen=async function(){
+  if(this.unsub||!accActive())return;const c=await Live.core(),f=c.f,uid=ACCT.me.uid;
+  this.unsub=f.onSnapshot(f.collection(c.db,'users',uid,'tournaments'),snap=>{let ch=false;
+    snap.docChanges().forEach(dc=>{const id=dc.doc.id;
+      if(dc.type==='removed'){if(this.pushed[id]!==undefined){S.tournaments=S.tournaments.filter(t=>t.id!==id);delete this.pushed[id];ch=true;}return;}
+      const x=dc.doc.data();if(x.json===this.pushed[id])return;
+      if(applyRemote(this.pushed,id,x.json,{owner:uid,_u:x.updated||0,_legacy:!!x.legacy})){ch=true;this.schedule();}});
+    if(ch){localSave();softRender();}},e=>console.warn('listen',e));
+};
+const _ctStart=CT.start.bind(CT);CT.start=async function(){await _ctStart();this.listen().catch(e=>console.warn('listen',e));SH.start().catch(e=>console.warn('shared',e));SEAT.sync().catch(()=>{});};
+
+/* --- co-host: turnamen milik organizer lain yang dibagikan ke akun ini --- */
+const SH={owners:{},unsubs:{},unsubIdx:null,pushed:{},timer:null,chain:Promise.resolve(),
+  async start(){const me=ACCT.me;if(!me||this.unsubIdx)return;const c=await Live.core(),f=c.f;
+    this.unsubIdx=f.onSnapshot(f.doc(c.db,'cohost',lowEmail(me.email)),s=>{const o=(s.exists()&&s.data().owners)||{};this.owners=o;
+      Object.keys(this.unsubs).forEach(uid=>{if(!o[uid]){this.unsubs[uid]();delete this.unsubs[uid];this.drop(uid);}});
+      Object.keys(o).forEach(uid=>{if(!this.unsubs[uid]&&uid!==me.uid)this.watch(c,uid);});render();},e=>console.warn('cohost idx',e));},
+  watch(c,uid){const f=c.f;this.unsubs[uid]=f.onSnapshot(f.collection(c.db,'users',uid,'tournaments'),snap=>{let ch=false;
+      snap.docChanges().forEach(dc=>{const id=dc.doc.id;if(dc.type==='removed'){S.tournaments=S.tournaments.filter(t=>t.id!==id);delete this.pushed[id];ch=true;return;}
+        const x=dc.doc.data();if(x.json===this.pushed[id])return;if(applyRemote(this.pushed,id,x.json,{owner:uid,_shared:true,_ownerName:(this.owners[uid]&&this.owners[uid].name)||'Organizer',_u:x.updated||0}))ch=true;});
+      if(ch){localSave();softRender();}},e=>{console.warn('shared',uid,e);this.drop(uid);if(this.unsubs[uid]){this.unsubs[uid]();delete this.unsubs[uid];}softRender();});},
+  drop(uid){const n=S.tournaments.length;S.tournaments=S.tournaments.filter(t=>!(t._shared&&t.owner===uid));if(S.tournaments.length!==n)localSave();},
+  stop(){if(this.unsubIdx){this.unsubIdx();this.unsubIdx=null;}Object.values(this.unsubs).forEach(u=>u());this.unsubs={};this.owners={};S.tournaments=S.tournaments.filter(t=>!t._shared);this.pushed={};},
+  schedule(){if(!Object.keys(this.unsubs).length)return;clearTimeout(this.timer);this.timer=setTimeout(()=>this.flush(),700);},
+  flush(){clearTimeout(this.timer);this.chain=this.chain.then(async()=>{const c=await Live.core();
+      for(const t of S.tournaments){if(!t._shared||this.pushed[t.id]===undefined)continue;const j=tj(t);if(this.pushed[t.id]===j)continue;
+        try{await c.f.updateDoc(c.f.doc(c.db,'users',t.owner,'tournaments',t.id),{json:j,updated:Date.now()});this.pushed[t.id]=j;}catch(e){console.warn('shared push',e);if(e.code==='permission-denied')toast('Kamu bukan co-host turnamen ini lagi');}}
+    }).catch(()=>{});return this.chain;}
+};
+const CO_BLOCK=/^(askdel|del-yes|edit|padd|pdel|adde|live|liveon|liveoff|togglepriv|reopen|reshuffle|swap|swapdo|swappick|extra|extra-yes|gtog|pgtog|grp-|court-|story|wheel-from|wdoor-from)/;
+function sharedList(){const sh=S.tournaments.filter(t=>t._shared).sort((a,b)=>new Date(b.date)-new Date(a.date));if(!sh.length)return '';
+  return `<div class="hsec"><b>Turnamen bersama</b><span>${sh.length} sesi · co-host</span></div>${sh.map(t=>`<button class="tk${t.finished?'':' on'}" data-act="open" data-id="${esc(t.id)}"><span class="stub"><small>CO</small><b>${esc((String(t.name).match(/(\d{1,3})/)||[,'·'])[1])}</b></span><span class="body"><span class="top"><span class="nm">${esc(t.name)}</span><span class="st">${t.finished?'SELESAI':'● BERJALAN'}</span></span><span class="sub">Milik ${esc(t._ownerName||'organizer')} · kamu bisa isi skor & kehadiran</span></span></button>`).join('')}`;}
+
+/* --- kelola co-host (pemilik paket berbayar) --- */
+function renderCohost(){const u=accMe();if(!u||planOf(u)==='free')return renderAccount();const list=u.cohosts||[];
+  return `<section class="hero"><h1>Co-host</h1><p class="muted" style="margin:0">Co-host bisa mengisi skor, mengubah hadir/telat, dan lanjut ronde di semua turnamenmu. Mereka tidak bisa mengubah peserta, format, link live, atau menghapus turnamen. Co-host cukup login dengan email Google yang kamu daftarkan.</p></section>
+  <div class="field"><label for="co-email">Email Google co-host (${list.length}/${MAX_COHOST})</label><div class="row" style="gap:8px"><input class="input" id="co-email" type="email" placeholder="nama@gmail.com" autocomplete="off" style="flex:1" ${list.length>=MAX_COHOST?'disabled':''}><button class="btn primary" data-act="co-add" ${list.length>=MAX_COHOST?'disabled':''}>Tambah</button></div></div>
+  <div class="mlist">${list.map(e=>`<div class="mrow"><span class="ini">${esc(e[0].toUpperCase())}</span><span class="nm"><b>${esc(e)}</b><small>Co-host</small></span><button class="btn ghost sm" data-act="co-del" data-e="${esc(e)}">Hapus</button></div>`).join('')||'<p class="note" style="margin:10px 0">Belum ada co-host.</p>'}</div>`;}
+async function cohostSet(add,email){const u=accMe(),c=await Live.core(),f=c.f;const list=new Set(u.cohosts||[]);add?list.add(email):list.delete(email);
+  const ref=f.doc(c.db,'cohost',email);
+  if(add)await f.setDoc(ref,{owners:{[u.uid]:{name:String((myBrand()&&myBrand().name)||u.name).slice(0,60)}}},{merge:true});
+  else{try{await f.updateDoc(ref,{['owners.'+u.uid]:f.deleteField()});}catch(e){if(e.code!=='not-found')throw e;}}
+  await f.updateDoc(f.doc(c.db,'users',u.uid),{cohosts:[...list]});u.cohosts=[...list];}
+
+/* --- kursi organizer di paket Venue --- */
+const SEAT={
+  async load(){const me=ACCT.me;if(!me)return;try{const c=await Live.core(),s=await c.f.getDoc(c.f.doc(c.db,'seat',lowEmail(me.email)));
+      ACCT.seat=s.exists()?{venue:s.data().venue,venueName:s.data().venueName||'Venue',until:toDate(s.data().until)}:null;}catch(e){ACCT.seat=null;}render();},
+  async sync(){const u=ACCT.me;await this.load();if(!u||planOf(u)!=='venue'||!(u.seats||[]).length)return;const c=await Live.core(),f=c.f;
+    for(const e of u.seats){try{const r=f.doc(c.db,'seat',e),s=await f.getDoc(r);const want=+u.until;if(!s.exists()||+toDate(s.data().until)!==want)await f.setDoc(r,{venue:u.uid,venueName:String((myBrand()&&myBrand().name)||u.name).slice(0,60),until:f.Timestamp.fromDate(u.until)});}catch(err){console.warn('seat sync',err);}}}
+};
+function renderSeats(){const u=accMe();if(!u||planOf(u)!=='venue')return renderAccount();const list=u.seats||[];
+  return `<section class="hero"><h1>Organizer di venue-mu</h1><p class="muted" style="margin:0">Organizer yang kamu tambahkan dapat semua fitur Organizer selama paket Venue aktif (sampai ${fmtD(u.until)}). Mereka tetap memakai akun Google sendiri.</p></section>
+  <div class="field"><label for="seat-email">Email Google organizer (${list.length}/${MAX_SEATS})</label><div class="row" style="gap:8px"><input class="input" id="seat-email" type="email" placeholder="organizer@gmail.com" autocomplete="off" style="flex:1" ${list.length>=MAX_SEATS?'disabled':''}><button class="btn primary" data-act="seat-add" ${list.length>=MAX_SEATS?'disabled':''}>Tambah</button></div></div>
+  <div class="mlist">${list.map(e=>`<div class="mrow"><span class="ini">${esc(e[0].toUpperCase())}</span><span class="nm"><b>${esc(e)}</b><small>Organizer · lewat paket Venue</small></span><button class="btn ghost sm" data-act="seat-del" data-e="${esc(e)}">Hapus</button></div>`).join('')||'<p class="note" style="margin:10px 0">Belum ada organizer.</p>'}</div>`;}
+async function seatSet(add,email){const u=accMe(),c=await Live.core(),f=c.f;const list=new Set(u.seats||[]);add?list.add(email):list.delete(email);const ref=f.doc(c.db,'seat',email);
+  if(add)await f.setDoc(ref,{venue:u.uid,venueName:String((myBrand()&&myBrand().name)||u.name).slice(0,60),until:f.Timestamp.fromDate(u.until)});else{try{await f.deleteDoc(ref);}catch(e){}}
+  await f.updateDoc(f.doc(c.db,'users',u.uid),{seats:[...list]});u.seats=[...list];}
+
+/* --- pengingat masa aktif --- */
+function daysLeft(u){const d=untilOf(u);return d?Math.ceil((d-new Date())/864e5):null;}
+function renewBanner(u){if(!u||u.admin)return '';const p=planOf(u);if(p==='free'||(u.req&&u.req.paid))return '';const n=daysLeft(u);if(n==null||n>7)return '';
+  if(viaSeat(u))return `<div class="paybox wait"><b>Akses Organizer dari ${esc(ACCT.seat.venueName)} berakhir ${n<=1?'besok':'dalam '+n+' hari'}</b><span>Berlaku sampai ${fmtD(untilOf(u))}. Hubungi pengelola venue untuk perpanjangan.</span></div>`;
+  return `<div class="paybox wait"><b>Paket ${PLANS[p].label} berakhir ${n<=1?'besok':'dalam '+n+' hari'}</b><span>Berlaku sampai ${fmtD(u.until)}. Perpanjang sekarang supaya fitur ${PLANS[p].label} tidak terputus. Turnamen dan rankingmu tetap tersimpan.</span><button class="btn primary sm" data-act="buy" data-plan="${p}">Perpanjang</button></div>`;}
+
+/* --- notifikasi Telegram admin lewat Cloudflare Worker --- */
+async function notifyAdmin(type,extra){try{const {auth}=await authInst();const cu=auth.currentUser;if(!cu)return;const tk=await cu.getIdToken(true);
+  await fetch(NOTIFY_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({type,token:tk,...(extra||{})})});}catch(e){console.warn('notify',e);}}
+
+/* --- bukti bayar (opsional) --- */
+let PROOF=null;
+function proofFile(f){const r=new FileReader();r.onload=()=>{const img=new Image();img.onload=()=>{const enc=(max,q)=>{const k=Math.min(1,max/Math.max(img.width,img.height)),cv=document.createElement('canvas');cv.width=Math.round(img.width*k);cv.height=Math.round(img.height*k);cv.getContext('2d').drawImage(img,0,0,cv.width,cv.height);return cv.toDataURL('image/jpeg',q);};
+  let out=enc(1100,.72);if(out.length>320000)out=enc(850,.6);if(out.length>320000)out=enc(650,.55);if(out.length>320000){toast('Gambar terlalu besar. Coba screenshot biasa.');return;}PROOF=out;render();};img.onerror=()=>toast('File ini bukan gambar');img.src=r.result;};r.readAsDataURL(f);}
+document.addEventListener('change',e=>{if(e.target.id==='pay-proof'&&e.target.files&&e.target.files[0])proofFile(e.target.files[0]);});
+async function proofView(x){try{const c=await Live.core(),s=await c.f.getDoc(c.f.doc(c.db,'users',x.uid,'private','proof'));
+  if(!s.exists()){toast('Bukti bayar tidak ditemukan');return;}const d=s.data();
+  openSheet('proof',`<div><h2 style="font-weight:700;font-size:20px">Bukti bayar ${esc(d.code||'')}</h2><p class="help">${esc(x.name)} · ${esc(x.email)}</p></div><img src="${esc(d.img)}" alt="Bukti bayar dari ${esc(x.name)}" style="width:100%;border-radius:12px;border:1px solid var(--line)"><button class="btn ghost block" data-act="sheetclose">Tutup</button>`);}
+  catch(e){toast('Gagal membuka bukti ('+(e.code||'error')+')');}}
+
+/* --- sponsor (Venue) --- */
+function mySponsor(){const u=accMe();return u&&planOf(u)==='venue'&&u.brand&&u.brand.sponsor&&(u.brand.sponsor.name||u.brand.sponsor.logo)?u.brand.sponsor:null;}
+function sponsorHtml(sp){return sp?`<div class="spon">${sp.logo?`<img src="${esc(sp.logo)}" alt="Logo ${esc(sp.name||'sponsor')}">`:''}<span><small>DIPERSEMBAHKAN OLEH</small><b>${esc(sp.name||'')}</b></span></div>`:'';}
+function sponsorBar(){return sponsorHtml(mySponsor());}
+function sponsorFile(f){const r=new FileReader();r.onload=()=>{const img=new Image();img.onload=()=>{const enc=max=>{const k=Math.min(1,max/Math.max(img.width,img.height)),cv=document.createElement('canvas');cv.width=Math.max(1,Math.round(img.width*k));cv.height=Math.max(1,Math.round(img.height*k));cv.getContext('2d').drawImage(img,0,0,cv.width,cv.height);let u=cv.toDataURL('image/webp',.85);if(!u.startsWith('data:image/webp'))u=cv.toDataURL('image/png');return u;};
+  let out=enc(240);if(out.length>60000)out=enc(150);if(out.length>60000){toast('Logo sponsor terlalu besar');return;}BR.sponsor=BR.sponsor||{name:'',logo:null};BR.sponsor.logo=out;render();};img.src=r.result;};r.readAsDataURL(f);}
+document.addEventListener('change',e=>{if(e.target.id==='sp-file'&&e.target.files&&e.target.files[0]&&BR)sponsorFile(e.target.files[0]);});
+document.addEventListener('input',e=>{if(e.target.id==='sp-name'&&BR){BR.sponsor=BR.sponsor||{name:'',logo:null};BR.sponsor.name=e.target.value;}});
+
+/* --- mode TV (live link Venue) --- */
+let liveTV=false,TVP={page:0,t:0};
+function renderTV(t){
+  if(!t)return renderLiveWait();
+  const bd=t._brand,sp=bd&&bd.sponsor;
+  if(!t._venue)return `<div class="gate"><h1>Mode TV ada di paket Venue</h1><p class="muted" style="margin:0">Buka tampilan biasa untuk melihat skor dan klasemen.</p><a class="btn primary block" href="#live-${esc(liveViewId)}">Buka tampilan biasa</a></div>`;
+  const st=computeStats(t).filter(s=>s.played||true).slice(0,10);const ri=(()=>{for(let i=t.rounds.length-1;i>=0;i--)if(t.rounds[i].matches.length)return i;return 0;})();const r=t.rounds[ri];
+  const priv=typeof privateNow==='function'&&privateNow(t);
+  const board=`<section class="tvp"><h2>Klasemen</h2>${priv?'<p class="tvnote">Klasemen dirahasiakan sampai turnamen selesai.</p>':`<table class="tvt"><tbody>${st.map((s,i)=>`<tr><td class="r${i<3?' g':''}">${i+1}</td><td class="n">${esc(s.name)}</td><td class="w">${s.w}-${s.l}</td><td class="p">${s.total}</td></tr>`).join('')}</tbody></table>`}</section>`;
+  const round=r?`<section class="tvp"><h2>Ronde ${ri+1}${t.finished?' · selesai':''}</h2><div class="tvm">${r.matches.map(m=>{const res=matchResult(t,m);return `<div class="tvc"><span class="ct">LAP. ${esc(courtName(m.court))}</span><span class="sd">${esc(sideName(t,m.a))}</span><b class="sc">${res?`${res.ga} – ${res.gb}`:'vs'}</b><span class="sd">${esc(sideName(t,m.b))}</span></div>`;}).join('')}</div></section>`:'';
+  return `<div class="tv" style="--bacc:${esc((bd&&bd.acc)||'#D9A441')}">
+    <header class="tvh">${bd&&bd.logo?`<img src="${esc(bd.logo)}" alt="">`:logoImg(64)}<span><b>${esc((bd&&bd.name)||'Teman Main Padelmu')}</b><small>${esc(t.name)}</small></span><span class="lv">● LIVE</span></header>
+    <div class="tvbody">${TVP.page%2===0?board+round:round+board}</div>
+    <footer class="tvf">${sp?sponsorHtml(sp):'<span></span>'}<span class="by">dibuat dengan TMP · temanmainpadelmu</span></footer></div>`;
+}
+setInterval(()=>{if(view!=='live'||!liveTV||!liveT)return;TVP.t+=1;if(TVP.t>=20){TVP.t=0;TVP.page++;render();}},1000);
+function tvLinkBlock(t){const u=accMe();const url=liveUrl(t).replace('#live-','#tv-');
+  return planOf(u)==='venue'?`<a class="btn ghost block" href="${esc(url)}" target="_blank" rel="noopener">Buka mode TV (layar venue)</a><p class="note">Buka link mode TV di browser TV atau laptop yang tersambung ke layar. Klasemen dan ronde berganti tampilan otomatis.</p>`
+    :`<p class="note">${LOCK} Mode TV untuk layar venue ada di paket Venue.</p>`;}
+
+/* --- rekap bulanan (Venue) --- */
+let RC={m:null};
+function rcMonths(){const set=new Set(myTournaments().map(t=>String(t.date).slice(0,7)).filter(Boolean));return [...set].sort().reverse();}
+function rcData(m){const ts=myTournaments().filter(t=>String(t.date).slice(0,7)===m).sort((a,b)=>new Date(a.date)-new Date(b.date));const c=club(),P={};let matches=0;
+  ts.forEach(t=>{t.rounds.forEach(r=>r.matches.forEach(mm=>{if(matchResult(t,mm))matches++;}));const seen=new Set();t.entries.forEach(e=>rSplit(t,e.name).forEach(n=>{const k=rCanon(n,c);if(seen.has(k))return;seen.add(k);P[k]=(P[k]||0)+1;}));});
+  const champs=ts.filter(t=>t.finished).map(t=>{const s=computeStats(t)[0];return s?{t,name:s.name}:null;}).filter(Boolean);
+  return {ts,matches,players:Object.keys(P).length,top:Object.entries(P).sort((a,b)=>b[1]-a[1]).slice(0,5),champs};}
+const monthName=m=>{try{return new Date(m+'-01T00:00').toLocaleDateString('id-ID',{month:'long',year:'numeric'});}catch(e){return m;}};
+function renderRecap(){const u=accMe();if(!u||planOf(u)!=='venue')return renderAccount();const ms=rcMonths();if(!ms.length)return `<section class="hero"><h1>Rekap bulanan</h1></section><p class="note">Belum ada turnamen.</p>`;
+  if(!RC.m||!ms.includes(RC.m))RC.m=ms[0];const d=rcData(RC.m);
+  return `<section class="hero"><h1>Rekap bulanan</h1><p class="muted" style="margin:0">Ringkasan turnamen di akunmu per bulan, untuk laporan dan promosi venue.</p></section>
+  <div class="rchips">${ms.slice(0,12).map(m=>`<button type="button" data-act="rc-m" data-m="${m}" aria-pressed="${m===RC.m}">${esc(monthName(m))}</button>`).join('')}</div>
+  <div class="kpis"><div><small>TURNAMEN</small><b>${d.ts.length}</b></div><div><small>MATCH DIMAINKAN</small><b>${d.matches}</b></div><div><small>PEMAIN BERBEDA</small><b>${d.players}</b></div><div><small>RATA-RATA PEMAIN</small><b>${d.ts.length?Math.round(d.ts.reduce((a,t)=>a+t.entries.length*(FORMATS[t.type].kind==='team'?2:1),0)/d.ts.length):0}</b></div></div>
+  <div class="field"><span class="lbl">Paling sering main</span><div class="mlist">${d.top.map(([n,k],i)=>`<div class="mrow"><span class="ini">${i+1}</span><span class="nm"><b>${esc(n)}</b><small>${k} turnamen</small></span></div>`).join('')||'<p class="note" style="margin:10px 0">Belum ada data.</p>'}</div></div>
+  <div class="field"><span class="lbl">Juara tiap turnamen</span><div class="mlist">${d.champs.map(x=>`<div class="mrow"><span class="nm"><b>${esc(x.name)}</b><small>${esc(x.t.name)} · ${esc(fmtD(new Date(x.t.date)))}</small></span></div>`).join('')||'<p class="note" style="margin:10px 0">Belum ada turnamen selesai bulan ini.</p>'}</div></div>
+  <button class="btn primary block" data-act="rc-story">${I.share} Bagikan gambar rekap</button>`;}
+async function recapStory(){const d=rcData(RC.m);toast('Membuat gambar…');
+  try{const W=1080,H=1920,cv=document.createElement('canvas');cv.width=W;cv.height=H;const x=cv.getContext('2d');const b=myBrand(),acc=(b&&b.acc)||'#D9A441';try{await document.fonts.ready;}catch(e){}
+    x.fillStyle='#231A13';x.fillRect(0,0,W,H);x.globalAlpha=.18;x.fillStyle=acc;x.beginPath();x.arc(W-60,120,330,0,7);x.fill();x.globalAlpha=1;
+    const lg=await new Promise(res=>{const i=new Image();i.onload=()=>res(i);i.onerror=()=>res(null);i.src=b&&b.logo?b.logo:LOGO_SRC;});
+    if(lg){x.save();x.beginPath();x.roundRect?x.roundRect(90,110,150,150,34):x.rect(90,110,150,150);x.clip();x.fillStyle='#fff';x.fillRect(90,110,150,150);x.drawImage(lg,90,110,150,150);x.restore();}
+    const F=(w,s,f)=>`${w} ${s}px ${f==='m'?'"DM Mono",monospace':'"Bricolage Grotesque","Instrument Sans",system-ui,sans-serif'}`;const fit=(t,max,font)=>{x.font=font;let v=String(t);while(x.measureText(v).width>max&&v.length>3)v=v.slice(0,-2)+'…';return v;};
+    x.fillStyle='#F6F3EE';x.font=F(800,50);x.fillText(fit(b&&b.name?b.name:'Teman Main Padelmu',740,F(800,50)),270,175);x.fillStyle='#BFAF9A';x.font=F(500,30,'m');x.fillText('REKAP BULANAN',270,228);
+    x.fillStyle='#F6F3EE';x.font=F(800,100);x.fillText(fit(monthName(RC.m),900,F(800,100)),90,470);
+    const box=(bx,by,lbl,val)=>{x.fillStyle='rgba(255,255,255,.08)';if(x.roundRect){x.beginPath();x.roundRect(bx,by,430,230,34);x.fill();}else x.fillRect(bx,by,430,230);x.fillStyle='#BFAF9A';x.font=F(500,28,'m');x.fillText(lbl,bx+40,by+70);x.fillStyle=acc;x.font=F(800,110);x.fillText(String(val),bx+40,by+190);};
+    box(90,560,'TURNAMEN',d.ts.length);box(560,560,'MATCH',d.matches);box(90,820,'PEMAIN',d.players);box(560,820,'JUARA',d.champs.length);
+    x.fillStyle='#F6F3EE';x.font=F(800,56);x.fillText('Paling sering main',90,1160);let y=1220;
+    d.top.forEach(([n,k],i)=>{x.fillStyle=i===0?acc:'rgba(255,255,255,.08)';if(x.roundRect){x.beginPath();x.roundRect(90,y,900,110,28);x.fill();}else x.fillRect(90,y,900,110);
+      x.fillStyle=i===0?'#231A13':'#F6F3EE';x.font=F(700,44);x.fillText(fit((i+1)+'.  '+n,620,F(700,44)),130,y+72);x.font=F(800,44);x.textAlign='right';x.fillText(k+'x',950,y+72);x.textAlign='left';y+=126;});
+    x.fillStyle='#BFAF9A';x.font=F(500,30,'m');x.fillText('dibuat dengan TMP · temanmainpadelmu',90,H-110);
+    const blob=await new Promise(res=>cv.toBlob(res,'image/png'));const file=new File([blob],'rekap-'+RC.m+'.png',{type:'image/png'});
+    if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:'Rekap '+monthName(RC.m)});return;}
+    const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=file.name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},4000);toast('Gambar diunduh');
+  }catch(e){if(e&&e.name==='AbortError')return;console.warn('recap',e);toast('Gambar belum bisa dibuat');}}
+
+/* --- halaman legal --- */
+let LG='syarat';
+const LEGAL={
+syarat:['Syarat & Ketentuan',`<p>Dengan memakai TMP (Teman Main Padelmu) di temanmainpadelmu, kamu setuju dengan ketentuan berikut.</p>
+<h3>1. Layanan</h3><p>TMP adalah aplikasi web untuk membuat jadwal turnamen padel, mencatat skor, menampilkan klasemen, dan membagikan link live. TMP dikelola perorangan, bukan badan usaha.</p>
+<h3>2. Akun</h3><p>Akun dibuat dengan login Google. Kamu bertanggung jawab atas aktivitas di akunmu. Admin dapat menyetujui, menolak, atau memblokir akun yang melanggar ketentuan ini atau mengganggu layanan.</p>
+<h3>3. Paket dan pembayaran</h3><p>Paket Gratis berisi 5 turnamen. Paket Organizer dan Venue dibayar di muka untuk masa aktif 1, 3, atau 12 bulan sesuai pilihan, dan aktif setelah pembayaran dicek admin. Paket tidak diperpanjang otomatis. Setelah masa aktif habis, akun kembali ke paket Gratis dan turnamen yang sudah dibuat tetap tersimpan.</p>
+<h3>4. Konten pengguna</h3><p>Nama peserta, logo komunitas, logo sponsor, dan data turnamen yang kamu masukkan tetap milikmu. Pastikan kamu berhak memakai logo dan nama tersebut. Link live dan gambar klasemen dapat dilihat siapa pun yang menerima linknya.</p>
+<h3>5. Ketersediaan</h3><p>TMP berusaha agar layanan selalu bisa dipakai, tetapi tidak menjamin bebas gangguan. Simpan PDF hasil turnamen penting sebagai cadangan.</p>
+<h3>6. Perubahan</h3><p>Ketentuan ini dapat diperbarui. Perubahan penting diumumkan di aplikasi atau Instagram @temanmainpadelmu.</p>`],
+privasi:['Kebijakan Privasi',`<p>Kebijakan ini menjelaskan data apa yang dikumpulkan TMP dan untuk apa.</p>
+<h3>Data yang disimpan</h3><p>Nama dan email dari akun Google, data turnamen (nama peserta, skor, jadwal), identitas komunitas (nama, logo, warna), daftar co-host dan organizer yang kamu tambahkan, data paket dan pembayaran (kode pesanan, nominal, bukti bayar bila kamu unggah).</p>
+<h3>Untuk apa</h3><p>Menjalankan fitur aplikasi, menyimpan turnamen di akunmu, menampilkan link live, mengecek pembayaran, dan menghubungimu soal akun atau paket.</p>
+<h3>Tempat penyimpanan</h3><p>Data disimpan di layanan Google Firebase. Server Firebase dapat berada di luar Indonesia.</p>
+<h3>Berbagi data</h3><p>TMP tidak menjual data. Data turnamen yang kamu bagikan lewat link live dapat dilihat penerima link. Admin TMP dapat melihat data akun dan pembayaran untuk keperluan layanan.</p>
+<h3>Hak kamu</h3><p>Kamu dapat meminta salinan atau penghapusan akun dan datamu dengan menghubungi admin lewat WhatsApp +62 857-5588-5333.</p>`],
+refund:['Kebijakan Refund',`<p>Paket berbayar yang sudah aktif tidak dapat dikembalikan dananya.</p>
+<h3>Pengecualian</h3><p>Refund diberikan untuk pembayaran dobel untuk pesanan yang sama, atau kelebihan nominal dari tagihan. Paket yang sudah dibayar tetapi tidak diaktifkan admin juga dikembalikan penuh.</p>
+<h3>Cara meminta</h3><p>Hubungi admin lewat WhatsApp +62 857-5588-5333 dengan kode pesanan dan bukti bayar dalam 7 hari sejak pembayaran. Refund dikirim ke rekening atau e-wallet pengirim setelah dicek.</p>`]
+};
+function renderLegal(){const L=LEGAL[LG]||LEGAL.syarat;return `<div class="rchips">${Object.keys(LEGAL).map(k=>`<button type="button" data-act="lg-tab" data-k="${k}" aria-pressed="${k===LG}">${LEGAL[k][0]}</button>`).join('')}</div>
+  <article class="legal"><h1>${L[0]}</h1>${L[1]}<p class="muted">Diperbarui 5 November 2026. Pertanyaan: WhatsApp +62 857-5588-5333 atau Instagram @temanmainpadelmu.</p></article>`;}
+const legalLinks=()=>`<nav class="legallinks"><button type="button" data-act="legal" data-k="syarat">Syarat</button><button type="button" data-act="legal" data-k="privasi">Privasi</button><button type="button" data-act="legal" data-k="refund">Refund</button></nav>`;
+
+/* --- tambahan halaman akun untuk paket berbayar --- */
+function paidTools(u){const p=planOf(u);if(p==='free'||u.admin)return '';const sv=viaSeat(u);
+  return `<div class="field"><span class="lbl">Fitur ${sv?'Organizer':PLANS[p].label}</span><div class="menu2">
+    <button type="button" data-act="rank">Ranking musim<span>›</span></button>
+    ${sv?'':`<button type="button" data-act="cohost">Co-host (${(u.cohosts||[]).length}/${MAX_COHOST})<span>›</span></button>`}
+    ${p==='venue'?`<button type="button" data-act="seats">Organizer di venue-mu (${(u.seats||[]).length}/${MAX_SEATS})<span>›</span></button><button type="button" data-act="recap">Rekap bulanan<span>›</span></button>`:''}
+  </div></div>`;}
+
+function v19Action(a,el){const u=accMe();
+  switch(a){
+    case 'cohost':prevView=view;goView('cohost');return false;
+    case 'seats':prevView=view;goView('seats');return false;
+    case 'recap':prevView=view;goView('recap');return false;
+    case 'legal':LG=el.dataset.k||'syarat';prevView=view==='legal'?prevView:view;goView('legal');window.scrollTo(0,0);return false;
+    case 'lg-tab':LG=el.dataset.k;render();return false;
+    case 'rc-m':RC.m=el.dataset.m;render();return false;
+    case 'rc-story':recapStory();return false;
+    case 'co-add':case 'seat-add':{const isCo=a==='co-add',inp=document.getElementById(isCo?'co-email':'seat-email'),e=lowEmail(inp&&inp.value);
+      if(!okEmail(e)){toast('Tulis email Google yang benar');return false;}if(e===lowEmail(u.email)){toast('Itu email akunmu sendiri');return false;}
+      if((isCo?u.cohosts:u.seats||[])&&(isCo?u.cohosts||[]:u.seats||[]).includes(e)){toast('Email ini sudah ada');return false;}
+      el.disabled=true;(isCo?cohostSet:seatSet)(true,e).then(()=>{toast(isCo?'Co-host ditambahkan':'Organizer ditambahkan');render();}).catch(err=>{el.disabled=false;console.warn(a,err);toast('Gagal menyimpan ('+(err.code||'error')+')');});return false;}
+    case 'co-del':cohostSet(false,el.dataset.e).then(()=>{toast('Co-host dihapus');render();}).catch(err=>toast('Gagal ('+(err.code||'error')+')'));return false;
+    case 'seat-del':seatSet(false,el.dataset.e).then(()=>{toast('Organizer dihapus');render();}).catch(err=>toast('Gagal ('+(err.code||'error')+')'));return false;
+    case 'proof-clear':PROOF=null;render();return false;
+    case 'adm-proof':{const x=ACCT.users.find(y=>y.uid===el.dataset.u);if(x)proofView(x);return false;}
+    case 'sp-clear':if(BR){BR.sponsor=null;render();}return false;
+  }
+  return true;
+}
+
 
 /* ===== Home hero: wording mengikuti keadaan turnamen ===== */
 function chOf(name){const m=String(name||'').match(/\b(?:chapter|chap|ch)\.?\s*#?\s*(\d{1,3})\b/i);return m?+m[1]:null;}
@@ -2774,6 +3070,8 @@ function goBack(){
   if(view==='admin')return goView('home');
   if(view==='pay')return goView('buy');
   if(['members','seasons','player'].includes(view)){RS.edit=null;return goView('rank');}
+  if(['cohost','seats','recap'].includes(view))return goView('account');
+  if(view==='legal')return goView(prevView&&prevView!=='legal'?prevView:(accMe()?'account':'landing'));
   if(view==='rank')return goView(prevView&&!['rank','members','seasons','player'].includes(prevView)?prevView:'home');
   if(view==='buy'||view==='brand')return goView(prevView&&!['buy','pay','brand'].includes(prevView)?prevView:'account');
   if(view==='account')return goView(prevView&&prevView!=='account'&&prevView!=='admin'&&(prevView!=='tour'||cur())&&(prevView!=='wheel'||wheelObj())?prevView:'home');
@@ -2797,7 +3095,7 @@ document.addEventListener('click',e=>{
   }
   if(el.dataset.act&&el.dataset.act.startsWith('rc')){if(!rcAction(el.dataset.act,el))return;}
   if(el.dataset.act&&/^(wnew|wtpl|wsrc|wd[a-z-]+|wp[a-z-]+)$/.test(el.dataset.act)&&!/^(wdel|wdel-yes)$/.test(el.dataset.act)){if(!wAction(el.dataset.act,el))return;}
-  if(STANDALONE&&el.dataset.act&&/^(rank|r-season|r-members|r-seasons|r-player|r-story|r-merge|r-unmerge|r-nosame|r-edit|r-new|r-ssave|r-sdel|dur|topay|paid|brand|br-acc|br-nologo|br-save|story|adm-pay|adm-rej|pc-go|guest|demo-live|demo-exit|live|acct|login|login-go|logout|buy|reqplan|pro|go-plans|admin|adm-on|adm-no|adm-off|adm-approve|adm-reject|adm-block|adm-unblock|new)$/.test(el.dataset.act)){if(!accAction(el.dataset.act,el))return;}
+  if(STANDALONE&&el.dataset.act&&/^(cohost|seats|recap|legal|lg-tab|rc-m|rc-story|co-add|co-del|seat-add|seat-del|proof-clear|adm-proof|sp-clear|rank|r-season|r-members|r-seasons|r-player|r-story|r-merge|r-unmerge|r-nosame|r-edit|r-new|r-ssave|r-sdel|dur|topay|paid|brand|br-acc|br-nologo|br-save|story|adm-pay|adm-rej|pc-go|guest|demo-live|demo-exit|live|acct|login|login-go|logout|buy|reqplan|pro|go-plans|admin|adm-on|adm-no|adm-off|adm-approve|adm-reject|adm-block|adm-unblock|new)$/.test(el.dataset.act)){if(!accAction(el.dataset.act,el))return;}
   if(el.dataset.act==='hometop'){window.scrollTo({top:0,behavior:'smooth'});return;}
   if(el.dataset.act==='tolist'){const x=document.getElementById('tlist');if(x)x.scrollIntoView({behavior:'smooth',block:'start'});return;}
   if(el.dataset.act==='sharelink'){const u=location.origin+location.pathname;const d={title:'TMP · Teman Main Padelmu',text:'Bikin turnamen padel bareng, skor otomatis masuk klasemen.',url:u};
@@ -2805,6 +3103,7 @@ document.addEventListener('click',e=>{
   if(el.dataset.seg){const k=el.dataset.seg,v=el.dataset.val;draft[k]=v;if(k==='scoring')draft.total=v==='point'?21:v==='normal'?4:null;draft.sim=null;render();return;}
   if(el.dataset.tab){tab=el.dataset.tab;confirmKey=null;render();window.scrollTo(0,0);return;}
   const act=el.dataset.act,t=cur();
+  if(STANDALONE&&t&&t._shared&&act&&CO_BLOCK.test(act)&&view==='tour'){menuOpen=false;render();toast('Hanya pemilik turnamen yang bisa mengubah ini');return;}
   switch(act){
     case 'back':goBack();break;
     case 'new':draft=newDraft();if(el.dataset.name)draft.name=el.dataset.name;formErr='';editingId=null;goView('create');break;
@@ -3022,9 +3321,9 @@ try{const raw=localStorage.getItem(KEY);if(raw){const s=JSON.parse(raw);if(s&&Ar
 migrate();
 {const smp=S.tournaments.filter(t=>t.sample);if(smp.length){S.tournaments=S.tournaments.filter(t=>!t.sample);S.deleted=(S.deleted||[]).concat(smp.map(t=>t.id));}if(!S.seeded||smp.length){S.seeded=true;localSave();}}
 function enterLiveFromHash(){
-  const m=/^#live-([a-z0-9]{6,20})$/.exec(location.hash);
+  const m=/^#(live|tv)-([a-z0-9]{6,20})$/.exec(location.hash);
   if(!m)return false;
-  liveViewId=m[1];view='live';tab='rounds';liveT=null;liveState='connecting';liveFollow=true;
+  liveTV=STANDALONE&&m[1]==='tv';liveViewId=m[2];view='live';tab='rounds';liveT=null;liveState='connecting';liveFollow=true;
   Live.watch(liveViewId).catch(()=>{liveState='error';render();});
   return true;
 }
