@@ -3151,7 +3151,7 @@ function i18nRestore(){
     else{const st=I18N.attrOrig.get(n);if(st){for(const a of I18N_ATTRS)if(st[a]!=null&&n.getAttribute(a)===st[a+'_en'])n.setAttribute(a,st[a]);I18N.attrOrig.delete(n);}}
   }
 }
-const i18nObs=new MutationObserver(ms=>{if(I18N.lang!=='en')return;
+const i18nObs=new MutationObserver(ms=>{if(I18N.lang==='en')
   for(const m of ms){if(m.type==='characterData')i18nText(m.target);else if(m.type==='attributes')i18nAttrs(m.target);else m.addedNodes.forEach(i18nWalk);}
   i18nButton();});
 function i18nButton(){
