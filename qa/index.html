@@ -3303,7 +3303,7 @@ document.addEventListener('click',e=>{
       if(inAnyMatch(t,el.dataset.id))rosterDirty=true;else rosterDirty=rosterDirty||false;rosterDirty=true;save();rosterRerender();break;}
     case 'padd':{const ta=document.getElementById('r-entry'),F=FORMATS[t.type],names=parseNames(ta.value,F.kind==='team');if(!names.length){ta.focus();break;}
       names.forEach(n=>{const sizes=Array.from({length:G(t)},(_,g)=>t.entries.filter(x=>(x.grp||0)===g).length);const grp=sizes.indexOf(Math.min(...sizes));const {m,f}=counts({type:t.type,entries:t.entries});
-        t.entries.push({id:uid(),name:n,g:F.kind==='mix'?(m<=f?'M':'F'):'M',grp,away:false,arr:t.rounds.length>0});});
+        const nid=uid();t.entries.push({id:nid,name:n,g:F.kind==='mix'?(m<=f?'M':'F'):'M',grp,away:false,arr:t.rounds.length>0});if(t.rounds.length){t.lateMiss=t.lateMiss||{};t.lateMiss[nid]=t.rounds.map((_,i)=>i);}});
       rosterDirty=true;save();rosterRerender();document.getElementById('r-entry')?.focus();toast((names.length===1?names[0]:names.length+' '+unitWord(t))+' ditambahkan'+(t.rounds.length?' · ronde yang sudah dibuat tidak berubah':''));break;}
     case 'pdf':exportPdf();break;
     case 'togglepriv':t.hidePublic=!t.hidePublic;menuOpen=false;save();render();toast(t.hidePublic?'Klasemen privat aktif':'Klasemen privat dimatikan');break;
