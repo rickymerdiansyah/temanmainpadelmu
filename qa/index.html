@@ -2693,7 +2693,7 @@ let RS={sid:lsGet('tmp.season')||'',sel:null,edit:null};
 const rKey=s=>String(s||'').toLowerCase().normalize('NFKD').replace(/[^a-z0-9]/g,'');
 const rClean=s=>String(s||'').replace(/\s+/g,' ').trim();
 function club(){const u=accMe(),c=(u&&u.club)||{};return {aliases:{...(c.aliases||{})},notSame:(c.notSame||[]).slice(),seasons:(c.seasons||[]).map(x=>({...x,tids:(x.tids||[]).slice()}))};}
-function rPaid(){const u=accMe();return !!u&&!u.admin&&planOf(u)!=='free';}
+function rPaid(){const u=accMe();return !!u&&(u.admin||planOf(u)!=='free');}
 function rFinished(){return myTournaments().filter(t=>t.finished&&t.rounds.some(r=>r.matches.some(m=>matchResult(t,m)))).sort((a,b)=>new Date(a.date)-new Date(b.date));}
 function rSplit(t,name){return FORMATS[t.type].kind==='team'?String(name).split(/\s*(?:&|\/|\+|,|\bdan\b)\s*/i).map(rClean).filter(Boolean):[rClean(name)];}
 // canonical name for a raw name: follow aliases (key -> canonical display name)
@@ -2743,7 +2743,7 @@ function rSuggest(){const c=club(),ms=rMembers(),out=[],no=new Set(c.notSame);
 async function clubSave(c,msg){const u=accMe();try{const cc=await Live.core();await cc.f.updateDoc(cc.f.doc(cc.db,'users',u.uid),{club:c});u.club=c;if(msg)toast(msg);render();}
   catch(e){console.warn('club',e);toast('Gagal menyimpan ('+(e.code||'error')+')');}}
 /* --- views --- */
-function rankCard(){const u=accMe();if(!u||u.admin)return '';
+function rankCard(){const u=accMe();if(!u)return '';
   if(!rPaid())return `<button type="button" class="rankcard locked" data-act="pro" data-f="rank"><span><small>RANKING MUSIM</small><b>Siapa juara musim ini?</b><span>Klasemen gabungan semua chapter, profil tiap pemain.</span></span><span class="plan-pill org">${LOCK} ORGANIZER</span></button>`;
   plHostWatch();const {s,tours,list}=rTable();
   if(!tours.length)return `<button type="button" class="rankcard" data-act="rank"><span><small>RANKING MUSIM</small><b>Belum ada chapter selesai</b><span>Ranking muncul setelah turnamen pertama selesai.</span></span></button>`;
@@ -2896,7 +2896,7 @@ function plHostWatch(){const u=accMe();if(!u||!rPaid()||PL.unsubHost)return;PL.u
   catch(e){PL.unsubHost=null;}})();
   plPublish();}
 function plPublish(){clearTimeout(PL.pubT);PL.pubT=setTimeout(()=>plDoPublish().catch(e=>{console.warn('publish',e);PL.pubErr=e.code||'error';}),1500);}
-async function plDoPublish(){const u=accMe();if(!u||!rPaid())return;const c=await Live.core(),f=c.f;const b=myBrand();const cname=(b&&b.name)||u.name;
+async function plDoPublish(){const u=accMe();if(!u||!rPaid())return;const c=await Live.core(),f=c.f;const b=myBrand();const cname=(b&&b.name)||(u.admin?'Teman Main Padelmu':u.name);
   const fin=rFinished();const dir={host:u.uid,name:cname,acc:(b&&b.acc)||'',logo:(b&&b.logo)||null,members:rMembers().slice(0,400).map(m=>({n:m.name,c:m.n})),chapters:fin.length,at:Date.now()};
   const sd=JSON.stringify({...dir,at:0});if(PL.sig.dir!==sd){await f.setDoc(f.doc(c.db,'clubdir',u.uid),dir);PL.sig.dir=sd;}
   const ok=PL.claimsHost.filter(x=>x.status==='ok');if(!ok.length)return;
